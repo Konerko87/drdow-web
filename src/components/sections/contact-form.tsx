@@ -71,7 +71,7 @@ export function ContactForm() {
           name="company"
           type="text"
           required
-          placeholder="例：聯群物流有限公司"
+          placeholder="例：ABC 物流股份有限公司"
           className="w-full px-4 py-2.5 rounded-xl bg-surface border border-black/10 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
         />
       </div>

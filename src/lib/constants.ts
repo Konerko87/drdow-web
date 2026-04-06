@@ -4,7 +4,7 @@ export const SITE = {
   description: '用 AI 替傳統產業打造會思考的企業系統。物流派車、財務管理、自動對帳，一站搞定。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
-  company: '聯群物流有限公司',
+  company: 'Dr.Dow AI Ltd.',
 } as const
 
 export const NAV_LINKS = [
