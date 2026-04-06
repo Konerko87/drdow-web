@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Noto_Sans_TC } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
+import { Analytics } from '@/components/layout/analytics'
 import { OrganizationJsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import './globals.css'
@@ -27,6 +28,9 @@ export const metadata: Metadata = {
   description: SITE.description,
   metadataBase: new URL(SITE.url),
   alternates: { canonical: SITE.url },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+  },
   openGraph: {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
@@ -55,6 +59,7 @@ export default function RootLayout({
     <html lang="zh-TW" className={`${inter.variable} ${notoSansTC.variable}`}>
       <body className="min-h-screen flex flex-col font-sans antialiased text-dark bg-white">
         <OrganizationJsonLd />
+        <Analytics />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
