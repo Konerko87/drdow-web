@@ -36,12 +36,12 @@ const ROLE_SCENARIOS = [
 ]
 
 const SCREENSHOTS = [
-  { src: '/screenshots/erp-boss.png', title: 'Boss App 總覽', desc: '收款進度、待審核、薪資排行、應收對帳一頁看完' },
-  { src: '/screenshots/erp-ocr.png', title: 'AI OCR 上傳請款', desc: '拍照上傳，AI 自動辨識廠商、金額、明細' },
-  { src: '/screenshots/erp-payments.png', title: '待匯款明細', desc: '展開完整照片、備註，逐筆確認匯款' },
-  { src: '/screenshots/erp-bank.png', title: '月度收款對帳', desc: '銀行爬蟲自動抓明細，AI 比對應收帳款' },
-  { src: '/screenshots/erp-salary.png', title: '薪資排行', desc: 'TMS 司機自動同步，勞健保勞退一目了然' },
-  { src: '/screenshots/erp-vendor.png', title: '廠商付款追蹤', desc: 'LINE 登入，送請款、追進度、看撥款' },
+  { src: '/screenshots/erp-boss.png', title: 'Boss App 總覽', desc: '收款進度、待審核、薪資排行、應收對帳一頁看完', mobile: true },
+  { src: '/screenshots/erp-ocr.png', title: 'AI OCR 上傳請款', desc: '拍照上傳，AI 自動辨識廠商、金額、明細', mobile: false },
+  { src: '/screenshots/erp-payments.png', title: '待匯款明細', desc: '展開完整照片、備註，逐筆確認匯款', mobile: false },
+  { src: '/screenshots/erp-bank.png', title: '月度收款對帳', desc: '銀行爬蟲自動抓明細，AI 比對應收帳款', mobile: false },
+  { src: '/screenshots/erp-salary.png', title: '薪資排行', desc: 'TMS 司機自動同步，勞健保勞退一目了然', mobile: true },
+  { src: '/screenshots/erp-vendor.png', title: '廠商付款追蹤', desc: 'LINE 登入，送請款、追進度、看撥款', mobile: true },
 ]
 
 export default function ERPPage() {
@@ -138,15 +138,17 @@ export default function ERPPage() {
         </div>
       </section>
 
-      {/* Screenshots */}
+      {/* Screenshots — Desktop */}
       <section className="py-24 bg-dark text-white">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black mb-4">系統畫面</h2>
             <p className="text-white/50 text-lg">為不同角色設計的直覺操作介面</p>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {SCREENSHOTS.map((ss, i) => (
+
+          {/* Desktop screenshots (16:10) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {SCREENSHOTS.filter((ss) => !ss.mobile).map((ss, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
                   <Image
@@ -157,6 +159,39 @@ export default function ERPPage() {
                     className="w-full aspect-video object-cover object-top"
                   />
                   <div className="p-4">
+                    <h4 className="font-bold text-sm mb-1">{ss.title}</h4>
+                    <p className="text-xs text-white/50">{ss.desc}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Mobile screenshots (phone mockup) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {SCREENSHOTS.filter((ss) => ss.mobile).map((ss, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div className="flex flex-col items-center">
+                  <div className="relative w-[240px] mx-auto">
+                    {/* Phone frame */}
+                    <div className="bg-[#1a1a2e] rounded-[2rem] p-2 shadow-2xl shadow-black/40 border border-white/10">
+                      <div className="bg-black rounded-[1.5rem] overflow-hidden">
+                        {/* Notch */}
+                        <div className="bg-black h-6 flex justify-center items-end pb-1">
+                          <div className="w-16 h-3 bg-[#1a1a2e] rounded-full" />
+                        </div>
+                        <Image
+                          src={ss.src}
+                          alt={ss.title}
+                          width={390}
+                          height={844}
+                          className="w-full object-cover object-top"
+                          style={{ maxHeight: '420px' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center mt-4">
                     <h4 className="font-bold text-sm mb-1">{ss.title}</h4>
                     <p className="text-xs text-white/50">{ss.desc}</p>
                   </div>
