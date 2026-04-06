@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Dr.Dow AI',
-  tagline: 'Systems that think for you.',
-  description: '用 AI 替傳統產業打造會思考的企業系統。物流派車、財務管理、自動對帳，一站搞定。',
+  tagline: '別再請人了，讓 AI 上班。',
+  description: '行政又貴又難請？Dr.Dow AI 用頂尖 AI 取代重複性工作流——派車、對帳、請款、薪資，全自動搞定。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
   company: 'Dr.Dow AI Ltd.',
@@ -75,19 +75,34 @@ export const WORKFLOW_STEPS = [
 
 export const PAIN_POINTS = [
   {
-    before: '還在用 Excel 排派車？',
+    before: '請一個行政月薪 3 萬，還不一定會用 Excel',
+    after: 'AI 24 小時工作、不請假、不出錯，月成本不到三千塊',
+    icon: '💸',
+  },
+  {
+    before: '派車排了 3 小時，結果還排錯',
     after: 'AI 自動規劃路線，拖拉指派 10 台車只要 10 秒',
     icon: '📋',
   },
   {
-    before: 'LINE 群組訊息找不到？',
-    after: '司機在 LINE App 裡操作，所有紀錄自動歸檔',
-    icon: '💬',
+    before: '月底對帳 3 天，怕漏付怕重付',
+    after: '銀行爬蟲每天自動抓明細，AI 比對 513 筆零差錯',
+    icon: '😰',
   },
   {
-    before: '月底對帳對到崩潰？',
-    after: '銀行爬蟲每天 6:00 自動抓明細，AI 比對到帳',
-    icon: '😰',
+    before: '廠商一直打電話問：我的錢什麼時候入帳？',
+    after: '廠商自己 LINE 登入查進度，你一通電話都不用接',
+    icon: '📞',
+  },
+  {
+    before: '請款發票一張一張 key，key 到眼睛脫窗',
+    after: 'AI 拍照自動辨識廠商、金額、明細，準確率 95%',
+    icon: '📸',
+  },
+  {
+    before: '人員流動大，新人來了又要重新教',
+    after: '系統就是 SOP，不需要教、不需要交接、不會忘記',
+    icon: '🔄',
   },
 ] as const
 

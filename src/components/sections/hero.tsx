@@ -15,23 +15,28 @@ export function Hero() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-white/50 text-xs tracking-widest uppercase mb-10 border border-white/10 backdrop-blur-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-          AI-Powered Software Solutions
+          AI-Powered Workflow Solutions
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.95] mb-8 tracking-tighter">
-          Systems that
+        <h1 className="text-4xl md:text-7xl font-black text-white leading-[1] mb-8 tracking-tighter">
+          別再請人了，
           <br />
           <span className="bg-gradient-to-r from-accent via-purple to-accent bg-[length:200%_auto] animate-[gradient_3s_linear_infinite] bg-clip-text text-transparent">
-            think for you.
+            讓 AI 上班。
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-base md:text-lg text-white/40 max-w-lg mx-auto mb-12 leading-relaxed font-light">
-          我們用 AI 替傳統產業打造會思考的企業系統。
-          <br />
-          不是工具，是替你做決策的夥伴。
+        {/* Pain point + solution */}
+        <p className="text-base md:text-lg text-white/50 max-w-2xl mx-auto mb-6 leading-relaxed">
+          行政請來了又貴、效率又差、Excel 也不太會。
+          <br className="hidden md:block" />
+          這個時代，你有更好的選擇。
+        </p>
+        <p className="text-sm md:text-base text-white/30 max-w-xl mx-auto mb-12 leading-relaxed">
+          Dr.Dow AI 用最頂尖的 AI 取代重複性工作流——
+          <br className="hidden md:block" />
+          派車排程、財務對帳、請款審核、薪資計算，全部自動搞定。
         </p>
 
         {/* CTAs */}
@@ -40,14 +45,14 @@ export function Hero() {
             href="/contact"
             className="group px-8 py-4 bg-white text-dark rounded-full text-sm font-semibold hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]"
           >
-            預約 Demo
+            免費諮詢
             <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
           <Link
-            href="#products"
+            href="#pain"
             className="px-8 py-4 text-white/60 rounded-full text-sm font-medium hover:text-white transition-colors border border-white/10 hover:border-white/20 backdrop-blur-sm"
           >
-            看產品
+            你也有這些痛點？
           </Link>
         </div>
 
