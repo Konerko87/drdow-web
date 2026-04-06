@@ -83,7 +83,7 @@ export function ProductCards() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <ProductCard product={PRODUCTS.tms} icon="🚛" href="/products/tms" screenshot="/screenshots/tms-dispatch.png" />
-          <ProductCard product={PRODUCTS.erp} icon="💰" href="/products/erp" screenshot="/screenshots/erp-boss.png" delay={100} />
+          <ProductCard product={PRODUCTS.erp} icon="💰" href="/products/erp" screenshot="/screenshots/erp-payments.png" delay={100} />
         </div>
       </div>
     </section>
