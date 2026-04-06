@@ -1,0 +1,40 @@
+name: Weekly Blog Auto-Generation
+
+on:
+  schedule:
+    # 每週一早上 9:00 (UTC+8) = 每週一 01:00 UTC
+    - cron: '0 1 * * 1'
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Generate blog post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npx tsx scripts/generate-blog.ts
+
+      - name: Commit and push
+        run: |
+          git config user.name "Dr.Dow AI Bot"
+          git config user.email "bot@drdow.ai"
+          git add content/blog/
+          if git diff --staged --quiet; then
+            echo "No new blog post generated"
+          else
+            git commit -m "blog: auto-generated weekly SEO article $(date +%Y-%m-%d)"
+            git push
+          fi
