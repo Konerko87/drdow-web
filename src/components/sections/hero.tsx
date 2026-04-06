@@ -2,55 +2,59 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="hero-gradient relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple/10 rounded-full blur-3xl" />
+    <section className="relative overflow-hidden bg-[#030712] min-h-screen flex items-center">
+      {/* Animated grid background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-purple/8 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-40 pb-24 text-center">
+      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 text-center w-full">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white/70 text-sm mb-8 border border-white/10">
-          <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-white/50 text-xs tracking-widest uppercase mb-10 border border-white/10 backdrop-blur-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
           AI-Powered Software Solutions
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6 tracking-tight">
+        <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.95] mb-8 tracking-tighter">
           Systems that
           <br />
-          <span className="gradient-text">think for you.</span>
+          <span className="bg-gradient-to-r from-accent via-purple to-accent bg-[length:200%_auto] animate-[gradient_3s_linear_infinite] bg-clip-text text-transparent">
+            think for you.
+          </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-          我們用 AI 替傳統產業��造會思考的企業系統。
-          <br className="hidden md:block" />
-          不是工具，是替你做決策的���伴。
+        <p className="text-base md:text-lg text-white/40 max-w-lg mx-auto mb-12 leading-relaxed font-light">
+          我們用 AI 替傳統產業打造會思考的企業系統。
+          <br />
+          不是工具，是替你做決策的夥伴。
         </p>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/contact"
-            className="px-8 py-3.5 bg-accent text-white rounded-full text-base font-semibold hover:bg-accent-light transition-colors shadow-lg shadow-accent/25"
+            className="group px-8 py-4 bg-white text-dark rounded-full text-sm font-semibold hover:bg-white/90 transition-all shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]"
           >
             預約 Demo
+            <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
           <Link
             href="#products"
-            className="px-8 py-3.5 bg-white/10 text-white rounded-full text-base font-semibold hover:bg-white/20 transition-colors border border-white/10"
+            className="px-8 py-4 text-white/60 rounded-full text-sm font-medium hover:text-white transition-colors border border-white/10 hover:border-white/20 backdrop-blur-sm"
           >
-            看產品 →
+            看產品
           </Link>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="mt-20 animate-bounce">
-          <svg className="w-6 h-6 mx-auto text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        {/* Scroll line */}
+        <div className="mt-24 flex flex-col items-center gap-2">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-white/20">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
         </div>
       </div>
     </section>
