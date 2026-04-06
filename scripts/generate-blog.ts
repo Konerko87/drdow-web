@@ -39,18 +39,22 @@ const ARTICLE_PROMPT = `
 3. 每個小節要有 ## 標題
 4. 自然帶入以下 SEO 關鍵字（不要硬塞）：物流數位轉型、TMS、ERP、AI、自動化
 5. 在適當位置提到 Dr.Dow AI 的解決方案（不超過 2 次，要自然不要像廣告）
-6. 結尾要有行動呼籲，引導讀者預約 Demo
+6. 結尾要有行動呼籲，引導讀者預約 Demo，連結用 [預約 Demo](/contact)
 7. 語氣：像一個懂物流的朋友在分享觀點，不要太正式
+8. Dr.Dow AI 官網連結一律用 https://drdowai.com
 
 回傳格式必須是 YAML frontmatter + Markdown：
 
 ---
 title: "文章標題"
 description: "50-100字的摘要，包含主要關鍵字"
+slug: "english-slug-for-url"
 date: "YYYY-MM-DD"
 tags: ["標籤1", "標籤2", "標籤3"]
 keywords: "SEO 關鍵字, 用逗號分隔"
 ---
+
+slug 欄位規則：用英文、全小寫、用 - 連接、3-6 個英文單字概括文章主題。例如 "logistics-ai-transformation-2026"、"tms-vs-excel-fleet-management"。
 
 （正文 Markdown）
 `.trim()
@@ -114,18 +118,17 @@ function saveArticle(content: string): string {
     fs.mkdirSync(BLOG_DIR, { recursive: true })
   }
 
-  // Extract title from frontmatter for slug
-  const titleMatch = content.match(/title:\s*"(.+)"/)
+  // Extract slug and date from frontmatter
+  const slugMatch = content.match(/slug:\s*"(.+)"/)
   const dateMatch = content.match(/date:\s*"(\d{4}-\d{2}-\d{2})"/)
 
   const date = dateMatch?.[1] || new Date().toISOString().split('T')[0]
-  const title = titleMatch?.[1] || 'untitled'
+  const rawSlug = slugMatch?.[1] || 'untitled'
 
-  // Generate slug from date + simplified title
-  const slug = `${date}-${title
-    .replace(/[^\u4e00-\u9fff\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .toLowerCase()
+  // Use frontmatter slug (English), fallback to date-only
+  const slug = `${date}-${rawSlug
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-')
     .slice(0, 60)}`
 
   const filePath = path.join(BLOG_DIR, `${slug}.md`)
