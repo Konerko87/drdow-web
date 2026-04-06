@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 import { PRODUCTS } from '@/lib/constants'
@@ -6,11 +7,13 @@ function ProductCard({
   product,
   icon,
   href,
+  screenshot,
   delay = 0,
 }: {
   product: typeof PRODUCTS.tms | typeof PRODUCTS.erp
   icon: string
   href: string
+  screenshot: string
   delay?: number
 }) {
   return (
@@ -31,12 +34,15 @@ function ProductCard({
 
           <p className="text-sm text-muted mb-6 leading-relaxed">{product.description}</p>
 
-          {/* Screenshot placeholder */}
-          <div className="bg-gradient-to-br from-dark to-[#1a1a2e] rounded-xl aspect-[16/10] mb-6 flex items-center justify-center text-white/20 text-xs border border-white/5 overflow-hidden">
-            <div className="text-center">
-              <div className="w-8 h-8 rounded-lg bg-white/5 mx-auto mb-2 flex items-center justify-center text-base">{icon}</div>
-              <span>系統截圖</span>
-            </div>
+          {/* Screenshot */}
+          <div className="rounded-xl mb-6 overflow-hidden border border-black/5">
+            <Image
+              src={screenshot}
+              alt={product.name}
+              width={800}
+              height={500}
+              className="w-full aspect-[16/10] object-cover object-top"
+            />
           </div>
 
           {/* Features */}
@@ -76,8 +82,8 @@ export function ProductCards() {
         </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <ProductCard product={PRODUCTS.tms} icon="🚛" href="/products/tms" />
-          <ProductCard product={PRODUCTS.erp} icon="💰" href="/products/erp" delay={100} />
+          <ProductCard product={PRODUCTS.tms} icon="🚛" href="/products/tms" screenshot="/screenshots/tms-dispatch.png" />
+          <ProductCard product={PRODUCTS.erp} icon="💰" href="/products/erp" screenshot="/screenshots/erp-boss.png" delay={100} />
         </div>
       </div>
     </section>

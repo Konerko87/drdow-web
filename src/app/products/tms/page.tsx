@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import { PRODUCTS, WORKFLOW_STEPS } from '@/lib/constants'
@@ -28,7 +29,7 @@ export default function TMSPage() {
       <SoftwareApplicationJsonLd
         name="Dr.Dow TMS"
         description={PRODUCTS.tms.description}
-        url="https://drdow.ai/products/tms"
+        url="https://drdowai.com/products/tms"
         category="BusinessApplication"
       />
       <BreadcrumbJsonLd
@@ -103,9 +104,13 @@ export default function TMSPage() {
             {SCREENSHOTS.map((ss, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
-                  <div className="aspect-video bg-white/5 flex items-center justify-center text-white/30 text-sm">
-                    截圖佔位：{ss.title}
-                  </div>
+                  <Image
+                    src={ss.src}
+                    alt={ss.title}
+                    width={800}
+                    height={500}
+                    className="w-full aspect-video object-cover object-top"
+                  />
                   <div className="p-4">
                     <h4 className="font-bold text-sm mb-1">{ss.title}</h4>
                     <p className="text-xs text-white/50">{ss.desc}</p>
