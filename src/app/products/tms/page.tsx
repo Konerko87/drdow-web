@@ -15,12 +15,12 @@ export const metadata: Metadata = createMetadata({
 })
 
 const SCREENSHOTS = [
-  { src: '/screenshots/tms-dispatch.png', title: '派車板 — 車找任務', desc: '任務分組 + 一鍵指派 + 自動填滿，派 10 台車只要 10 下' },
-  { src: '/screenshots/tms-focus.png', title: '專注派車模式', desc: '點選車輛進入專注模式，路線提示、容量計算、拖拉調整' },
-  { src: '/screenshots/tms-table.png', title: '表格模式', desc: 'Google Sheet 風格，所有資訊一覽無遺，下拉選單直接指派' },
-  { src: '/screenshots/tms-kpi.png', title: '營運 KPI 總覽', desc: '板數趨勢、準時率、裝載率、每板成本、回程空車率一頁看完' },
-  { src: '/screenshots/tms-fleet.png', title: '車輛維護管理', desc: '維修/耗材/保養分類，保養排程提醒，費用分析' },
-  { src: '/screenshots/tms-driver-app.png', title: '司機 LINE App', desc: '不用裝 App，LINE 裡直接操作。任務、簽到、拍照、報修' },
+  { src: '/screenshots/tms-dispatch.png', title: '派車板 — 車找任務', alt: 'Dr.Dow TMS 派車系統智慧派車板，車找任務模式，拖拉指派一鍵搞定', desc: '任務分組 + 一鍵指派 + 自動填滿，派 10 台車只要 10 下' },
+  { src: '/screenshots/tms-focus.png', title: '專注派車模式', alt: 'TMS 專注派車模式，路線提示與容量計算即時顯示', desc: '點選車輛進入專注模式，路線提示、容量計算、拖拉調整' },
+  { src: '/screenshots/tms-table.png', title: '表格模式', alt: 'TMS 表格模式派車，類似 Google Sheet 的直覺操作介面', desc: 'Google Sheet 風格，所有資訊一覽無遺，下拉選單直接指派' },
+  { src: '/screenshots/tms-kpi.png', title: '營運 KPI 總覽', alt: '物流營運 KPI 分析總覽，裝載率準時率每板成本一頁看完', desc: '板數趨勢、準時率、裝載率、每板成本、回程空車率一頁看完' },
+  { src: '/screenshots/tms-fleet.png', title: '車輛維護管理', alt: 'TMS 車隊維護管理系統，維修保養耗材分類追蹤', desc: '維修/耗材/保養分類，保養排程提醒，費用分析' },
+  { src: '/screenshots/tms-driver-app.png', title: '司機 LINE App', alt: '物流司機 LINE App 任務列表，不用下載直接在 LINE 操作', desc: '不用裝 App，LINE 裡直接操作。任務、簽到、拍照、報修' },
 ]
 
 export default function TMSPage() {
@@ -106,7 +106,7 @@ export default function TMSPage() {
                 <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
                   <Image
                     src={ss.src}
-                    alt={ss.title}
+                    alt={ss.alt}
                     width={800}
                     height={500}
                     className="w-full aspect-video object-cover object-top"

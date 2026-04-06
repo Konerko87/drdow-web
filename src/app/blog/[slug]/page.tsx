@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createMetadata } from '@/lib/metadata'
-import { getPostBySlug, getAllSlugs } from '@/lib/blog'
+import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/blog'
+import { RelatedPosts } from '@/components/sections/related-posts'
 import { FadeIn } from '@/components/ui/fade-in'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
@@ -137,9 +138,12 @@ export default async function BlogPostPage(
               <h3 className="text-xl font-black mb-2">想了解更多？</h3>
               <p className="text-sm text-muted mb-4">預約 30 分鐘 Demo，看看 Dr.Dow AI 如何解決你的物流管理痛點。</p>
               <Link href="/contact" className="inline-block px-6 py-2.5 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-light transition-colors">
-                預約 Demo →
+                免費諮詢 →
               </Link>
             </div>
+
+            {/* Related Posts */}
+            <RelatedPosts posts={getAllPosts()} currentSlug={slug} />
           </FadeIn>
         </div>
       </article>

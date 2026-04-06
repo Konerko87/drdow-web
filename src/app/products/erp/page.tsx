@@ -36,12 +36,12 @@ const ROLE_SCENARIOS = [
 ]
 
 const SCREENSHOTS = [
-  { src: '/screenshots/erp-boss.png', title: 'Boss App 總覽', desc: '收款進度、待審核、薪資排行、應收對帳一頁看完', mobile: true },
-  { src: '/screenshots/erp-ocr.png', title: 'AI OCR 上傳請款', desc: '拍照上傳，AI 自動辨識廠商、金額、明細', mobile: false },
-  { src: '/screenshots/erp-payments.png', title: '待匯款明細', desc: '展開完整照片、備註，逐筆確認匯款', mobile: false },
-  { src: '/screenshots/erp-bank.png', title: '月度收款對帳', desc: '銀行爬蟲自動抓明細，AI 比對應收帳款', mobile: false },
-  { src: '/screenshots/erp-salary.png', title: '薪資排行', desc: 'TMS 司機自動同步，勞健保勞退一目了然', mobile: true },
-  { src: '/screenshots/erp-vendor.png', title: '廠商付款追蹤', desc: 'LINE 登入，送請款、追進度、看撥款', mobile: true },
+  { src: '/screenshots/erp-boss.png', title: 'Boss App 總覽', alt: 'Dr.Dow ERP 老闆行動 App，收款進度待審核薪資一頁掌握', desc: '收款進度、待審核、薪資排行、應收對帳一頁看完', mobile: true },
+  { src: '/screenshots/erp-ocr.png', title: 'AI OCR 上傳請款', alt: 'AI OCR 發票辨識系統，拍照自動辨識廠商金額明細', desc: '拍照上傳，AI 自動辨識廠商、金額、明細', mobile: false },
+  { src: '/screenshots/erp-payments.png', title: '待匯款明細', alt: 'ERP 待匯款審核畫面，展開照片明細逐筆確認', desc: '展開完整照片、備註，逐筆確認匯款', mobile: false },
+  { src: '/screenshots/erp-bank.png', title: '月度收款對帳', alt: '銀行自動對帳系統，AI 比對應收帳款即時狀態', desc: '銀行爬蟲自動抓明細，AI 比對應收帳款', mobile: false },
+  { src: '/screenshots/erp-salary.png', title: '薪資排行', alt: '物流公司薪資管理系統，司機薪資排行部門彙總', desc: 'TMS 司機自動同步，勞健保勞退一目了然', mobile: true },
+  { src: '/screenshots/erp-vendor.png', title: '廠商付款追蹤', alt: '廠商自助 Portal 付款追蹤，LINE 登入查請款進度', desc: 'LINE 登入，送請款、追進度、看撥款', mobile: true },
 ]
 
 export default function ERPPage() {
@@ -153,7 +153,7 @@ export default function ERPPage() {
                 <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
                   <Image
                     src={ss.src}
-                    alt={ss.title}
+                    alt={ss.alt}
                     width={800}
                     height={500}
                     className="w-full aspect-video object-cover object-top"
@@ -182,7 +182,7 @@ export default function ERPPage() {
                         </div>
                         <Image
                           src={ss.src}
-                          alt={ss.title}
+                          alt={ss.alt}
                           width={390}
                           height={844}
                           className="w-full object-cover object-top"
