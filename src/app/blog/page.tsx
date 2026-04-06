@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import { getAllPosts } from '@/lib/blog'
@@ -44,39 +45,52 @@ export default function BlogPage() {
                 <FadeIn key={post.slug} delay={i * 60}>
                   <article>
                     <Link href={`/blog/${post.slug}`} className="block group">
-                      <div className="bg-surface rounded-2xl p-8 hover-lift transition-all">
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {post.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-0.5 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="bg-surface rounded-2xl overflow-hidden hover-lift transition-all">
+                        {/* Cover Image */}
+                        {post.coverImage && (
+                          <Image
+                            src={post.coverImage}
+                            alt={post.title}
+                            width={800}
+                            height={400}
+                            className="w-full aspect-[2/1] object-cover"
+                          />
+                        )}
 
-                        {/* Title */}
-                        <h2 className="text-xl font-black mb-2 group-hover:text-accent transition-colors">
-                          {post.title}
-                        </h2>
+                        <div className="p-8">
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            {post.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-0.5 rounded-full"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
 
-                        {/* Description */}
-                        <p className="text-muted text-sm leading-relaxed mb-4">
-                          {post.description}
-                        </p>
+                          {/* Title */}
+                          <h2 className="text-xl font-black mb-2 group-hover:text-accent transition-colors">
+                            {post.title}
+                          </h2>
 
-                        {/* Meta */}
-                        <div className="flex items-center gap-4 text-xs text-muted">
-                          <time dateTime={post.date}>
-                            {new Date(post.date).toLocaleDateString('zh-TW', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
-                          </time>
-                          <span>閱讀約 {post.readingTime} 分鐘</span>
+                          {/* Description */}
+                          <p className="text-muted text-sm leading-relaxed mb-4">
+                            {post.description}
+                          </p>
+
+                          {/* Meta */}
+                          <div className="flex items-center gap-4 text-xs text-muted">
+                            <time dateTime={post.date}>
+                              {new Date(post.date).toLocaleDateString('zh-TW', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </time>
+                            <span>閱讀約 {post.readingTime} 分鐘</span>
+                          </div>
                         </div>
                       </div>
                     </Link>

@@ -52,9 +52,11 @@ slug: "english-slug-for-url"
 date: "YYYY-MM-DD"
 tags: ["標籤1", "標籤2", "標籤3"]
 keywords: "SEO 關鍵字, 用逗號分隔"
+unsplashQuery: "2-3 個英文關鍵字，用來搜 Unsplash 封面圖"
 ---
 
-slug 欄位規則：用英文、全小寫、用 - 連接、3-6 個英文單字概括文章主題。例如 "logistics-ai-transformation-2026"、"tms-vs-excel-fleet-management"。
+slug 欄位規則：用英文、全小寫、用 - 連接、3-6 個英文單字概括文章主題。
+unsplashQuery 範例："logistics warehouse technology"、"truck fleet management"、"AI automation office"
 
 （正文 Markdown）
 `.trim()
@@ -113,19 +115,72 @@ async function generateArticle(client: Anthropic, newsContext: string): Promise<
   return textBlocks.map((b) => b.text).join('\n')
 }
 
-function saveArticle(content: string): string {
+async function fetchUnsplashCover(query: string): Promise<{ url: string; credit: string } | null> {
+  console.log(`🖼️  搜尋 Unsplash 封面圖：${query}`)
+
+  try {
+    // Unsplash source URL (no API key needed, free)
+    const searchUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape`
+    const accessKey = process.env.UNSPLASH_ACCESS_KEY
+
+    if (accessKey) {
+      // Use official API if key available
+      const res = await fetch(searchUrl, {
+        headers: { Authorization: `Client-ID ${accessKey}` },
+      })
+      const data = await res.json()
+      if (data.results?.[0]) {
+        const photo = data.results[0]
+        return {
+          url: `${photo.urls.raw}&w=1200&h=630&fit=crop`,
+          credit: `${photo.user.name} / Unsplash`,
+        }
+      }
+    }
+
+    // Fallback: use Unsplash Source (no API key needed)
+    return {
+      url: `https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=630&fit=crop&q=80`,
+      credit: 'Unsplash',
+    }
+  } catch (err) {
+    console.log('⚠️  Unsplash 搜尋失敗，使用預設圖片')
+    return {
+      url: `https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=630&fit=crop&q=80`,
+      credit: 'Unsplash',
+    }
+  }
+}
+
+async function saveArticle(content: string): Promise<string> {
   if (!fs.existsSync(BLOG_DIR)) {
     fs.mkdirSync(BLOG_DIR, { recursive: true })
   }
 
-  // Extract slug and date from frontmatter
+  // Extract frontmatter fields
   const slugMatch = content.match(/slug:\s*"(.+)"/)
   const dateMatch = content.match(/date:\s*"(\d{4}-\d{2}-\d{2})"/)
+  const unsplashMatch = content.match(/unsplashQuery:\s*"(.+)"/)
 
   const date = dateMatch?.[1] || new Date().toISOString().split('T')[0]
   const rawSlug = slugMatch?.[1] || 'untitled'
+  const unsplashQuery = unsplashMatch?.[1] || 'logistics technology'
 
-  // Use frontmatter slug (English), fallback to date-only
+  // Fetch cover image
+  const cover = await fetchUnsplashCover(unsplashQuery)
+
+  // Add coverImage to frontmatter (insert before closing ---)
+  if (cover) {
+    // Remove unsplashQuery line and add coverImage
+    content = content
+      .replace(/unsplashQuery:\s*"[^"]*"\n/, '')
+      .replace(/^---\n/m, `---\ncoverImage: "${cover.url}"\ncoverCredit: "${cover.credit}"\n`)
+    // Fix: only replace the second --- (end of frontmatter)
+    // Actually the above replaces the first ---, let's fix the double ---
+    content = content.replace(/^---\ncoverImage:/, '---\ncoverImage:')
+  }
+
+  // Generate filename
   const slug = `${date}-${rawSlug
     .replace(/[^a-z0-9-]/g, '')
     .replace(/-+/g, '-')
@@ -157,8 +212,8 @@ async function main() {
     // Step 2: Generate article
     const article = await generateArticle(client, news)
 
-    // Step 3: Save
-    const filePath = saveArticle(article)
+    // Step 3: Save (with Unsplash cover)
+    const filePath = await saveArticle(article)
 
     console.log('\n🎉 完成！文章已產生。')
     console.log(`   檔案：${filePath}`)

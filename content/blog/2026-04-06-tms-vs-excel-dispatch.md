@@ -4,6 +4,8 @@ description: "還在用 Excel 排派車？本文比較 TMS 運輸管理系統和
 date: "2026-04-06"
 tags: ["TMS", "物流數位轉型", "派車系統"]
 keywords: "TMS系統, 派車系統, Excel派車, 物流數位轉型, 運輸管理系統"
+coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 為什麼物流公司還在用 Excel 排派車？

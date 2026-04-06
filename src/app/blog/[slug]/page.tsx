@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createMetadata } from '@/lib/metadata'
@@ -22,6 +23,7 @@ export async function generateMetadata(
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
+    image: post.coverImage || undefined,
   })
 }
 
@@ -41,6 +43,7 @@ export default async function BlogPostPage(
           headline: post.title,
           description: post.description,
           datePublished: post.date,
+          ...(post.coverImage && { image: post.coverImage }),
           author: {
             '@type': 'Organization',
             name: SITE.name,
@@ -84,7 +87,7 @@ export default async function BlogPostPage(
             <h1 className="text-3xl md:text-4xl font-black mb-4 leading-tight">{post.title}</h1>
 
             {/* Meta */}
-            <div className="flex items-center gap-4 text-sm text-muted mb-12">
+            <div className="flex items-center gap-4 text-sm text-muted mb-8">
               <time dateTime={post.date}>
                 {new Date(post.date).toLocaleDateString('zh-TW', {
                   year: 'numeric', month: 'long', day: 'numeric',
@@ -92,6 +95,25 @@ export default async function BlogPostPage(
               </time>
               <span>閱讀約 {post.readingTime} 分鐘</span>
             </div>
+
+            {/* Cover Image */}
+            {post.coverImage && (
+              <figure className="mb-12">
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  width={1200}
+                  height={630}
+                  className="w-full rounded-2xl object-cover aspect-[2/1]"
+                  priority
+                />
+                {post.coverCredit && (
+                  <figcaption className="text-xs text-muted mt-2 text-center">
+                    Photo: {post.coverCredit}
+                  </figcaption>
+                )}
+              </figure>
+            )}
 
             {/* Content */}
             <div
@@ -105,6 +127,7 @@ export default async function BlogPostPage(
                 prose-ul:text-muted prose-ol:text-muted
                 prose-li:my-1
                 prose-blockquote:border-accent prose-blockquote:text-muted prose-blockquote:not-italic
+                prose-img:rounded-xl prose-img:mx-auto
               "
               dangerouslySetInnerHTML={{ __html: markdownToHtml(post.content) }}
             />
@@ -124,9 +147,10 @@ export default async function BlogPostPage(
   )
 }
 
-/** Simple markdown to HTML (no external lib needed for basic formatting) */
 function markdownToHtml(md: string): string {
   return md
+    // Images (before paragraphs)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
     // Headers
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
@@ -135,7 +159,7 @@ function markdownToHtml(md: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     // Unordered lists
     .replace(/^- (.+)$/gm, '<li>$1</li>')
     .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
@@ -145,8 +169,7 @@ function markdownToHtml(md: string): string {
     .replace(/^> (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
     // Horizontal rule
     .replace(/^---$/gm, '<hr />')
-    // Paragraphs (lines that aren't already wrapped)
-    .replace(/^(?!<[hluob])(.+)$/gm, '<p>$1</p>')
-    // Clean up empty paragraphs
+    // Paragraphs
+    .replace(/^(?!<[hluobip])(.+)$/gm, '<p>$1</p>')
     .replace(/<p><\/p>/g, '')
 }

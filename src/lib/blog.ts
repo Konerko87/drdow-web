@@ -10,6 +10,8 @@ export type BlogPost = {
   description: string
   date: string
   tags: string[]
+  coverImage: string | null
+  coverCredit: string | null
   content: string
   readingTime: number
 }
@@ -43,6 +45,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description || '',
     date: data.date || new Date().toISOString().split('T')[0],
     tags: data.tags || [],
+    coverImage: data.coverImage || null,
+    coverCredit: data.coverCredit || null,
     content,
     readingTime,
   }
