@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { SITE, NAV_LINKS } from '@/lib/constants'
 
@@ -21,6 +22,13 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo-icon.png"
+            alt="Dr.Dow AI"
+            width={28}
+            height={28}
+            className="rounded-md"
+          />
           <span className={`text-lg font-black tracking-tight transition-colors ${
             scrolled ? 'text-dark' : 'text-white'
           }`}>

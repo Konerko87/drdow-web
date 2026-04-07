@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 
@@ -8,8 +9,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="text-lg font-black text-white mb-3">
-              Dr.Dow <span className="gradient-text">AI</span>
+            <div className="flex items-center gap-2 mb-3">
+              <Image src="/logo-icon.png" alt="Dr.Dow AI" width={24} height={24} className="rounded-md" />
+              <span className="text-lg font-black text-white">Dr.Dow <span className="gradient-text">AI</span></span>
             </div>
             <p className="text-xs leading-relaxed">
               {SITE.tagline}
