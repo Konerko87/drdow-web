@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 
 export function ContactForm() {
+  const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -35,6 +37,7 @@ export function ContactForm() {
 
       setStatus('success')
       form.reset()
+      router.push('/thank-you')
     } catch (err) {
       setStatus('error')
       setErrorMsg(err instanceof Error ? err.message : '寄送失敗，請稍後再試')
