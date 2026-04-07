@@ -42,7 +42,7 @@ ${message}
         Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
-        from: 'Dr.Dow AI <noreply@drdow.ai>',
+        from: 'Dr.Dow AI <onboarding@resend.dev>',
         to: [SITE.email],
         subject,
         text: body,
