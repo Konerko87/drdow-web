@@ -5,7 +5,7 @@ export function AIWorkflow() {
   return (
     <section className="py-28 bg-[#030712] text-white overflow-hidden">
       {/* Grid bg */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:48px_48px]" />
       </div>
 
