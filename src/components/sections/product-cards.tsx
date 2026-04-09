@@ -10,7 +10,7 @@ function ProductCard({
   screenshot,
   delay = 0,
 }: {
-  product: typeof PRODUCTS.tms | typeof PRODUCTS.erp
+  product: (typeof PRODUCTS)[keyof typeof PRODUCTS]
   icon: string
   href: string
   screenshot: string
@@ -77,13 +77,14 @@ export function ProductCards() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Products</p>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">兩套系統，一個目標</h2>
-          <p className="text-muted text-base">讓你的物流公司從手動走向全自動。</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">三套系統，一個目標</h2>
+          <p className="text-muted text-base">AI 驅動的產業管理系統，讓傳統流程全面升級。</p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <ProductCard product={PRODUCTS.tms} icon="🚛" href="/products/tms" screenshot="/screenshots/tms-dispatch.png" />
           <ProductCard product={PRODUCTS.erp} icon="💰" href="/products/erp" screenshot="/screenshots/erp-payments.png" delay={100} />
+          <ProductCard product={PRODUCTS.miaotong} icon="🏮" href="/products/miaotong" screenshot="/screenshots/tms-dispatch.png" delay={200} />
         </div>
       </div>
     </section>

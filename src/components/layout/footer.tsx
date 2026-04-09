@@ -26,6 +26,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-xs">
               <li><Link href="/products/tms" className="hover:text-white transition-colors">TMS 派車系統</Link></li>
               <li><Link href="/products/erp" className="hover:text-white transition-colors">ERP 財務系統</Link></li>
+              <li><Link href="/products/miaotong" className="hover:text-white transition-colors">廟通 宮廟管理</Link></li>
               <li><Link href="/pricing" className="hover:text-white transition-colors">價格方案</Link></li>
             </ul>
           </div>

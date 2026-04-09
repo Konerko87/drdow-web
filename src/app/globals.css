@@ -54,6 +54,28 @@ html {
   background: rgba(59, 130, 246, 0.15);
 }
 
+/* Temple theme (MiaoTong) */
+.gradient-text-temple {
+  background: linear-gradient(135deg, #B91C1C, #D97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border-temple {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+}
+.gradient-border-temple::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, rgba(185,28,28,0.2), rgba(217,119,6,0.2));
+  z-index: -1;
+}
+
 /* Gradient border */
 .gradient-border {
   position: relative;

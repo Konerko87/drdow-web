@@ -11,6 +11,7 @@ export const NAV_LINKS = [
   { label: '產品', href: '#products', children: [
     { label: 'TMS 派車系統', href: '/products/tms', description: 'AI 智慧派車、司機 LINE App、GPS 追蹤' },
     { label: 'ERP 財務系統', href: '/products/erp', description: 'AI OCR 請款、銀行自動對帳、付款防呆' },
+    { label: '廟通 宮廟管理', href: '/products/miaotong', description: '信徒管理、點燈牌位、捐款收據、法會報名' },
   ]},
   { label: '解決方案', href: '/solutions' },
   { label: '價格', href: '/pricing' },
@@ -51,6 +52,22 @@ export const PRODUCTS = {
       { icon: '⛽', title: '加油卡即時串接', desc: '鉅泰加油卡 API，自動同步加值金額、車輛油耗排行。' },
       { icon: '📑', title: '財務報表', desc: '月度損益、AP/AR 帳齡分析、預算控管、Excel 匯出。' },
       { icon: '💵', title: '薪資管理', desc: 'CSV 上傳 + TMS 司機自動同步，勞健保勞退一目了然。' },
+    ],
+  },
+  miaotong: {
+    name: 'Dr.Dow 廟通',
+    fullName: '智慧宮廟管理系統',
+    tagline: '宮廟管理，智慧升級',
+    description: '專為台灣宮廟打造的一站式管理平台。整合信徒管理、點燈牌位、捐款收據、法會活動、發財金借還、會計報表與 LINE 行動服務。',
+    features: [
+      { icon: '🙏', title: '信徒管理', desc: '完整信徒與戶籍資料管理，家庭關係、服務紀錄、捐款歷程一目了然。' },
+      { icon: '🏮', title: '點燈牌位服務', desc: '點燈、安太歲、牌位、進塔一站整合。受益人、燈位、期間自動管理。' },
+      { icon: '💰', title: '捐款收據管理', desc: '具名 / 匿名捐款即時入帳，收據自動產生。日結、對帳一次搞定。' },
+      { icon: '📋', title: '法會活動管理', desc: '法會報名、繳費、桌次安排、QR Code 報到全整合。' },
+      { icon: '🪙', title: '發財金借還', desc: '擲筊流程數位化，借金規則、額度、黑名單、還金追蹤全系統管理。' },
+      { icon: '📊', title: '會計財務報表', desc: '收支管理、傳票、會計科目、預算控管、審核簽核。' },
+      { icon: '📱', title: 'LINE 行動服務', desc: '信眾免下載 App，直接用 LINE 線上點燈、法會報名、捐款查詢。' },
+      { icon: '🔒', title: '角色權限與稽核', desc: '依角色設定操作權限，所有異動留稽核日誌。' },
     ],
   },
 } as const
