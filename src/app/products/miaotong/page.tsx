@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import {
@@ -47,6 +48,9 @@ export default function MiaotongPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <FadeIn>
+            <div className="mb-6">
+              <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通" width={80} height={80} className="mx-auto mb-4" />
+            </div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/10 rounded-full text-sm text-white/80 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
               智慧宮廟管理系統
