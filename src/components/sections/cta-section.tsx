@@ -17,7 +17,7 @@ export function CTASection() {
             AI 能做的事
           </h2>
           <p className="text-white/30 text-base mb-10 max-w-md mx-auto">
-            30 分鐘免費諮詢，算給你看一套 AI 系統能省多少人力成本。
+            不管是宮廟管理還是物流營運，30 分鐘免費諮詢，讓你看到 AI 能省多少時間和成本。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

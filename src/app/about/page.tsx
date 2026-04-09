@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
   title: '關於 Dr.Dow AI — 用 AI 替傳統產業打造會思考的系統',
-  description: 'Dr.Dow AI 是一家專注於物流產業的 AI 軟體解決方案公司。我們的使命是用 AI 讓中小企業不再被手動作業綁架。',
+  description: 'Dr.Dow AI 是一家專注於宮廟管理與物流產業的 AI 軟體解決方案公司。旗下產品包含廟通宮廟管理系統、TMS 派車系統、ERP 財務系統。',
   path: '/about',
 })
 
@@ -37,10 +37,10 @@ export default function AboutPage() {
             <article className="prose prose-lg max-w-none">
               <h2 className="text-2xl font-black mb-4">我們的故事</h2>
               <p className="text-muted leading-relaxed">
-                Dr.Dow AI 誕生於一個簡單的觀察：台灣中小物流公司每天花大量時間在 Excel 排派車、LINE 群組溝通、月底手動對帳。這些重複性的工作，AI 其實都能做得更好更快。
+                Dr.Dow AI 誕生於一個簡單的觀察：台灣許多傳統產業每天花大量時間在紙本作業、Excel 管理、重複性人工流程上。不管是宮廟的點燈捐款管理，還是物流公司的派車對帳，這些工作 AI 其實都能做得更好更快。
               </p>
               <p className="text-muted leading-relaxed">
-                我們的創辦團隊來自物流產業第一線，深知調度員、司機、老闆各自的痛點。我們不是從矽谷空降的科技公司，而是從物流現場長出來的解決方案。
+                我們的團隊深入了解每個產業的第一線需求——從宮廟管委會的財務透明化，到物流調度員的每日派車。我們不是從矽谷空降的科技公司，而是從產業現場長出來的解決方案。
               </p>
             </article>
           </FadeIn>
@@ -58,8 +58,8 @@ export default function AboutPage() {
                   desc: '司機用 LINE、老闆用手機、老闆娘用電腦。每個角色用最習慣的方式操作，不需要學新軟體。',
                 },
                 {
-                  title: '中小企業值得好工具',
-                  desc: '不需要 SAP 的預算也能有 SAP 等級的管理。我們專為 10-100 台車的公司設計，功能到位、價格合理。',
+                  title: '傳統產業值得好工具',
+                  desc: '不需要大企業的預算也能有專業級管理。從宮廟到物流，我們專為台灣傳統產業設計功能到位、價格合理的系統。',
                 },
               ].map((belief, i) => (
                 <div key={i} className="bg-surface rounded-2xl p-6">

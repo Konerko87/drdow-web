@@ -6,12 +6,63 @@ import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
-  title: '解決方案 — 物流業 AI 數位轉型',
-  description: '派車自動化、財務自動化、司機管理、車隊管理。Dr.Dow AI 針對物流業痛點提供完整的 AI 解決方案。',
+  title: '解決方案 — 宮廟管理 / 物流業 AI 數位轉型',
+  description: '宮廟智慧管理、派車自動化、財務自動化。Dr.Dow AI 針對宮廟與物流業痛點提供完整的 AI 解決方案。',
   path: '/solutions',
 })
 
-const SOLUTIONS = [
+const TEMPLE_SOLUTIONS = [
+  {
+    icon: '🙏',
+    title: '信徒管理數位化',
+    desc: '信徒資料從紙本、Excel 散落各處，整合到雲端系統。家庭關係、服務紀錄、捐款歷程一站查詢。',
+    pain: '信徒資料分散在不同人的電腦和紙本',
+    result: '集中管理，任何人都能即時查詢完整紀錄',
+    products: ['廟通'],
+  },
+  {
+    icon: '🏮',
+    title: '點燈牌位服務整合',
+    desc: '點燈、安太歲、牌位、進塔服務統一管理。受益人、燈位、年度自動帶入，不用每年重新 key。',
+    pain: '每年點燈資料重新登記，容易搞混出錯',
+    result: '歷年紀錄自動帶入，櫃台作業時間減半',
+    products: ['廟通'],
+  },
+  {
+    icon: '💰',
+    title: '捐款收據自動化',
+    desc: '具名、匿名捐款即時入帳，收據自動產生編號。日結對帳一鍵完成，財務透明可追蹤。',
+    pain: '收據手開容易錯，月底對帳總是對不起來',
+    result: '自動產生收據 + 日結對帳，帳務零落差',
+    products: ['廟通'],
+  },
+  {
+    icon: '📋',
+    title: '法會活動管理',
+    desc: '法會報名、繳費、桌次安排、QR Code 報到全自動。活動前中後一條龍處理。',
+    pain: '電話報名、手抄桌次，到場才發現位子不夠',
+    result: '線上報名 + 自動分桌 + QR 報到',
+    products: ['廟通'],
+  },
+  {
+    icon: '🪙',
+    title: '發財金數位管理',
+    desc: '擲筊流程、借金規則、額度控管、黑名單、還金追蹤全系統化。不靠手寫，不漏不亂。',
+    pain: '借還紀錄靠手寫，查不到誰借了多少',
+    result: '數位化追蹤，借還狀態即時查詢',
+    products: ['廟通'],
+  },
+  {
+    icon: '📊',
+    title: '財務報表透明化',
+    desc: '收支管理、傳票、會計科目、預算控管。委員會隨時看到即時數據，不用等會計整理。',
+    pain: '委員會要報表，會計要花一週整理',
+    result: '即時報表，收支、預算執行率一頁看完',
+    products: ['廟通'],
+  },
+]
+
+const LOGISTICS_SOLUTIONS = [
   {
     icon: '🚛',
     title: '派車自動化',
@@ -21,7 +72,7 @@ const SOLUTIONS = [
     products: ['TMS'],
   },
   {
-    icon: '💰',
+    icon: '💵',
     title: '財務自動化',
     desc: 'AI 辨識發票、自動對帳、六層防呆。月底結算從 3 天縮短到 3 小時。',
     pain: '月底花 3 天對帳、怕重複付款',
@@ -44,23 +95,42 @@ const SOLUTIONS = [
     result: '自動提醒 + AI 分類 + 費用分析',
     products: ['TMS'],
   },
-  {
-    icon: '🏪',
-    title: '廠商協作',
-    desc: '廠商 LINE 登入自行送請款單，追蹤審核進度，不再打電話問「我的錢何時入帳」。',
-    pain: '廠商一直打電話問撥款進度',
-    result: '自助 Portal，廠商自己查進度',
-    products: ['ERP'],
-  },
-  {
-    icon: '📊',
-    title: '營運數據分析',
-    desc: '裝載率、每板成本、司機績效、油耗排行。數據驅動決策，不再靠感覺。',
-    pain: '不知道哪台車賺錢、哪條路線虧錢',
-    result: '10+ 維度 KPI，一頁看完',
-    products: ['TMS', 'ERP'],
-  },
 ]
+
+function SolutionCard({ solution, i, isTemple }: { solution: typeof TEMPLE_SOLUTIONS[number]; i: number; isTemple: boolean }) {
+  return (
+    <FadeIn key={i} delay={i * 80}>
+      <div className="bg-surface rounded-2xl p-8 hover-lift">
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="text-4xl">{solution.icon}</div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-xl font-black">{solution.title}</h3>
+              {solution.products.map((p) => (
+                <span key={p} className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                  p === '廟通' ? 'text-[#B91C1C] bg-[#B91C1C]/10' : 'text-accent bg-accent/10'
+                }`}>
+                  {p}
+                </span>
+              ))}
+            </div>
+            <p className="text-muted mb-4">{solution.desc}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="bg-red-50 rounded-lg p-3">
+                <p className="text-xs font-semibold text-red-500 mb-1">Before</p>
+                <p className="text-sm text-red-700">{solution.pain}</p>
+              </div>
+              <div className="bg-green-50 rounded-lg p-3">
+                <p className="text-xs font-semibold text-green-600 mb-1">After</p>
+                <p className="text-sm text-green-700">{solution.result}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </FadeIn>
+  )
+}
 
 export default function SolutionsPage() {
   return (
@@ -71,56 +141,57 @@ export default function SolutionsPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-4">
-              物流業 <span className="gradient-text">AI 解決方案</span>
+              AI <span className="gradient-text">解決方案</span>
             </h1>
             <p className="text-lg text-muted max-w-2xl mx-auto">
-              針對物流公司最痛的問題，用 AI 提供完整解決方案。
+              針對宮廟管理與物流公司最痛的問題，用 AI 提供完整解決方案。
             </p>
           </FadeIn>
         </div>
       </section>
 
-      <section className="pb-24">
+      {/* 廟通解決方案 */}
+      <section className="pb-16">
         <div className="max-w-7xl mx-auto px-6">
+          <FadeIn className="mb-10">
+            <h2 className="text-2xl font-black">
+              <span style={{ color: '#B91C1C' }}>廟通</span> 宮廟管理解決方案
+            </h2>
+          </FadeIn>
           <div className="space-y-8">
-            {SOLUTIONS.map((solution, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div className="bg-surface rounded-2xl p-8 hover-lift">
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="text-4xl">{solution.icon}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h2 className="text-xl font-black">{solution.title}</h2>
-                        {solution.products.map((p) => (
-                          <span key={p} className="text-xs font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full">
-                            {p}
-                          </span>
-                        ))}
-                      </div>
-                      <p className="text-muted mb-4">{solution.desc}</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="bg-red-50 rounded-lg p-3">
-                          <p className="text-xs font-semibold text-red-500 mb-1">Before</p>
-                          <p className="text-sm text-red-700">{solution.pain}</p>
-                        </div>
-                        <div className="bg-green-50 rounded-lg p-3">
-                          <p className="text-xs font-semibold text-green-600 mb-1">After</p>
-                          <p className="text-sm text-green-700">{solution.result}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
+            {TEMPLE_SOLUTIONS.map((solution, i) => (
+              <SolutionCard key={i} solution={solution} i={i} isTemple={true} />
             ))}
           </div>
+          <FadeIn className="text-center mt-10">
+            <Link href="/products/miaotong" className="inline-block px-8 py-3.5 text-white rounded-full font-semibold hover:opacity-90 transition-opacity" style={{ background: '#B91C1C' }}>
+              了解廟通完整功能 →
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
 
-          <FadeIn className="text-center mt-16">
-            <Link
-              href="/contact"
-              className="inline-block px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
-            >
-              找到你的解決方案 →
+      {/* 分隔 */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="border-t border-black/5" />
+      </div>
+
+      {/* 物流解決方案 */}
+      <section className="py-16 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeIn className="mb-10">
+            <h2 className="text-2xl font-black">
+              <span className="text-accent">TMS / ERP</span> 物流管理解決方案
+            </h2>
+          </FadeIn>
+          <div className="space-y-8">
+            {LOGISTICS_SOLUTIONS.map((solution, i) => (
+              <SolutionCard key={i} solution={solution} i={i} isTemple={false} />
+            ))}
+          </div>
+          <FadeIn className="text-center mt-10">
+            <Link href="/products/tms" className="inline-block px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+              了解物流系統 →
             </Link>
           </FadeIn>
         </div>
