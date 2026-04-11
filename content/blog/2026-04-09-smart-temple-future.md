@@ -5,7 +5,7 @@ slug: "smart-temple-future"
 date: "2026-04-09"
 tags: ["智慧廟務", "廟通", "數據分析", "宮廟營運"]
 keywords: "智慧廟務系統, 宮廟管理系統, 廟務系統, 宮廟 ERP, 廟宇管理平台, 數據分析, 宮廟營運"
-coverImage: "https://images.unsplash.com/photo-1531746790095-e6e0e5e0b788?w=1200&h=630&fit=crop"
+coverImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=630&fit=crop"
 coverCredit: "Unsplash"
 ---
 
