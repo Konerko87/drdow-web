@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Dr.Dow AI — 別再請人了，讓 AI 上班。'
+export const alt = '廟通 — 智慧宮廟管理系統 | Dr.Dow AI'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -10,7 +10,7 @@ export default function OGImage() {
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #030712 0%, #0F172A 100%)',
+          background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -20,16 +20,6 @@ export default function OGImage() {
           padding: '60px',
         }}
       >
-        {/* Grid pattern overlay */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
-
         {/* Glow */}
         <div
           style={{
@@ -39,7 +29,7 @@ export default function OGImage() {
             transform: 'translate(-50%, -50%)',
             width: '600px',
             height: '400px',
-            background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(185,28,28,0.15) 0%, transparent 70%)',
             borderRadius: '50%',
           }}
         />
@@ -66,7 +56,7 @@ export default function OGImage() {
             }}
           >
             Dr.Dow{' '}
-            <span style={{ color: '#3B82F6' }}>AI</span>
+            <span style={{ color: '#B91C1C' }}>AI</span>
           </div>
 
           <div
@@ -79,13 +69,13 @@ export default function OGImage() {
               marginBottom: 24,
             }}
           >
-            別再請人了，
+            宮廟管理，
           </div>
           <div
             style={{
               fontSize: 56,
               fontWeight: 900,
-              background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+              background: 'linear-gradient(135deg, #B91C1C, #D97706)',
               backgroundClip: 'text',
               color: 'transparent',
               textAlign: 'center',
@@ -93,7 +83,7 @@ export default function OGImage() {
               marginBottom: 32,
             }}
           >
-            讓 AI 上班。
+            智慧升級。
           </div>
 
           <div
@@ -103,7 +93,7 @@ export default function OGImage() {
               textAlign: 'center',
             }}
           >
-            廟通宮廟管理 · 物流派車 TMS · 財務 ERP
+            廟通 · 信徒管理 · 點燈牌位 · 捐款收據 · 法會報名
           </div>
 
           <div

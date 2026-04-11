@@ -12,12 +12,12 @@ import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: 'Dr.Dow AI — 別再請人了，讓 AI 上班',
-    description: '行政又貴又難請？Dr.Dow AI 用頂尖 AI 取代重複性工作流——廟通宮廟管理、物流派車 TMS、財務對帳 ERP，全自動搞定。',
+    title: '廟通 — 智慧宮廟管理系統 | Dr.Dow AI',
+    description: '專為台灣宮廟打造的一站式管理平台。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、會計報表、LINE 行動服務，一套系統全搞定。',
     path: '/',
-    keywords: ['AI', '宮廟管理系統', '物流派車', 'TMS', 'ERP', '廟通', '數位轉型', 'Dr.Dow AI'],
+    keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型', 'Dr.Dow AI'],
   }),
-  title: 'Dr.Dow AI — 別再請人了，讓 AI 上班',
+  title: '廟通 — 智慧宮廟管理系統 | Dr.Dow AI',
 }
 
 export default function HomePage() {

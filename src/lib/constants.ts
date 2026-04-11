@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Dr.Dow AI',
-  tagline: '別再請人了，讓 AI 上班。',
-  description: '行政又貴又難請？Dr.Dow AI 用頂尖 AI 取代重複性工作流——廟通宮廟管理、物流派車 TMS、財務對帳 ERP，全自動搞定。',
+  tagline: '宮廟管理，智慧升級。',
+  description: '廟通——專為台灣宮廟打造的智慧管理系統。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、LINE 行動服務，一套搞定。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
   company: 'Dr.Dow AI Ltd.',
@@ -9,9 +9,9 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: '產品', href: '#products', children: [
+    { label: '廟通 宮廟管理', href: '/products/miaotong', description: '信徒管理、點燈牌位、捐款收據、法會報名' },
     { label: 'TMS 派車系統', href: '/products/tms', description: 'AI 智慧派車、司機 LINE App、GPS 追蹤' },
     { label: 'ERP 財務系統', href: '/products/erp', description: 'AI OCR 請款、銀行自動對帳、付款防呆' },
-    { label: '廟通 宮廟管理', href: '/products/miaotong', description: '信徒管理、點燈牌位、捐款收據、法會報名' },
   ]},
   { label: '解決方案', href: '/solutions' },
   { label: '價格', href: '/pricing' },
@@ -73,12 +73,12 @@ export const PRODUCTS = {
 } as const
 
 export const STATS = [
-  { value: '40+', label: '管理車輛' },
-  { value: '6', label: '層付款防呆' },
-  { value: '3', label: '家銀行串接' },
-  { value: '95%+', label: 'OCR 準確率' },
-  { value: '513', label: '筆自動比對' },
+  { value: '8', label: '大功能模組' },
+  { value: '100%', label: '雲端化管理' },
+  { value: 'LINE', label: '信眾直接用' },
+  { value: '2 週', label: '快速導入' },
   { value: '24/7', label: '系統不間斷' },
+  { value: '0', label: '需要下載 App' },
 ] as const
 
 export const WORKFLOW_STEPS = [
@@ -92,34 +92,34 @@ export const WORKFLOW_STEPS = [
 
 export const PAIN_POINTS = [
   {
-    before: '請一個行政月薪 3 萬，還不一定會用 Excel',
-    after: 'AI 24 小時工作、不請假、不出錯，月成本不到三千塊',
-    icon: '💸',
+    before: '信徒資料散落在 Excel、紙本、不同人的電腦裡',
+    after: '信徒資料集中管理，家庭關係、捐款紀錄、服務歷程一站查詢',
+    icon: '📄',
   },
   {
-    before: '派車排了 3 小時，結果還排錯',
-    after: 'AI 自動規劃路線，拖拉指派 10 台車只要 10 秒',
-    icon: '📋',
+    before: '點燈、牌位、安太歲每年重來一次，資料容易搞混',
+    after: '受益人、燈位、年度自動帶入，不用重新 key',
+    icon: '🏮',
   },
   {
-    before: '月底對帳 3 天，怕漏付怕重付',
-    after: '銀行爬蟲每天自動抓明細，AI 比對 513 筆零差錯',
-    icon: '😰',
+    before: '捐款收據手開容易錯，月底對帳總是對不起來',
+    after: '捐款即時入帳、收據自動產生、日結對帳一鍵完成',
+    icon: '🧾',
   },
   {
-    before: '廠商一直打電話問：我的錢什麼時候入帳？',
-    after: '廠商自己 LINE 登入查進度，你一通電話都不用接',
+    before: '法會報名用電話登記，到場才發現桌次不夠',
+    after: '線上報名、自動分桌、QR Code 報到，人到就知道坐哪',
     icon: '📞',
   },
   {
-    before: '請款發票一張一張 key，key 到眼睛脫窗',
-    after: 'AI 拍照自動辨識廠商、金額、明細，準確率 95%',
-    icon: '📸',
+    before: '發財金借還靠手寫，借了多少、還了沒有根本查不到',
+    after: '借金數位化，擲筊流程、額度規則、還金追蹤系統管理',
+    icon: '🪙',
   },
   {
-    before: '人員流動大，新人來了又要重新教',
-    after: '系統就是 SOP，不需要教、不需要交接、不會忘記',
-    icon: '🔄',
+    before: '委���會想看報表，會計要花一週整理',
+    after: '即時財務報表、收支明細、預算執行率，隨時查看',
+    icon: '🔍',
   },
 ] as const
 
