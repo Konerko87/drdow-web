@@ -5,7 +5,7 @@ slug: "trucking-company-digital-tools"
 date: "2026-04-08"
 tags: ["貨運業", "數位工具", "車隊管理"]
 keywords: "貨運行數位工具, 貨運公司管理軟體, 車隊管理工具, 貨運業數位轉型"
-coverImage: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&h=630&fit=crop"
+coverImage: "https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1200&h=630&fit=crop"
 coverCredit: "Unsplash"
 ---
 
@@ -84,3 +84,7 @@ coverCredit: "Unsplash"
 4. **最後補上保養提醒和司機 APP** — 完善整個管理流程
 
 想知道從哪裡開始最適合你？[預約 Demo](/contact)，我們幫你規劃最適合的導入順序。
+
+---
+
+想了解更多？請參考 [TMS 派車系統](/products/tms)和 [ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact)。

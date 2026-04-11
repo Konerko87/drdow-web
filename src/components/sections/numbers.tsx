@@ -3,7 +3,7 @@ import { STATS } from '@/lib/constants'
 
 export function Numbers() {
   return (
-    <section className="py-28 bg-white">
+    <section className="py-28 bg-white" aria-label="關鍵數據">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Metrics</p>

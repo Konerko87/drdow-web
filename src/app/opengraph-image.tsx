@@ -103,7 +103,7 @@ export default function OGImage() {
               textAlign: 'center',
             }}
           >
-            AI 驅動的物流派車 + 財務管理解決方案
+            廟通宮廟管理 · 物流派車 TMS · 財務 ERP
           </div>
 
           <div

@@ -2,15 +2,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { BlogPost } from '@/lib/blog'
 
-export function RelatedPosts({ posts, currentSlug }: { posts: BlogPost[]; currentSlug: string }) {
-  const related = posts
-    .filter((p) => p.slug !== currentSlug)
-    .slice(0, 3)
+export function RelatedPosts({ posts, currentSlug, currentTags = [] }: { posts: BlogPost[]; currentSlug: string; currentTags?: string[] }) {
+  const others = posts.filter((p) => p.slug !== currentSlug)
+  const related = currentTags.length > 0
+    ? others
+        .map((p) => ({ post: p, score: p.tags.filter((t) => currentTags.includes(t)).length }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map((r) => r.post)
+    : others.slice(0, 3)
 
   if (related.length === 0) return null
 
   return (
-    <div className="mt-16 pt-12 border-t border-black/5">
+    <aside className="mt-16 pt-12 border-t border-black/5" aria-label="延伸閱讀">
       <h3 className="text-lg font-black mb-6">延伸閱讀</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {related.map((post) => (
@@ -23,18 +28,19 @@ export function RelatedPosts({ posts, currentSlug }: { posts: BlogPost[]; curren
                   width={400}
                   height={200}
                   className="w-full aspect-[2/1] object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               )}
               <div className="p-4">
-                <h4 className="text-sm font-bold group-hover:text-accent transition-colors line-clamp-2">
+                <p className="text-sm font-bold group-hover:text-accent transition-colors line-clamp-2">
                   {post.title}
-                </h4>
+                </p>
                 <p className="text-xs text-muted mt-1">{post.date}</p>
               </div>
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </aside>
   )
 }

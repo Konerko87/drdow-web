@@ -60,11 +60,10 @@ ${message}
     return await res.json()
   }
 
-  // Fallback: log to console (dev mode)
-  console.log('\n📧 === 新客戶留言 ===')
-  console.log(`Subject: ${subject}`)
-  console.log(body)
-  console.log('=== END ===\n')
+  // Fallback: dev mode (no Resend key)
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[Contact] ${subject}`)
+  }
   return { id: 'dev-mode' }
 }
 

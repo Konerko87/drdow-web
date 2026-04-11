@@ -3,7 +3,7 @@ import { Inter, Noto_Sans_TC } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Analytics } from '@/components/layout/analytics'
-import { OrganizationJsonLd } from '@/components/seo/json-ld'
+import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import './globals.css'
 
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: 'zh_TW',
     type: 'website',
+    images: [{ url: `${SITE.url}/opengraph-image`, width: 1200, height: 630, alt: `${SITE.name} — ${SITE.tagline}` }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,6 +48,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+    },
+  },
+  category: 'technology',
+  other: {
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
   },
 }
 
@@ -57,11 +70,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW" className={`${inter.variable} ${notoSansTC.variable}`}>
+      <head>
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0F172A" />
+      </head>
       <body className="min-h-screen flex flex-col font-sans antialiased text-dark bg-white">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-accent focus:font-semibold">
+          跳到主要內容
+        </a>
         <OrganizationJsonLd />
+        <LocalBusinessJsonLd />
         <Analytics />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

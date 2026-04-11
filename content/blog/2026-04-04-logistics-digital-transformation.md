@@ -1,6 +1,6 @@
 ---
 title: "2026中小物流數位轉型：從哪裡開始？"
-description: "物流公司如何開始數位轉型？從TMS到ERP的完整導入路線一次說清楚。"
+description: "中小物流公司如何開始數位轉型？本文從最痛的流程切入，拆解 TMS 派車到 ERP 財務的完整導入路線，幫你用最少的預算跨出第一步。"
 slug: "logistics-digital-transformation"
 date: "2026-04-04"
 tags: ["數位轉型", "TMS", "ERP"]
@@ -71,3 +71,7 @@ coverCredit: "Unsplash"
 從一個最痛的環節開始，2 週就能看到效果。
 
 [預約免費諮詢](/contact)
+
+---
+
+想了解更多？請參考 [TMS 派車系統](/products/tms)和 [ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact)。

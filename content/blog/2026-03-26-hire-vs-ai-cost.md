@@ -51,3 +51,7 @@ coverCredit: "Unsplash"
 Dr.Dow AI 就是為這個目標設計的——讓 AI 上班，讓人升級。
 
 [預約免費諮詢](/contact)
+
+---
+
+想了解更多？請參考 [TMS 派車系統](/products/tms)和 [ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact)，也歡迎查看[價格方案](/contact)。

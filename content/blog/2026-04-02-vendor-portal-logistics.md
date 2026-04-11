@@ -1,6 +1,6 @@
 ---
 title: "廠商不再催款：自助Portal的威力"
-description: "自助Portal如何改變物流公司與廠商的合作模式，降低溝通成本並提升效率。"
+description: "廠商一直打電話問錢什麼時候到？自助 Portal 讓廠商用 LINE 登入查進度、送請款單、追蹤撥款，徹底解決催款電話問題。"
 slug: "vendor-portal-logistics"
 date: "2026-04-02"
 tags: ["ERP", "廠商", "Portal"]
@@ -51,3 +51,7 @@ Dr.Dow ERP 的廠商 Portal 讓供應商用 LINE 登入後，自己就能：
 Portal 不只是一個工具，是一種合作方式的升級。
 
 [預約免費諮詢](/contact)
+
+---
+
+想了解更多？請參考 [Dr.Dow ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact) 了解完整功能。

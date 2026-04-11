@@ -3,7 +3,7 @@ import { PAIN_POINTS } from '@/lib/constants'
 
 export function PainPoints() {
   return (
-    <section id="pain" className="py-28 bg-white">
+    <section id="pain" className="py-28 bg-white" aria-label="痛點分析">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-8">
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Why AI</p>

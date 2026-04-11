@@ -3,7 +3,7 @@ import { FadeIn } from '@/components/ui/fade-in'
 
 export function CTASection() {
   return (
-    <section className="relative py-28 bg-[#030712] text-white overflow-hidden">
+    <section className="relative py-28 bg-[#030712] text-white overflow-hidden" aria-label="行動呼籲">
       {/* Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
@@ -28,10 +28,10 @@ export function CTASection() {
               <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
             </Link>
             <Link
-              href="mailto:kevin@st-logistics.com.tw"
+              href="/pricing"
               className="px-8 py-4 text-white/50 rounded-full text-sm font-medium hover:text-white transition-colors border border-white/10 hover:border-white/20"
             >
-              直接聯繫
+              查看方案
             </Link>
           </div>
         </FadeIn>

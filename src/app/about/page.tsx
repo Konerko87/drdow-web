@@ -2,22 +2,42 @@ import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/metadata'
 import { SITE } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
-import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
-  title: '關於 Dr.Dow AI — 用 AI 替傳統產業打造會思考的系統',
+  title: '關於 Dr.Dow AI — 用 AI 替傳統產業打造智慧系統',
   description: 'Dr.Dow AI 是一家專注於宮廟管理與物流產業的 AI 軟體解決方案公司。旗下產品包含廟通宮廟管理系統、TMS 派車系統、ERP 財務系統。',
   path: '/about',
+  keywords: ['關於', 'Dr.Dow AI', 'AI公司', '宮廟管理', '物流系統', '台灣'],
 })
 
 export default function AboutPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: '關於我們', url: '/about' }]} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: '關於 Dr.Dow AI',
+        description: 'Dr.Dow AI 是一家專注於宮廟管理與物流產業的 AI 軟體解決方案公司。',
+        url: `${SITE.url}/about`,
+        mainEntity: {
+          '@type': 'Organization',
+          name: SITE.name,
+          description: SITE.description,
+          url: SITE.url,
+          foundingDate: '2026',
+          knowsAbout: ['宮廟管理系統', '物流管理系統', 'AI 自動化', '數位轉型'],
+        },
+      }} />
 
       <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '關於我們', href: '/about' }]} />
+        </div>
+        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-6">
               用 AI 替傳統產業

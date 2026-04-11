@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
+import { SITE } from '@/lib/constants'
 import {
   MIAOTONG,
   MIAOTONG_PAIN_POINTS,
@@ -15,9 +16,10 @@ import { FeatureGrid } from '@/components/sections/feature-grid'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow AI 廟通 — 智慧宮廟管理系統 | 點燈牌位 捐款 法會報名 發財金',
+  title: '廟通 — 智慧宮廟管理系統 | 點燈牌位 捐款 法會',
   description: '專為台灣宮廟打造的一站式管理平台。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、會計報表、LINE 行動服務，一套系統全整合。',
   path: '/products/miaotong',
+  keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型'],
 })
 
 export default function MiaotongPage() {
@@ -26,7 +28,7 @@ export default function MiaotongPage() {
       <SoftwareApplicationJsonLd
         name="Dr.Dow AI 廟通"
         description={MIAOTONG.description}
-        url="https://drdowai.com/products/miaotong"
+        url={`${SITE.url}/products/miaotong`}
         category="BusinessApplication"
       />
       <BreadcrumbJsonLd
@@ -46,10 +48,22 @@ export default function MiaotongPage() {
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#B91C1C] opacity-10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#D97706] opacity-10 rounded-full blur-[120px]" />
 
+        <div className="relative max-w-7xl mx-auto px-6">
+          {/* Visible breadcrumb */}
+          <nav aria-label="breadcrumb" className="text-xs text-white/40 mb-8">
+            <ol className="flex items-center gap-1.5">
+              <li><Link href="/" className="hover:text-white/70 transition-colors">首頁</Link></li>
+              <li><span className="text-white/20">/</span></li>
+              <li><Link href="/#products" className="hover:text-white/70 transition-colors">產品</Link></li>
+              <li><span className="text-white/20">/</span></li>
+              <li><span className="text-white/70 font-medium">廟通 宮廟管理系統</span></li>
+            </ol>
+          </nav>
+        </div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <FadeIn>
             <div className="mb-6">
-              <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通" width={80} height={80} className="mx-auto mb-4" />
+              <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通智慧宮廟管理系統 logo" width={80} height={80} className="mx-auto mb-4" priority />
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/10 rounded-full text-sm text-white/80 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
@@ -252,6 +266,26 @@ export default function MiaotongPage() {
               </Link>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Cross Product */}
+      <section className="py-16 bg-surface">
+        <div className="max-w-4xl mx-auto px-6">
+          <FadeIn className="text-center mb-10">
+            <h2 className="text-2xl font-black mb-2">其他產品</h2>
+            <p className="text-muted text-sm">Dr.Dow AI 全系列解決方案</p>
+          </FadeIn>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/products/tms" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
+              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">TMS 派車系統</h3>
+              <p className="text-sm text-muted">智慧派車板、司機 LINE App、GPS 追蹤、薪資自動計算。</p>
+            </Link>
+            <Link href="/products/erp" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
+              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">ERP 財務系統</h3>
+              <p className="text-sm text-muted">AI OCR 請款、銀行自動對帳、六層付款防呆，財務零差錯。</p>
+            </Link>
+          </div>
         </div>
       </section>
     </>

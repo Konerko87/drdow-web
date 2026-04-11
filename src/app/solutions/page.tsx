@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import { FadeIn } from '@/components/ui/fade-in'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
-import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
+import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = createMetadata({
   title: '解決方案 — 宮廟管理 / 物流業 AI 數位轉型',
   description: '宮廟智慧管理、派車自動化、財務自動化。Dr.Dow AI 針對宮廟與物流業痛點提供完整的 AI 解決方案。',
   path: '/solutions',
+  keywords: ['解決方案', 'AI解決方案', '宮廟管理', '物流數位轉型', '派車自動化', '財務自動化'],
 })
 
 const TEMPLE_SOLUTIONS = [
@@ -136,9 +139,24 @@ export default function SolutionsPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: '解決方案', url: '/solutions' }]} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: '解決方案',
+        description: '宮廟智慧管理、派車自動化、財務自動化 AI 解決方案',
+        url: `${SITE.url}/solutions`,
+        about: [
+          { '@type': 'Thing', name: '宮廟管理系統' },
+          { '@type': 'Thing', name: '物流派車系統' },
+          { '@type': 'Thing', name: '財務管理系統' },
+        ],
+      }} />
 
       <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '解決方案', href: '/solutions' }]} />
+        </div>
+        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-4">
               AI <span className="gradient-text">解決方案</span>

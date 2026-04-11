@@ -4,13 +4,13 @@ import { SITE } from '@/lib/constants'
 
 export function Footer() {
   return (
-    <footer className="bg-[#030712] text-white/40 border-t border-white/5">
+    <footer className="bg-[#030712] text-white/40 border-t border-white/5" role="contentinfo">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo-icon.png" alt="Dr.Dow AI" width={24} height={24} className="rounded-md" />
+              <Image src="/logo-icon.png" alt="Dr.Dow AI logo" width={24} height={24} className="rounded-md" />
               <span className="text-lg font-black text-white">Dr.Dow <span className="gradient-text">AI</span></span>
             </div>
             <p className="text-xs leading-relaxed">
@@ -36,9 +36,11 @@ export function Footer() {
             <h4 className="text-white/70 font-semibold text-xs tracking-wider uppercase mb-4">Resources</h4>
             <ul className="space-y-2.5 text-xs">
               <li><Link href="/blog" className="hover:text-white transition-colors">部落格</Link></li>
+              <li><Link href="/solutions" className="hover:text-white transition-colors">解決方案</Link></li>
               <li><Link href="/faq" className="hover:text-white transition-colors">常見問題</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">關於我們</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">聯繫我們</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">隱私政策</Link></li>
             </ul>
           </div>
 

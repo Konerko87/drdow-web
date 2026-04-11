@@ -15,7 +15,7 @@ export default function ThankYouPage() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
 
       <div className="relative text-center px-6 max-w-lg">
-        <Image src="/logo-icon.png" alt="Dr.Dow AI" width={56} height={56} className="mx-auto mb-8 rounded-xl" />
+        <Image src="/logo-icon.png" alt="Dr.Dow AI logo" width={56} height={56} className="mx-auto mb-8 rounded-xl" />
 
         <h1 className="text-3xl md:text-4xl font-black text-white mb-4">
           感謝您的詢問！
@@ -29,6 +29,11 @@ export default function ThankYouPage() {
           <p className="text-white/50 text-sm mb-3">在等待的同時，您可以先了解：</p>
           <ul className="space-y-2">
             <li>
+              <Link href="/products/miaotong" className="text-accent text-sm hover:underline">
+                → 廟通宮廟管理系統
+              </Link>
+            </li>
+            <li>
               <Link href="/products/tms" className="text-accent text-sm hover:underline">
                 → TMS 派車系統如何運作
               </Link>
@@ -40,7 +45,7 @@ export default function ThankYouPage() {
             </li>
             <li>
               <Link href="/blog" className="text-accent text-sm hover:underline">
-                → 物流數位轉型部落格
+                → 產業趨勢部落格
               </Link>
             </li>
           </ul>

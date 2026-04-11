@@ -113,3 +113,7 @@ coverCredit: "Unsplash"
 如果答案是「有點勉強」，那或許是時候認真評估一套宮廟管理系統了。
 
 想了解 Dr.Dow AI 廟通如何導入你們廟的流程，歡迎[聯絡我們](/contact)預約展示。
+
+---
+
+想了解更多？請參考 [廟通智慧宮廟管理系統](/products/miaotong)，或[預約免費 Demo](/contact) 了解完整功能。

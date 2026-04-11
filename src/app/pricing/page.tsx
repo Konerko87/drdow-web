@@ -2,13 +2,16 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import { FadeIn } from '@/components/ui/fade-in'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
-import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
+import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = createMetadata({
   title: '價格方案 — 廟通宮廟管理 / 物流 TMS / ERP 系統',
   description: 'Dr.Dow AI 廟通宮廟管理系統、物流派車系統和財務系統的價格方案。依需求彈性選擇，所有方案都包含免費諮詢。',
   path: '/pricing',
+  keywords: ['價格', '方案', '廟通價格', 'TMS價格', 'ERP價格', '物流系統費用'],
 })
 
 const MIAOTONG_PLANS = [
@@ -150,9 +153,57 @@ export default function PricingPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: '價格', url: '/pricing' }]} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: '價格方案',
+        description: 'Dr.Dow AI 產品價格方案',
+        url: `${SITE.url}/pricing`,
+        mainEntity: [
+          {
+            '@type': 'Product',
+            name: '廟通 宮廟管理系統',
+            description: '專為台灣宮廟打造的智慧管理平台',
+            brand: { '@type': 'Brand', name: SITE.name },
+            offers: {
+              '@type': 'AggregateOffer',
+              priceCurrency: 'TWD',
+              offerCount: 3,
+              offers: MIAOTONG_PLANS.map((plan) => ({
+                '@type': 'Offer',
+                name: plan.name,
+                description: `${plan.target} — ${plan.features.join('、')}。免費諮詢，依需求報價`,
+                priceCurrency: 'TWD',
+                availability: 'https://schema.org/OnlineOnly',
+              })),
+            },
+          },
+          {
+            '@type': 'Product',
+            name: 'TMS / ERP 物流管理系統',
+            description: '物流派車與財務管理 AI 系統',
+            brand: { '@type': 'Brand', name: SITE.name },
+            offers: {
+              '@type': 'AggregateOffer',
+              priceCurrency: 'TWD',
+              offerCount: 3,
+              offers: LOGISTICS_PLANS.map((plan) => ({
+                '@type': 'Offer',
+                name: plan.name,
+                description: `${plan.target} — ${plan.features.join('、')}。免費諮詢，依需求報價`,
+                priceCurrency: 'TWD',
+                availability: 'https://schema.org/OnlineOnly',
+              })),
+            },
+          },
+        ],
+      }} />
 
       <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '價格', href: '/pricing' }]} />
+        </div>
+        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-4">簡單透明的價格</h1>
             <p className="text-lg text-muted">依需求選擇最適合的方案，所有方案都包含免費諮詢。</p>

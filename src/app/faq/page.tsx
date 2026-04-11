@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/metadata'
 import { FadeIn } from '@/components/ui/fade-in'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { FAQPageJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
@@ -8,6 +9,7 @@ export const metadata: Metadata = createMetadata({
   title: '常見問題 FAQ — 廟通宮廟管理 / 物流 TMS / ERP',
   description: '關於 Dr.Dow AI 廟通宮廟管理系統、物流派車系統 TMS 和財務系統 ERP 的常見問題解答。',
   path: '/faq',
+  keywords: ['FAQ', '常見問題', '廟通', 'TMS', 'ERP', '物流系統', '宮廟管理'],
 })
 
 const FAQS = [
@@ -110,7 +112,10 @@ export default function FAQPage() {
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: 'FAQ', url: '/faq' }]} />
 
       <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: 'FAQ', href: '/faq' }]} />
+        </div>
+        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-4">常見問題</h1>
             <p className="text-lg text-muted">

@@ -5,7 +5,7 @@ slug: "logistics-digital-cost-benefit"
 date: "2026-04-08"
 tags: ["數位轉型", "成本分析", "物流管理"]
 keywords: "物流系統多少錢, 物流數位轉型成本, TMS系統價格, 物流公司導入系統"
-coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop"
+coverImage: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=630&fit=crop"
 coverCredit: "Unsplash"
 ---
 
@@ -80,3 +80,7 @@ coverCredit: "Unsplash"
 系統不是等公司「夠大」才需要，而是在成長的過程中幫你打好基礎。
 
 想用你公司的實際數字算一次？[預約免費諮詢](/contact)，我們幫你做一份專屬的成本效益分析。
+
+---
+
+想了解更多？請參考 [TMS 派車系統](/products/tms)和 [ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact)，也歡迎查看[價格方案](/contact)。

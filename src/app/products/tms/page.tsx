@@ -2,16 +2,18 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
-import { PRODUCTS, WORKFLOW_STEPS } from '@/lib/constants'
+import { SITE, PRODUCTS, WORKFLOW_STEPS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow TMS — 物流派車 AI 系統 | 運輸管理系統',
+  title: 'Dr.Dow TMS — 物流派車 AI 系統',
   description: '智慧派車板、司機 LINE App、GPS 即時追蹤、薪酬自動計算。一套系統取代 Excel + LINE 群組，專為台灣中小物流公司設計的 TMS。',
   path: '/products/tms',
+  keywords: ['TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
 })
 
 const SCREENSHOTS = [
@@ -29,7 +31,7 @@ export default function TMSPage() {
       <SoftwareApplicationJsonLd
         name="Dr.Dow TMS"
         description={PRODUCTS.tms.description}
-        url="https://drdowai.com/products/tms"
+        url={`${SITE.url}/products/tms`}
         category="BusinessApplication"
       />
       <BreadcrumbJsonLd
@@ -41,8 +43,11 @@ export default function TMSPage() {
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white" aria-label="TMS 派車系統介紹">
+        <div className="max-w-7xl mx-auto px-6">
+          <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'TMS 派車系統', href: '/products/tms' }]} />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 text-center mt-6">
           <FadeIn>
             <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Transport Management System</p>
             <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
@@ -103,19 +108,21 @@ export default function TMSPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {SCREENSHOTS.map((ss, i) => (
               <FadeIn key={i} delay={i * 80}>
-                <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+                <figure className="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
                   <Image
                     src={ss.src}
                     alt={ss.alt}
                     width={800}
                     height={500}
                     className="w-full aspect-video object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={80}
                   />
-                  <div className="p-4">
-                    <h4 className="font-bold text-sm mb-1">{ss.title}</h4>
+                  <figcaption className="p-4">
+                    <p className="font-bold text-sm mb-1">{ss.title}</p>
                     <p className="text-xs text-white/50">{ss.desc}</p>
-                  </div>
-                </div>
+                  </figcaption>
+                </figure>
               </FadeIn>
             ))}
           </div>
@@ -135,7 +142,7 @@ export default function TMSPage() {
                   <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center text-2xl mx-auto mb-2">
                     {step.icon}
                   </div>
-                  <h4 className="text-sm font-bold">{step.title}</h4>
+                  <p className="text-sm font-bold">{step.title}</p>
                   <p className="text-xs text-muted">{step.desc}</p>
                 </div>
                 {i < 4 && (
@@ -163,6 +170,26 @@ export default function TMSPage() {
               ))}
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Cross Product */}
+      <section className="py-16 bg-surface">
+        <div className="max-w-4xl mx-auto px-6">
+          <FadeIn className="text-center mb-10">
+            <h2 className="text-2xl font-black mb-2">其他產品</h2>
+            <p className="text-muted text-sm">搭配使用，效率加倍</p>
+          </FadeIn>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/products/miaotong" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
+              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">廟通 宮廟管理系統</h3>
+              <p className="text-sm text-muted">信徒管理、點燈牌位、捐款收據、法會報名，一站搞定。</p>
+            </Link>
+            <Link href="/products/erp" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
+              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">ERP 財務系統</h3>
+              <p className="text-sm text-muted">AI OCR 請款、銀行自動對帳、六層付款防呆，財務零差錯。</p>
+            </Link>
+          </div>
         </div>
       </section>
 

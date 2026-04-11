@@ -3,13 +3,13 @@ import { TECH_STACK } from '@/lib/constants'
 
 export function TechStack() {
   return (
-    <section className="py-28 bg-[#FAFBFC]">
+    <section className="py-28 bg-[#FAFBFC]" aria-label="技術棧">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <FadeIn>
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Tech Stack</p>
           <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">全棧 AI 原生架構</h2>
           <p className="text-muted text-base mb-16 max-w-lg mx-auto">
-            不是套版 SaaS，每一行都是為物流產業量身打造。
+            不是套版 SaaS，每一行都是為傳統產業量身打造。
           </p>
         </FadeIn>
 

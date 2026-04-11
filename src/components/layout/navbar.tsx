@@ -16,7 +16,7 @@ export function Navbar() {
   }, [])
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <nav role="navigation" aria-label="主選單" className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       scrolled ? 'nav-blur border-b border-black/5' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -24,7 +24,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo-icon.png"
-            alt="Dr.Dow AI"
+            alt="Dr.Dow AI logo"
             width={28}
             height={28}
             className="rounded-md"
@@ -42,6 +42,8 @@ export function Navbar() {
             'children' in link && link.children ? (
               <div key={link.href} className="relative group">
                 <button
+                  aria-expanded={false}
+                  aria-haspopup="true"
                   className={`text-xs tracking-wide transition-colors flex items-center gap-1 ${
                     scrolled ? 'text-muted hover:text-dark' : 'text-white/50 hover:text-white'
                   }`}
@@ -99,6 +101,7 @@ export function Navbar() {
           className={`md:hidden p-2 ${scrolled ? 'text-dark' : 'text-white'}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {mobileOpen ? (

@@ -23,11 +23,19 @@ export function OrganizationJsonLd() {
         description: SITE.description,
         url: SITE.url,
         email: SITE.email,
+        logo: `${SITE.url}/logo-icon.png`,
         slogan: SITE.tagline,
         foundingDate: '2026',
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'TW',
+          addressLocality: '台灣',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'Customer Service',
+          email: SITE.email,
+          availableLanguage: ['zh-TW'],
         },
       }}
     />
@@ -59,7 +67,8 @@ export function SoftwareApplicationJsonLd({
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'TWD',
-          description: '價格洽詢',
+          availability: 'https://schema.org/OnlineOnly',
+          description: '免費諮詢，依需求報價',
         },
         provider: {
           '@type': 'Organization',
@@ -89,6 +98,38 @@ export function FAQPageJsonLd({
             text: faq.answer,
           },
         })),
+      }}
+    />
+  )
+}
+
+export function LocalBusinessJsonLd() {
+  return (
+    <JsonLd
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: SITE.name,
+        description: SITE.description,
+        url: SITE.url,
+        email: SITE.email,
+        image: `${SITE.url}/logo-icon.png`,
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'TW',
+          addressLocality: '台灣',
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: '台灣',
+        },
+        priceRange: '$$',
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
       }}
     />
   )

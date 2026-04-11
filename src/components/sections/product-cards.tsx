@@ -5,7 +5,7 @@ import { PRODUCTS } from '@/lib/constants'
 
 export function ProductCards() {
   return (
-    <section id="products" className="py-28 bg-white">
+    <section id="products" className="py-28 bg-white" aria-label="產品介紹">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: '#B91C1C' }}>Featured Product</p>
@@ -25,7 +25,7 @@ export function ProductCards() {
                     <span className="px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full text-white" style={{ background: '#B91C1C' }}>主打產品</span>
                   </div>
                   <div className="flex items-center gap-4 mb-4">
-                    <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通" width={56} height={56} className="rounded-xl" />
+                    <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通 宮廟管理系統 logo" width={56} height={56} className="rounded-xl" priority />
                     <div>
                       <h3 className="text-2xl md:text-3xl font-black tracking-tight">{PRODUCTS.miaotong.name}</h3>
                       <p className="text-sm text-muted">{PRODUCTS.miaotong.fullName}</p>
@@ -54,7 +54,7 @@ export function ProductCards() {
                 </div>
                 {/* Right: logo large */}
                 <div className="flex items-center justify-center">
-                  <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通" width={320} height={320} className="w-full max-w-[320px]" />
+                  <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通 智慧宮廟管理系統" width={320} height={320} className="w-full max-w-[320px]" priority />
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export function ProductCards() {
                 </div>
                 <p className="text-sm text-muted mb-6 leading-relaxed">{PRODUCTS.tms.description}</p>
                 <div className="rounded-xl mb-6 overflow-hidden border border-black/5">
-                  <Image src="/screenshots/tms-dispatch.png" alt={PRODUCTS.tms.name} width={800} height={500} className="w-full aspect-[16/10] object-cover object-top" />
+                  <Image src="/screenshots/tms-dispatch.png" alt="Dr.Dow TMS 派車系統智慧派車板介面，拖拉指派一鍵搞定" width={800} height={500} className="w-full aspect-[16/10] object-cover object-top" sizes="(max-width: 1024px) 100vw, 50vw" quality={80} />
                 </div>
                 <ul className="space-y-2.5 mb-6">
                   {PRODUCTS.tms.features.slice(0, 4).map((f, i) => (
@@ -112,7 +112,7 @@ export function ProductCards() {
                 </div>
                 <p className="text-sm text-muted mb-6 leading-relaxed">{PRODUCTS.erp.description}</p>
                 <div className="rounded-xl mb-6 overflow-hidden border border-black/5">
-                  <Image src="/screenshots/erp-payments.png" alt={PRODUCTS.erp.name} width={800} height={500} className="w-full aspect-[16/10] object-cover object-top" />
+                  <Image src="/screenshots/erp-payments.png" alt="Dr.Dow ERP 財務系統待匯款審核畫面，展開照片明細逐筆確認" width={800} height={500} className="w-full aspect-[16/10] object-cover object-top" sizes="(max-width: 1024px) 100vw, 50vw" quality={80} />
                 </div>
                 <ul className="space-y-2.5 mb-6">
                   {PRODUCTS.erp.features.slice(0, 4).map((f, i) => (

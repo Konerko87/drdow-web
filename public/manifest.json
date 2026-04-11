@@ -1,0 +1,21 @@
+{
+  "name": "Dr.Dow AI — 別再請人了，讓 AI 上班",
+  "short_name": "Dr.Dow AI",
+  "description": "AI 驅動的宮廟管理、物流派車、財務對帳系統",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "/logo-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

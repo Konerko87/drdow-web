@@ -5,7 +5,7 @@ slug: "freight-reconciliation-error"
 date: "2026-04-08"
 tags: ["運費對帳", "財務自動化", "ERP"]
 keywords: "運費對帳, 物流對帳錯誤, 對帳自動化, 物流財務系統"
-coverImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=630&fit=crop"
+coverImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=630&fit=crop&crop=center"
 coverCredit: "Unsplash"
 ---
 
@@ -65,3 +65,7 @@ coverCredit: "Unsplash"
 等你覺得好用了，再慢慢把應收應付、薪資計算、成本分析這些模組加上去。
 
 想看看自動對帳實際操作的畫面？[預約 Demo](/contact)，我們用你的真實資料跑給你看。
+
+---
+
+想了解更多？請參考 [Dr.Dow ERP 財務系統](/products/erp)，或[預約免費 Demo](/contact) 了解完整功能。

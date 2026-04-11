@@ -20,12 +20,20 @@ export async function generateMetadata(
   const post = getPostBySlug(slug)
   if (!post) return {}
 
-  return createMetadata({
+  const meta = createMetadata({
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
     image: post.coverImage || undefined,
+    type: 'article',
+    publishedTime: post.date,
+    modifiedTime: post.date,
+    authors: [SITE.name],
   })
+  return {
+    ...meta,
+    keywords: post.keywords.length > 0 ? post.keywords : post.tags,
+  }
 }
 
 export default async function BlogPostPage(
@@ -40,23 +48,30 @@ export default async function BlogPostPage(
       <JsonLd
         data={{
           '@context': 'https://schema.org',
-          '@type': 'Article',
+          '@type': 'BlogPosting',
           headline: post.title,
           description: post.description,
           datePublished: post.date,
-          ...(post.coverImage && { image: post.coverImage }),
+          dateModified: post.date,
+          ...(post.coverImage && post.coverImage.startsWith('http') && { image: post.coverImage }),
           author: {
             '@type': 'Organization',
             name: SITE.name,
             url: SITE.url,
+            logo: `${SITE.url}/logo-icon.png`,
           },
           publisher: {
             '@type': 'Organization',
             name: SITE.name,
             url: SITE.url,
+            logo: `${SITE.url}/logo-icon.png`,
           },
           mainEntityOfPage: `${SITE.url}/blog/${slug}`,
-          keywords: post.tags.join(', '),
+          keywords: post.keywords.length > 0 ? post.keywords.join(', ') : post.tags.join(', '),
+          wordCount: post.wordCount,
+          articleSection: post.tags[0] || '產業趨勢',
+          inLanguage: 'zh-TW',
+          about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
         }}
       />
       <BreadcrumbJsonLd
@@ -133,17 +148,46 @@ export default async function BlogPostPage(
               dangerouslySetInnerHTML={{ __html: markdownToHtml(post.content) }}
             />
 
+            {/* Prev / Next Navigation */}
+            {(() => {
+              const allPosts = getAllPosts()
+              const currentIndex = allPosts.findIndex((p) => p.slug === slug)
+              const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
+              const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
+              return (prevPost || nextPost) ? (
+                <nav className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {prevPost ? (
+                    <Link href={`/blog/${prevPost.slug}`} className="group p-4 bg-surface rounded-xl hover:bg-accent/5 transition-colors">
+                      <span className="text-xs text-muted">← 上一篇</span>
+                      <p className="text-sm font-semibold mt-1 group-hover:text-accent transition-colors line-clamp-2">{prevPost.title}</p>
+                    </Link>
+                  ) : <div />}
+                  {nextPost && (
+                    <Link href={`/blog/${nextPost.slug}`} className="group p-4 bg-surface rounded-xl hover:bg-accent/5 transition-colors text-right">
+                      <span className="text-xs text-muted">下一篇 →</span>
+                      <p className="text-sm font-semibold mt-1 group-hover:text-accent transition-colors line-clamp-2">{nextPost.title}</p>
+                    </Link>
+                  )}
+                </nav>
+              ) : null
+            })()}
+
             {/* CTA */}
             <div className="mt-16 p-8 bg-surface rounded-2xl text-center">
               <h3 className="text-xl font-black mb-2">想了解更多？</h3>
-              <p className="text-sm text-muted mb-4">預約 30 分鐘 Demo，看看 Dr.Dow AI 如何解決你的物流管理痛點。</p>
-              <Link href="/contact" className="inline-block px-6 py-2.5 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-light transition-colors">
-                免費諮詢 →
-              </Link>
+              <p className="text-sm text-muted mb-4">預約 30 分鐘 Demo，看看 Dr.Dow AI 如何解決你的管理痛點。</p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Link href="/contact" className="inline-block px-6 py-2.5 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-light transition-colors">
+                  免費諮詢 →
+                </Link>
+                <Link href="/products/miaotong" className="inline-block px-6 py-2.5 border border-slate-200 rounded-full text-sm font-semibold hover:bg-surface transition-colors">
+                  了解廟通
+                </Link>
+              </div>
             </div>
 
             {/* Related Posts */}
-            <RelatedPosts posts={getAllPosts()} currentSlug={slug} />
+            <RelatedPosts posts={getAllPosts()} currentSlug={slug} currentTags={post.tags} />
           </FadeIn>
         </div>
       </article>
@@ -154,7 +198,7 @@ export default async function BlogPostPage(
 function markdownToHtml(md: string): string {
   return md
     // Images (before paragraphs)
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<figure><img src="$2" alt="$1" loading="lazy" decoding="async" /><figcaption>$1</figcaption></figure>')
     // Headers
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
@@ -162,7 +206,8 @@ function markdownToHtml(md: string): string {
     // Bold & italic
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Links
+    // Links (external get noopener + new tab)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     // Unordered lists
     .replace(/^- (.+)$/gm, '<li>$1</li>')

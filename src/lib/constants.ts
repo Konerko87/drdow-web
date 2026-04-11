@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Dr.Dow AI',
   tagline: '別再請人了，讓 AI 上班。',
-  description: '行政又貴又難請？Dr.Dow AI 用頂尖 AI 取代重複性工作流——派車、對帳、請款、薪資，全自動搞定。',
+  description: '行政又貴又難請？Dr.Dow AI 用頂尖 AI 取代重複性工作流——廟通宮廟管理、物流派車 TMS、財務對帳 ERP，全自動搞定。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
   company: 'Dr.Dow AI Ltd.',

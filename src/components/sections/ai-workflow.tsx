@@ -3,7 +3,7 @@ import { WORKFLOW_STEPS } from '@/lib/constants'
 
 export function AIWorkflow() {
   return (
-    <section className="py-28 bg-[#030712] text-white overflow-hidden">
+    <section className="py-28 bg-[#030712] text-white overflow-hidden" aria-label="AI 工作流程">
       {/* Grid bg */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:48px_48px]" />
@@ -29,7 +29,7 @@ export function AIWorkflow() {
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-2xl mx-auto mb-4 backdrop-blur-sm">
                   {step.icon}
                 </div>
-                <h4 className="text-xs font-bold tracking-wide mb-1">{step.title}</h4>
+                <p className="text-xs font-bold tracking-wide mb-1">{step.title}</p>
                 <p className="text-[10px] text-white/30 leading-relaxed">{step.desc}</p>
               </FadeIn>
             ))}
@@ -45,7 +45,7 @@ export function AIWorkflow() {
                   {step.icon}
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold">{step.title}</h4>
+                  <p className="text-sm font-bold">{step.title}</p>
                   <p className="text-xs text-white/30">{step.desc}</p>
                 </div>
               </div>

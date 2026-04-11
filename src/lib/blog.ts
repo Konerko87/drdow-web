@@ -10,10 +10,12 @@ export type BlogPost = {
   description: string
   date: string
   tags: string[]
+  keywords: string[]
   coverImage: string | null
   coverCredit: string | null
   content: string
   readingTime: number
+  wordCount: number
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -36,8 +38,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const raw = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(raw)
 
-  const wordCount = content.replace(/[#*\->\n]/g, '').length
-  const readingTime = Math.max(1, Math.ceil(wordCount / 500))
+  const charCount = content.replace(/[#*\->\n]/g, '').length
+  const readingTime = Math.max(1, Math.ceil(charCount / 500))
 
   return {
     slug,
@@ -45,10 +47,12 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description || '',
     date: data.date || new Date().toISOString().split('T')[0],
     tags: data.tags || [],
+    keywords: data.keywords ? (typeof data.keywords === 'string' ? data.keywords.split(',').map((k: string) => k.trim()) : data.keywords) : [],
     coverImage: data.coverImage || null,
     coverCredit: data.coverCredit || null,
     content,
     readingTime,
+    wordCount: charCount,
   }
 }
 

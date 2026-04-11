@@ -1,12 +1,26 @@
 import { SITE } from '@/lib/constants'
 
 const LLMS_TXT = `# ${SITE.name} — ${SITE.tagline}
-> AI-powered software solutions for logistics companies in Taiwan.
+> AI-powered software solutions for temples and logistics companies in Taiwan.
 
 ## About
-Dr.Dow AI builds intelligent enterprise systems for the logistics industry. Our software uses AI to automate dispatch, financial management, bank reconciliation, and driver operations — replacing manual Excel spreadsheets and LINE group chats with automated workflows.
+Dr.Dow AI builds intelligent enterprise systems for traditional industries. Our flagship product 廟通 (MiaoTong) is a smart temple management platform for Taiwanese temples. We also offer TMS and ERP systems for logistics companies — replacing manual Excel spreadsheets and LINE group chats with AI-automated workflows.
 
 ## Products
+
+### Dr.Dow AI 廟通 (MiaoTong) — Smart Temple Management System ⭐ Flagship
+- **URL**: ${SITE.url}/products/miaotong
+- **Purpose**: All-in-one management platform for Taiwanese temples
+- **Key Features**:
+  - Devotee/member management with family relationships
+  - Light offering & ancestral tablet management (auto-renew yearly)
+  - Donation tracking with official receipt generation
+  - Religious event/ceremony registration with QR check-in
+  - Fortune money (發財金) lending & return tracking
+  - Accounting & financial reports for temple committees
+  - LINE LIFF mobile service for devotees (no app install needed)
+  - Role-based access control with audit logs
+  - Multi-temple management support
 
 ### Dr.Dow TMS — Transport Management System
 - **URL**: ${SITE.url}/products/tms
@@ -35,9 +49,10 @@ Dr.Dow AI builds intelligent enterprise systems for the logistics industry. Our 
   - Payroll management with TMS driver sync
 
 ## Target Customers
-- Small-to-medium logistics companies in Taiwan
+- Taiwanese temples and religious organizations (廟通) — our primary focus
+- Small-to-medium logistics companies in Taiwan (TMS/ERP)
 - Fleet size: 10-100 vehicles
-- Looking to replace: Excel dispatching, LINE group communication, manual bank reconciliation
+- Looking to replace: paper-based temple records, Excel dispatching, LINE group communication, manual bank reconciliation
 
 ## Key Numbers
 - 40+ vehicles managed
@@ -65,7 +80,7 @@ export async function GET() {
   return new Response(LLMS_TXT, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400',
+      'Cache-Control': 'public, max-age=86400, s-maxage=604800',
     },
   })
 }

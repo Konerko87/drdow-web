@@ -6,11 +6,21 @@ export function createMetadata({
   description,
   path = '',
   image,
+  keywords,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  authors,
 }: {
   title: string
   description: string
   path?: string
   image?: string
+  keywords?: string[]
+  type?: 'website' | 'article'
+  publishedTime?: string
+  modifiedTime?: string
+  authors?: string[]
 }): Metadata {
   const url = `${SITE.url}${path}`
   const ogImage = image || `${SITE.url}/og/default.png`
@@ -18,6 +28,8 @@ export function createMetadata({
   return {
     title,
     description,
+    ...(keywords && { keywords }),
+    ...(authors && { authors: authors.map((name) => ({ name })) }),
     metadataBase: new URL(SITE.url),
     alternates: {
       canonical: url,
@@ -28,8 +40,13 @@ export function createMetadata({
       url,
       siteName: SITE.name,
       locale: 'zh_TW',
-      type: 'website',
+      type,
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      ...(type === 'article' && {
+        publishedTime,
+        modifiedTime,
+        authors: authors || [SITE.name],
+      }),
     },
     twitter: {
       card: 'summary_large_image',
