@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { BetaAnalyticsDataClient } from '@google-analytics/data'
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'drdow2026'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Biru0618'
 
 function getClient() {
   const key = process.env.GOOGLE_SERVICE_ACCOUNT_KEY

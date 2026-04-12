@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'drdow2026'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Biru0618'
 
 function authorize() {
   const key = process.env.GOOGLE_SERVICE_ACCOUNT_KEY

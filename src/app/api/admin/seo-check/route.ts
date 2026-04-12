@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SITE } from '@/lib/constants'
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'drdow2026'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Biru0618'
 
 interface SeoResult {
   url: string
