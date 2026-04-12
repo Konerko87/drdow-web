@@ -52,19 +52,23 @@ async function checkPage(path: string): Promise<SeoResult> {
       || html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i)
     const description = descMatch?.[1]?.trim() || ''
 
-    const h1Matches = html.match(/<h1[^>]*>([^<]*)<\/h1>/gi) || []
-    const h1 = h1Matches[0]?.replace(/<[^>]*>/g, '').trim() || ''
+    const h1Matches = html.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || []
+    const h1 = h1Matches[0]?.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() || ''
 
     const canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i)
+      || html.match(/<link[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["']/i)
     const canonical = canonicalMatch?.[1] || ''
 
     const ogTitleMatch = html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']*)["']/i)
+      || html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*property=["']og:title["']/i)
     const ogTitle = ogTitleMatch?.[1] || ''
 
     const ogDescMatch = html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']*)["']/i)
+      || html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*property=["']og:description["']/i)
     const ogDescription = ogDescMatch?.[1] || ''
 
     const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']*)["']/i)
+      || html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*property=["']og:image["']/i)
     const ogImage = ogImageMatch?.[1] || ''
 
     // Check issues
