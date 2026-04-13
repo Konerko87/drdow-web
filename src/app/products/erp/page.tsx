@@ -83,8 +83,8 @@ export default function ERPPage() {
               <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
                 預約 Demo
               </Link>
-              <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
-                看功能 →
+              <Link href="/products/erp/demo" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                功能導覽 →
               </Link>
             </div>
           </FadeIn>
