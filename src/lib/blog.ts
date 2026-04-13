@@ -13,6 +13,7 @@ export type BlogPost = {
   keywords: string[]
   coverImage: string | null
   coverCredit: string | null
+  pinned: boolean
   content: string
   readingTime: number
   wordCount: number
@@ -50,6 +51,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     keywords: data.keywords ? (typeof data.keywords === 'string' ? data.keywords.split(',').map((k: string) => k.trim()) : data.keywords) : [],
     coverImage: data.coverImage || null,
     coverCredit: data.coverCredit || null,
+    pinned: data.pinned === true,
     content,
     readingTime,
     wordCount: charCount,

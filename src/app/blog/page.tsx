@@ -96,6 +96,58 @@ export default async function BlogPage(
         </div>
       </section>
 
+      {/* Pinned articles */}
+      {!tag && (() => {
+        const pinnedPosts = allPosts.filter((p) => p.pinned)
+        if (pinnedPosts.length === 0) return null
+        return (
+          <section className="pb-12">
+            <div className="max-w-4xl mx-auto px-6">
+              <FadeIn>
+                <h2 className="text-lg font-black mb-6 flex items-center gap-2">
+                  <span className="text-[#d97706]">★</span> 置頂文章
+                </h2>
+              </FadeIn>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {pinnedPosts.map((post, i) => (
+                  <FadeIn key={post.slug} delay={i * 60}>
+                    <article>
+                      <Link href={`/blog/${post.slug}`} className="block group">
+                        <div className="bg-[#faf5ff] rounded-2xl overflow-hidden hover-lift transition-all border border-[#6b21a8]/10">
+                          {post.coverImage && (
+                            <Image
+                              src={post.coverImage}
+                              alt={post.title}
+                              width={600}
+                              height={300}
+                              className="w-full aspect-[2/1] object-cover"
+                              sizes="(max-width: 768px) 100vw, 400px"
+                            />
+                          )}
+                          <div className="p-5">
+                            <div className="flex flex-wrap gap-1.5 mb-2">
+                              {post.tags.map((t) => (
+                                <span key={t} className="text-[10px] font-semibold text-[#6b21a8] bg-[#6b21a8]/10 px-2 py-0.5 rounded-full">
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                            <h3 className="text-sm font-black mb-1 group-hover:text-[#6b21a8] transition-colors line-clamp-2">
+                              {post.title}
+                            </h3>
+                            <p className="text-xs text-muted line-clamp-2">{post.description}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    </article>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
+
       <section className="pb-24">
         <div className="max-w-4xl mx-auto px-6">
           {posts.length === 0 ? (
