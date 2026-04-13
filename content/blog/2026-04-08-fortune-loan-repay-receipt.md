@@ -5,8 +5,8 @@ slug: "fortune-loan-repay-receipt"
 date: "2026-04-08"
 tags: ["發財金", "還金收據", "系統追蹤"]
 keywords: "發財金還金, 還金收據, 發財金管理系統, 宮廟還金, 發財金追蹤"
-coverImage: "/screenshots/fortune-loan-repay-detail.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1696324535847-c8bb66cc287d?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 還金管理的常見問題

@@ -5,9 +5,9 @@ slug: "temple-system-line-pay-lighting"
 date: "2026-04-13"
 tags: ["LINE Pay", "點燈", "宮廟系統"]
 keywords: "宮廟系統, 點燈系統, 宮廟管理系統, LINE Pay 點燈, 線上點燈"
-coverImage: "/screenshots/liff-light-order-1.png"
+coverImage: "https://images.unsplash.com/photo-1752582416185-dbc3623a2260?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 現在宮廟點燈流程的三個瓶頸

@@ -5,9 +5,9 @@ slug: "multi-vendor-lamp-integration"
 date: "2026-04-12"
 tags: ["燈位管理", "系統整合", "宮廟經營"]
 keywords: "宮廟燈商管理, 多燈商整合, 燈位管理系統, 宮廟營運系統, 燈商系統整合"
-coverImage: "/screenshots/lights.png"
+coverImage: "https://images.unsplash.com/photo-1600431005986-e0558ea34692?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 燈商各管各的，廟方夾在中間

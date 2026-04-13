@@ -5,8 +5,8 @@ slug: "temple-family-function-design"
 date: "2026-04-09"
 tags: ["家庭代辦", "系統設計", "LINE"]
 keywords: "宮廟家庭功能, 代辦點燈設計, 家庭管理系統, LINE 家庭綁定, 宮廟系統設計"
-coverImage: "/screenshots/liff-light-order-3-family.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1606061455442-61ec5d4d3fe8?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 「加個欄位」不是家庭功能

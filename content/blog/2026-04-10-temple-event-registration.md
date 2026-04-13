@@ -5,8 +5,8 @@ slug: "temple-event-registration"
 date: "2026-04-10"
 tags: ["法會", "活動管理", "LINE 通知"]
 keywords: "法會報名系統, 宮廟活動管理, 法會線上報名, QR 報到, 法會管理"
-coverImage: "/screenshots/events.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1519323537520-f5e38f0fb82a?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 傳統法會報名的三個問題

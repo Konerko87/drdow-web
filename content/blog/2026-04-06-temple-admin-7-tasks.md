@@ -5,8 +5,8 @@ slug: "temple-admin-7-tasks"
 date: "2026-04-06"
 tags: ["行政效率", "系統化", "宮廟管理"]
 keywords: "宮廟行政效率, 廟務系統化, 宮廟人力節省, 廟務管理效率, 宮廟自動化"
-coverImage: "/screenshots/counter.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1768875820800-1c2a6f2e8280?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 宮廟行政的日常，比外人想像的忙

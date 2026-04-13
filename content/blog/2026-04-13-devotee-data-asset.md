@@ -5,9 +5,9 @@ slug: "devotee-data-asset"
 date: "2026-04-12"
 tags: ["信徒管理", "報表分析", "宮廟經營"]
 keywords: "宮廟信徒管理, 信徒資料分析, 宮廟報表, 信徒經營"
-coverImage: "/screenshots/reports-devotee.png"
+coverImage: "https://images.unsplash.com/photo-1538652116325-8f5fa30fefff?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 大多數宮廟的信徒資料現況

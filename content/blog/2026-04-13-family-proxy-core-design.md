@@ -5,9 +5,9 @@ slug: "family-proxy-core-design"
 date: "2026-04-12"
 tags: ["家庭代辦", "點燈", "LINE"]
 keywords: "宮廟家庭功能, 代辦點燈, 家庭代辦, 幫家人點燈, 宮廟系統家庭"
-coverImage: "/screenshots/liff-family.png"
+coverImage: "https://images.unsplash.com/photo-1502338059383-f3b733df00db?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 宮廟點燈的真實場景——不是自己點，是幫家人點

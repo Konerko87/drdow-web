@@ -5,8 +5,8 @@ slug: "line-notification-devotee-retention"
 date: "2026-04-10"
 tags: ["LINE 通知", "信徒經營", "回流"]
 keywords: "宮廟 LINE 通知, 信徒回流, LINE 提醒, 宮廟 LINE 行銷, 信徒經營"
-coverImage: "/screenshots/liff-home.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1765808925935-e4fab8f2f6c5?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 信徒流失的主因——不是不信，是忘了

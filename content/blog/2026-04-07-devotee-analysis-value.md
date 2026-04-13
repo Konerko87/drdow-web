@@ -5,8 +5,8 @@ slug: "devotee-analysis-value"
 date: "2026-04-07"
 tags: ["報表分析", "信徒經營", "宮廟數據"]
 keywords: "信徒分析, 宮廟報表, 信徒組成分析, 宮廟經營數據, 信徒統計"
-coverImage: "/screenshots/reports-financial.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 年齡分布——了解你的信徒結構

@@ -5,8 +5,8 @@ slug: "temple-lighting-5-pain-points"
 date: "2026-04-11"
 tags: ["線上點燈", "痛點", "LINE Pay"]
 keywords: "線上點燈痛點, 宮廟點燈問題, 點燈系統推薦, 線上點燈解法, 宮廟數位化"
-coverImage: "/screenshots/liff-light-order-1.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1755511268111-9ebef96bc830?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 線上點燈明明很方便，為什麼推不動？

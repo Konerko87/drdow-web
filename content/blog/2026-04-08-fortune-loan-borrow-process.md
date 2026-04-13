@@ -5,8 +5,8 @@ slug: "fortune-loan-borrow-process"
 date: "2026-04-08"
 tags: ["發財金", "借金流程", "宮廟特色"]
 keywords: "發財金借金, 發財金管理, 宮廟發財金系統, 借金流程, 發財金收據"
-coverImage: "/screenshots/fortune-loans-borrow.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1769693102286-e534c8ecfb1d?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 借金現況——靠口頭與筆記

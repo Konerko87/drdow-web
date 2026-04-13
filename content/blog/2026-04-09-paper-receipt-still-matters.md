@@ -5,8 +5,8 @@ slug: "paper-receipt-still-matters"
 date: "2026-04-09"
 tags: ["電子收據", "紙本補印", "收據管理"]
 keywords: "宮廟紙本收據, 電子收據補印, 捐款收據, 宮廟收據列印, 收據管理"
-coverImage: "/screenshots/receipt.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1662001164155-2d04179a7b22?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 電子收據的好處不用多說

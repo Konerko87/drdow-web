@@ -5,9 +5,9 @@ slug: "online-lighting-direct-payment"
 date: "2026-04-13"
 tags: ["LINE Pay", "線上點燈", "宮廟收款"]
 keywords: "線上點燈付款, 宮廟 LINE Pay, 線上點燈, 宮廟收款, 點燈直接付款"
-coverImage: "/screenshots/liff-light-order-2-form.png"
+coverImage: "https://images.unsplash.com/photo-1742836531239-1fe146bf7e3f?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 留言點燈的真正成本——不只是麻煩，是流失

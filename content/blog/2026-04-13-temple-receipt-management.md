@@ -5,9 +5,9 @@ slug: "temple-receipt-management"
 date: "2026-04-12"
 tags: ["電子收據", "收據管理", "發財金"]
 keywords: "宮廟收據, 電子收據, 捐款收據, 宮廟收據管理, LINE 查收據"
-coverImage: "/screenshots/receipt.png"
+coverImage: "https://images.unsplash.com/photo-1775737403416-0a27310dce44?w=1200&h=630&fit=crop"
 pinned: true
-coverCredit: "Dr.Dow AI 廟通"
+coverCredit: "Unsplash"
 ---
 
 ## 宮廟收據的現況——手寫、Excel、找不到

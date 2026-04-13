@@ -5,8 +5,8 @@ slug: "line-pay-temple-collection"
 date: "2026-04-11"
 tags: ["LINE Pay", "宮廟收款", "數位付款"]
 keywords: "宮廟 LINE Pay, 宮廟收款, LINE Pay 收款, 廟宇數位付款, 點燈 LINE Pay"
-coverImage: "/screenshots/liff-light-order-5-prayer.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1661169398346-aecdc4f5068b?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 傳統收款方式的隱藏成本

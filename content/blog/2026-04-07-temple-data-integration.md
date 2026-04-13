@@ -5,8 +5,8 @@ slug: "temple-data-integration"
 date: "2026-04-07"
 tags: ["信徒經營", "資料整合", "LINE"]
 keywords: "信徒經營系統, 宮廟資料整合, 信徒回流, 信徒管理"
-coverImage: "/screenshots/dashboard.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 宮廟的資料比想像中多——但散落各處

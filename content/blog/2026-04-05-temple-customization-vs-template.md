@@ -5,8 +5,8 @@ slug: "temple-customization-vs-template"
 date: "2026-04-05"
 tags: ["客製化", "宮廟系統", "導入流程"]
 keywords: "宮廟客製化系統, 客製化 vs 模板, 宮廟系統推薦, 廟務客製化, 宮廟專用系統"
-coverImage: "/screenshots/dashboard.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1673874855449-e8620ddfa867?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 模板系統的問題——不適合宮廟

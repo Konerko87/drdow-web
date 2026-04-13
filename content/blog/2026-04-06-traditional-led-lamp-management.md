@@ -5,8 +5,8 @@ slug: "traditional-led-lamp-management"
 date: "2026-04-06"
 tags: ["燈位管理", "LED 整合", "系統管理"]
 keywords: "燈位管理, LED 燈管理, 傳統燈 LED 整合, 宮廟燈位系統, 燈種管理"
-coverImage: "/screenshots/lights-print.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1760258923472-63383255afce?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 傳統燈與 LED 燈的管理差異

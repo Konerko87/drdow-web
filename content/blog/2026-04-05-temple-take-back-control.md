@@ -5,8 +5,8 @@ slug: "temple-take-back-control"
 date: "2026-04-05"
 tags: ["系統整合", "營運主導", "宮廟數位化"]
 keywords: "宮廟主導權, 燈商系統整合, 宮廟營運系統, 多系統整合, 宮廟數位轉型"
-coverImage: "/screenshots/lights.png"
-coverCredit: "Dr.Dow AI 廟通"
+coverImage: "https://images.unsplash.com/photo-1565377252682-fa2f81ae9fc6?w=1200&h=630&fit=crop"
+coverCredit: "Unsplash"
 ---
 
 ## 燈商系統分散的真實場景
