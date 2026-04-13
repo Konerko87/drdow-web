@@ -3,79 +3,96 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: '#1E293B' }} aria-label="首頁主視覺">
-      {/* Glow orbs */}
+    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(135deg, #6b21a8, #dc2626)' }} aria-label="首頁主視覺">
+      {/* Subtle overlay pattern */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#B91C1C]/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#D97706]/8 rounded-full blur-[100px]" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-[#B91C1C]/5 rounded-full blur-[80px]" />
+        <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-20 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: text */}
-          <div className="text-center md:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-white/50 text-xs tracking-widest uppercase mb-10 border border-white/10 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D97706] animate-pulse" />
-              智慧宮廟管理系統
+          <div className="text-center lg:text-left">
+            {/* LINE Pay badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border border-white/20" style={{ background: 'rgba(217,119,6,0.3)', color: '#fbbf24' }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d97706] animate-pulse" />
+              支援 LINE Pay 線上點燈付款
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
-              宮廟管理，
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 tracking-tight">
+              真正懂宮廟流程的
               <br />
-              <span className="gradient-text-temple">
-                智慧升級。
-              </span>
+              <span className="text-[#fbbf24]">智慧營運平台</span>
             </h1>
 
             {/* Sub */}
-            <p className="text-base md:text-lg text-white/50 max-w-lg mb-6 leading-relaxed">
-              信徒資料散落各處？點燈牌位每年重 key？收據手開對不起來？
-            </p>
-            <p className="text-sm md:text-base text-white/30 max-w-lg mb-12 leading-relaxed">
-              Dr.Dow AI 廟通——專為台灣宮廟打造的一站式管理平台。
-              <br className="hidden md:block" />
-              點燈、捐款、法會、發財金、會計報表，全部整合在一套系統裡。
+            <p className="text-lg md:text-xl text-white/70 max-w-xl mb-8 leading-relaxed">
+              把櫃檯、點燈、法會、收據、LINE 查詢整合成一套系統
             </p>
 
+            {/* Three promise badges */}
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-10">
+              {['櫃檯快', '信徒查得到', '行政做得完'].map((badge) => (
+                <span key={badge} className="px-4 py-2 rounded-full text-sm font-bold" style={{ background: 'rgba(217,119,6,0.25)', color: '#fbbf24', border: '1px solid rgba(217,119,6,0.4)' }}>
+                  {badge}
+                </span>
+              ))}
+            </div>
+
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 href="/contact"
-                className="group px-8 py-4 text-white rounded-full text-sm font-semibold hover:opacity-90 transition-all shadow-[0_0_30px_rgba(185,28,28,0.3)] hover:shadow-[0_0_50px_rgba(185,28,28,0.4)]"
-                style={{ background: '#B91C1C' }}
+                className="group px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 shadow-lg text-center"
+                style={{ background: 'linear-gradient(135deg, #d97706, #dc2626)', color: '#fff', boxShadow: '0 4px 20px rgba(220,38,38,0.35)' }}
               >
-                預約產品展示
+                預約免費展示
                 <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
               </Link>
               <Link
-                href="/products/miaotong"
-                className="px-8 py-4 text-white/60 rounded-full text-sm font-medium hover:text-white transition-colors border border-white/10 hover:border-white/20 backdrop-blur-sm"
+                href="#features"
+                className="px-8 py-4 rounded-full text-base font-medium text-white/70 border border-white/30 hover:bg-white/10 hover:text-white transition-all text-center backdrop-blur-sm"
               >
-                了解廟通功能
+                觀看產品介紹
               </Link>
             </div>
           </div>
 
-          {/* Right: logo */}
-          <div className="flex items-center justify-center">
-            <Image
-              src="/logo-miaotong.png"
-              alt="Dr.Dow AI 廟通 智慧宮廟管理系統"
-              width={400}
-              height={400}
-              className="w-full max-w-[320px] md:max-w-[400px] drop-shadow-[0_0_60px_rgba(185,28,28,0.2)]"
-              priority
-            />
+          {/* Right: dual mockup */}
+          <div className="relative flex items-center justify-center lg:justify-end">
+            {/* Desktop mockup */}
+            <div className="relative w-full max-w-[480px]">
+              <div className="rounded-xl overflow-hidden shadow-2xl border border-white/10 transform rotate-1">
+                <Image
+                  src="/screenshots/dashboard.png"
+                  alt="Dr.Dow AI 廟通營運儀表板"
+                  width={800}
+                  height={500}
+                  className="w-full"
+                  priority
+                />
+              </div>
+              {/* Phone mockup overlapping */}
+              <div className="absolute -bottom-8 -left-8 w-[140px] md:w-[160px] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 transform -rotate-3">
+                <Image
+                  src="/screenshots/liff-light-order-1.png"
+                  alt="LINE 線上點燈介面"
+                  width={360}
+                  height={640}
+                  className="w-full"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Scroll line */}
+        {/* Scroll indicator */}
         <div className="mt-16 flex flex-col items-center gap-2">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-white/20">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
+          <span className="text-[10px] tracking-[0.3em] uppercase text-white/30">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </div>
     </section>

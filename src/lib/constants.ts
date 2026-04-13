@@ -1,9 +1,10 @@
 export const SITE = {
-  name: 'Dr.Dow AI',
-  tagline: '宮廟管理，智慧升級。',
-  description: '廟通——專為台灣宮廟打造的智慧管理系統。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、LINE 行動服務，一套搞定。',
+  name: 'Dr.Dow AI 廟通',
+  tagline: '真正懂宮廟流程的智慧營運平台',
+  description: '整合櫃檯受理、點燈管理、法會活動、捐款收據與 LINE 信徒查詢的宮廟營運系統。真正懂宮廟流程，讓櫃檯更快、信徒查得到、行政做得完。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
+  phone: '0922617117',
   company: 'Dr.Dow AI Ltd.',
 } as const
 
@@ -13,11 +14,9 @@ export const NAV_LINKS = [
     { label: 'TMS 派車系統', href: '/products/tms', description: 'AI 智慧派車、司機 LINE App、GPS 追蹤' },
     { label: 'ERP 財務系統', href: '/products/erp', description: 'AI OCR 請款、銀行自動對帳、付款防呆' },
   ]},
-  { label: '解決方案', href: '/solutions' },
-  { label: '價格', href: '/pricing' },
-  { label: 'FAQ', href: '/faq' },
+  { label: '功能介紹', href: '#features' },
   { label: '部落格', href: '/blog' },
-  { label: '關於我們', href: '/about' },
+  { label: '聯絡我們', href: '/contact' },
 ] as const
 
 export const PRODUCTS = {
@@ -57,8 +56,8 @@ export const PRODUCTS = {
   miaotong: {
     name: 'Dr.Dow 廟通',
     fullName: '智慧宮廟管理系統',
-    tagline: '宮廟管理，智慧升級',
-    description: '專為台灣宮廟打造的一站式管理平台。整合信徒管理、點燈牌位、捐款收據、法會活動、發財金借還、會計報表與 LINE 行動服務。',
+    tagline: '真正懂宮廟流程的智慧營運平台',
+    description: '整合櫃檯受理、點燈管理、法會活動、捐款收據與 LINE 信徒查詢的宮廟營運系統。真正懂宮廟流程，讓櫃檯更快、信徒查得到、行政做得完。',
     features: [
       { icon: '🙏', title: '信徒管理', desc: '完整信徒與戶籍資料管理，家庭關係、服務紀錄、捐款歷程一目了然。' },
       { icon: '🏮', title: '點燈牌位服務', desc: '點燈、安太歲、牌位、進塔一站整合。受益人、燈位、期間自動管理。' },
@@ -72,15 +71,105 @@ export const PRODUCTS = {
   },
 } as const
 
-export const STATS = [
-  { value: '8', label: '大功能模組' },
-  { value: '100%', label: '雲端化管理' },
-  { value: 'LINE', label: '信眾直接用' },
-  { value: '2 週', label: '快速導入' },
-  { value: '24/7', label: '系統不間斷' },
-  { value: '0', label: '需要下載 App' },
+export const PAIN_POINTS = [
+  {
+    icon: '⏰',
+    title: '櫃檯忙不過來',
+    desc: '點燈、法會、捐款、發財金分散在不同本子和系統，信徒排隊等，櫃檯人員切來切去。',
+  },
+  {
+    icon: '📞',
+    title: '信徒一直打電話來問',
+    desc: '「我的光明燈在哪？」「收據可以補印嗎？」「法會什麼時候？」每天重複回答一樣的問題。',
+  },
+  {
+    icon: '👨‍👩‍👧‍👦',
+    title: '幫全家人辦，每次都要重填',
+    desc: '阿公幫孫子點燈、媽媽幫全家報法會，每次都要從頭填一遍資料。',
+  },
+  {
+    icon: '📄',
+    title: '收據、字卡、名冊散在各處',
+    desc: 'Word 做字卡、Excel 記帳、手寫收據⋯⋯年底結算才發現兜不起來。',
+  },
+  {
+    icon: '💸',
+    title: '線上點燈還是要人工查匯款',
+    desc: '信徒填了表單、匯了款，廟方還是得一筆一筆核對，漏單、對不上時有所聞。',
+  },
+  {
+    icon: '⚙️',
+    title: '多套系統反而更複雜',
+    desc: 'A 廠商管一區、B 廠商管另一區、舊燈位還在紙本，廟方要同時對好幾套流程。',
+  },
 ] as const
 
+export const STATS = [
+  { value: '14', label: '功能模組' },
+  { value: '3', label: '端整合' },
+  { value: '100%', label: '台灣在地開發' },
+  { value: 'LINE', label: '免安裝直接用' },
+  { value: '0', label: '需要下載 App' },
+  { value: '24/7', label: '系統不間斷' },
+] as const
+
+export const LINE_PAY_STEPS = [
+  { step: 1, title: '選擇燈種', desc: '多種燈種可選，金額清楚', image: '/screenshots/liff-light-order-1.png' },
+  { step: 2, title: '填寫資料', desc: '受益人資料一次填好', image: '/screenshots/liff-light-order-2-form.png' },
+  { step: 3, title: '家人代辦', desc: '幫家人一起點燈，直接選人', image: '/screenshots/liff-light-order-3-family.png' },
+  { step: 4, title: 'LINE Pay 付款', desc: '付款完成，收據自動產生', image: '/screenshots/liff-light-order-4-personal.png' },
+] as const
+
+export const FEATURE_MODULES = [
+  { icon: '🙏', name: '信徒管理' },
+  { icon: '🏮', name: '點燈管理' },
+  { icon: '📋', name: '法會活動' },
+  { icon: '🧾', name: '捐款收據' },
+  { icon: '🪙', name: '發財金' },
+  { icon: '📁', name: '文件中心' },
+  { icon: '📊', name: '會計帳務' },
+  { icon: '🤝', name: '志工排班' },
+  { icon: '👤', name: '人事管理' },
+  { icon: '📈', name: '報表分析' },
+  { icon: '⚙️', name: '系統設定' },
+  { icon: '📱', name: 'LINE 行動端' },
+] as const
+
+export const FEATURE_TAGS = [
+  { name: 'LINE Pay 線上點燈', highlight: true },
+  { name: '家庭代辦', highlight: false },
+  { name: '電子收據', highlight: false },
+  { name: '字卡列印', highlight: false },
+  { name: '疏文產生', highlight: false },
+  { name: '櫃檯快速受理', highlight: false },
+  { name: '發財金擲筊', highlight: false },
+  { name: '法會報名', highlight: false },
+  { name: 'QR 報到', highlight: false },
+  { name: 'LINE 推播', highlight: false },
+  { name: '信徒主檔', highlight: false },
+  { name: '捐款管理', highlight: false },
+  { name: '收據補印', highlight: false },
+  { name: '文件工作台', highlight: false },
+  { name: '會計傳票', highlight: false },
+  { name: '預算管理', highlight: false },
+  { name: '志工排班', highlight: false },
+  { name: '人事出勤', highlight: false },
+  { name: '稽核日誌', highlight: false },
+  { name: '報表分析', highlight: false },
+  { name: '匯入匯出', highlight: false },
+  { name: '角色權限', highlight: false },
+] as const
+
+export const BEFORE_AFTER = [
+  { before: '線上點燈要填表單、匯款、人工核對', after: 'LINE Pay 直接付款，系統自動確認', highlight: true },
+  { before: '幫家人辦事每次重填資料', after: '家庭代辦一次搞定', highlight: false },
+  { before: '收據手寫、補印找半天', after: '電子收據自動產生，LINE 裡查', highlight: false },
+  { before: '法會通知靠人工打電話', after: 'LINE 推播一鍵送達', highlight: false },
+  { before: '多套系統切來切去', after: '一個平台全部搞定', highlight: false },
+  { before: '年底對帳花三天', after: '報表直接跑出來', highlight: false },
+] as const
+
+// Keep for TMS/ERP pages
 export const WORKFLOW_STEPS = [
   { icon: '📦', title: 'WMS 匯入', desc: '自動爬取訂單' },
   { icon: '🛣️', title: 'AI 路線規劃', desc: '智慧拆單分區' },
@@ -88,39 +177,6 @@ export const WORKFLOW_STEPS = [
   { icon: '📱', title: 'LINE 執行', desc: '司機即時接單' },
   { icon: '💰', title: '薪酬結算', desc: 'AI 自動計算' },
   { icon: '🏦', title: '銀行對帳', desc: '爬蟲自動比對' },
-] as const
-
-export const PAIN_POINTS = [
-  {
-    before: '信徒資料散落在 Excel、紙本、不同人的電腦裡',
-    after: '信徒資料集中管理，家庭關係、捐款紀錄、服務歷程一站查詢',
-    icon: '📄',
-  },
-  {
-    before: '點燈、牌位、安太歲每年重來一次，資料容易搞混',
-    after: '受益人、燈位、年度自動帶入，不用重新 key',
-    icon: '🏮',
-  },
-  {
-    before: '捐款收據手開容易錯，月底對帳總是對不起來',
-    after: '捐款即時入帳、收據自動產生、日結對帳一鍵完成',
-    icon: '🧾',
-  },
-  {
-    before: '法會報名用電話登記，到場才發現桌次不夠',
-    after: '線上報名、自動分桌、QR Code 報到，人到就知道坐哪',
-    icon: '📞',
-  },
-  {
-    before: '發財金借還靠手寫，借了多少、還了沒有根本查不到',
-    after: '借金數位化，擲筊流程、額度規則、還金追蹤系統管理',
-    icon: '🪙',
-  },
-  {
-    before: '委���會想看報表，會計要花一週整理',
-    after: '即時財務報表、收支明細、預算執行率，隨時查看',
-    icon: '🔍',
-  },
 ] as const
 
 export const TECH_STACK = [

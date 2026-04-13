@@ -3,49 +3,33 @@ import { PAIN_POINTS } from '@/lib/constants'
 
 export function PainPoints() {
   return (
-    <section id="pain" className="py-28 bg-white" aria-label="痛點分析">
+    <section className="py-28 bg-white" aria-label="痛點分析">
       <div className="max-w-7xl mx-auto px-6">
-        <FadeIn className="text-center mb-8">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: '#B91C1C' }}>Pain Points</p>
+        <FadeIn className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">
-            這些痛點，你們廟也有嗎？
+            這些問題，是不是每天都在發生？
           </h2>
-        </FadeIn>
-
-        <FadeIn className="max-w-2xl mx-auto text-center mb-16">
-          <p className="text-muted text-base leading-relaxed">
-            信徒資料散落各處、點燈年年重 key、收據手開對不上帳、
-            <br />
-            法會報名靠電話、發財金借還查不到⋯⋯
-            <br />
-            <strong className="text-dark">廟通幫你一次解決。</strong>
+          <p className="text-muted text-base max-w-2xl mx-auto leading-relaxed">
+            宮廟不是沒有在做，而是很多事做得辛苦卻不順。
           </p>
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PAIN_POINTS.map((point, i) => (
             <FadeIn key={i} delay={i * 80}>
-              <div className="group relative bg-[#FFFBF7] rounded-2xl p-7 border border-[#B91C1C]/[0.06] hover:border-[#B91C1C]/20 transition-all duration-300 h-full">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#B91C1C]/5 to-[#D97706]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="group relative bg-[#faf5ff] rounded-2xl p-7 border border-[#6b21a8]/[0.06] hover:border-[#6b21a8]/20 transition-all duration-300 h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#6b21a8]/5 to-[#dc2626]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#B91C1C]/10 to-[#D97706]/10 flex items-center justify-center text-xl mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6b21a8]/10 to-[#dc2626]/10 flex items-center justify-center text-2xl mb-4">
                     {point.icon}
                   </div>
-                  <p className="text-sm text-dark/40 line-through decoration-[#B91C1C]/20 mb-2 leading-relaxed">{point.before}</p>
-                  <p className="text-sm text-dark leading-relaxed font-semibold">
-                    → {point.after}
-                  </p>
+                  <h3 className="text-base font-bold text-dark mb-2">{point.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{point.desc}</p>
                 </div>
               </div>
             </FadeIn>
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <FadeIn className="text-center mt-16">
-          <p className="text-muted text-sm mb-1">一套系統，管好整間廟的大小事。</p>
-          <p className="text-xs text-muted/60">從信徒資料到會計報表，不用再翻紙本、不用再開 Excel。</p>
-        </FadeIn>
       </div>
     </section>
   )

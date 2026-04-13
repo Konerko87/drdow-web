@@ -23,16 +23,16 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo-icon.png"
-            alt="Dr.Dow AI logo"
-            width={28}
-            height={28}
+            src="/logo-miaotong.png"
+            alt="Dr.Dow AI 廟通 logo"
+            width={32}
+            height={32}
             className="rounded-md"
           />
           <span className={`text-lg font-black tracking-tight transition-colors ${
             scrolled ? 'text-dark' : 'text-white'
           }`}>
-            Dr.Dow <span className="gradient-text">AI</span>
+            {SITE.name}
           </span>
         </Link>
 
@@ -82,17 +82,20 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center">
+        {/* Right: phone + CTA */}
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href={`tel:${SITE.phone}`}
+            className={`text-xs transition-colors ${scrolled ? 'text-muted hover:text-dark' : 'text-white/50 hover:text-white'}`}
+          >
+            📞 {SITE.phone}
+          </a>
           <Link
             href="/contact"
-            className={`px-5 py-2 rounded-full text-xs font-semibold transition-all ${
-              scrolled
-                ? 'bg-dark text-white hover:bg-dark/80'
-                : 'bg-white/10 text-white border border-white/20 hover:bg-white/20'
-            }`}
+            className="px-5 py-2 rounded-full text-xs font-semibold transition-all text-white"
+            style={{ background: '#6b21a8' }}
           >
-            預約 Demo
+            預約展示
           </Link>
         </div>
 
@@ -142,12 +145,16 @@ export function Navbar() {
               </Link>
             )
           ))}
+          <a href={`tel:${SITE.phone}`} className="block text-sm text-muted py-2.5">
+            📞 {SITE.phone}
+          </a>
           <Link
             href="/contact"
-            className="block text-center px-5 py-2.5 bg-dark text-white rounded-full text-sm font-semibold mt-4"
+            className="block text-center px-5 py-2.5 text-white rounded-full text-sm font-semibold mt-4"
+            style={{ background: '#6b21a8' }}
             onClick={() => setMobileOpen(false)}
           >
-            預約 Demo
+            預約展示
           </Link>
         </div>
       )}

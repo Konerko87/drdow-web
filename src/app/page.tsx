@@ -2,22 +2,27 @@ import type { Metadata } from 'next'
 import { createMetadata } from '@/lib/metadata'
 import { Hero } from '@/components/sections/hero'
 import { PainPoints } from '@/components/sections/pain-points'
-import { ProductCards } from '@/components/sections/product-cards'
-import { AIWorkflow } from '@/components/sections/ai-workflow'
+import { LinePayFlow } from '@/components/sections/line-pay-flow'
+import { FamilyProxy } from '@/components/sections/family-proxy'
+import { CounterOps } from '@/components/sections/counter-ops'
+import { LightManagement } from '@/components/sections/light-management'
+import { ReceiptsDocs } from '@/components/sections/receipts-docs'
+import { FortuneMoney } from '@/components/sections/fortune-money'
+import { FeatureModules } from '@/components/sections/feature-modules'
+import { BeforeAfter } from '@/components/sections/before-after'
 import { Numbers } from '@/components/sections/numbers'
-import { TechStack } from '@/components/sections/tech-stack'
 import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: '廟通 — 智慧宮廟管理系統 | Dr.Dow AI',
-    description: '專為台灣宮廟打造的一站式管理平台。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、會計報表、LINE 行動服務，一套系統全搞定。',
+    title: 'Dr.Dow AI 廟通 — 為宮廟量身打造的智慧營運平台',
+    description: '整合櫃檯受理、點燈管理、法會活動、捐款收據與 LINE 信徒查詢的宮廟營運系統。支援 LINE Pay 線上點燈付款、家庭代辦、電子收據、發財金借還管理。真正懂宮廟流程，讓櫃檯更快、信徒查得到、行政做得完。',
     path: '/',
-    keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型', 'Dr.Dow AI'],
+    keywords: ['宮廟管理系統', '廟宇管理', '點燈系統', '宮廟軟體', '廟務管理', '光明燈管理', '法會報名系統', '宮廟收據', '發財金系統', '廟宇數位化', 'LINE Pay 點燈', '廟通'],
   }),
-  title: '廟通 — 智慧宮廟管理系統 | Dr.Dow AI',
+  title: 'Dr.Dow AI 廟通 — 為宮廟量身打造的智慧營運平台',
 }
 
 export default function HomePage() {
@@ -38,10 +43,15 @@ export default function HomePage() {
       }} />
       <Hero />
       <PainPoints />
-      <ProductCards />
-      <AIWorkflow />
+      <LinePayFlow />
+      <FamilyProxy />
+      <CounterOps />
+      <LightManagement />
+      <ReceiptsDocs />
+      <FortuneMoney />
+      <FeatureModules />
+      <BeforeAfter />
       <Numbers />
-      <TechStack />
       <CTASection />
     </>
   )
