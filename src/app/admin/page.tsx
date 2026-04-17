@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 
-const TABS = ['搜尋成效', '流量分析', 'SEO 健檢'] as const
+const TABS = ['搜尋成效', '流量分析', '廣告成效', 'SEO 健檢'] as const
 type Tab = typeof TABS[number]
 
 const PERIOD_OPTIONS = [
@@ -25,6 +25,16 @@ interface AnalyticsData {
   devices: { device: string; sessions: number; users: number }[]
 }
 
+interface GoogleAdsData {
+  summary: {
+    cost: number; clicks: number; impressions: number; cpc: number; ctr: number
+    sessions: number; conversions: number; costPerConversion: number; days: number
+  }
+  campaigns: { name: string; cost: number; clicks: number; impressions: number; sessions: number; conversions: number }[]
+  keywords: { keyword: string; cost: number; clicks: number; impressions: number; sessions: number; conversions: number }[]
+  daily: { date: string; cost: number; clicks: number; impressions: number }[]
+}
+
 interface SeoCheckData {
   summary: { totalPages: number; pagesWithIssues: number; totalIssues: number; score: number }
   pages: {
@@ -44,6 +54,7 @@ export default function AdminPage() {
 
   const [searchData, setSearchData] = useState<SearchConsoleData | null>(null)
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
+  const [adsData, setAdsData] = useState<GoogleAdsData | null>(null)
   const [seoData, setSeoData] = useState<SeoCheckData | null>(null)
 
   const headers = { 'x-admin-password': password }
@@ -62,6 +73,11 @@ export default function AdminPage() {
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setAnalyticsData(data)
+      } else if (tab === '廣告成效') {
+        const res = await fetch(`/api/admin/google-ads?days=${period}`, { headers })
+        const data = await res.json()
+        if (data.error) throw new Error(data.error)
+        setAdsData(data)
       } else {
         const res = await fetch('/api/admin/seo-check', { headers })
         const data = await res.json()
@@ -84,7 +100,7 @@ export default function AdminPage() {
 
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab)
-    const cached = tab === '搜尋成效' ? searchData : tab === '流量分析' ? analyticsData : seoData
+    const cached = tab === '搜尋成效' ? searchData : tab === '流量分析' ? analyticsData : tab === '廣告成效' ? adsData : seoData
     if (!cached) fetchData(tab, days)
   }
 
@@ -92,6 +108,7 @@ export default function AdminPage() {
     setDays(period)
     setSearchData(null)
     setAnalyticsData(null)
+    setAdsData(null)
     fetchData(activeTab, period)
   }
 
@@ -198,6 +215,10 @@ export default function AdminPage() {
 
         {!loading && !error && activeTab === '流量分析' && analyticsData && (
           <AnalyticsView data={analyticsData} />
+        )}
+
+        {!loading && !error && activeTab === '廣告成效' && adsData && (
+          <GoogleAdsView data={adsData} />
         )}
 
         {!loading && !error && activeTab === 'SEO 健檢' && seoData && (
@@ -485,6 +506,114 @@ function Detail({ label, value, sub }: { label: string; value: string; sub?: str
         {value || <span className="text-red-400">未設定</span>}
         {sub && <span className="text-slate-500 ml-1">({sub})</span>}
       </div>
+    </div>
+  )
+}
+
+// ─── Google Ads View ───────────────────────────────────
+function GoogleAdsView({ data }: { data: GoogleAdsData }) {
+  const { summary, campaigns, keywords, daily } = data
+  const maxClicks = Math.max(...daily.map((d) => d.clicks), 1)
+  const maxCost = Math.max(...daily.map((d) => d.cost), 1)
+
+  const fmt = (n: number) => n < 1000 ? n.toString() : `${(n / 1000).toFixed(1)}k`
+  const fmtMoney = (n: number) => `NT$${Math.round(n).toLocaleString()}`
+
+  return (
+    <div className="space-y-6">
+      {/* Summary Cards */}
+      <div className="grid grid-cols-2 gap-3">
+        <MetricCard label="總花費" value={fmtMoney(summary.cost)} sub={`${summary.days} 天`} />
+        <MetricCard label="點擊數" value={fmt(summary.clicks)} />
+        <MetricCard label="曝光數" value={fmt(summary.impressions)} />
+        <MetricCard label="平均 CPC" value={fmtMoney(summary.cpc)} />
+        <MetricCard label="CTR" value={`${(summary.ctr * 100).toFixed(2)}%`} />
+        <MetricCard label="轉換數" value={summary.conversions.toFixed(0)} sub={summary.costPerConversion > 0 ? `${fmtMoney(summary.costPerConversion)}/轉換` : undefined} />
+      </div>
+
+      {/* Daily Trend - Dual chart: cost bars + clicks line */}
+      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-xs text-slate-400">每日趨勢</div>
+          <div className="flex gap-3 text-[10px]">
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-500/60 inline-block" />花費</span>
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />點擊</span>
+          </div>
+        </div>
+        <div className="flex items-end gap-[2px] h-24">
+          {daily.map((d, i) => (
+            <div key={i} className="flex-1 flex flex-col items-center relative">
+              <div
+                className="w-full bg-amber-500/40 rounded-t-sm min-h-[2px]"
+                style={{ height: `${(d.cost / maxCost) * 100}%` }}
+              />
+              <div
+                className="absolute bottom-0 w-1.5 bg-blue-400 rounded-full min-h-[2px]"
+                style={{ height: `${(d.clicks / maxClicks) * 100}%` }}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-between mt-1">
+          <span className="text-[10px] text-slate-600">{daily[0]?.date?.slice(5)}</span>
+          <span className="text-[10px] text-slate-600">{daily[daily.length - 1]?.date?.slice(5)}</span>
+        </div>
+      </div>
+
+      {/* Campaigns */}
+      {campaigns.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-slate-300 mb-3">廣告活動</h3>
+          <div className="space-y-2">
+            {campaigns.map((c, i) => (
+              <div key={i} className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
+                <div className="text-sm font-medium mb-2">{c.name}</div>
+                <div className="grid grid-cols-3 gap-2 text-xs text-slate-400">
+                  <span>花費 <strong className="text-amber-400">{fmtMoney(c.cost)}</strong></span>
+                  <span>點擊 <strong className="text-white">{c.clicks}</strong></span>
+                  <span>曝光 <strong className="text-white">{fmt(c.impressions)}</strong></span>
+                  <span>CTR <strong className="text-white">{c.impressions > 0 ? ((c.clicks / c.impressions) * 100).toFixed(1) : '0'}%</strong></span>
+                  <span>工作階段 <strong className="text-white">{c.sessions}</strong></span>
+                  <span>轉換 <strong className="text-green-400">{c.conversions.toFixed(0)}</strong></span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Keywords */}
+      {keywords.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-slate-300 mb-3">關鍵字成效</h3>
+          <div className="space-y-2">
+            {keywords.map((k, i) => {
+              const ctr = k.impressions > 0 ? ((k.clicks / k.impressions) * 100).toFixed(1) : '0'
+              return (
+                <div key={i} className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
+                  <div className="text-sm font-medium mb-2">{k.keyword}</div>
+                  <div className="flex flex-wrap gap-3 text-xs text-slate-400">
+                    <span>花費 <strong className="text-amber-400">{fmtMoney(k.cost)}</strong></span>
+                    <span>點擊 <strong className="text-white">{k.clicks}</strong></span>
+                    <span>曝光 <strong className="text-white">{k.impressions}</strong></span>
+                    <span>CTR <strong className="text-white">{ctr}%</strong></span>
+                    {k.conversions > 0 && <span>轉換 <strong className="text-green-400">{k.conversions.toFixed(0)}</strong></span>}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {campaigns.length === 0 && keywords.length === 0 && summary.clicks === 0 && (
+        <div className="text-center py-10">
+          <div className="text-3xl mb-3">📊</div>
+          <div className="text-slate-400 text-sm">此期間無廣告數據</div>
+          <div className="text-slate-500 text-xs mt-1">請確認 Google Ads 已連結 GA4</div>
+        </div>
+      )}
     </div>
   )
 }
