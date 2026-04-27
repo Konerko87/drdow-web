@@ -4,6 +4,24 @@
 
 ---
 
+## v1.2.0 — 2026-04-27
+### 變更內容
+- 新增 middleware 攔截惡意爬蟲（AI 訓練爬蟲、SEO 掃描器、攻擊工具），回傳 tarpit 浪費其資源
+- robots.txt 改為僅允許 Google/Bing/DuckDuckGo，封鎖 GPTBot/ClaudeBot/Bytespider 等 30+ 惡意爬蟲
+- llms.txt 端點改為回傳 403，不再主動提供商業資料
+- 所有頁面加上 `X-Robots-Tag: noai, noimageai` 防止 AI 訓練索引
+- 無 user-agent 的 API 請求直接回 403
+
+### 影響檔案
+- src/middleware.ts（新增）
+- src/app/robots.ts
+- src/app/llms.txt/route.ts
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.1.1 — 2026-04-27
 ### 變更內容
 - 聯絡表單新增三層防護：IP rate limiting（每小時 5 次）、攻擊 payload 偵測（SQL injection / XSS）、Cloudflare Turnstile 驗證碼（選配）
