@@ -4,6 +4,26 @@
 
 ---
 
+## v1.2.1 — 2026-04-27
+### 變更內容
+- 強化 `/api/contact` 防護：新增 12+ 種 sqlmap payload 偵測（time-based blind、boolean blind、stacked queries、template injection）
+- 命中惡意 payload 的 IP 自動封鎖 24 小時（in-memory，重啟重置）
+- 拒絕非 JSON content-type 的請求（403），並封鎖該 IP
+- malformed JSON body 直接 403 並封鎖 IP（先前是噴錯到 log，現在直接擋）
+- middleware 新增環境變數驅動的 IP 黑名單 `BLOCKED_IPS`（comma-separated）
+- log 格式改為 `[Contact] Blocked sqli/xss from <ip> ua="..." pattern=...`，方便日後查 IP 加進 BLOCKED_IPS
+
+### 影響檔案
+- src/app/api/contact/route.ts
+- src/middleware.ts
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.2.0 — 2026-04-27
 ### 變更內容
 - 新增 middleware 攔截惡意爬蟲（AI 訓練爬蟲、SEO 掃描器、攻擊工具），回傳 tarpit 浪費其資源

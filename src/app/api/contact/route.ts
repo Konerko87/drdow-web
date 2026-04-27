@@ -31,20 +31,75 @@ setInterval(() => {
 
 // ---------------------------------------------------------------------------
 // 2. Suspicious content detection (SQL injection / XSS / scanner payloads)
+//    Patterns expanded to catch full sqlmap signature set:
+//    time-based blind, boolean blind, error-based, stacked queries.
 // ---------------------------------------------------------------------------
 const SUSPICIOUS_PATTERNS = [
-  /%27|%22|%2527|%2522/i,           // encoded quotes (double-encoded)
-  /<script[\s>]/i,                   // XSS script tags
-  /(\b(union|select|insert|drop|delete|update)\b.*\b(from|into|table|set)\b)/i, // SQL
-  /javascript\s*:/i,                 // JS protocol
-  /on(error|load|click|mouseover)\s*=/i,  // event handlers
-  /\.\.\//,                          // path traversal
-  /\x00/,                            // null bytes
+  // --- SQL: time-based blind injection ---
+  /\bpg_sleep\s*\(/i,                // PostgreSQL
+  /\bsleep\s*\(\s*\d/i,              // MySQL sleep(N)
+  /\bbenchmark\s*\(/i,                // MySQL benchmark()
+  /\bwaitfor\s+delay\b/i,            // MSSQL
+  /\bdbms_pipe\.receive_message\b/i, // Oracle
+  /\bsysdate\s*\(/i,                 // sqlmap fingerprint
+  // --- SQL: structural keywords ---
+  /(\b(union|select|insert|drop|delete|update|truncate|exec|execute)\b[\s\S]{0,80}?\b(from|into|table|set|where|values|database|schema)\b)/i,
+  /\bselect\s*\(\s*\d/i,             // sqlmap nested select(0)
+  /\bfrom\s+dual\b/i,                // Oracle DUAL
+  /\binformation_schema\b/i,
+  // --- SQL: boolean blind injection ---
+  /\b(?:or|and|xor)\b\s+\d+\s*=\s*\d+/i,         // OR 1=1, AND 5=5
+  /\b(?:or|and|xor)\b\s+['"]?\w+['"]?\s*=\s*['"]?\w+['"]?\s*--/i,
+  /\bif\s*\(\s*now\s*\(\s*\)\s*=\s*sysdate/i,    // sqlmap if(now()=sysdate(),...)
+  /\bxor\s*\(\s*if\s*\(/i,                       // XOR(if(...))
+  /\d+\s*\*\s*\d+\s*=\s*\d+/,                    // sqlmap math probe: 5*5=25, 3*2<5
+  // --- SQL: stacked queries / comment exit ---
+  /;\s*(drop|delete|update|insert|alter|create|exec)\b/i,
+  /--\s*$/m,                         // SQL line comment at end
+  /\/\*.*?\*\//,                     // SQL block comment
+  // --- Encoding tricks ---
+  /%27|%22|%2527|%2522|%00|%3Cscript/i,
+  // --- XSS ---
+  /<script[\s>]/i,
+  /javascript\s*:/i,
+  /on(error|load|click|mouseover|focus|blur)\s*=/i,
+  /<iframe[\s>]/i,
+  // --- Path traversal / null bytes ---
+  /\.\.\//,
+  /\x00/,
+  // --- Server-side template / command injection ---
+  /\$\{.*?\}/,                       // ${...} template
+  /\{\{.*?\}\}/,                     // {{...}} template
+  /\|\s*(sh|bash|cmd|powershell|wget|curl)\b/i,
 ]
 
-function isSuspicious(fields: Record<string, string>): boolean {
+function detectSuspicious(fields: Record<string, string>): string | null {
   const combined = Object.values(fields).join(' ')
-  return SUSPICIOUS_PATTERNS.some((p) => p.test(combined))
+  for (const p of SUSPICIOUS_PATTERNS) {
+    if (p.test(combined)) return p.source.slice(0, 60)
+  }
+  return null
+}
+
+// ---------------------------------------------------------------------------
+// 2b. In-memory IP auto-ban (per-instance; resets on deploy)
+//     A single suspicious payload bans the IP for 24h.
+// ---------------------------------------------------------------------------
+const BAN_DURATION = 24 * 60 * 60 * 1000 // 24h
+const bannedIps = new Map<string, number>()
+
+function isIpBanned(ip: string): boolean {
+  const until = bannedIps.get(ip)
+  if (!until) return false
+  if (Date.now() > until) {
+    bannedIps.delete(ip)
+    return false
+  }
+  return true
+}
+
+function banIp(ip: string) {
+  bannedIps.set(ip, Date.now() + BAN_DURATION)
 }
 
 // ---------------------------------------------------------------------------
@@ -141,13 +196,21 @@ ${message}
 // POST handler
 // ---------------------------------------------------------------------------
 export async function POST(request: NextRequest) {
-  try {
-    // Rate limit by IP
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown'
+  // Resolve IP & UA up front (used for logging in every branch)
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown'
+  const ua = request.headers.get('user-agent') || ''
 
+  try {
+    // Auto-banned IP (caught a malicious payload before)
+    if (isIpBanned(ip)) {
+      console.warn(`[Contact] Banned IP retry: ${ip} ua="${ua.slice(0, 80)}"`)
+      return NextResponse.json({ success: true })
+    }
+
+    // Rate limit by IP
     if (isRateLimited(ip)) {
       return NextResponse.json(
         { error: '提交次數過多，請稍後再試' },
@@ -155,7 +218,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const data = await request.json()
+    // Reject obviously non-form requests early (must be JSON)
+    const contentType = request.headers.get('content-type') || ''
+    if (!contentType.includes('application/json')) {
+      console.warn(`[Contact] Bad content-type from ${ip} ua="${ua.slice(0, 80)}" ct="${contentType}"`)
+      banIp(ip)
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    // Parse body — empty/malformed = scanner probe, ban immediately
+    let data: Record<string, string>
+    try {
+      data = await request.json()
+    } catch {
+      console.warn(`[Contact] Malformed JSON from ${ip} ua="${ua.slice(0, 80)}"`)
+      banIp(ip)
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
 
     // Validate required fields
     const { company, name, email, message } = data
@@ -179,10 +258,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    // Suspicious content check
-    if (isSuspicious({ company, name, email, phone: data.phone || '', message })) {
-      // Return success to not reveal detection, but don't send email
-      console.warn(`[Contact] Blocked suspicious submission from ${ip}`)
+    // Suspicious content check — ban + drop, no email sent
+    const matched = detectSuspicious({ company, name, email, phone: data.phone || '', message })
+    if (matched) {
+      banIp(ip)
+      console.warn(`[Contact] Blocked sqli/xss from ${ip} ua="${ua.slice(0, 80)}" pattern=${matched}`)
+      // Return success to not reveal detection
       return NextResponse.json({ success: true })
     }
 

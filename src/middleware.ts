@@ -25,6 +25,23 @@ const EXCLUDED_PATHS = [
   '/apple-touch-icon',
 ]
 
+// IP blacklist — comma-separated env var, e.g. "1.2.3.4,5.6.7.8"
+// Set on Railway: BLOCKED_IPS=ip1,ip2,...
+const BLOCKED_IPS = new Set(
+  (process.env.BLOCKED_IPS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
+)
+
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    ''
+  )
+}
+
 function isBlockedBot(ua: string): boolean {
   const lower = ua.toLowerCase()
   return BLOCKED_BOTS.some((bot) => lower.includes(bot))
@@ -44,6 +61,12 @@ export function middleware(request: NextRequest) {
   // Skip middleware for static assets
   if (EXCLUDED_PATHS.some((p) => path.startsWith(p))) {
     return NextResponse.next()
+  }
+
+  // Hard IP blacklist — block before anything else
+  const ip = getClientIp(request)
+  if (ip && BLOCKED_IPS.has(ip)) {
+    return new NextResponse('Forbidden', { status: 403 })
   }
 
   // Block known bad bots — return tarpit response to waste their resources
