@@ -4,6 +4,21 @@
 
 ---
 
+## v1.1.1 — 2026-04-27
+### 變更內容
+- 聯絡表單新增三層防護：IP rate limiting（每小時 5 次）、攻擊 payload 偵測（SQL injection / XSS）、Cloudflare Turnstile 驗證碼（選配）
+- 可疑提交靜默攔截不寄信，避免垃圾信淹沒信箱
+- Turnstile 為 opt-in，設定 `TURNSTILE_SECRET_KEY` + `NEXT_PUBLIC_TURNSTILE_SITE_KEY` 即啟用
+
+### 影響檔案
+- src/app/api/contact/route.ts
+- src/components/sections/contact-form.tsx
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.1.0 — 2026-04-17
 ### 變更內容
 - Admin 後台新增「廣告成效」Tab，整合 Google Ads 數據

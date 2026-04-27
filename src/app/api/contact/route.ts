@@ -1,7 +1,78 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SITE } from '@/lib/constants'
 
-// Use Resend if available, fallback to console log for dev
+// ---------------------------------------------------------------------------
+// 1. Rate limiting (in-memory, per IP, resets on deploy)
+// ---------------------------------------------------------------------------
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT = 5       // max requests
+const RATE_WINDOW = 3600000 // per hour (ms)
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW })
+    return false
+  }
+
+  entry.count++
+  return entry.count > RATE_LIMIT
+}
+
+// Periodically clean up expired entries to prevent memory leak
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, entry] of rateLimitMap) {
+    if (now > entry.resetAt) rateLimitMap.delete(ip)
+  }
+}, RATE_WINDOW)
+
+// ---------------------------------------------------------------------------
+// 2. Suspicious content detection (SQL injection / XSS / scanner payloads)
+// ---------------------------------------------------------------------------
+const SUSPICIOUS_PATTERNS = [
+  /%27|%22|%2527|%2522/i,           // encoded quotes (double-encoded)
+  /<script[\s>]/i,                   // XSS script tags
+  /(\b(union|select|insert|drop|delete|update)\b.*\b(from|into|table|set)\b)/i, // SQL
+  /javascript\s*:/i,                 // JS protocol
+  /on(error|load|click|mouseover)\s*=/i,  // event handlers
+  /\.\.\//,                          // path traversal
+  /\x00/,                            // null bytes
+]
+
+function isSuspicious(fields: Record<string, string>): boolean {
+  const combined = Object.values(fields).join(' ')
+  return SUSPICIOUS_PATTERNS.some((p) => p.test(combined))
+}
+
+// ---------------------------------------------------------------------------
+// 3. Cloudflare Turnstile verification (optional — only if env vars set)
+// ---------------------------------------------------------------------------
+const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY
+
+async function verifyTurnstile(token: string): Promise<boolean> {
+  if (!TURNSTILE_SECRET) return true // skip if not configured
+
+  if (!token) return false
+
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      secret: TURNSTILE_SECRET,
+      response: token,
+    }),
+  })
+
+  const data = await res.json()
+  return data.success === true
+}
+
+// ---------------------------------------------------------------------------
+// Send email via Resend
+// ---------------------------------------------------------------------------
 async function sendEmail({
   company,
   name,
@@ -34,7 +105,6 @@ ${message}
 `.trim()
 
   if (resendKey) {
-    // Use Resend API
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -67,8 +137,24 @@ ${message}
   return { id: 'dev-mode' }
 }
 
+// ---------------------------------------------------------------------------
+// POST handler
+// ---------------------------------------------------------------------------
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit by IP
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown'
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: '提交次數過多，請稍後再試' },
+        { status: 429 }
+      )
+    }
+
     const data = await request.json()
 
     // Validate required fields
@@ -90,8 +176,23 @@ export async function POST(request: NextRequest) {
 
     // Honeypot check (anti-spam)
     if (data.website) {
-      // Bot filled the hidden field
       return NextResponse.json({ success: true })
+    }
+
+    // Suspicious content check
+    if (isSuspicious({ company, name, email, phone: data.phone || '', message })) {
+      // Return success to not reveal detection, but don't send email
+      console.warn(`[Contact] Blocked suspicious submission from ${ip}`)
+      return NextResponse.json({ success: true })
+    }
+
+    // Turnstile verification (skipped if not configured)
+    const turnstileOk = await verifyTurnstile(data.turnstileToken || '')
+    if (!turnstileOk) {
+      return NextResponse.json(
+        { error: '驗證失敗，請重新整理頁面再試' },
+        { status: 403 }
+      )
     }
 
     await sendEmail({
