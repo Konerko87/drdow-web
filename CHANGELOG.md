@@ -4,6 +4,22 @@
 
 ---
 
+## v1.3.1 — 2026-04-28
+### 變更內容
+- 修：簡報頁 `/decks/tms.html` bundler 解包失敗（[bundle] error）
+- 原因：next.config.ts 的 CSP `default-src 'self'` + `connect-src 'self'` 擋住簡報自包含 bundler 的動態載入
+- 修法：next.config.ts 的 main headers rule source 改用 negative lookahead `'/((?!decks/).*)'` 排除 `/decks/`，再為 `/decks/(.*)` 套用除 CSP 外的所有 security headers + `X-Robots-Tag: noindex,nofollow,noarchive,nosnippet`
+
+### 影響檔案
+- next.config.ts
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.3.0 — 2026-04-28
 ### 變更內容
 - 新增隱藏式 TMS 產品簡報頁，路徑：`/decks/tms.html`（17 slides 自包含 HTML）

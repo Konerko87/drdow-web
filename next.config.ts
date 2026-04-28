@@ -29,19 +29,34 @@ const nextConfig: NextConfig = {
       "upgrade-insecure-requests",
     ].join('; ')
 
+    const baseSecurityHeaders = [
+      { key: 'X-Frame-Options', value: 'DENY' },
+      { key: 'X-Content-Type-Options', value: 'nosniff' },
+      { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+      // 2-year HSTS + preload-eligible. Once stable, submit to hstspreload.org
+      { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+      { key: 'X-DNS-Prefetch-Control', value: 'on' },
+      { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()' },
+      { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+    ]
+
     return [
+      // All routes EXCEPT /decks/* — full CSP applied
       {
-        source: '/(.*)',
+        source: '/((?!decks/).*)',
         headers: [
-          { key: 'X-Frame-Options', value: 'DENY' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          // 2-year HSTS + preload-eligible. Once stable, submit to hstspreload.org
-          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-          { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()' },
-          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          ...baseSecurityHeaders,
           { key: 'Content-Security-Policy', value: csp },
+        ],
+      },
+      // /decks/* — sandboxed self-contained pitch deck HTML. CSP omitted so the
+      // embedded bundler can unpack without restrictions; X-Robots-Tag added so
+      // even if URL leaks, search engines won't index.
+      {
+        source: '/decks/(.*)',
+        headers: [
+          ...baseSecurityHeaders,
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive, nosnippet' },
         ],
       },
       {
