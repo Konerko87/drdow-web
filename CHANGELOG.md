@@ -4,6 +4,23 @@
 
 ---
 
+## v1.3.0 — 2026-04-28
+### 變更內容
+- 新增隱藏式 TMS 產品簡報頁，路徑：`/decks/tms.html`（17 slides 自包含 HTML）
+- 用途：行銷分享專用，知道網址才能進入
+- 隱藏措施：robots.txt `Disallow: /decks/`、不寫進 sitemap、站內無連結、middleware 自動加 `X-Robots-Tag: noai, noimageai`
+
+### 影響檔案
+- public/decks/tms.html（新增，6.4MB）
+- src/app/robots.ts
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.2.1 — 2026-04-27
 ### 變更內容
 - 強化 `/api/contact` 防護：新增 12+ 種 sqlmap payload 偵測（time-based blind、boolean blind、stacked queries、template injection）

@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: ['Googlebot', 'Bingbot', 'Yandex', 'DuckDuckBot'],
         allow: '/',
-        disallow: ['/admin', '/api/', '/thank-you'],
+        disallow: ['/admin', '/api/', '/thank-you', '/decks/'],
       },
       // Block AI training crawlers
       {
@@ -50,7 +50,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api/', '/thank-you'],
+        disallow: ['/admin', '/api/', '/thank-you', '/decks/'],
       },
     ],
     sitemap: `${SITE.url}/sitemap.xml`,
