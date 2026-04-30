@@ -1,7 +1,7 @@
 export const SITE = {
-  name: 'Dr.Dow AI 廟通',
-  tagline: '真正懂宮廟流程的智慧營運平台',
-  description: '整合櫃檯受理、點燈管理、法會活動、捐款收據與 LINE 信徒查詢的宮廟營運系統。真正懂宮廟流程，讓櫃檯更快、信徒查得到、行政做得完。',
+  name: '廟通',
+  tagline: '宮廟專用智慧廟務系統',
+  description: '廟通是專為台灣宮廟打造的智慧廟務系統。整合櫃檯受理、點燈管理、法會報名、捐款收據與 LINE 信徒查詢，支援 LINE Pay 線上點燈付款。不是模板，100% 依廟方流程客製。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
   phone: '0922617117',
@@ -12,6 +12,7 @@ export const NAV_LINKS = [
   { label: '產品', href: '#products', children: [
     { label: '廟通 宮廟管理', href: '/products/miaotong', description: '信徒管理、點燈牌位、捐款收據、法會報名' },
     { label: 'TMS 派車系統', href: '/products/tms', description: 'AI 智慧派車、司機 LINE App、GPS 追蹤' },
+    { label: 'WMS 倉儲系統', href: '/products/wms', description: '入庫、出庫、盤點、儲位、條碼作業' },
     { label: 'ERP 財務系統', href: '/products/erp', description: 'AI OCR 請款、銀行自動對帳、付款防呆' },
   ]},
   { label: '功能介紹', href: '#features' },
@@ -51,6 +52,22 @@ export const PRODUCTS = {
       { icon: '⛽', title: '加油卡即時串接', desc: '鉅泰加油卡 API，自動同步加值金額、車輛油耗排行。' },
       { icon: '📑', title: '財務報表', desc: '月度損益、AP/AR 帳齡分析、預算控管、Excel 匯出。' },
       { icon: '💵', title: '薪資管理', desc: 'CSV 上傳 + TMS 司機自動同步，勞健保勞退一目了然。' },
+    ],
+  },
+  wms: {
+    name: 'Dr.Dow WMS',
+    fullName: '智慧倉儲管理系統',
+    tagline: '倉儲現場，即時同步',
+    description: '從入庫、出庫、盤點到儲位管理，倉庫現場不再靠紙本和喊話追資料。條碼掃描、庫存即時、TMS / ERP 全打通。',
+    features: [
+      { icon: '📦', title: '入庫掃描', desc: '到貨用條碼/QR 掃進系統，自動分配儲位與棧板，紙本驗收一次取代。' },
+      { icon: '🚚', title: '出庫揀貨', desc: '揀貨清單按儲位排序，掃碼複核防錯出。出貨完成自動通知 TMS 派車。' },
+      { icon: '📊', title: '庫存即時同步', desc: '每一次異動立刻反映可用量、安全庫存、在途數，不用等夜批。' },
+      { icon: '🗺️', title: '儲位管理', desc: '區/排/層/位四層結構，視覺化儲位地圖，熱區/冷區一眼判讀。' },
+      { icon: '📋', title: '盤點任務', desc: '日盤、週盤、年盤任務派發，手機掃碼盤點，差異報表自動產出。' },
+      { icon: '🏗️', title: '棧板與循環容器', desc: '棧板/籠車序號全程追蹤，三倉之間流轉與司機歸還一筆不漏。' },
+      { icon: '🚨', title: '異常告警', desc: '揀錯、超揀、過期品、低安全庫存即時推播給倉管，事後不用補火。' },
+      { icon: '🔗', title: 'TMS / ERP 串接', desc: '出貨單推 TMS 派車、收貨/領料推 ERP 帳務，三系統同一筆事實來源。' },
     ],
   },
   miaotong: {

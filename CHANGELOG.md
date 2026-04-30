@@ -4,6 +4,46 @@
 
 ---
 
+## v1.4.0 — 2026-04-30
+### 變更內容
+- 產品線並存策略：首頁從廟通單一主打改為「廟通主打 + 多產品入口」過渡架構
+- 新增 `SceneSelector` 場景選擇 section（4 場景：宮廟 / TMS 派車 / WMS 倉儲 / ERP 財務），插在 Hero 之後
+- 重接 `ProductCards` 到首頁（Numbers 之後、CTA 之前），改造支援 4 卡：廟通主打大卡 + TMS / WMS / ERP 三小卡
+- 新增 `/products/wms` 倉儲管理產品頁（Hero / Stats / 8 大功能 / 三角色情境 / 6 截圖區 / 5 步工作流程 / 整合 / Cross product / CTA）
+- 新增 `Dr.Dow WMS` 產品資料於 `lib/constants.ts`（8 大功能：入庫掃描、出庫揀貨、庫存即時同步、儲位管理、盤點任務、棧板循環容器、異常告警、TMS/ERP 串接）
+- 導覽列產品下拉新增「WMS 倉儲系統」入口
+- 頁尾「產品與資源」新增 WMS 連結
+- `sitemap.xml` 新增 `/products/wms` URL（priority 0.9）
+- `/solutions` 拆成 4 大解決方案區塊：廟通宮廟、TMS 派車、WMS 倉儲、ERP 財務（原本的 LOGISTICS_SOLUTIONS 拆成 TMS / ERP 兩組，新增 WAREHOUSE_SOLUTIONS）
+- WMS 6 張截圖到位（GPT 生成）：wms-inventory / wms-inbound / wms-outbound / wms-locations / wms-stocktake / wms-pallet
+- 移除 placeholder 邏輯（fs.existsSync + CSS mock），全改用 next/image 直接載入
+
+### 影響檔案
+- src/lib/constants.ts
+- src/components/sections/product-cards.tsx
+- src/components/sections/scene-selector.tsx（新增）
+- src/components/layout/footer.tsx
+- src/app/page.tsx
+- src/app/products/wms/page.tsx（新增）
+- src/app/sitemap.ts
+- src/app/solutions/page.tsx
+
+### 待補資源（GPT 圖片生成）
+WMS 產品頁需 6 張截圖，路徑：
+- public/screenshots/wms-inventory.png — 庫存即時儀表板
+- public/screenshots/wms-inbound.png — 入庫掃描
+- public/screenshots/wms-outbound.png — 出庫揀貨
+- public/screenshots/wms-locations.png — 儲位視覺化地圖
+- public/screenshots/wms-stocktake.png — 盤點任務（手機）
+- public/screenshots/wms-pallet.png — 棧板與循環容器追蹤
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.3.1 — 2026-04-28
 ### 變更內容
 - 修：簡報頁 `/decks/tms.html` bundler 解包失敗（[bundle] error）

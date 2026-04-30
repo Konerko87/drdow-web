@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: SITE.url, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${SITE.url}/products/tms`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE.url}/products/wms`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE.url}/products/erp`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE.url}/products/erp/demo`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE.url}/products/miaotong`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
