@@ -4,6 +4,51 @@
 
 ---
 
+## v1.5.0 — 2026-04-30
+### 變更內容
+- 母品牌轉型：`SITE.name` 從 `廟通` 改成 `Dr.Dow AI`，tagline / description 改成多產品母品牌定位
+- WebSite JSON-LD（`layout.tsx`）改用 `SITE.name` + alternateName `Dr.Dow AI 產業管理系統`
+- `<CTASection>` 加 `variant` prop（`generic` / `temple` / `logistics`），CTA 文案依頁面切換不再全站講廟務
+- Footer 品牌文案從「為宮廟量身打造」改成「為現場營運打造的 AI 管理系統」，logo alt 改成 `Dr.Dow AI logo`
+- TMS 頁「其他產品」改推 WMS / ERP（移除廟通），標題改「物流產業線其他產品」
+- ERP 頁「其他產品」改推 TMS / WMS（移除廟通），標題改「物流產業線其他產品」
+- TMS / WMS / ERP 頁套用 `<CTASection variant="logistics" />`
+- FAQ 新增「WMS 倉儲管理系統」分類（3 題），metadata title / description / keywords 補 WMS
+- Pricing 物流方案 Title 改 `TMS / WMS / ERP 物流營運系統`，專業版 / 企業版加入 WMS 功能項，metadata + JSON-LD 同步
+- Contact 頁與 contact-form placeholder 補 WMS：metadata description、Demo 包含項、表單 placeholder
+- 修 OG fallback 404：`metadata.ts` 預設 OG 從 `/og/default.png`（不存在）改成 `/opengraph-image`（動態產生）
+- `opengraph-image.tsx` 改成母品牌版面：Dr.Dow AI / 宮廟 · 物流 · 倉儲 · 財務 AI 管理系統 / 廟通 · TMS · WMS · ERP
+- 首頁 / about / solutions / pricing / faq 套用對應 variant（home=temple、其他=generic）
+
+### 影響檔案
+- src/lib/constants.ts
+- src/lib/metadata.ts
+- src/app/layout.tsx
+- src/app/page.tsx
+- src/app/opengraph-image.tsx
+- src/app/about/page.tsx
+- src/app/solutions/page.tsx
+- src/app/pricing/page.tsx
+- src/app/faq/page.tsx
+- src/app/contact/page.tsx
+- src/app/products/tms/page.tsx
+- src/app/products/wms/page.tsx
+- src/app/products/erp/page.tsx
+- src/components/layout/footer.tsx
+- src/components/sections/cta-section.tsx
+- src/components/sections/contact-form.tsx
+
+### 階段策略
+本次採 Phase A：保留首頁 Hero 與 metadata 為廟通主打，僅修品牌 / CTA / footer / 產品頁互推 / FAQ / Pricing / Contact / OG。
+未來如要 Phase B 改成 Dr.Dow AI 多產品首頁 metadata，再進入 v1.6.0。
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.4.0 — 2026-04-30
 ### 變更內容
 - 產品線並存策略：首頁從廟通單一主打改為「廟通主打 + 多產品入口」過渡架構

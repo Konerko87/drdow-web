@@ -8,9 +8,9 @@ import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
   title: '聯繫我們 — 預約 Demo',
-  description: '預約 Dr.Dow AI 廟通宮廟管理、物流派車 TMS 或財務 ERP 系統的免費 Demo。30 分鐘了解如何從手動變全自動。',
+  description: '預約 Dr.Dow AI 廟通宮廟管理、TMS 物流派車、WMS 倉儲管理或 ERP 財務系統的免費 Demo。30 分鐘了解如何從手動變全自動。',
   path: '/contact',
-  keywords: ['聯繫', '預約Demo', '免費諮詢', 'Dr.Dow AI', '廟通', 'TMS', 'ERP'],
+  keywords: ['聯繫', '預約Demo', '免費諮詢', 'Dr.Dow AI', '廟通', 'TMS', 'WMS', 'ERP'],
 })
 
 export default function ContactPage() {
@@ -42,7 +42,7 @@ export default function ContactPage() {
           <FadeIn className="text-center mb-16 mt-6">
             <h1 className="text-4xl md:text-5xl font-black mb-4">預約 Demo</h1>
             <p className="text-lg text-muted max-w-xl mx-auto">
-              30 分鐘了解 Dr.Dow AI 如何讓你的宮廟管理或物流營運從手動變全自動。
+              30 分鐘了解 Dr.Dow AI 如何讓你的宮廟、物流、倉儲或財務流程從手動變全自動。
             </p>
           </FadeIn>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <ul className="space-y-2 text-sm text-muted">
                     {[
                       '了解你的業務需求和痛點',
-                      '實際操作廟通 / TMS / ERP 系統示範',
+                      '實際操作廟通 / TMS / WMS / ERP 系統示範',
                       '客製化建議和導入計劃',
                       '30 天免費試用帳號',
                     ].map((item, i) => (

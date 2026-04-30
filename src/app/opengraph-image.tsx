@@ -1,110 +1,76 @@
 import { ImageResponse } from 'next/og'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
-export const runtime = 'edge'
-export const alt = '廟通 — 智慧宮廟管理系統 | Dr.Dow AI'
+export const alt = 'Dr.Dow AI — 宮廟、物流與倉儲 AI 管理系統'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default function OGImage() {
+export default async function OGImage() {
+  const logoData = await readFile(join(process.cwd(), 'public', 'logo-miaotong.png'))
+  const logoBase64 = `data:image/png;base64,${logoData.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)',
+          background: '#FFFFFF',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '60px',
+          padding: '40px',
         }}
       >
-        {/* Glow */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '600px',
-            height: '400px',
-            background: 'radial-gradient(circle, rgba(185,28,28,0.15) 0%, transparent 70%)',
-            borderRadius: '50%',
-          }}
+        {/* Logo */}
+        <img
+          src={logoBase64}
+          alt=""
+          width={200}
+          height={216}
+          style={{ objectFit: 'contain' }}
         />
 
-        {/* Content */}
+        {/* Brand */}
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
+            fontSize: 56,
+            fontWeight: 900,
+            color: '#0F172A',
+            marginTop: 24,
+            textAlign: 'center',
+            letterSpacing: '-0.02em',
           }}
         >
-          <div
-            style={{
-              fontSize: 28,
-              fontWeight: 900,
-              color: 'white',
-              marginBottom: 40,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}
-          >
-            Dr.Dow{' '}
-            <span style={{ color: '#B91C1C' }}>AI</span>
-          </div>
+          Dr.Dow AI
+        </div>
 
-          <div
-            style={{
-              fontSize: 56,
-              fontWeight: 900,
-              color: 'white',
-              textAlign: 'center',
-              lineHeight: 1.2,
-              marginBottom: 24,
-            }}
-          >
-            宮廟管理，
-          </div>
-          <div
-            style={{
-              fontSize: 56,
-              fontWeight: 900,
-              background: 'linear-gradient(135deg, #B91C1C, #D97706)',
-              backgroundClip: 'text',
-              color: 'transparent',
-              textAlign: 'center',
-              lineHeight: 1.2,
-              marginBottom: 32,
-            }}
-          >
-            智慧升級。
-          </div>
+        {/* Tagline */}
+        <div
+          style={{
+            fontSize: 26,
+            fontWeight: 700,
+            color: '#475569',
+            marginTop: 16,
+            textAlign: 'center',
+          }}
+        >
+          宮廟 · 物流 · 倉儲 · 財務 AI 管理系統
+        </div>
 
-          <div
-            style={{
-              fontSize: 20,
-              color: 'rgba(255,255,255,0.4)',
-              textAlign: 'center',
-            }}
-          >
-            廟通 · 信徒管理 · 點燈牌位 · 捐款收據 · 法會報名
-          </div>
-
-          <div
-            style={{
-              fontSize: 16,
-              color: 'rgba(255,255,255,0.25)',
-              marginTop: 24,
-            }}
-          >
-            drdowai.com
-          </div>
+        {/* Products */}
+        <div
+          style={{
+            fontSize: 20,
+            color: '#64748B',
+            marginTop: 14,
+            textAlign: 'center',
+            letterSpacing: '0.05em',
+          }}
+        >
+          廟通 · TMS · WMS · ERP
         </div>
       </div>
     ),

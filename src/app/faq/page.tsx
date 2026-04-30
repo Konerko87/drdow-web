@@ -6,10 +6,10 @@ import { CTASection } from '@/components/sections/cta-section'
 import { FAQPageJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
-  title: '常見問題 FAQ — 廟通宮廟管理 / 物流 TMS / ERP',
-  description: '關於 Dr.Dow AI 廟通宮廟管理系統、物流派車系統 TMS 和財務系統 ERP 的常見問題解答。',
+  title: '常見問題 FAQ — 廟通 / TMS / WMS / ERP',
+  description: '關於 Dr.Dow AI 廟通宮廟管理系統、TMS 物流派車系統、WMS 倉儲系統和 ERP 財務系統的常見問題解答。',
   path: '/faq',
-  keywords: ['FAQ', '常見問題', '廟通', 'TMS', 'ERP', '物流系統', '宮廟管理'],
+  keywords: ['FAQ', '常見問題', '廟通', 'TMS', 'WMS', 'ERP', '物流系統', '倉儲系統', '宮廟管理'],
 })
 
 const FAQS = [
@@ -62,6 +62,24 @@ const FAQS = [
       {
         question: 'Dr.Dow AI 跟 SAP TM 或 Oracle TMS 有什麼差別？',
         answer: 'SAP TM 和 Oracle TMS 是為大型企業設計的，導入成本高（數百萬起）、時間長（半年以上）。Dr.Dow AI 專為台灣中小物流公司打造：中文介面、LINE 整合、台灣銀行對帳、在地計費邏輯，而且導入只需要 1-2 週。',
+      },
+    ],
+  },
+  {
+    category: 'WMS 倉儲管理系統',
+    accent: undefined,
+    items: [
+      {
+        question: '什麼是 WMS（倉儲管理系統）？',
+        answer: 'WMS（Warehouse Management System）是用來管理入庫、出庫、庫存、儲位與盤點的系統。Dr.Dow WMS 透過條碼掃描、即時庫存與任務派發，讓倉庫不再靠紙本或人工喊話追資料。',
+      },
+      {
+        question: 'WMS 可以跟 TMS 和 ERP 串接嗎？',
+        answer: '可以。WMS 的出貨資料可推送到 TMS 做派車，收貨、領料或庫存異動也能與 ERP 財務流程串接，讓倉儲、派車與對帳使用同一筆事實來源。',
+      },
+      {
+        question: '現場人員一定要使用電腦嗎？',
+        answer: '不用。現場作業可用手機或 PDA 掃碼完成入庫、揀貨、出庫與盤點，主管則可在電腦查看儀表板與異常報表。',
       },
     ],
   },
@@ -119,7 +137,7 @@ export default function FAQPage() {
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-black mb-4">常見問題</h1>
             <p className="text-lg text-muted">
-              關於 Dr.Dow AI 廟通、物流派車系統和財務系統的所有問題
+              關於 Dr.Dow AI 廟通、TMS、WMS 和 ERP 的所有問題
             </p>
           </FadeIn>
         </div>
@@ -152,7 +170,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection variant="generic" />
     </>
   )
 }

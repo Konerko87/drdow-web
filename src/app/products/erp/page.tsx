@@ -246,23 +246,23 @@ export default function ERPPage() {
       <section className="py-16 bg-surface">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl font-black mb-2">其他產品</h2>
-            <p className="text-muted text-sm">搭配使用，效率加倍</p>
+            <h2 className="text-2xl font-black mb-2">物流產業線其他產品</h2>
+            <p className="text-muted text-sm">搭配使用，從訂單、倉儲、派車到對帳全程串接。</p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Link href="/products/miaotong" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
-              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">廟通 宮廟管理系統</h3>
-              <p className="text-sm text-muted">信徒管理、點燈牌位、捐款收據、法會報名，一站搞定。</p>
-            </Link>
             <Link href="/products/tms" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
               <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">TMS 派車系統</h3>
               <p className="text-sm text-muted">智慧派車板、司機 LINE App、GPS 追蹤、薪資自動計算。</p>
+            </Link>
+            <Link href="/products/wms" className="group bg-white rounded-2xl p-6 hover-lift border border-black/5">
+              <h3 className="font-bold mb-1 group-hover:text-accent transition-colors">WMS 倉儲系統</h3>
+              <p className="text-sm text-muted">入庫掃描、出庫揀貨、即時庫存、儲位管理、條碼盤點。</p>
             </Link>
           </div>
         </div>
       </section>
 
-      <CTASection />
+      <CTASection variant="logistics" />
     </>
   )
 }

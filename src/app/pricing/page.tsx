@@ -8,10 +8,10 @@ import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = createMetadata({
-  title: '價格方案 — 廟通宮廟管理 / 物流 TMS / ERP 系統',
-  description: 'Dr.Dow AI 廟通宮廟管理系統、物流派車系統和財務系統的價格方案。依需求彈性選擇，所有方案都包含免費諮詢。',
+  title: '價格方案 — 廟通 / TMS / WMS / ERP 系統',
+  description: 'Dr.Dow AI 廟通宮廟管理系統、TMS 物流派車系統、WMS 倉儲管理系統和 ERP 財務系統的價格方案。依需求彈性選擇，所有方案都包含免費諮詢。',
   path: '/pricing',
-  keywords: ['價格', '方案', '廟通價格', 'TMS價格', 'ERP價格', '物流系統費用'],
+  keywords: ['價格', '方案', '廟通價格', 'TMS價格', 'WMS價格', 'ERP價格', '物流系統費用', '倉儲系統費用'],
 })
 
 const MIAOTONG_PLANS = [
@@ -74,13 +74,15 @@ const LOGISTICS_PLANS = [
   },
   {
     name: '專業版',
-    target: '10-50 台車',
+    target: '10-50 台車 / 中型倉',
     featured: true,
     features: [
       '基本版全部功能',
+      'WMS 倉儲管理：入庫掃描、出庫揀貨、儲位管理',
+      '即時庫存與盤點任務',
+      '棧板與循環容器追蹤',
       '營運分析 KPI',
       '車隊維護管理',
-      '棧板追蹤',
       'ERP 財務串接',
       'AI OCR 請款',
       '銀行自動對帳',
@@ -91,11 +93,11 @@ const LOGISTICS_PLANS = [
   },
   {
     name: '企業版',
-    target: '50 台車以上',
+    target: '50 台車以上 / 多倉',
     featured: false,
     features: [
       '專業版全部功能',
-      '多倉庫管理',
+      '多倉庫管理（WMS 完整功能）',
       '客製化報表',
       'API 開放',
       '專屬技術支援',
@@ -180,8 +182,8 @@ export default function PricingPage() {
           },
           {
             '@type': 'Product',
-            name: 'TMS / ERP 物流管理系統',
-            description: '物流派車與財務管理 AI 系統',
+            name: 'TMS / WMS / ERP 物流營運系統',
+            description: '物流派車、倉儲管理與財務管理 AI 系統',
             brand: { '@type': 'Brand', name: SITE.name },
             offers: {
               '@type': 'AggregateOffer',
@@ -235,8 +237,8 @@ export default function PricingPage() {
       <section className="py-16 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
-            <p className="text-xs font-bold tracking-wider uppercase text-accent mb-2">TMS / ERP 物流系統</p>
-            <h2 className="text-2xl font-black">物流管理方案</h2>
+            <p className="text-xs font-bold tracking-wider uppercase text-accent mb-2">TMS / WMS / ERP 物流營運系統</p>
+            <h2 className="text-2xl font-black">物流營運方案</h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {LOGISTICS_PLANS.map((plan, i) => (
@@ -246,7 +248,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection variant="generic" />
     </>
   )
 }

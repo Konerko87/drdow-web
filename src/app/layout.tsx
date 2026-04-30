@@ -56,7 +56,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  creator: 'Dr.Dow AI',
   category: 'technology',
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   other: {
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
@@ -84,6 +90,18 @@ export default function RootLayout({
         </a>
         <OrganizationJsonLd />
         <LocalBusinessJsonLd />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: SITE.name,
+            alternateName: 'Dr.Dow AI 產業管理系統',
+            url: 'https://drdowai.com',
+            description: SITE.description,
+            inLanguage: 'zh-TW',
+          }) }}
+        />
         <Analytics />
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>

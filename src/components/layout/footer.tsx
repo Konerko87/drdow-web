@@ -10,14 +10,14 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通 logo" width={28} height={28} className="rounded-md" />
+              <Image src="/logo-miaotong.png" alt="Dr.Dow AI logo" width={28} height={28} className="rounded-md" />
               <span className="text-lg font-black text-white">{SITE.name}</span>
             </div>
             <p className="text-xs leading-relaxed mb-4">
-              為宮廟量身打造的智慧營運平台
+              為現場營運打造的 AI 管理系統
             </p>
             <p className="text-xs leading-relaxed text-white/25">
-              從信徒管理、點燈服務、法會報名、捐款收據，到會計帳務與 LINE 行動服務，一套系統管好整間廟。
+              從宮廟櫃檯、物流派車、倉儲出入庫到財務對帳，協助團隊把紙本、Excel 與 LINE 群組整理成可追蹤、可交接、可自動化的流程。
             </p>
           </div>
 

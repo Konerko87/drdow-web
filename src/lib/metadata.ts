@@ -23,7 +23,7 @@ export function createMetadata({
   authors?: string[]
 }): Metadata {
   const url = `${SITE.url}${path}`
-  const ogImage = image || `${SITE.url}/og/default.png`
+  const ogImage = image || `${SITE.url}/opengraph-image`
 
   return {
     title,

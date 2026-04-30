@@ -56,7 +56,7 @@ export default function HomePage() {
       <BeforeAfter />
       <Numbers />
       <ProductCards />
-      <CTASection />
+      <CTASection variant="temple" />
     </>
   )
 }

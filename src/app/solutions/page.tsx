@@ -335,7 +335,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection variant="generic" />
     </>
   )
 }

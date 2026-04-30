@@ -1,7 +1,7 @@
 export const SITE = {
-  name: '廟通',
-  tagline: '宮廟專用智慧廟務系統',
-  description: '廟通是專為台灣宮廟打造的智慧廟務系統。整合櫃檯受理、點燈管理、法會報名、捐款收據與 LINE 信徒查詢，支援 LINE Pay 線上點燈付款。不是模板，100% 依廟方流程客製。',
+  name: 'Dr.Dow AI',
+  tagline: '宮廟、物流與倉儲 AI 管理系統',
+  description: 'Dr.Dow AI 為宮廟、物流、倉儲與財務團隊打造 AI 管理系統，協助現場流程從紙本、Excel 與 LINE 群組，升級成可追蹤、可交接、可自動化的營運平台。',
   url: 'https://drdowai.com',
   email: 'kevin@st-logistics.com.tw',
   phone: '0922617117',

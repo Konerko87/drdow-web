@@ -184,7 +184,7 @@ export function ContactForm() {
             required
             aria-required="true"
             rows={4}
-            placeholder="告訴我們你的需求，例如：想了解廟通宮廟管理系統 / 公司有 20 台車想導入 TMS / 需要 ERP 財務系統..."
+            placeholder="告訴我們你的需求，例如：想了解廟通宮廟管理系統 / 公司有 20 台車想導入 TMS / 倉庫想導入 WMS / 需要 ERP 財務系統..."
             className="w-full px-4 py-3 rounded-xl bg-surface border border-black/10 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-none"
           />
         </div>

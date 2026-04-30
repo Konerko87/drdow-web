@@ -277,7 +277,7 @@ export default function WMSPage() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection variant="logistics" />
     </>
   )
 }
