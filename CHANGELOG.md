@@ -4,6 +4,35 @@
 
 ---
 
+## v1.6.0 — 2026-05-01
+### 變更內容
+- 階段 B：首頁 metadata 從廟通主打改成 Dr.Dow AI 多產品母品牌定位
+  - title：`Dr.Dow AI｜宮廟、物流、倉儲與財務 AI 管理系統`
+  - description：涵蓋廟通 / TMS / WMS / ERP 四產品
+  - keywords：補 `Dr.Dow AI`、`TMS`、`WMS`、`ERP`、`物流系統`、`倉儲系統`、`AI管理系統`
+- 首頁 CTA variant 從 `temple` 改 `generic`，與多產品 metadata 一致
+- 註：首頁 Hero 與廟通專屬 sections（LinePayFlow / FamilyProxy / CounterOps / LightManagement / ReceiptsDocs / FortuneMoney / FeatureModules / BeforeAfter）依 brief 第 412-414 行「架構保留」維持不動
+
+### 影響檔案
+- src/app/page.tsx
+
+### SEO 影響評估
+- title 改變會觸發 Google 重新索引，短期排名可能波動
+- 廟通 SEO 流量主要來自 `/products/miaotong` 產品頁與 blog，首頁 title 改變影響有限
+- 首頁將開始爭取 `Dr.Dow AI`、`AI 管理系統`、`物流系統`、`倉儲系統` 等多產品關鍵字
+
+### 後續可選工作（未在本次 commit 內）
+- Hero 改成多產品輪播或 4 產品並列
+- 拿掉首頁的廟通深度區塊，移到 `/products/miaotong`（產品頁已有對應內容）
+- 評估首頁 Google Ads 出價策略（從廟通單一改為多產品）
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.5.0 — 2026-04-30
 ### 變更內容
 - 母品牌轉型：`SITE.name` 從 `廟通` 改成 `Dr.Dow AI`，tagline / description 改成多產品母品牌定位

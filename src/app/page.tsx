@@ -19,12 +19,12 @@ import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: '廟通｜宮廟專用智慧廟務系統 — 點燈、法會、收據一套搞定',
-    description: '廟通是專為台灣宮廟打造的廟務系統。櫃檯受理、點燈管理、法會報名、捐款收據、LINE 信徒查詢全整合，支援 LINE Pay 線上點燈。不是模板，100% 依廟方流程客製。免費預約展示。',
+    title: 'Dr.Dow AI｜宮廟、物流、倉儲與財務 AI 管理系統',
+    description: 'Dr.Dow AI 提供廟通宮廟管理系統、TMS 物流派車系統、WMS 倉儲管理系統與 ERP 財務系統，協助現場流程從紙本、Excel 和 LINE 群組升級成可追蹤、可自動化的營運平台。',
     path: '/',
-    keywords: ['廟務系統', '宮廟管理系統', '智慧廟務系統', '點燈系統', '廟通', '宮廟軟體', '廟務管理', '光明燈管理', '法會報名系統', '宮廟收據', '發財金系統', 'LINE Pay 點燈', '宮廟 ERP'],
+    keywords: ['Dr.Dow AI', '廟務系統', 'TMS', 'WMS', 'ERP', '物流系統', '倉儲系統', '宮廟管理系統', 'AI管理系統', '廟通', '智慧廟務系統', '物流派車系統', 'AI OCR 請款'],
   }),
-  title: '廟通｜宮廟專用智慧廟務系統 — 點燈、法會、收據一套搞定',
+  title: 'Dr.Dow AI｜宮廟、物流、倉儲與財務 AI 管理系統',
 }
 
 export default function HomePage() {
@@ -56,7 +56,7 @@ export default function HomePage() {
       <BeforeAfter />
       <Numbers />
       <ProductCards />
-      <CTASection variant="temple" />
+      <CTASection variant="generic" />
     </>
   )
 }
