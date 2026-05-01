@@ -25,12 +25,14 @@ export function Footer() {
           <div>
             <h4 className="text-white/70 font-semibold text-xs tracking-wider uppercase mb-4">產品與資源</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link href="/products/miaotong" className="hover:text-white transition-colors">廟通 宮廟管理</Link></li>
-              <li><Link href="/products/tms" className="hover:text-white transition-colors">TMS 派車系統</Link></li>
-              <li><Link href="/products/wms" className="hover:text-white transition-colors">WMS 倉儲系統</Link></li>
-              <li><Link href="/products/erp" className="hover:text-white transition-colors">ERP 財務系統</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition-colors">部落格</Link></li>
-              <li><Link href="/faq" className="hover:text-white transition-colors">常見問題</Link></li>
+              <li><Link href="/products/miaotong" className="hover:text-white transition-colors">廟通 智慧宮廟管理系統</Link></li>
+              <li><Link href="/products/tms" className="hover:text-white transition-colors">TMS 物流派車系統</Link></li>
+              <li><Link href="/products/wms" className="hover:text-white transition-colors">WMS 倉儲管理系統</Link></li>
+              <li><Link href="/products/erp" className="hover:text-white transition-colors">ERP 物流財務系統</Link></li>
+              <li><Link href="/solutions" className="hover:text-white transition-colors">產業解決方案</Link></li>
+              <li><Link href="/pricing" className="hover:text-white transition-colors">價格方案</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition-colors">產業 Blog 與導入指南</Link></li>
+              <li><Link href="/faq" className="hover:text-white transition-colors">常見問題 FAQ</Link></li>
               <li><Link href="/privacy" className="hover:text-white transition-colors">隱私政策</Link></li>
             </ul>
           </div>

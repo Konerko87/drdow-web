@@ -131,7 +131,7 @@ export function ProductCards() {
                       ))}
                     </ul>
                     <Link href={sp.href} className="group/link inline-flex items-center gap-1.5 text-accent font-semibold text-sm">
-                      了解更多 <span className="group-hover/link:translate-x-1 transition-transform">→</span>
+                      看 {product.name} 完整功能 <span className="group-hover/link:translate-x-1 transition-transform">→</span>
                     </Link>
                   </div>
                 </div>

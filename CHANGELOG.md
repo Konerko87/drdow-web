@@ -4,6 +4,82 @@
 
 ---
 
+## v1.8.0 — 2026-05-01
+### 變更內容（SEO 全面優化）
+
+**1. Metadata / Title / Description 重寫**
+- 首頁 / TMS / WMS / ERP / 廟通 5 大頁的 title 與 description 全部改為「關鍵字 + 量化痛點 + 量化結果」格式
+- 擴充 keywords 涵蓋更多搜尋意圖（「派車」「盤點」「對帳」「點燈」等動作詞）
+
+**2. 產品頁 FAQ 區塊（Schema.org FAQPage 富結果）**
+- 新增 `src/lib/faq-data.ts` 共用 FAQ 資料，5 大分類（廟通/TMS/WMS/ERP/general）
+- 各分類 FAQ 擴充：TMS 7 題、WMS 7 題、ERP 6 題、general 5 題
+- 新元件 `<ProductFAQ>` 內含 `<FAQPageJsonLd>`，掛載到 4 個產品頁
+- `/faq` 頁重構為使用共用資料，不再有重複資料
+- Google 搜尋結果可顯示展開式 FAQ rich snippet
+
+**3. 雙向內部連結（Topic Cluster）**
+- 新元件 `<RelatedProductPosts>`：每個產品頁自動撈該產品的 4 篇相關 blog 顯示
+- `lib/blog.ts` 新增 `getPostsByProduct()` / `getPostsByTag()` / `getAllTags()`
+- 解決舊有「blog → 產品」單向連結問題
+
+**4. 標籤聚合頁（Tag Aggregation Pages）**
+- 新增 `/blog/tags/[tag]` 動態靜態路由（generateStaticParams）
+- 含 BreadcrumbJsonLd + CollectionPage JSON-LD
+- 每個 tag 頁有獨立 metadata，提升長尾關鍵字索引機會
+- Sitemap 自動納入文章數 ≥2 的 tag 頁
+- `/blog` 頁的 tag pill 從 `?tag=` query 改為靜態 URL `/blog/tags/{tag}`
+
+**5. 錨文字（Anchor Text）優化**
+- Footer 連結文字從「TMS」「WMS」改為「TMS 物流派車系統」「WMS 倉儲管理系統」
+- 產品卡 CTA 從「了解更多」改為「看 {產品} 完整功能」
+- 增強內部連結的關鍵字密度
+
+**6. WMS 內容補完（解決 WMS vs 廟通內容嚴重斷層）**
+- 4 篇 WMS 主題長尾關鍵字 SEO 文章：
+  - `wms-recommend-2026.md` — WMS 推薦／比較（7 個選擇問題）
+  - `wms-price-cost.md` — WMS 價格／費用（5 大成本結構）
+  - `wms-vs-erp-difference.md` — WMS vs ERP 差別（消歧義文）
+  - `storage-location-management.md` — 儲位管理（編碼/ABC/動線/貼標）
+- WMS 主題從 3 篇擴充至 7 篇，可形成 topic cluster
+
+**7. 圖片與 LCP 優化**
+- `next.config.ts` 加 `formats: ['image/avif', 'image/webp']`
+- 4 個產品頁 Hero 圖加 `fetchPriority="high"` + 完整 `sizes` prop（正確 srcset）
+
+### 影響檔案
+- next.config.ts
+- src/app/page.tsx
+- src/app/products/{tms,wms,erp,miaotong}/page.tsx
+- src/app/faq/page.tsx
+- src/app/blog/page.tsx
+- src/app/blog/tags/[tag]/page.tsx（新增）
+- src/app/sitemap.ts
+- src/lib/blog.ts
+- src/lib/faq-data.ts（新增）
+- src/components/sections/product-faq.tsx（新增）
+- src/components/sections/related-product-posts.tsx（新增）
+- src/components/sections/product-cards.tsx
+- src/components/layout/footer.tsx
+- content/blog/2026-05-01-wms-recommend-2026.md（新增）
+- content/blog/2026-05-01-wms-price-cost.md（新增）
+- content/blog/2026-05-01-wms-vs-erp-difference.md（新增）
+- content/blog/2026-05-01-storage-location-management.md（新增）
+
+### SEO 影響評估
+- 4 產品頁皆觸發 FAQPage rich result，預期 SERP CTR +20-40%
+- 雙向內部連結提升 link equity 流動，內頁排名預期改善
+- WMS 長尾關鍵字 4 篇新文，預期未來 60-90 天獲得新增有機流量
+- Tag 聚合頁產生 100+ 新可索引頁面，加深網站結構深度
+- AVIF/WebP 啟用後圖片下載量預期 -30-50%，Core Web Vitals LCP 預期改善
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.7.0 — 2026-05-01
 ### 變更內容
 - 補齊產品視覺資源：TMS / WMS / ERP / 廟通 4 套產品 logo + Hero 插圖 + OG 圖

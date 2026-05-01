@@ -19,12 +19,12 @@ import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: 'Dr.Dow AI｜宮廟、物流、倉儲與財務 AI 管理系統',
-    description: 'Dr.Dow AI 提供廟通宮廟管理系統、TMS 物流派車系統、WMS 倉儲管理系統與 ERP 財務系統，協助現場流程從紙本、Excel 和 LINE 群組升級成可追蹤、可自動化的營運平台。',
+    title: 'Dr.Dow AI — 為現場營運打造的 AI 管理系統｜廟通 / TMS / WMS / ERP',
+    description: '點燈對帳即時化、派車從 Excel 變拖拉指派、倉儲盤點 3 天縮成 3 小時、財務對帳全自動。Dr.Dow AI 為宮廟、物流、倉儲、財務團隊打造可上線的 AI 管理系統。免費預約展示。',
     path: '/',
-    keywords: ['Dr.Dow AI', '廟務系統', 'TMS', 'WMS', 'ERP', '物流系統', '倉儲系統', '宮廟管理系統', 'AI管理系統', '廟通', '智慧廟務系統', '物流派車系統', 'AI OCR 請款'],
+    keywords: ['Dr.Dow AI', '廟通', '宮廟管理系統', 'TMS', '運輸管理系統', '物流派車系統', 'WMS', '倉儲管理系統', '庫存管理系統', 'ERP', '財務系統', 'AI 管理系統', 'AI OCR 請款', '銀行自動對帳', '台灣 SaaS', '中小物流系統'],
   }),
-  title: 'Dr.Dow AI｜宮廟、物流、倉儲與財務 AI 管理系統',
+  title: 'Dr.Dow AI — 為現場營運打造的 AI 管理系統｜廟通 / TMS / WMS / ERP',
 }
 
 export default function HomePage() {

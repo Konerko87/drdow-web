@@ -84,7 +84,7 @@ export default async function BlogPage(
             {allTags.map((t) => (
               <Link
                 key={t}
-                href={`/blog?tag=${encodeURIComponent(t)}`}
+                href={`/blog/tags/${encodeURIComponent(t)}`}
                 className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
                   tag === t ? 'bg-accent text-white' : 'bg-surface text-muted hover:bg-accent/10'
                 }`}

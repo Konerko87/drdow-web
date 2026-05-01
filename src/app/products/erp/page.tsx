@@ -6,12 +6,14 @@ import { SITE, PRODUCTS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { ProductFAQ } from '@/components/sections/product-faq'
+import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow ERP — 物流財務 AI 系統 | 自動對帳 OCR 請款',
-  description: 'AI 拍照請款、銀行自動對帳、六層付款防呆、老闆行動 App、廠商自助 Portal。專為物流公司打造的智慧財務系統。',
+  title: 'Dr.Dow ERP — 物流財務 AI 系統｜AI OCR 請款 + 銀行自動對帳',
+  description: '財務人員 6 人 → 2 人：AI 拍照請款（Claude Vision 95% 準確率）、銀行自動對帳、六層付款防呆、老闆行動審核、廠商自助 Portal。專為台灣物流業打造的智慧財務系統。免費預約 Demo。',
   path: '/products/erp',
   image: 'https://drdowai.com/og/erp-og.png',
   keywords: ['ERP', '財務系統', 'AI對帳', 'OCR請款', '物流財務', '付款防呆', '銀行對帳'],
@@ -97,6 +99,8 @@ export default function ERPPage() {
                 width={800}
                 height={600}
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 560px"
                 className="w-full max-w-[560px] h-auto"
               />
             </FadeIn>
@@ -274,6 +278,18 @@ export default function ERPPage() {
           </div>
         </div>
       </section>
+
+      <ProductFAQ
+        productKey="erp"
+        title="關於 ERP 物流財務系統，你可能想問"
+        subtitle="導入前最常被問的問題，一次看完"
+      />
+
+      <RelatedProductPosts
+        productKey="erp"
+        title="ERP 物流財務相關閱讀"
+        subtitle="AI 對帳、付款防呆、人事成本與導入效益分析"
+      />
 
       <CTASection variant="logistics" />
     </>

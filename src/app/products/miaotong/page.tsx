@@ -13,11 +13,12 @@ import {
 } from '@/lib/miaotong-constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
+import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = createMetadata({
-  title: '廟通 — 智慧宮廟管理系統 | 點燈牌位 捐款 法會',
-  description: '專為台灣宮廟打造的一站式管理平台。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、會計報表、LINE 行動服務，一套系統全整合。',
+  title: '廟通 — 智慧宮廟管理系統｜LINE Pay 線上點燈、家人代辦、發財金',
+  description: '點燈一週對帳變即時、信徒在 LINE 直接用 LINE Pay 付款、家人可代爸媽點燈報名法會、發財金借還黑名單自動管理。專為台灣宮廟打造的廟務 SaaS，最快 1 週上線。免費預約展示。',
   path: '/products/miaotong',
   image: 'https://drdowai.com/og/miaotong-og.png',
   keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型'],
@@ -245,6 +246,12 @@ export default function MiaotongPage() {
           </div>
         </div>
       </section>
+
+      <RelatedProductPosts
+        productKey="miaotong"
+        title="廟通 宮廟管理相關閱讀"
+        subtitle="點燈流程、家人代辦、發財金、收據與 LINE Pay 實務"
+      />
 
       {/* CTA */}
       <section className="relative py-32 overflow-hidden" style={{ background: '#1E293B' }}>

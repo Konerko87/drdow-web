@@ -6,12 +6,14 @@ import { SITE, PRODUCTS, WORKFLOW_STEPS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { ProductFAQ } from '@/components/sections/product-faq'
+import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow TMS — 物流派車 AI 系統',
-  description: '智慧派車板、司機 LINE App、GPS 即時追蹤、薪酬自動計算。一套系統取代 Excel + LINE 群組，專為台灣中小物流公司設計的 TMS。',
+  title: 'Dr.Dow TMS — 物流派車 AI 系統｜拖拉指派 + LINE 司機 App',
+  description: '一個調度員管 40+ 台車：拖拉指派派車板、LINE 司機 App（不用裝 App）、GPS 即時追蹤、薪酬自動結算。取代 Excel + LINE 群組土法調度，專為台灣中小物流公司設計。免費預約 Demo。',
   path: '/products/tms',
   image: 'https://drdowai.com/og/tms-og.png',
   keywords: ['TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
@@ -76,6 +78,8 @@ export default function TMSPage() {
                 width={800}
                 height={600}
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 560px"
                 className="w-full max-w-[560px] h-auto"
               />
             </FadeIn>
@@ -205,6 +209,18 @@ export default function TMSPage() {
           </div>
         </div>
       </section>
+
+      <ProductFAQ
+        productKey="tms"
+        title="關於 TMS 物流派車系統，你可能想問"
+        subtitle="導入前最常被問的問題，一次看完"
+      />
+
+      <RelatedProductPosts
+        productKey="tms"
+        title="TMS 派車系統相關閱讀"
+        subtitle="從 Excel 換 TMS 訊號、薪酬計算到貨運對帳實務"
+      />
 
       <CTASection variant="logistics" />
     </>

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/constants'
-import { getAllPosts } from '@/lib/blog'
+import { getAllPosts, getAllTags } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -30,5 +30,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...blogPages]
+  // Tag aggregation pages — only include tags with 2+ posts so we don't inflate
+  // sitemap with thin pages
+  const tagPages: MetadataRoute.Sitemap = getAllTags()
+    .filter((t) => t.count >= 2)
+    .map((t) => ({
+      url: `${SITE.url}/blog/tags/${encodeURIComponent(t.tag)}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.5,
+    }))
+
+  return [...staticPages, ...blogPages, ...tagPages]
 }

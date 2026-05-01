@@ -6,12 +6,14 @@ import { SITE, PRODUCTS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { ProductFAQ } from '@/components/sections/product-faq'
+import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow WMS — 智慧倉儲管理系統 | 條碼盤點、即時庫存',
-  description: '入庫、出庫、盤點、儲位管理一套搞定。手機掃碼、即時庫存、TMS / ERP 全打通，倉儲現場不再靠紙本和喊話追資料。',
+  title: 'Dr.Dow WMS — 智慧倉儲管理系統｜盤點 3 天變 3 小時、條碼即時庫存',
+  description: '盤點從 3 天縮到 3 小時、出貨揀錯率降 90%。手機掃碼、儲位視覺化、即時庫存、與 TMS / ERP 全打通。倉儲現場不再靠紙本和 LINE 喊話追資料，台灣中小倉儲與電商倉專用。免費預約 Demo。',
   path: '/products/wms',
   image: 'https://drdowai.com/og/wms-og.png',
   keywords: ['WMS', '倉儲管理系統', '庫存管理系統', '條碼盤點', '出入庫管理', '儲位管理', '物流倉儲'],
@@ -135,6 +137,8 @@ export default function WMSPage() {
                 width={800}
                 height={600}
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 560px"
                 className="w-full max-w-[560px] h-auto"
               />
             </FadeIn>
@@ -289,6 +293,18 @@ export default function WMSPage() {
           </div>
         </div>
       </section>
+
+      <ProductFAQ
+        productKey="wms"
+        title="關於 WMS 倉儲管理系統，你可能想問"
+        subtitle="導入前最常被問的問題，一次看完"
+      />
+
+      <RelatedProductPosts
+        productKey="wms"
+        title="WMS 倉儲管理相關閱讀"
+        subtitle="WMS 是什麼、Excel 換 WMS 訊號、WMS / TMS / ERP 串接實務"
+      />
 
       <CTASection variant="logistics" />
     </>
