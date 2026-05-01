@@ -5,7 +5,7 @@ slug: "excel-to-wms-signs"
 date: "2026-04-30"
 tags: ["WMS", "倉儲管理", "Excel", "數位轉型"]
 keywords: "WMS, Excel 管庫存, 倉儲管理系統, 庫存管理, 倉庫數位轉型, 庫存對不起來, 盤點"
-coverImage: "/blog/wms/wms-cover-excel.png"
+coverImage: "/screenshots/wms-stocktake.png"
 coverCredit: "Dr.Dow AI"
 ---
 

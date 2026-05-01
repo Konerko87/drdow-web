@@ -4,6 +4,26 @@
 
 ---
 
+## v1.12.1 — 2026-05-01
+### 變更內容（修部落格 cover 圖 404）
+
+3 篇 WMS 部落格的 frontmatter 指向 `/blog/wms/wms-cover-*.png`，但 `public/blog/wms/` 目錄是空的，production 部署 log 一直噴 `The requested resource isn't a valid image for /blog/wms/wms-cover-integration.png received null`。
+
+把這三篇的 coverImage 改成既有的 `/screenshots/wms-*.png` 截圖：
+- `2026-04-30-what-is-wms-warehouse.md` → `/screenshots/wms-inventory.png`（庫存儀表板）
+- `2026-04-30-excel-to-wms-signs.md` → `/screenshots/wms-stocktake.png`（盤點）
+- `2026-04-30-wms-tms-erp-integration.md` → `/screenshots/wms-outbound.png`（出庫）
+
+順手刪空目錄 `public/blog/wms/` 跟 `public/blog/`。
+
+**影響檔案**
+- `content/blog/2026-04-30-what-is-wms-warehouse.md`
+- `content/blog/2026-04-30-excel-to-wms-signs.md`
+- `content/blog/2026-04-30-wms-tms-erp-integration.md`
+- 刪除 `public/blog/wms/`、`public/blog/`（空目錄）
+
+---
+
 ## v1.12.0 — 2026-05-01
 ### 變更內容（站內 editorial 全面收斂：首頁 / 廟通 / 二級頁）
 

@@ -5,7 +5,7 @@ slug: "what-is-wms-warehouse"
 date: "2026-04-30"
 tags: ["WMS", "倉儲管理", "庫存管理", "條碼盤點"]
 keywords: "WMS, 倉儲管理系統, 庫存管理系統, 條碼盤點, 出入庫管理, 儲位管理, 物流倉儲, WMS 是什麼"
-coverImage: "/blog/wms/wms-cover-warehouse.png"
+coverImage: "/screenshots/wms-inventory.png"
 coverCredit: "Dr.Dow AI"
 ---
 

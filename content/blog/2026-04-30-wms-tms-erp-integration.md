@@ -5,7 +5,7 @@ slug: "wms-tms-erp-integration"
 date: "2026-04-30"
 tags: ["WMS", "TMS", "ERP", "系統整合", "數位轉型"]
 keywords: "WMS, TMS, ERP, 物流系統整合, 物流數位轉型, 倉儲派車整合, 系統串接, 物流業 ERP"
-coverImage: "/blog/wms/wms-cover-integration.png"
+coverImage: "/screenshots/wms-outbound.png"
 coverCredit: "Dr.Dow AI"
 ---
 
