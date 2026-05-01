@@ -4,6 +4,33 @@
 
 ---
 
+## v1.10.5 — 2026-05-01
+### 變更內容（部落格 editorial 第六批：RelatedPosts 收尾）
+
+文章頁最後一個還沒 editorial 化的元件 — 「延伸閱讀」三卡片格 — 也統一過來。
+
+**變更**
+- 區塊標題：`text-lg font-black` 「延伸閱讀」改 12px uppercase tracking-wider 暖灰「延伸閱讀 · Related」（雜誌專欄索引感）
+- 上下分隔線：`border-black/5` 改 `var(--color-blog-rule)` 暖系
+- 卡片版型：移掉 surface 卡片包覆，改裸照片 + 文字（雜誌 photo essay 風格）；圖片 aspect ratio 從 2/1 改 4/3，加暖陰影
+- 圖片 hover：原本整張 hover-lift，改成圖片內輕微縮放 1.02（更克制）
+- 標題：sans-serif `text-sm font-bold` 改 Noto Serif TC 16.5px font-semibold + 廟通深紅 hover
+- 日期：暖米黃 muted + tracking 微調
+
+**為什麼**
+- v1.10.0–v1.10.4 升級了 hero / 正文 / code / table / prev-next / CTA，唯獨 RelatedPosts 還是站內通用樣式
+- 收尾後整個 blog 文章頁從上到下完全是同一套 editorial 系統（Noto Serif TC + 深紅+金 + 暖灰 muted + hairline rule）
+
+**影響檔案**
+- `src/components/sections/related-posts.tsx`
+
+**回滾**
+```bash
+git revert <v1.10.5-commit>
+```
+
+---
+
 ## v1.10.4 — 2026-05-01
 ### 變更內容（部落格 editorial 第五批：prev/next + CTA 卡片升級）
 
