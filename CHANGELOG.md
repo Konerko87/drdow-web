@@ -4,6 +4,46 @@
 
 ---
 
+## v1.15.5 — 2026-05-02
+### 變更內容（/pricing 編輯級重做：preamble + tier shell + 比較表 + FAQ）
+
+用 [open-design v0.1.0](https://github.com/nexu-io/open-design) `web-prototype` skill + `warm-editorial` design system 跑 `drdow-pricing-editorial-1777677668` 專案，產出 863 行 HTML artifact，翻譯成 React/Tailwind 整合進定價頁。
+
+**Section A — Editorial preamble**
+- 新增 mono caps eyebrow（`透明定價・無隱藏費用`，雙側細線裝飾）
+- 新增 Noto Serif TC 800 雙行 h2（`為廟方而生的合理定價方式`，紅字斜體強調「合理」）
+- 新增 ◆ 菱形分隔裝飾線
+
+**Section B — Tier shell（廟通三方案）**
+- 純白 grid → 米白 paper 卡 shell（`#fffaf5`）+ 紅點陣紋理（24px radial-gradient）+ 圓角 24
+- Tier card 從 simple gradient-border → featured tier 用 padding-box/border-box 雙背景技法做漸層描邊（紅 → 金 135°）
+- Featured tier 加 `最多人選擇` 紅金漸層膠囊 badge（top -3.5、white text、tracking 0.18em）+ md:-translate-y-2 上浮
+- price block 用 31 字級 Noto Serif TC bold + featured 套漸層文字（WebkitBackgroundClip）
+- check icon 從 `text-success` 綠 → 廟通紅 `#B91C1C` 統一品牌
+- CTA button 從 rounded-full bg-[#B91C1C] → rounded-xl gradient + 箭頭符號 + hover translate-y-0.5
+
+**Section C — Feature comparison（11 列）**
+- 新增桌機表格：top border 廟通紅 2px、featured col（專業版）紅金漸層底 + 微紅 cell tint、其他列斑馬底色 `#fef7f2/50`
+- 11 列功能比較涵蓋：信徒資料筆數、點燈牌位、捐款收據、法會、發財金、會計報表、LINE LIFF、多廟、API、SLA、現場訓練
+- 手機版降級：用 `<MobileCompareTier>` 三張縱排卡，featured tier 加紅軟陰影
+
+**Section D — Pricing FAQ（4 題）**
+- 新增專屬定價 FAQ：Demo 要錢嗎、導入要多久、可以試用嗎、可以中途換方案嗎
+- 用原生 `<details>` 配 group-open 樣式：背景紅 tint、summary 紅字、+/− 圖示切換
+- 新增 `FAQPage` JSON-LD 結構化資料
+
+**保留**
+- 物流方案 section（TMS/WMS/ERP）保持原藍色 accent，只把 PlanCard 拆成獨立 LogisticsCard
+- CTASection 保留
+
+**影響檔案**
+- 修改：`src/app/pricing/page.tsx`（156 → 470+ 行）
+- 修改：`CHANGELOG.md`
+
+**回滾指令**：`git revert <v1.15.5-hash>`
+
+---
+
 ## v1.15.4 — 2026-05-02
 ### 變更內容（/products/miaotong target audience + advantages 編輯級重做）
 
