@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { ContactForm } from '@/components/sections/contact-form'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { Icon } from '@/components/ui/icon'
+import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
 
 export const metadata: Metadata = createMetadata({
   title: '聯繫我們 — 預約 Demo',
@@ -37,12 +38,13 @@ export default function ContactPage() {
         },
       }} />
 
-      <section className="pt-32 pb-24">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        <WarmCreamBg />
+        <div className="relative max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '聯繫我們', href: '/contact' }]} />
           <FadeIn className="text-center mb-16 mt-6">
-            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">預約 Demo</h1>
-            <p className="text-lg text-muted max-w-xl mx-auto">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight text-dark">預約 Demo</h1>
+            <p className="text-lg text-[#6b5b4a] max-w-xl mx-auto">
               30 分鐘了解 Dr.Dow AI 如何讓你的宮廟、物流、倉儲或財務流程從手動變全自動。
             </p>
           </FadeIn>

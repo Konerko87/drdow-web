@@ -5,6 +5,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { FAQPageJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { FAQ_CATEGORIES } from '@/lib/faq-data'
+import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
 
 export const metadata: Metadata = createMetadata({
   title: '常見問題 FAQ — 廟通 / TMS / WMS / ERP',
@@ -22,14 +23,15 @@ export default function FAQPage() {
       <FAQPageJsonLd faqs={allFaqs} />
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: 'FAQ', url: '/faq' }]} />
 
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <WarmCreamBg />
+        <div className="relative max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: 'FAQ', href: '/faq' }]} />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
+        <div className="relative max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">常見問題</h1>
-            <p className="text-lg text-muted">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight text-dark">常見問題</h1>
+            <p className="text-lg text-[#6b5b4a]">
               關於 Dr.Dow AI 廟通、TMS、WMS 和 ERP 的所有問題
             </p>
           </FadeIn>

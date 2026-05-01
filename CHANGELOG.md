@@ -4,6 +4,23 @@
 
 ---
 
+## v1.15.2 — 2026-05-02
+### 變更內容（次要 marketing 頁面 hero 統一上 warm-editorial 暖米色背景）
+
+v1.15.0 起 / 跟 /products/miaotong 已是廟通 brand 視覺，但 /pricing /about /faq /solutions /contact 五個次要頁的 hero 仍是 `bg-gradient-to-b from-surface to-white` 灰白漸層，視覺斷層。抽出 `WarmCreamBg` 元件（直接複用 v1.15.0 Numbers 的暖米色漸層 `#fef7f2 → #fdf3e7` + 廟通紅點陣紋理 24px tile），五個 hero 統一替換，hero 內文字色從 `text-muted` 改 `#6b5b4a`（warm muted）配合暖背景。
+
+- 新增 `src/components/ui/warm-cream-bg.tsx`（reusable absolute-positioned bg + dot pattern）
+- `/pricing`、`/about`、`/faq`、`/solutions`、`/contact` 五個 hero section 改用 `relative + <WarmCreamBg /> + relative inner divs`
+- Hero 副標 `text-muted` → `text-[#6b5b4a]`、Hero h1 加 `text-dark` 鎖深色
+
+**影響檔案**
+- 新增：`src/components/ui/warm-cream-bg.tsx`
+- 修改：`src/app/{pricing,about,faq,solutions,contact}/page.tsx`
+
+**回滾指令**：`git revert <v1.15.2-hash>`
+
+---
+
 ## v1.15.1 — 2026-05-02
 ### 變更內容（清掉殘留紫色裝飾漸層）
 

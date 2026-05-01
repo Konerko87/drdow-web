@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
+import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
 
 export const metadata: Metadata = createMetadata({
   title: '價格方案 — 廟通 / TMS / WMS / ERP 系統',
@@ -201,14 +202,15 @@ export default function PricingPage() {
         ],
       }} />
 
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <WarmCreamBg />
+        <div className="relative max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '價格', href: '/pricing' }]} />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
+        <div className="relative max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">簡單透明的價格</h1>
-            <p className="text-lg text-muted">依需求選擇最適合的方案，所有方案都包含免費諮詢。</p>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight text-dark">簡單透明的價格</h1>
+            <p className="text-lg text-[#6b5b4a]">依需求選擇最適合的方案，所有方案都包含免費諮詢。</p>
           </FadeIn>
         </div>
       </section>

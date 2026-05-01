@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
+import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
 import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
@@ -223,16 +224,17 @@ export default function SolutionsPage() {
         ],
       }} />
 
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <WarmCreamBg />
+        <div className="relative max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '解決方案', href: '/solutions' }]} />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
+        <div className="relative max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight text-dark">
               AI <span className="gradient-text">解決方案</span>
             </h1>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-[#6b5b4a] max-w-2xl mx-auto">
               針對宮廟管理、物流派車、倉儲管理與財務對帳最痛的問題，用 AI 提供完整解決方案。
             </p>
           </FadeIn>

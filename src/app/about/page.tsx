@@ -5,6 +5,7 @@ import { FadeIn } from '@/components/ui/fade-in'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
+import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
 
 export const metadata: Metadata = createMetadata({
   title: '關於 Dr.Dow AI — 用 AI 替傳統產業打造智慧系統',
@@ -33,18 +34,19 @@ export default function AboutPage() {
         },
       }} />
 
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <WarmCreamBg />
+        <div className="relative max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '關於我們', href: '/about' }]} />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
+        <div className="relative max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-6 tracking-tight text-dark">
               用 AI 替傳統產業
               <br />
               <span className="gradient-text">打造會思考的系統</span>
             </h1>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-[#6b5b4a] max-w-2xl mx-auto">
               Dr.Dow AI 的使命很簡單：讓中小企業不再被手動作業綁架。
             </p>
           </FadeIn>
