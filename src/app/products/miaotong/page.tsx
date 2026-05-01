@@ -19,6 +19,7 @@ export const metadata: Metadata = createMetadata({
   title: '廟通 — 智慧宮廟管理系統 | 點燈牌位 捐款 法會',
   description: '專為台灣宮廟打造的一站式管理平台。信徒管理、點燈牌位、捐款收據、法會報名、發財金借還、會計報表、LINE 行動服務，一套系統全整合。',
   path: '/products/miaotong',
+  image: 'https://drdowai.com/og/miaotong-og.png',
   keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型'],
 })
 

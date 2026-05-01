@@ -7,7 +7,8 @@ const SECONDARY_PRODUCTS = [
   {
     key: 'tms',
     href: '/products/tms',
-    icon: '🚛',
+    logo: '/logo-tms.png',
+    logoAlt: 'Dr.Dow TMS 派車系統 logo',
     image: '/screenshots/tms-dispatch.png',
     imageAlt: 'Dr.Dow TMS 派車系統智慧派車板介面，拖拉指派一鍵搞定',
     industry: '物流配送',
@@ -15,7 +16,8 @@ const SECONDARY_PRODUCTS = [
   {
     key: 'wms',
     href: '/products/wms',
-    icon: '📦',
+    logo: '/logo-wms.png',
+    logoAlt: 'Dr.Dow WMS 倉儲系統 logo',
     image: '/screenshots/wms-inventory.png',
     imageAlt: 'Dr.Dow WMS 倉儲系統庫存即時儀表板與儲位地圖',
     industry: '倉儲管理',
@@ -23,7 +25,8 @@ const SECONDARY_PRODUCTS = [
   {
     key: 'erp',
     href: '/products/erp',
-    icon: '💰',
+    logo: '/logo-erp.png',
+    logoAlt: 'Dr.Dow ERP 財務系統 logo',
     image: '/screenshots/erp-payments.png',
     imageAlt: 'Dr.Dow ERP 財務系統待匯款審核畫面，展開照片明細逐筆確認',
     industry: '物流財務',
@@ -104,7 +107,7 @@ export function ProductCards() {
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative bg-white rounded-[20px] p-7 h-full flex flex-col">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-purple flex items-center justify-center text-lg">{sp.icon}</div>
+                      <Image src={sp.logo} alt={sp.logoAlt} width={44} height={44} className="w-11 h-11 rounded-xl" />
                       <div>
                         <h4 className="text-lg font-black tracking-tight">{product.name}</h4>
                         <p className="text-xs text-muted">{product.fullName}</p>

@@ -4,6 +4,49 @@
 
 ---
 
+## v1.7.0 — 2026-05-01
+### 變更內容
+- 補齊產品視覺資源：TMS / WMS / ERP / 廟通 4 套產品 logo + Hero 插圖 + OG 圖
+- 新增資產：
+  - `/logo-{tms,wms,erp}.png` — 3 套產品 app icon（藍/青/紫主題，廟通沿用 `logo-miaotong.png`）
+  - `/hero/{tms,wms,erp}-hero.png` — 3 套產品 Hero 插圖（筆電 + 手機畫面）
+  - `/og/{miaotong,tms,wms,erp}-og.png` — 4 套產品 social OG 圖
+- TMS / WMS / ERP / 廟通 metadata 加 `image:` 欄位指向各自 OG 圖（解決 4 個產品頁分享時都長一樣）
+- TMS / WMS / ERP 產品頁 Hero 改成 `grid lg:grid-cols-2` 左文右圖佈局，套用各自 hero 插圖（priority loading）
+- `SceneSelector` 4 卡片：emoji 圖示（🛕🚛📦💰）改成各自 logo 圖
+- `ProductCards` 物流三小卡：emoji + 漸層底改成 logo 圖
+- 維持 ProductCards 主打廟通大卡的 `/logo-miaotong.png` 視覺不變
+
+### 影響檔案
+- src/app/products/miaotong/page.tsx
+- src/app/products/tms/page.tsx
+- src/app/products/wms/page.tsx
+- src/app/products/erp/page.tsx
+- src/components/sections/scene-selector.tsx
+- src/components/sections/product-cards.tsx
+- public/logo-tms.png（新增）
+- public/logo-wms.png（新增）
+- public/logo-erp.png（新增）
+- public/hero/tms-hero.png（新增）
+- public/hero/wms-hero.png（新增）
+- public/hero/erp-hero.png（新增）
+- public/og/miaotong-og.png（新增）
+- public/og/tms-og.png（新增）
+- public/og/wms-og.png（新增）
+- public/og/erp-og.png（新增）
+
+### SEO 影響評估
+- 各產品頁分享 OG 圖各自獨立，社群點擊率預期提升
+- 產品頁 Hero 視覺差異化，跳出率預期下降
+- logo 圖檔 alt 包含 `Dr.Dow {產品}` 加強品牌關鍵字權重
+
+### 回滾指令
+```bash
+git revert <this-commit-hash>
+```
+
+---
+
 ## v1.6.0 — 2026-05-01
 ### 變更內容
 - 階段 B：首頁 metadata 從廟通主打改成 Dr.Dow AI 多產品母品牌定位

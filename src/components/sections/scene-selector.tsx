@@ -1,9 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 
 const SCENES = [
   {
-    icon: '🛕',
+    logo: '/logo-miaotong.png',
+    logoAlt: '廟通 宮廟管理系統 logo',
     industry: '宮廟產業',
     title: '廟務管理',
     desc: '點燈、法會、捐款收據、LINE 信徒服務',
@@ -14,7 +16,8 @@ const SCENES = [
     border: 'border-[#B91C1C]/20',
   },
   {
-    icon: '🚛',
+    logo: '/logo-tms.png',
+    logoAlt: 'Dr.Dow TMS 派車系統 logo',
     industry: '物流配送',
     title: 'TMS 派車管理',
     desc: '派車板、司機 LINE、GPS、薪酬結算',
@@ -25,7 +28,8 @@ const SCENES = [
     border: 'border-accent/20',
   },
   {
-    icon: '📦',
+    logo: '/logo-wms.png',
+    logoAlt: 'Dr.Dow WMS 倉儲系統 logo',
     industry: '倉儲管理',
     title: 'WMS 倉儲管理',
     desc: '入庫、出庫、庫存、盤點、條碼作業',
@@ -36,7 +40,8 @@ const SCENES = [
     border: 'border-cyan-400/30',
   },
   {
-    icon: '💰',
+    logo: '/logo-erp.png',
+    logoAlt: 'Dr.Dow ERP 財務系統 logo',
     industry: '物流財務',
     title: '物流 ERP',
     desc: 'OCR 請款、銀行對帳、付款審核、財務報表',
@@ -65,7 +70,13 @@ export function SceneSelector() {
                 className={`group relative block h-full rounded-2xl bg-gradient-to-br ${scene.bg} p-6 border ${scene.border} hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300`}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-4xl">{scene.icon}</div>
+                  <Image
+                    src={scene.logo}
+                    alt={scene.logoAlt}
+                    width={56}
+                    height={56}
+                    className="w-14 h-14 rounded-xl"
+                  />
                   <span className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-white/70 text-muted">
                     {scene.industry}
                   </span>

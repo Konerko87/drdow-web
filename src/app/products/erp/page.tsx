@@ -13,6 +13,7 @@ export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow ERP — 物流財務 AI 系統 | 自動對帳 OCR 請款',
   description: 'AI 拍照請款、銀行自動對帳、六層付款防呆、老闆行動 App、廠商自助 Portal。專為物流公司打造的智慧財務系統。',
   path: '/products/erp',
+  image: 'https://drdowai.com/og/erp-og.png',
   keywords: ['ERP', '財務系統', 'AI對帳', 'OCR請款', '物流財務', '付款防呆', '銀行對帳'],
 })
 
@@ -68,26 +69,38 @@ export default function ERPPage() {
         <div className="max-w-7xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'ERP 財務系統', href: '/products/erp' }]} />
         </div>
-        <div className="max-w-7xl mx-auto px-6 text-center mt-6">
-          <FadeIn>
-            <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Financial Management System</p>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-              物流財務，
-              <br />
-              <span className="gradient-text">AI 自動管</span>
-            </h1>
-            <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-              {PRODUCTS.erp.description}
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
-                預約 Demo
-              </Link>
-              <Link href="/products/erp/demo" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
-                功能導覽 →
-              </Link>
-            </div>
-          </FadeIn>
+        <div className="max-w-7xl mx-auto px-6 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="text-center lg:text-left">
+              <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Financial Management System</p>
+              <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                物流財務，
+                <br />
+                <span className="gradient-text">AI 自動管</span>
+              </h1>
+              <p className="text-lg text-muted max-w-xl mx-auto lg:mx-0 mb-8">
+                {PRODUCTS.erp.description}
+              </p>
+              <div className="flex gap-4 justify-center lg:justify-start">
+                <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+                  預約 Demo
+                </Link>
+                <Link href="/products/erp/demo" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                  功能導覽 →
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={120} className="flex justify-center lg:justify-end">
+              <Image
+                src="/hero/erp-hero.png"
+                alt="Dr.Dow ERP 物流財務系統 — 付款審核儀表板與手機 OCR 視覺"
+                width={800}
+                height={600}
+                priority
+                className="w-full max-w-[560px] h-auto"
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 

@@ -13,6 +13,7 @@ export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow WMS — 智慧倉儲管理系統 | 條碼盤點、即時庫存',
   description: '入庫、出庫、盤點、儲位管理一套搞定。手機掃碼、即時庫存、TMS / ERP 全打通，倉儲現場不再靠紙本和喊話追資料。',
   path: '/products/wms',
+  image: 'https://drdowai.com/og/wms-og.png',
   keywords: ['WMS', '倉儲管理系統', '庫存管理系統', '條碼盤點', '出入庫管理', '儲位管理', '物流倉儲'],
 })
 
@@ -106,26 +107,38 @@ export default function WMSPage() {
         <div className="max-w-7xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'WMS 倉儲系統', href: '/products/wms' }]} />
         </div>
-        <div className="max-w-7xl mx-auto px-6 text-center mt-6">
-          <FadeIn>
-            <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Warehouse Management System</p>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-              倉儲現場，
-              <br />
-              <span className="gradient-text">即時同步</span>
-            </h1>
-            <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-              {PRODUCTS.wms.description}
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
-                預約 Demo
-              </Link>
-              <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
-                看功能 →
-              </Link>
-            </div>
-          </FadeIn>
+        <div className="max-w-7xl mx-auto px-6 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="text-center lg:text-left">
+              <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Warehouse Management System</p>
+              <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                倉儲現場，
+                <br />
+                <span className="gradient-text">即時同步</span>
+              </h1>
+              <p className="text-lg text-muted max-w-xl mx-auto lg:mx-0 mb-8">
+                {PRODUCTS.wms.description}
+              </p>
+              <div className="flex gap-4 justify-center lg:justify-start">
+                <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+                  預約 Demo
+                </Link>
+                <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                  看功能 →
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={120} className="flex justify-center lg:justify-end">
+              <Image
+                src="/hero/wms-hero.png"
+                alt="Dr.Dow WMS 倉儲管理系統 — 庫存儀表板與手機掃碼視覺"
+                width={800}
+                height={600}
+                priority
+                className="w-full max-w-[560px] h-auto"
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 

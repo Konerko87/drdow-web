@@ -13,6 +13,7 @@ export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow TMS — 物流派車 AI 系統',
   description: '智慧派車板、司機 LINE App、GPS 即時追蹤、薪酬自動計算。一套系統取代 Excel + LINE 群組，專為台灣中小物流公司設計的 TMS。',
   path: '/products/tms',
+  image: 'https://drdowai.com/og/tms-og.png',
   keywords: ['TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
 })
 
@@ -47,26 +48,38 @@ export default function TMSPage() {
         <div className="max-w-7xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'TMS 派車系統', href: '/products/tms' }]} />
         </div>
-        <div className="max-w-7xl mx-auto px-6 text-center mt-6">
-          <FadeIn>
-            <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Transport Management System</p>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-              {PRODUCTS.tms.tagline.split('，')[0]}，
-              <br />
-              <span className="gradient-text">{PRODUCTS.tms.tagline.split('，')[1]}</span>
-            </h1>
-            <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-              {PRODUCTS.tms.description}
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
-                預約 Demo
-              </Link>
-              <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
-                看功能 →
-              </Link>
-            </div>
-          </FadeIn>
+        <div className="max-w-7xl mx-auto px-6 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <FadeIn className="text-center lg:text-left">
+              <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Transport Management System</p>
+              <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+                {PRODUCTS.tms.tagline.split('，')[0]}，
+                <br />
+                <span className="gradient-text">{PRODUCTS.tms.tagline.split('，')[1]}</span>
+              </h1>
+              <p className="text-lg text-muted max-w-xl mx-auto lg:mx-0 mb-8">
+                {PRODUCTS.tms.description}
+              </p>
+              <div className="flex gap-4 justify-center lg:justify-start">
+                <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+                  預約 Demo
+                </Link>
+                <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                  看功能 →
+                </Link>
+              </div>
+            </FadeIn>
+            <FadeIn delay={120} className="flex justify-center lg:justify-end">
+              <Image
+                src="/hero/tms-hero.png"
+                alt="Dr.Dow TMS 派車系統 — 派車板與司機 LINE App 視覺"
+                width={800}
+                height={600}
+                priority
+                className="w-full max-w-[560px] h-auto"
+              />
+            </FadeIn>
+          </div>
         </div>
       </section>
 
