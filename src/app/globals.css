@@ -188,3 +188,60 @@ html {
 .blog-paper {
   background: var(--color-blog-paper);
 }
+
+/* Lead paragraph: 第一段加大字級 + 紅色 drop cap (CJK-aware) */
+.blog-prose > p:first-of-type {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', 'Source Han Serif', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+  color: #2a2522;
+  font-weight: 500;
+}
+.blog-prose > p:first-of-type::first-letter {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', 'Source Han Serif', Georgia, serif;
+  float: left;
+  font-size: 56px;
+  line-height: 0.92;
+  padding: 6px 10px 2px 0;
+  color: var(--color-blog-accent);
+  font-weight: 700;
+}
+
+/* Pull-quote: 紅色直邊 + 金色大引號（取代 prose 預設的紫底圓角樣式） */
+.blog-prose blockquote {
+  position: relative;
+  margin: 44px 0;
+  padding: 8px 0 8px 28px;
+  border-left: 3px solid var(--color-blog-accent);
+  background: transparent;
+  border-radius: 0;
+  font-family: var(--font-serif-tc), 'Noto Serif TC', 'Source Han Serif', Georgia, serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.6;
+  color: #2a2522;
+  letter-spacing: 0.005em;
+  font-style: normal;
+}
+.blog-prose blockquote::before {
+  content: '\201C';
+  position: absolute;
+  left: 12px;
+  top: -22px;
+  font-family: var(--font-serif-tc), Georgia, serif;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--color-blog-gold);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.blog-prose blockquote p {
+  margin: 0;
+  font-style: normal;
+}
+/* Tailwind typography 預設給 blockquote p 加 ::before/::after 智能引號，關掉 */
+.blog-prose blockquote p::before,
+.blog-prose blockquote p::after {
+  content: '';
+}

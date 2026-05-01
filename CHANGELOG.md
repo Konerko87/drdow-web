@@ -4,6 +4,30 @@
 
 ---
 
+## v1.10.1 — 2026-05-01
+### 變更內容（部落格 editorial 第二批：drop cap + pull-quote）
+
+繼 v1.10.0 後，再從 open-design 設計稿擷取兩個 zero-config 的 editorial 元素（不需動文章 markdown，純 CSS 自動套用）。
+
+**新增（globals.css 內 `.blog-prose` scope）**
+- **Lead paragraph + Drop cap**：`> p:first-of-type` 字級放大到 19px Noto Serif TC，`::first-letter` 改 56px 深紅 serif drop cap（中文友善，自動套到每篇文章開頭第一段）
+- **Pull-quote**：`blockquote` 取代成紅左邊 + 金色超大引號（`::before` 注入 `\201C` 80px 金色），並關掉 Tailwind typography 預設的智能引號（`p::before/::after` content 清空）。文章作者寫 `> 重點引言` 即可自動成為雜誌風 pull-quote。
+
+**為什麼是 zero-config**
+- 兩個都靠 CSS selector 自動匹配既有 markdown 元素，不需新 syntax、不需改 marked renderer、不需更動現有文章
+- Drop cap 靠 `:first-of-type::first-letter`，CJK ::first-letter 在 Chromium/Safari/Firefox 都正常選到第一個漢字
+- Pull-quote 靠 `blockquote` 全域選取（既然是文章作者主動寫 `>` 才會出現，全域套合理）
+
+**影響檔案**
+- `src/app/globals.css`（+45 行 CSS rules）
+
+**回滾**
+```bash
+git revert <v1.10.1-commit>
+```
+
+---
+
 ## v1.10.0 — 2026-05-01
 ### 變更內容（部落格 editorial 視覺升級）
 
