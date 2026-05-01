@@ -39,7 +39,7 @@ export default function AboutPage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-black mb-6">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-6 tracking-tight">
               用 AI 替傳統產業
               <br />
               <span className="gradient-text">打造會思考的系統</span>
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 space-y-16">
           <FadeIn>
             <article className="prose prose-lg max-w-none">
-              <h2 className="text-2xl font-black mb-4">我們的故事</h2>
+              <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-4 tracking-tight">我們的故事</h2>
               <p className="text-muted leading-relaxed">
                 Dr.Dow AI 誕生於一個簡單的觀察：台灣許多傳統產業每天花大量時間在紙本作業、Excel 管理、重複性人工流程上。不管是宮廟的點燈捐款管理，還是物流公司的派車對帳，這些工作 AI 其實都能做得更好更快。
               </p>
@@ -66,7 +66,7 @@ export default function AboutPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="text-2xl font-black mb-8">我們相信</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-8 tracking-tight">我們相信</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
@@ -91,7 +91,7 @@ export default function AboutPage() {
           </FadeIn>
 
           <FadeIn>
-            <h2 className="text-2xl font-black mb-4">聯繫我們</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-4 tracking-tight">聯繫我們</h2>
             <div className="bg-surface rounded-2xl p-8">
               <div className="space-y-3 text-sm">
                 <p><span className="font-semibold">Email：</span><a href={`mailto:${SITE.email}`} className="text-accent">{SITE.email}</a></p>

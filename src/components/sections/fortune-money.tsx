@@ -16,7 +16,7 @@ export function FortuneMoney() {
       <div className="relative max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
           <span className="text-xs font-bold tracking-wider uppercase mb-4 block" style={{ color: '#d97706' }}>宮廟特色</span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6" style={{ color: '#d97706' }}>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight mb-6" style={{ color: '#d97706' }}>
             發財金借還管理
           </h2>
           <p className="text-lg text-white/50 max-w-2xl mx-auto">

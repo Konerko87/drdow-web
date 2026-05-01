@@ -42,7 +42,7 @@ export function CTASection({ variant = 'generic' }: { variant?: CTAVariant } = {
 
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         <FadeIn>
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
             {copy.title}
             <br />
             <span className="text-[#fbbf24]">{copy.highlight}</span>

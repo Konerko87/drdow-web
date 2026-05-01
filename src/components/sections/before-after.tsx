@@ -6,7 +6,7 @@ export function BeforeAfter() {
     <section className="py-28 bg-white" aria-label="前後對比">
       <div className="max-w-4xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight mb-4">
             用了廟通之後
           </h2>
           <p className="text-muted text-base">

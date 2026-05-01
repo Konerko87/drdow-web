@@ -180,7 +180,7 @@ function SolutionCard({ solution, i }: { solution: { icon: IconName; title: stri
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-xl font-black">{solution.title}</h3>
+              <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold tracking-tight">{solution.title}</h3>
               {solution.products.map((p) => (
                 <span key={p} className={`text-xs font-semibold px-2 py-0.5 rounded-full ${productBadgeClass(p)}`}>
                   {p}
@@ -229,7 +229,7 @@ export default function SolutionsPage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-black mb-4">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">
               AI <span className="gradient-text">解決方案</span>
             </h1>
             <p className="text-lg text-muted max-w-2xl mx-auto">
@@ -243,7 +243,7 @@ export default function SolutionsPage() {
       <section className="pb-16">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="mb-10">
-            <h2 className="text-2xl font-black">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">
               <span style={{ color: '#B91C1C' }}>廟通</span> 宮廟管理解決方案
             </h2>
           </FadeIn>
@@ -269,7 +269,7 @@ export default function SolutionsPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="mb-10">
-            <h2 className="text-2xl font-black">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">
               <span className="text-accent">TMS</span> 物流派車解決方案
             </h2>
           </FadeIn>
@@ -295,7 +295,7 @@ export default function SolutionsPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="mb-10">
-            <h2 className="text-2xl font-black">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">
               <span className="text-cyan-700">WMS</span> 倉儲管理解決方案
             </h2>
           </FadeIn>
@@ -321,7 +321,7 @@ export default function SolutionsPage() {
       <section className="py-16 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="mb-10">
-            <h2 className="text-2xl font-black">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">
               <span className="text-purple">ERP</span> 物流財務解決方案
             </h2>
           </FadeIn>

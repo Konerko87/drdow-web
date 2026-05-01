@@ -4,6 +4,52 @@
 
 ---
 
+## v1.12.0 — 2026-05-01
+### 變更內容（站內 editorial 全面收斂：首頁 / 廟通 / 二級頁）
+
+把部落格 + 物流產品頁的 editorial 字體系統（Noto Serif TC + `font-bold` + `tracking-tight`）擴散到剩下所有頁面，讓全站雜誌感視覺一致，沒有頁面再用舊 `font-black` 無襯線標題。
+
+**首頁 sections（13 個元件 H1/H2/H3）**
+- `Hero` H1（廟通主標）、`SceneSelector` H2 + 卡片 H3
+- `PainPoints`、`LinePayFlow`、`FamilyProxy`、`CounterOps`、`LightManagement`、`ReceiptsDocs`、`FortuneMoney`、`FeatureModules`、`BeforeAfter`、`Numbers` 標題 H2
+- `ProductCards` 主標 H2 + 廟通主打 H3 + 物流副標 H3 + 卡片 H4
+- `CTASection`（之前 v1.11.0 故意未動，現在收齊）
+
+**廟通產品頁** `/products/miaotong`
+- Hero H1、所有 section H2（痛點 / 8 大功能 / 適用對象 / 為什麼選 / LINE / FAQ / CTA / 其他產品）
+
+**二級行銷頁**
+- `/pricing`：H1、宮廟方案 / 物流方案 H2、PlanCard H3
+- `/about`：H1、我們的故事 / 我們相信 / 聯繫我們 H2
+- `/faq`：H1、4 個分類 H2
+- `/solutions`：H1、4 個產品線 H2、SolutionCard H3
+- `/contact`：H1、留言給我們 / 聯繫方式 H2
+- `/privacy`：H1
+- `/thank-you`：H1
+- `/products/erp/demo`：H1 + 所有 section H2
+
+**保留 `font-black` 的場景**
+- 統計數字（`text-3xl/4xl/5xl font-black gradient-text`）— 這是 display number 不是 heading
+- Hero 內的「廟通」品牌 wordmark（28px logo 文字）
+- 部落格 prose plugin 的 `prose-headings:font-black`（marked 渲染用）
+- contact-form 的「留言已送出」成功訊息 H3（短暫狀態提示）
+
+**為什麼**
+- v1.10.x 把 blog 升 editorial、v1.11.0 把物流產品頁升完，但首頁、廟通、二級頁仍用舊 `font-black` 無襯線版本
+- 現在全站每個 H1/H2/H3 標題都統一到 Noto Serif TC + font-bold + tracking-tight，跨頁瀏覽再也不會出現視覺斷層
+- 物流產品線仍保留紫色 accent、廟通仍保留紅金、首頁混合配色，**只有字體系統統一**，accent 色繼續做品牌區隔
+
+**影響檔案**（19 個）
+- 13 個 section 元件：`hero.tsx`、`scene-selector.tsx`、`pain-points.tsx`、`line-pay-flow.tsx`、`family-proxy.tsx`、`counter-ops.tsx`、`light-management.tsx`、`receipts-docs.tsx`、`fortune-money.tsx`、`feature-modules.tsx`、`before-after.tsx`、`numbers.tsx`、`product-cards.tsx`、`cta-section.tsx`
+- 6 個頁面：`products/miaotong/page.tsx`、`pricing/page.tsx`、`about/page.tsx`、`faq/page.tsx`、`solutions/page.tsx`、`contact/page.tsx`、`privacy/page.tsx`、`thank-you/page.tsx`、`products/erp/demo/page.tsx`
+
+**回滾**
+```bash
+git revert <v1.12.0-commit>
+```
+
+---
+
 ## v1.11.0 — 2026-05-01
 ### 變更內容（產品頁 editorial 升級：TMS / WMS / ERP）
 

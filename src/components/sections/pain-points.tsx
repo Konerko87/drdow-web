@@ -7,7 +7,7 @@ export function PainPoints() {
     <section className="py-28 bg-white" aria-label="痛點分析">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold mb-6 tracking-tight">
             這些問題，是不是每天都在發生？
           </h2>
           <p className="text-muted text-base max-w-2xl mx-auto leading-relaxed">

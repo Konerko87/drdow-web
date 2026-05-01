@@ -161,7 +161,7 @@ export default function ERPDemoPage() {
             <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">
               System Demo
             </p>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-6xl font-bold mb-6 tracking-tight">
               ERP 系統
               <br />
               <span className="gradient-text">完整功能導覽</span>
@@ -216,7 +216,7 @@ export default function ERPDemoPage() {
               <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
                 {String(sectionIdx + 1).padStart(2, '0')}
               </div>
-              <h2 className="text-3xl md:text-4xl font-black mb-4">
+              <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">
                 {section.title}
               </h2>
               <p className="text-muted text-lg max-w-2xl mx-auto">
@@ -266,7 +266,7 @@ export default function ERPDemoPage() {
       <section className="py-24 bg-dark text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-black mb-4">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               想親自操作看看？
             </h2>
             <p className="text-white/50 text-lg mb-8">

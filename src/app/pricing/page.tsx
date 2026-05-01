@@ -121,7 +121,7 @@ function PlanCard({ plan, i, accentColor = 'accent' }: { plan: typeof MIAOTONG_P
             最多人選擇
           </span>
         )}
-        <h3 className="text-xl font-black mb-1">{plan.name}</h3>
+        <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-1 tracking-tight">{plan.name}</h3>
         <p className="text-sm text-muted mb-2">{plan.target}</p>
         <div className="text-3xl font-black mb-6">
           洽詢 <span className="text-sm font-normal text-muted">/ 月</span>
@@ -207,7 +207,7 @@ export default function PricingPage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-black mb-4">簡單透明的價格</h1>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">簡單透明的價格</h1>
             <p className="text-lg text-muted">依需求選擇最適合的方案，所有方案都包含免費諮詢。</p>
           </FadeIn>
         </div>
@@ -218,7 +218,7 @@ export default function PricingPage() {
         <div className="max-w-5xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
             <p className="text-xs font-bold tracking-wider uppercase mb-2" style={{ color: '#B91C1C' }}>廟通 宮廟管理系統</p>
-            <h2 className="text-2xl font-black">宮廟管理方案</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">宮廟管理方案</h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {MIAOTONG_PLANS.map((plan, i) => (
@@ -238,7 +238,7 @@ export default function PricingPage() {
         <div className="max-w-5xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
             <p className="text-xs font-bold tracking-wider uppercase text-accent mb-2">TMS / WMS / ERP 物流營運系統</p>
-            <h2 className="text-2xl font-black">物流營運方案</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold tracking-tight">物流營運方案</h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {LOGISTICS_PLANS.map((plan, i) => (

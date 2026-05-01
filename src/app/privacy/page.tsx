@@ -16,7 +16,7 @@ export default function PrivacyPage() {
 
       <article className="pt-32 pb-24">
         <div className="max-w-3xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-black mb-2">隱私權政策</h1>
+          <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-2 tracking-tight">隱私權政策</h1>
           <p className="text-sm text-muted mb-12">最後更新：2026 年 4 月 7 日</p>
 
           <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-dark prose-p:text-muted prose-p:leading-relaxed prose-li:text-muted">

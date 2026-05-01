@@ -59,7 +59,7 @@ export function SceneSelector() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-12">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-muted">Choose your scenario</p>
-          <h2 className="text-3xl md:text-4xl font-black mb-3 tracking-tight">你想解決哪一種營運問題？</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-3 tracking-tight">你想解決哪一種營運問題？</h2>
           <p className="text-muted text-base">Dr.Dow AI 服務宮廟、物流派車、倉儲管理與物流財務四大場景。</p>
         </FadeIn>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -81,7 +81,7 @@ export function SceneSelector() {
                     {scene.industry}
                   </span>
                 </div>
-                <h3 className="text-lg font-black mb-2 tracking-tight">{scene.title}</h3>
+                <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-lg font-bold mb-2 tracking-tight">{scene.title}</h3>
                 <p className="text-sm text-muted leading-relaxed mb-5">{scene.desc}</p>
                 <span
                   className="inline-flex items-center gap-1 text-sm font-semibold"

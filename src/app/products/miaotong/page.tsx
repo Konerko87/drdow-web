@@ -72,7 +72,7 @@ export default function MiaotongPage() {
               <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
               智慧宮廟管理系統
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
               真正懂台灣宮廟流程的
               <br />
               <span className="gradient-text-temple">智慧管理平台</span>
@@ -118,7 +118,7 @@ export default function MiaotongPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">這些痛點，你們廟也有嗎？</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">這些痛點，你們廟也有嗎？</h2>
             <p className="text-muted text-lg">廟通幫你一次解決</p>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -149,7 +149,7 @@ export default function MiaotongPage() {
       <section id="features" className="py-24 bg-[#FFF7ED]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">8 大核心功能模組</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">8 大核心功能模組</h2>
             <p className="text-muted text-lg">從信徒資料到會計報表，一套系統管到好</p>
           </FadeIn>
           <FeatureGrid features={MIAOTONG.features} columns={2} />
@@ -160,7 +160,7 @@ export default function MiaotongPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">誰適合使用廟通？</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">誰適合使用廟通？</h2>
             <p className="text-muted text-lg">從管委會到櫃台，每個角色都有專屬功能</p>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -183,7 +183,7 @@ export default function MiaotongPage() {
       <section className="py-24 bg-surface">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">為什麼選廟通？</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">為什麼選廟通？</h2>
             <p className="text-muted text-lg">比陽春系統更完整，比客製專案更容易開始</p>
           </FadeIn>
           <div className="space-y-6">
@@ -211,7 +211,7 @@ export default function MiaotongPage() {
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#B91C1C]/10 to-[#D97706]/10 flex items-center justify-center mx-auto mb-6">
               <Icon name="smartphone" className="w-8 h-8 text-[#B91C1C]" strokeWidth={1.75} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-black mb-4">LINE 就能用，信眾免下載 App</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">LINE 就能用，信眾免下載 App</h2>
             <p className="text-muted text-lg max-w-2xl mx-auto mb-12">
               信眾透過 LINE 就能線上點燈、法會報名、捐款紀錄查詢。不用下載 App、不用註冊帳號，打開 LINE 就能用。
             </p>
@@ -232,7 +232,7 @@ export default function MiaotongPage() {
       <section className="py-24 bg-[#FEF2F2]">
         <div className="max-w-3xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">常見問題</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">常見問題</h2>
           </FadeIn>
           <div className="space-y-4">
             {MIAOTONG_FAQ.map((faq, i) => (
@@ -265,7 +265,7 @@ export default function MiaotongPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B91C1C] opacity-10 rounded-full blur-[120px]" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <FadeIn>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               讓宮廟管理進入
               <span className="gradient-text-temple">智慧時代</span>
             </h2>
@@ -288,7 +288,7 @@ export default function MiaotongPage() {
       <section className="py-16 bg-surface">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl font-black mb-2">其他產品</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-2 tracking-tight">其他產品</h2>
             <p className="text-muted text-sm">Dr.Dow AI 全系列解決方案</p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

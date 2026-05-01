@@ -10,7 +10,7 @@ export function ReceiptsDocs() {
           <FadeIn>
             <div>
               <span className="text-xs font-bold tracking-wider uppercase text-[#6b21a8] mb-4 block">行政效率</span>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+              <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 收據、文件、行政作業全面電子化
               </h2>
               <p className="text-lg text-muted mb-3 font-medium">

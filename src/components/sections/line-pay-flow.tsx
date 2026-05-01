@@ -17,7 +17,7 @@ export function LinePayFlow() {
         </FadeIn>
 
         <FadeIn className="text-center mb-6">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight mb-4">
             LINE 裡面就能完成<span className="text-[#d97706]">點燈</span>
           </h2>
           <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-3">

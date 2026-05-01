@@ -14,6 +14,21 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: text */}
           <div className="text-center lg:text-left">
+            {/* Brand + product identity */}
+            <div className="flex items-center gap-3 justify-center lg:justify-start mb-6">
+              <Image
+                src="/logo-miaotong.png"
+                alt="廟通 logo"
+                width={48}
+                height={48}
+                className="rounded-lg shadow-lg"
+              />
+              <div>
+                <div className="text-white/60 text-xs font-medium tracking-wide">Dr.Dow AI 廟務系統</div>
+                <div className="text-white text-2xl font-black tracking-tight">廟通</div>
+              </div>
+            </div>
+
             {/* LINE Pay badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 border border-white/20" style={{ background: 'rgba(217,119,6,0.3)', color: '#fbbf24' }}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#d97706] animate-pulse" />
@@ -21,15 +36,16 @@ export function Hero() {
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 tracking-tight">
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
               真正懂宮廟流程的
               <br />
-              <span className="text-[#fbbf24]">智慧營運平台</span>
+              <span className="text-[#fbbf24]">智慧廟務系統</span>
             </h1>
 
             {/* Sub */}
             <p className="text-lg md:text-xl text-white/70 max-w-xl mb-8 leading-relaxed">
-              把櫃檯、點燈、法會、收據、LINE 查詢整合成一套系統
+              櫃檯受理、點燈管理、法會報名、收據開立、LINE 信徒查詢<br className="hidden sm:block" />
+              一套系統全搞定
             </p>
 
             {/* Three promise badges */}

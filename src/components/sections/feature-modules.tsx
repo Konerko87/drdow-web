@@ -7,7 +7,7 @@ export function FeatureModules() {
     <section className="py-28 bg-[#faf5ff]/50" aria-label="功能模組">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight mb-4">
             一套系統涵蓋整座廟的營運需求
           </h2>
           <p className="text-muted text-base max-w-2xl mx-auto leading-relaxed">

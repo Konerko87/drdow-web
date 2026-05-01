@@ -6,7 +6,7 @@ export function Numbers() {
     <section className="py-28 bg-[#faf5ff]/50" aria-label="關鍵數據">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight">為台灣宮廟而生</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight">為台灣宮廟而生</h2>
         </FadeIn>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

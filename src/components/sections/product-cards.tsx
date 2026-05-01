@@ -40,7 +40,7 @@ export function ProductCards() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: '#B91C1C' }}>Featured Product</p>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">四套系統，一個目標</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold mb-4 tracking-tight">四套系統，一個目標</h2>
           <p className="text-muted text-base">AI 驅動的產業管理系統，讓宮廟與物流現場的傳統流程全面升級。</p>
         </FadeIn>
 
@@ -59,7 +59,7 @@ export function ProductCards() {
                   <div className="flex items-center gap-4 mb-4">
                     <Image src="/logo-miaotong.png" alt="Dr.Dow AI 廟通 宮廟管理系統 logo" width={56} height={56} className="rounded-xl" priority />
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-black tracking-tight">{PRODUCTS.miaotong.name}</h3>
+                      <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl md:text-3xl font-bold tracking-tight">{PRODUCTS.miaotong.name}</h3>
                       <p className="text-sm text-muted">{PRODUCTS.miaotong.fullName}</p>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ export function ProductCards() {
         {/* Secondary: 物流產業線 — TMS / WMS / ERP */}
         <FadeIn className="text-center mb-10">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-2 text-accent">Logistics Suite</p>
-          <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-2">物流產業線</h3>
+          <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl md:text-3xl font-bold tracking-tight mb-2">物流產業線</h3>
           <p className="text-muted text-sm">派車、倉儲、財務三套系統，從訂單到撥款全程串接。</p>
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -110,7 +110,7 @@ export function ProductCards() {
                     <div className="flex items-center gap-3 mb-3">
                       <Image src={sp.logo} alt={sp.logoAlt} width={44} height={44} className="w-11 h-11 rounded-xl" />
                       <div>
-                        <h4 className="text-lg font-black tracking-tight">{product.name}</h4>
+                        <h4 className="font-[family-name:var(--font-noto-serif-tc)] text-lg font-bold tracking-tight">{product.name}</h4>
                         <p className="text-xs text-muted">{product.fullName}</p>
                       </div>
                     </div>

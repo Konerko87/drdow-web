@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import Link from 'next/link'
 import Image from 'next/image'
+
+const AW_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+const AW_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
 
 export const metadata: Metadata = {
   title: '感謝您的詢問 | Dr.Dow AI',
@@ -11,13 +15,22 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <section className="min-h-screen flex items-center justify-center bg-[#030712] relative overflow-hidden">
+      {/* GA4 generate_lead event + Google Ads conversion (if configured) */}
+      <Script id="thankyou-conversion" strategy="afterInteractive">
+        {`
+          if(typeof gtag==='function'){
+            gtag('event','generate_lead',{event_category:'contact',event_label:'form_submit',value:1});
+            ${AW_ID && AW_LABEL ? `gtag('event','conversion',{'send_to':'${AW_ID}/${AW_LABEL}'});` : ''}
+          }
+        `}
+      </Script>
       {/* Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-accent/10 rounded-full blur-[120px]" />
 
       <div className="relative text-center px-6 max-w-lg">
         <Image src="/logo-icon.png" alt="Dr.Dow AI logo" width={56} height={56} className="mx-auto mb-8 rounded-xl" />
 
-        <h1 className="text-3xl md:text-4xl font-black text-white mb-4">
+        <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
           感謝您的詢問！
         </h1>
 

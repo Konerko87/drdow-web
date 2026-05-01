@@ -28,7 +28,7 @@ export default function FAQPage() {
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center mt-6">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-black mb-4">常見問題</h1>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">常見問題</h1>
             <p className="text-lg text-muted">
               關於 Dr.Dow AI 廟通、TMS、WMS 和 ERP 的所有問題
             </p>
@@ -40,7 +40,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto px-6">
           {FAQS.map((category, ci) => (
             <FadeIn key={ci} delay={ci * 100} className="mb-12">
-              <h2 className={`text-xl font-black mb-6`} style={category.accent ? { color: category.accent } : { color: 'var(--color-accent)' }}>
+              <h2 className={`font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-6 tracking-tight`} style={category.accent ? { color: category.accent } : { color: 'var(--color-accent)' }}>
                 {category.category}
               </h2>
               <div className="space-y-4">

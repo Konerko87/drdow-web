@@ -41,7 +41,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '聯繫我們', href: '/contact' }]} />
           <FadeIn className="text-center mb-16 mt-6">
-            <h1 className="text-4xl md:text-5xl font-black mb-4">預約 Demo</h1>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 tracking-tight">預約 Demo</h1>
             <p className="text-lg text-muted max-w-xl mx-auto">
               30 分鐘了解 Dr.Dow AI 如何讓你的宮廟、物流、倉儲或財務流程從手動變全自動。
             </p>
@@ -51,7 +51,7 @@ export default function ContactPage() {
             {/* Left: Contact Form */}
             <FadeIn>
               <div className="bg-white rounded-2xl p-8 border border-black/5 shadow-sm">
-                <h2 className="text-xl font-black mb-6">留言給我們</h2>
+                <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-6 tracking-tight">留言給我們</h2>
                 <ContactForm />
               </div>
             </FadeIn>
@@ -60,7 +60,7 @@ export default function ContactPage() {
             <FadeIn delay={100}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-xl font-black mb-4">聯繫方式</h2>
+                  <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-4 tracking-tight">聯繫方式</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <Icon name="mail" className="w-5 h-5 text-accent mt-0.5" strokeWidth={1.75} />
