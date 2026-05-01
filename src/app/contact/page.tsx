@@ -49,11 +49,11 @@ export default function ContactPage() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Left: Contact Form */}
             <FadeIn>
-              <div className="bg-white rounded-2xl p-8 border border-black/5 shadow-sm">
-                <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-6 tracking-tight">留言給我們</h2>
+              <div className="bg-white rounded-2xl p-8 border border-[#B91C1C]/[0.08] shadow-[0_8px_24px_rgba(185,28,28,0.04)]">
+                <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-6 tracking-tight text-dark">留言給我們</h2>
                 <ContactForm />
               </div>
             </FadeIn>
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <FadeIn delay={100}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-4 tracking-tight">聯繫方式</h2>
+                  <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-4 tracking-tight text-dark">聯繫方式</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <Icon name="mail" className="w-5 h-5 text-accent mt-0.5" strokeWidth={1.75} />
@@ -88,9 +88,9 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="bg-surface rounded-2xl p-6">
-                  <h3 className="font-bold mb-3">Demo 包含什麼？</h3>
-                  <ul className="space-y-2 text-sm text-muted">
+                <div className="bg-white rounded-2xl p-6 border border-[#B91C1C]/[0.08] shadow-[0_8px_24px_rgba(185,28,28,0.04)]">
+                  <h3 className="font-bold mb-3 text-dark">Demo 包含什麼？</h3>
+                  <ul className="space-y-2 text-sm text-[#6b5b4a]">
                     {[
                       '了解你的業務需求和痛點',
                       '實際操作廟通 / TMS / WMS / ERP 系統示範',
@@ -107,28 +107,28 @@ export default function ContactPage() {
                   </ul>
                 </div>
 
-                <div className="bg-accent/5 rounded-2xl p-6 border border-accent/10">
-                  <p className="text-sm font-semibold text-accent mb-1">回覆時間</p>
-                  <p className="text-sm text-muted">
+                <div className="rounded-2xl p-6 border border-[#B91C1C]/15" style={{ background: 'linear-gradient(135deg, rgba(185,28,28,0.04), rgba(217,119,6,0.04))' }}>
+                  <p className="text-sm font-semibold text-[#B91C1C] mb-1">回覆時間</p>
+                  <p className="text-sm text-[#6b5b4a]">
                     我們會在 <strong className="text-dark">24 小時內</strong> 回覆你的留言。
                     急件請直接寄 Email 到 {SITE.email}。
                   </p>
                 </div>
 
-                <div className="bg-surface rounded-2xl p-6">
-                  <h3 className="font-bold mb-3">常見問題</h3>
+                <div className="bg-white rounded-2xl p-6 border border-[#B91C1C]/[0.08] shadow-[0_8px_24px_rgba(185,28,28,0.04)]">
+                  <h3 className="font-bold mb-3 text-dark">常見問題</h3>
                   <dl className="space-y-3 text-sm">
                     <div>
                       <dt className="font-semibold text-dark">Demo 需要付費嗎？</dt>
-                      <dd className="text-muted mt-0.5">完全免費，30 分鐘線上展示，無任何義務。</dd>
+                      <dd className="text-[#6b5b4a] mt-0.5">完全免費，30 分鐘線上展示，無任何義務。</dd>
                     </div>
                     <div>
                       <dt className="font-semibold text-dark">導入需要多久？</dt>
-                      <dd className="text-muted mt-0.5">基本功能 1-2 週即可上線，含教育訓練。</dd>
+                      <dd className="text-[#6b5b4a] mt-0.5">基本功能 1-2 週即可上線，含教育訓練。</dd>
                     </div>
                     <div>
                       <dt className="font-semibold text-dark">有試用期嗎？</dt>
-                      <dd className="text-muted mt-0.5">提供 30 天免費試用，滿意再簽約。</dd>
+                      <dd className="text-[#6b5b4a] mt-0.5">提供 30 天免費試用，滿意再簽約。</dd>
                     </div>
                   </dl>
                 </div>

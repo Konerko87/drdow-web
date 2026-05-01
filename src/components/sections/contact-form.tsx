@@ -217,12 +217,13 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full py-3 bg-accent text-white rounded-full font-semibold text-sm hover:bg-accent-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          style={{ background: 'linear-gradient(135deg, #B91C1C, #d97706)' }}
+          className="w-full py-3 text-white rounded-full font-semibold text-sm shadow-[0_8px_24px_rgba(185,28,28,0.16)] hover:shadow-[0_10px_28px_rgba(185,28,28,0.24)] hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
         >
           {status === 'sending' ? '寄送中...' : '送出留言 →'}
         </button>
 
-        <p className="text-xs text-muted text-center">
+        <p className="text-xs text-[#6b5b4a] text-center">
           送出後會直接寄到我們的信箱，24 小時內回覆。
         </p>
       </form>

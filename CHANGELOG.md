@@ -4,6 +4,22 @@
 
 ---
 
+## v1.15.3 — 2026-05-02
+### 變更內容（/contact 表單卡片 + 側欄資訊區 warm-editorial 化）
+
+- 表單卡片 border 從 `border-black/5` → `border-[#B91C1C]/[0.08]`、shadow 改 `0_8px_24px_rgba(185,28,28,0.04)` 廟通紅軟陰影
+- 側欄「Demo 包含什麼」「常見問題」兩塊 bg-surface 灰底 → 白卡 + 紅軟邊（跟表單視覺一致）
+- 「回覆時間」紫紅小卡 → 紅金漸層 tint bg + 紅描邊
+- 表單送出按鈕 `bg-accent → bg-accent-light` hover → 直接紅金漸層 `linear-gradient(135deg, #B91C1C, #d97706)` + 紅軟陰影 + hover 上浮 -2px
+- 所有 `text-muted` → `text-[#6b5b4a]` warm muted、`h2/h3` 加 `text-dark` 鎖深色
+
+**影響檔案**
+- `src/app/contact/page.tsx`、`src/components/sections/contact-form.tsx`
+
+**回滾指令**：`git revert <v1.15.3-hash>`
+
+---
+
 ## v1.15.2 — 2026-05-02
 ### 變更內容（次要 marketing 頁面 hero 統一上 warm-editorial 暖米色背景）
 
