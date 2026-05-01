@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Noto_Sans_TC } from 'next/font/google'
+import { Inter, Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Analytics } from '@/components/layout/analytics'
@@ -17,6 +17,13 @@ const notoSansTC = Noto_Sans_TC({
   variable: '--font-noto-sans-tc',
   subsets: ['latin'],
   weight: ['400', '500', '700', '900'],
+  display: 'swap',
+})
+
+const notoSerifTC = Noto_Serif_TC({
+  variable: '--font-noto-serif-tc',
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
   display: 'swap',
 })
 
@@ -75,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-TW" className={`${inter.variable} ${notoSansTC.variable}`}>
+    <html lang="zh-TW" className={`${inter.variable} ${notoSansTC.variable} ${notoSerifTC.variable}`}>
       <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />

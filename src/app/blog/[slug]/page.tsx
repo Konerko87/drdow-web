@@ -109,7 +109,7 @@ export default async function BlogPostPage(
         ]}
       />
 
-      <article className="pt-32 pb-24">
+      <article className="pt-32 pb-24 blog-paper">
         <div className="max-w-3xl mx-auto px-6">
           <FadeIn>
             {/* Back */}
@@ -160,9 +160,9 @@ export default async function BlogPostPage(
 
             {/* Content */}
             <div
-              className="prose prose-lg max-w-none
+              className="blog-prose prose prose-lg max-w-none
                 prose-headings:font-black prose-headings:text-dark prose-headings:tracking-tight
-                prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-2 prose-h2:border-b prose-h2:border-black/5
+                prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-5 prose-h2:pb-2.5
                 prose-h3:text-lg md:prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:text-dark
                 prose-p:text-[15px] md:prose-p:text-base prose-p:text-slate-700 prose-p:leading-[1.85] prose-p:my-5
                 prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline

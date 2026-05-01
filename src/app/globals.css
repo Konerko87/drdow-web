@@ -13,6 +13,16 @@
   --color-muted: #64748B;
   --font-sans: var(--font-inter);
   --font-tc: var(--font-noto-sans-tc);
+  --font-serif-tc: var(--font-noto-serif-tc);
+
+  /* Blog editorial palette (deep red + gold + warm paper) — used by .blog-prose */
+  --color-blog-paper: #faf7f2;
+  --color-blog-cream: #f4ede0;
+  --color-blog-ink: #1a1a1a;
+  --color-blog-muted: #6b5b4a;
+  --color-blog-accent: #b91c1c;
+  --color-blog-gold: #d97706;
+  --color-blog-rule: rgba(0, 0, 0, 0.08);
 }
 
 /* Smooth scroll + reduced motion */
@@ -118,4 +128,63 @@ html {
   border-radius: 25px;
   background: linear-gradient(135deg, rgba(107,33,168,0.2), rgba(220,38,38,0.2));
   z-index: -1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   .blog-prose — editorial overrides scoped to blog article body.
+   Pairs with @tailwindcss/typography prose classes; only adds the
+   "magazine" treatments (gold-underline H2, § H3, decimal-leading-zero
+   OL, callout) without touching site-wide typography.
+   ───────────────────────────────────────────────────────────── */
+.blog-prose h2 {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', 'Source Han Serif', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-blog-gold);
+}
+.blog-prose h3 {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', 'Source Han Serif', Georgia, serif;
+  font-weight: 600;
+}
+.blog-prose h3::before {
+  content: '§ ';
+  color: var(--color-blog-gold);
+  font-weight: 500;
+  margin-right: 2px;
+}
+/* Editorial ordered list — decimal-leading-zero in deep red */
+.blog-prose ol {
+  list-style: none;
+  counter-reset: blog-oli;
+  padding-left: 0;
+}
+.blog-prose ol > li {
+  counter-increment: blog-oli;
+  position: relative;
+  padding-left: 38px;
+  margin: 12px 0;
+}
+.blog-prose ol > li::before {
+  content: counter(blog-oli, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  font-family: var(--font-serif-tc), 'Noto Serif TC', Georgia, serif;
+  font-size: 14px;
+  color: var(--color-blog-accent);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.85;
+}
+/* Restore unordered list red marker */
+.blog-prose ul > li::marker {
+  color: var(--color-blog-accent);
+}
+/* Article paper background wrapper (applied on the <article>, not body) */
+.blog-paper {
+  background: var(--color-blog-paper);
 }

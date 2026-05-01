@@ -4,6 +4,43 @@
 
 ---
 
+## v1.10.0 — 2026-05-01
+### 變更內容（部落格 editorial 視覺升級）
+
+用 nexu-io/open-design + Warm Editorial design system + claude-opus-4-7 跑出一份廟通主題的長文設計稿（`~/projects/open-design/.od/.../index.html`），把對 blog 最有效的三個視覺元素 port 進 drdow-web，**作用域只在 blog 文章頁，不影響首頁/產品頁**。
+
+**新增**
+- `globals.css` 新增 7 個 blog 專屬 CSS variables：`--color-blog-paper #faf7f2`、`--color-blog-cream`、`--color-blog-ink`、`--color-blog-muted`、`--color-blog-accent #b91c1c` (深紅)、`--color-blog-gold #d97706` (金)、`--color-blog-rule`
+- `globals.css` 新增 `.blog-prose` scoped 樣式：
+  - H2：Noto Serif TC 字型 + `width: fit-content` + 2px 金色 border-bottom（雜誌風章節分隔）
+  - H3：Noto Serif TC + `::before` 注入金色 `§ ` 章節符
+  - OL：`list-style: none` + counter 改用 `decimal-leading-zero`（01/02/03） + 深紅色 serif
+  - UL：marker 改深紅
+- `globals.css` 新增 `.blog-paper` utility（暖紙白底色）
+- `layout.tsx` 加入 Noto_Serif_TC 字型（weight 500/600/700）並 inject 為 `--font-noto-serif-tc` CSS var
+- `blog/[slug]/page.tsx` 文章 `<article>` 加 `blog-paper`，內文 div 加 `blog-prose` class，並把 prose-h2 的黑色 border-b 移除（讓金色底線生效）
+
+**為什麼這樣做**
+- 用戶選了 editorial 風格升級而非整站改版 → 所有樣式 scoped 在 `.blog-prose`
+- 深紅 + 金 = 廟通品牌調性，blog 是廟通內容主戰場 → 色票合理
+- Noto Serif TC 是中文 blog 雜誌風的關鍵；只在 blog 加，不影響其他頁面字型負擔
+
+**影響檔案**
+- `src/app/globals.css`
+- `src/app/layout.tsx`
+- `src/app/blog/[slug]/page.tsx`
+
+**參考產出**
+- 設計稿位置：`~/projects/open-design/.od/projects/894cf716-3748-4e46-8a52-d412a604e2c0/index.html`
+- 截圖：`/tmp/od-design-{1..7}.png`
+
+**回滾指令**
+```bash
+git revert <v1.10.0-commit-hash>
+```
+
+---
+
 ## v1.9.1 — 2026-05-01
 ### 變更內容（部落格文章排版徹底修復）
 
