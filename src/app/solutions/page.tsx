@@ -175,7 +175,7 @@ function SolutionCard({ solution, i }: { solution: { icon: IconName; title: stri
     <FadeIn key={i} delay={i * 80}>
       <div className="bg-surface rounded-2xl p-8 hover-lift">
         <div className="flex flex-col md:flex-row gap-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-purple/10 flex items-center justify-center flex-shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center flex-shrink-0">
             <Icon name={solution.icon} className="w-7 h-7 text-accent" strokeWidth={1.75} />
           </div>
           <div className="flex-1">

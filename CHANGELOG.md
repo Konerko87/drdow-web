@@ -4,6 +4,26 @@
 
 ---
 
+## v1.15.1 — 2026-05-02
+### 變更內容（清掉殘留紫色裝飾漸層）
+
+掃完整站後發現三處 universal 裝飾性漸層仍寫死 `to-purple/*`（v1.15.0 漏掉），這些 component 被 廟通 / TMS / WMS 共用，不是 ERP 專屬，應跟著新主色走紅金。
+
+- `feature-grid.tsx:24` — feature 卡片 icon container `from-accent/10 to-purple/10` → `from-accent/10 to-accent-light/10`
+- `product-cards.tsx:108` — 次要產品卡 hover 漸層 `from-accent/5 to-purple/5` → `from-accent/5 to-accent-light/5`
+- `solutions/page.tsx:178` — SolutionCard icon container 同上
+
+ERP 頁專屬紫色（`/products/erp` 內 `from-accent to-purple` 數字膠囊、`solutions` 頁 ERP section CTA `#8B5CF6`）保留為 ERP sub-brand，待後續用 open-design 統一處理。
+
+**影響檔案**
+- `src/components/sections/feature-grid.tsx`
+- `src/components/sections/product-cards.tsx`
+- `src/app/solutions/page.tsx`
+
+**回滾指令**：`git revert <v1.15.1-hash>`
+
+---
+
 ## v1.15.0 — 2026-05-02
 ### 變更內容（廟通 brand color 全站校正 + open-design 三件設計交付）
 

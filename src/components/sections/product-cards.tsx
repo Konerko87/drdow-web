@@ -105,7 +105,7 @@ export function ProductCards() {
             return (
               <FadeIn key={sp.key} delay={idx * 80}>
                 <div className="group relative h-full bg-[#FAFBFC] rounded-3xl p-1 border border-black/[0.04] hover:border-accent/20 transition-all duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-purple/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent-light/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative bg-white rounded-[20px] p-7 h-full flex flex-col">
                     <div className="flex items-center gap-3 mb-3">
                       <Image src={sp.logo} alt={sp.logoAlt} width={44} height={44} className="w-11 h-11 rounded-xl" />
