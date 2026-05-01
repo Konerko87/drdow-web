@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Script from 'next/script'
+import { Icon } from '@/components/ui/icon'
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
@@ -82,7 +83,9 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="bg-green-50 rounded-2xl p-8 text-center">
-        <div className="text-4xl mb-3">✅</div>
+        <div className="flex justify-center mb-3">
+          <Icon name="check-circle" className="w-12 h-12 text-green-600" strokeWidth={1.75} />
+        </div>
         <h3 className="text-xl font-black text-green-700 mb-2">留言已送出！</h3>
         <p className="text-sm text-green-600">
           我們會在 24 小時內回覆你的 Email。感謝你的興趣！

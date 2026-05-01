@@ -10,6 +10,7 @@ import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow ERP — 物流財務 AI 系統｜AI OCR 請款 + 銀行自動對帳',
@@ -19,23 +20,23 @@ export const metadata: Metadata = createMetadata({
   keywords: ['ERP', '財務系統', 'AI對帳', 'OCR請款', '物流財務', '付款防呆', '銀行對帳'],
 })
 
-const ROLE_SCENARIOS = [
+const ROLE_SCENARIOS: { role: string; device: string; icon: IconName; steps: string }[] = [
   {
     role: '老闆',
     device: '手機',
-    icon: '👔',
+    icon: 'briefcase',
     steps: '打開 App → 看收款進度 78% → 3 筆待審核 → 滑一下看照片和明細 → 通過 → LINE 通知老闆娘匯款',
   },
   {
     role: '老闆娘',
     device: '電腦',
-    icon: '💻',
+    icon: 'calculator',
     steps: '待匯款頁 → 展開看完整照片/明細/備註 → 確認沒問題打勾 → 複製帳號 → 匯款 → 批次確認',
   },
   {
     role: '廠商',
     device: '手機',
-    icon: '🏪',
+    icon: 'store',
     steps: 'LINE 登入 → 拍照上傳發票 → AI 自動填單 → 送出 → 追蹤進度條 → 預計 4/25 撥款',
   },
 ]
@@ -147,7 +148,9 @@ export default function ERPPage() {
             {ROLE_SCENARIOS.map((scenario, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="bg-white rounded-2xl p-8 hover-lift h-full">
-                  <div className="text-4xl mb-3">{scenario.icon}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-purple/10 flex items-center justify-center mb-3">
+                    <Icon name={scenario.icon} className="w-7 h-7 text-accent" strokeWidth={1.75} />
+                  </div>
                   <div className="flex items-center gap-2 mb-4">
                     <h3 className="text-lg font-bold">{scenario.role}</h3>
                     <span className="text-xs text-muted bg-surface px-2 py-0.5 rounded-full">{scenario.device}</span>

@@ -1,5 +1,6 @@
 import { FadeIn } from '@/components/ui/fade-in'
 import { WORKFLOW_STEPS } from '@/lib/constants'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export function AIWorkflow() {
   return (
@@ -26,8 +27,8 @@ export function AIWorkflow() {
 
             {WORKFLOW_STEPS.map((step, i) => (
               <FadeIn key={i} delay={i * 80} className="relative text-center w-28">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-2xl mx-auto mb-4 backdrop-blur-sm">
-                  {step.icon}
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                  <Icon name={step.icon as IconName} className="w-7 h-7 text-accent" strokeWidth={1.75} />
                 </div>
                 <p className="text-xs font-bold tracking-wide mb-1">{step.title}</p>
                 <p className="text-[10px] text-white/30 leading-relaxed">{step.desc}</p>
@@ -41,8 +42,8 @@ export function AIWorkflow() {
           {WORKFLOW_STEPS.map((step, i) => (
             <FadeIn key={i} delay={i * 60}>
               <div className="flex items-center gap-4 bg-white/5 rounded-xl p-4 border border-white/5">
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-xl flex-shrink-0">
-                  {step.icon}
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name={step.icon as IconName} className="w-5 h-5 text-accent" strokeWidth={1.75} />
                 </div>
                 <div>
                   <p className="text-sm font-bold">{step.title}</p>

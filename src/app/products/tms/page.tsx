@@ -10,6 +10,7 @@ import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow TMS — 物流派車 AI 系統｜拖拉指派 + LINE 司機 App',
@@ -156,8 +157,8 @@ export default function TMSPage() {
             {WORKFLOW_STEPS.slice(0, 5).map((step, i) => (
               <FadeIn key={i} delay={i * 100} className="flex items-center gap-2">
                 <div className="text-center">
-                  <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center text-2xl mx-auto mb-2">
-                    {step.icon}
+                  <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center mx-auto mb-2">
+                    <Icon name={step.icon as IconName} className="w-6 h-6" strokeWidth={1.75} />
                   </div>
                   <p className="text-sm font-bold">{step.title}</p>
                   <p className="text-xs text-muted">{step.desc}</p>

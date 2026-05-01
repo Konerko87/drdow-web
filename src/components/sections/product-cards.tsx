@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 import { PRODUCTS } from '@/lib/constants'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 const SECONDARY_PRODUCTS = [
   {
@@ -66,7 +67,7 @@ export function ProductCards() {
                   <ul className="space-y-2.5 mb-8">
                     {PRODUCTS.miaotong.features.slice(0, 6).map((f, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm">
-                        <span className="text-xs mt-0.5">{f.icon}</span>
+                        <Icon name={f.icon as IconName} className="w-4 h-4 mt-0.5 text-[#B91C1C] flex-shrink-0" strokeWidth={1.75} />
                         <div>
                           <span className="font-semibold">{f.title}</span>
                           <span className="text-muted"> — {f.desc.split('。')[0]}</span>
@@ -122,7 +123,7 @@ export function ProductCards() {
                     <ul className="space-y-2 mb-5 flex-1">
                       {product.features.slice(0, 3).map((f, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs">
-                          <span className="text-xs mt-0.5">{f.icon}</span>
+                          <Icon name={f.icon as IconName} className="w-3.5 h-3.5 mt-0.5 text-accent flex-shrink-0" strokeWidth={1.75} />
                           <div>
                             <span className="font-semibold">{f.title}</span>
                             <span className="text-muted"> — {f.desc.split('。')[0]}</span>

@@ -5,6 +5,7 @@ import { FadeIn } from '@/components/ui/fade-in'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { ContactForm } from '@/components/sections/contact-form'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
+import { Icon } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: '聯繫我們 — 預約 Demo',
@@ -62,21 +63,21 @@ export default function ContactPage() {
                   <h2 className="text-xl font-black mb-4">聯繫方式</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <span className="text-xl">✉️</span>
+                      <Icon name="mail" className="w-5 h-5 text-accent mt-0.5" strokeWidth={1.75} />
                       <div>
                         <p className="font-semibold text-sm">Email</p>
                         <a href={`mailto:${SITE.email}`} className="text-accent text-sm">{SITE.email}</a>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-xl">🏢</span>
+                      <Icon name="building-2" className="w-5 h-5 text-accent mt-0.5" strokeWidth={1.75} />
                       <div>
                         <p className="font-semibold text-sm">公司</p>
                         <p className="text-sm text-muted">{SITE.company}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-xl">📍</span>
+                      <Icon name="map-pin" className="w-5 h-5 text-accent mt-0.5" strokeWidth={1.75} />
                       <div>
                         <p className="font-semibold text-sm">地點</p>
                         <p className="text-sm text-muted">台灣</p>

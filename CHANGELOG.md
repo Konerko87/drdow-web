@@ -4,6 +4,34 @@
 
 ---
 
+## v1.9.0 — 2026-05-01
+### 變更內容（全站 icon 系統升級：emoji → Lucide React）
+
+**動機**
+- 原本各頁面使用 emoji 作為功能 icon（🚛📱🪙⛪️…），跨平台/跨瀏覽器渲染不一致
+- emoji 大小無法統一，視覺風格與 SaaS 行銷網站不搭，整體質感偏弱
+
+**作法**
+- 安裝 `lucide-react`，新增 `src/components/ui/icon.tsx` 集中管理 50+ icon 對應表
+- 所有資料來源（constants）從 emoji 字串改為 Lucide icon name 字串
+- 所有消費端（頁面 / section）改用 `<Icon name="..." />` 元件，統一 stroke-width 1.75 與顏色
+- emoji 容器（`text-3xl mb-3`）改為彩色 rounded square（`w-12 h-12 rounded-xl bg-gradient-to-br ...`）
+
+**影響檔案**
+- 新檔：`src/components/ui/icon.tsx`
+- 資料源：`src/lib/constants.ts`、`src/lib/miaotong-constants.ts`
+- 消費端 sections：`pain-points.tsx`、`ai-workflow.tsx`、`feature-modules.tsx`、`feature-grid.tsx`、`fortune-money.tsx`、`product-cards.tsx`、`cta-section.tsx`、`contact-form.tsx`
+- 消費端 pages：`products/tms/page.tsx`、`products/erp/page.tsx`、`products/wms/page.tsx`、`products/miaotong/page.tsx`、`solutions/page.tsx`、`contact/page.tsx`
+- Layout：`navbar.tsx`、`footer.tsx`（電話 / Email icon）
+- `package.json` / `package-lock.json` 新增 lucide-react
+
+**回滾指令**
+```
+git revert <commit-hash>
+```
+
+---
+
 ## v1.8.0 — 2026-05-01
 ### 變更內容（SEO 全面優化）
 

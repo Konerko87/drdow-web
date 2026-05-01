@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 import { SITE } from '@/lib/constants'
+import { Icon } from '@/components/ui/icon'
 
 type CTAVariant = 'generic' | 'temple' | 'logistics'
 
@@ -63,9 +64,9 @@ export function CTASection({ variant = 'generic' }: { variant?: CTAVariant } = {
             </Link>
             <a
               href={`tel:${SITE.phone}`}
-              className="px-8 py-4 rounded-full text-base font-medium text-white/70 border border-white/30 hover:bg-white/10 hover:text-white transition-all text-center"
+              className="px-8 py-4 rounded-full text-base font-medium text-white/70 border border-white/30 hover:bg-white/10 hover:text-white transition-all text-center inline-flex items-center justify-center gap-2"
             >
-              📞 {SITE.phone}
+              <Icon name="phone" className="w-4 h-4" strokeWidth={2} /> {SITE.phone}
             </a>
           </div>
         </FadeIn>

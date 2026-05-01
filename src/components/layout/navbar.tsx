@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SITE, NAV_LINKS } from '@/lib/constants'
+import { Icon } from '@/components/ui/icon'
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -86,9 +87,9 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <a
             href={`tel:${SITE.phone}`}
-            className={`text-xs transition-colors ${scrolled ? 'text-muted hover:text-dark' : 'text-white/50 hover:text-white'}`}
+            className={`text-xs transition-colors inline-flex items-center gap-1.5 ${scrolled ? 'text-muted hover:text-dark' : 'text-white/50 hover:text-white'}`}
           >
-            📞 {SITE.phone}
+            <Icon name="phone" className="w-3.5 h-3.5" strokeWidth={2} /> {SITE.phone}
           </a>
           <Link
             href="/contact"
@@ -145,8 +146,8 @@ export function Navbar() {
               </Link>
             )
           ))}
-          <a href={`tel:${SITE.phone}`} className="block text-sm text-muted py-2.5">
-            📞 {SITE.phone}
+          <a href={`tel:${SITE.phone}`} className="flex items-center gap-2 text-sm text-muted py-2.5">
+            <Icon name="phone" className="w-4 h-4" strokeWidth={2} /> {SITE.phone}
           </a>
           <Link
             href="/contact"

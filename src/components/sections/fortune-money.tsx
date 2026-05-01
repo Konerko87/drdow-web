@@ -1,9 +1,10 @@
 import { FadeIn } from '@/components/ui/fade-in'
+import { Icon, type IconName } from '@/components/ui/icon'
 
-const FORTUNE_FEATURES = [
-  { icon: '🪙', title: '借金流程', desc: '身分驗證、擲筊、金額層級、祝福語，完整記錄每一筆借金。' },
-  { icon: '🔄', title: '還金管理', desc: '支援本人還金與代還，追蹤還金狀態，逾期提醒。' },
-  { icon: '🛡️', title: '規則引擎', desc: '借金上限、冷卻期、黑名單，由廟方自訂管理規則。' },
+const FORTUNE_FEATURES: { icon: IconName; title: string; desc: string }[] = [
+  { icon: 'coins', title: '借金流程', desc: '身分驗證、擲筊、金額層級、祝福語，完整記錄每一筆借金。' },
+  { icon: 'arrow-down', title: '還金管理', desc: '支援本人還金與代還，追蹤還金狀態，逾期提醒。' },
+  { icon: 'shield', title: '規則引擎', desc: '借金上限、冷卻期、黑名單，由廟方自訂管理規則。' },
 ]
 
 export function FortuneMoney() {
@@ -33,7 +34,9 @@ export function FortuneMoney() {
           {FORTUNE_FEATURES.map((feature, i) => (
             <FadeIn key={i} delay={i * 100}>
               <div className="bg-white/5 rounded-2xl p-8 border border-[#d97706]/10 hover:border-[#d97706]/30 transition-all text-center">
-                <div className="text-4xl mb-4">{feature.icon}</div>
+                <div className="w-14 h-14 rounded-2xl bg-[#d97706]/10 flex items-center justify-center mx-auto mb-4">
+                  <Icon name={feature.icon} className="w-7 h-7 text-[#d97706]" strokeWidth={1.75} />
+                </div>
                 <h3 className="text-lg font-bold mb-3" style={{ color: '#d97706' }}>{feature.title}</h3>
                 <p className="text-sm text-white/50 leading-relaxed">{feature.desc}</p>
               </div>

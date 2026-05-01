@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
+import { Icon } from '@/components/ui/icon'
 
 export function Footer() {
   return (
@@ -42,13 +43,13 @@ export function Footer() {
             <h4 className="text-white/70 font-semibold text-xs tracking-wider uppercase mb-4">聯絡我們</h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <a href={`tel:${SITE.phone}`} className="hover:text-white transition-colors">
-                  📞 {SITE.phone}
+                <a href={`tel:${SITE.phone}`} className="hover:text-white transition-colors inline-flex items-center gap-2">
+                  <Icon name="phone" className="w-3.5 h-3.5" strokeWidth={2} /> {SITE.phone}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors">
-                  ✉️ {SITE.email}
+                <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors inline-flex items-center gap-2">
+                  <Icon name="mail" className="w-3.5 h-3.5" strokeWidth={2} /> {SITE.email}
                 </a>
               </li>
               <li>

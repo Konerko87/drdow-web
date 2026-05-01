@@ -1,5 +1,6 @@
 import { FadeIn } from '@/components/ui/fade-in'
 import { FEATURE_MODULES, FEATURE_TAGS } from '@/lib/constants'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export function FeatureModules() {
   return (
@@ -19,7 +20,9 @@ export function FeatureModules() {
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             {FEATURE_MODULES.map((mod, i) => (
               <div key={i} className="bg-white rounded-xl p-5 text-center border border-black/5 hover:border-[#6b21a8]/20 hover:shadow-md transition-all">
-                <div className="text-3xl mb-2">{mod.icon}</div>
+                <div className="flex justify-center mb-2">
+                  <Icon name={mod.icon as IconName} className="w-7 h-7 text-[#6b21a8]" strokeWidth={1.75} />
+                </div>
                 <div className="text-xs font-semibold text-dark">{mod.name}</div>
               </div>
             ))}

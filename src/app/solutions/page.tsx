@@ -6,6 +6,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: '解決方案 — 宮廟管理 / 物流派車 / 倉儲管理 / 財務對帳 AI 數位轉型',
@@ -16,7 +17,7 @@ export const metadata: Metadata = createMetadata({
 
 const TEMPLE_SOLUTIONS = [
   {
-    icon: '🙏',
+    icon: 'hand-heart' as IconName,
     title: '信徒管理數位化',
     desc: '信徒資料從紙本、Excel 散落各處，整合到雲端系統。家庭關係、服務紀錄、捐款歷程一站查詢。',
     pain: '信徒資料分散在不同人的電腦和紙本',
@@ -24,7 +25,7 @@ const TEMPLE_SOLUTIONS = [
     products: ['廟通'],
   },
   {
-    icon: '🏮',
+    icon: 'lamp' as IconName,
     title: '點燈牌位服務整合',
     desc: '點燈、安太歲、牌位、進塔服務統一管理。受益人、燈位、年度自動帶入，不用每年重新 key。',
     pain: '每年點燈資料重新登記，容易搞混出錯',
@@ -32,7 +33,7 @@ const TEMPLE_SOLUTIONS = [
     products: ['廟通'],
   },
   {
-    icon: '💰',
+    icon: 'wallet' as IconName,
     title: '捐款收據自動化',
     desc: '具名、匿名捐款即時入帳，收據自動產生編號。日結對帳一鍵完成，財務透明可追蹤。',
     pain: '收據手開容易錯，月底對帳總是對不起來',
@@ -40,7 +41,7 @@ const TEMPLE_SOLUTIONS = [
     products: ['廟通'],
   },
   {
-    icon: '📋',
+    icon: 'clipboard-list' as IconName,
     title: '法會活動管理',
     desc: '法會報名、繳費、桌次安排、QR Code 報到全自動。活動前中後一條龍處理。',
     pain: '電話報名、手抄桌次，到場才發現位子不夠',
@@ -48,7 +49,7 @@ const TEMPLE_SOLUTIONS = [
     products: ['廟通'],
   },
   {
-    icon: '🪙',
+    icon: 'coins' as IconName,
     title: '發財金數位管理',
     desc: '擲筊流程、借金規則、額度控管、黑名單、還金追蹤全系統化。不靠手寫，不漏不亂。',
     pain: '借還紀錄靠手寫，查不到誰借了多少',
@@ -56,7 +57,7 @@ const TEMPLE_SOLUTIONS = [
     products: ['廟通'],
   },
   {
-    icon: '📊',
+    icon: 'bar-chart' as IconName,
     title: '財務報表透明化',
     desc: '收支管理、傳票、會計科目、預算控管。委員會隨時看到即時數據，不用等會計整理。',
     pain: '委員會要報表，會計要花一週整理',
@@ -67,7 +68,7 @@ const TEMPLE_SOLUTIONS = [
 
 const LOGISTICS_SOLUTIONS = [
   {
-    icon: '🚛',
+    icon: 'truck' as IconName,
     title: '派車自動化',
     desc: '從 WMS 匯入訂單到路線規劃、司機指派，全程自動化。調度員從每天 3 小時排車縮短到 30 分鐘。',
     pain: '每天花 3 小時在 Excel 排派車',
@@ -75,7 +76,7 @@ const LOGISTICS_SOLUTIONS = [
     products: ['TMS'],
   },
   {
-    icon: '📱',
+    icon: 'smartphone' as IconName,
     title: '司機行動管理',
     desc: '司機用 LINE 接單、GPS 打卡、拍照回報。不用裝 App，不用教操作。',
     pain: '司機用 LINE 群組回報，訊息常漏掉',
@@ -83,7 +84,7 @@ const LOGISTICS_SOLUTIONS = [
     products: ['TMS'],
   },
   {
-    icon: '🔧',
+    icon: 'wrench' as IconName,
     title: '車隊維護管理',
     desc: '保養排程自動提醒、報修 AI 解析分類、油耗異常預警。降低車隊維護成本。',
     pain: '驗車到期才發現、維修紀錄找不到',
@@ -94,7 +95,7 @@ const LOGISTICS_SOLUTIONS = [
 
 const FINANCE_SOLUTIONS = [
   {
-    icon: '📸',
+    icon: 'camera' as IconName,
     title: 'AI OCR 請款',
     desc: '廠商拍照上傳發票，AI 自動辨識廠商、金額、明細，準確率 95%+。',
     pain: '請款單堆滿桌、key 資料 key 到瘋',
@@ -102,7 +103,7 @@ const FINANCE_SOLUTIONS = [
     products: ['ERP'],
   },
   {
-    icon: '🏦',
+    icon: 'landmark' as IconName,
     title: '銀行自動對帳',
     desc: '每天自動登入企業網銀，AI 辨識驗證碼，抓取明細自動比對應收應付。',
     pain: '月底花 3 天比對銀行明細與應收帳款',
@@ -110,7 +111,7 @@ const FINANCE_SOLUTIONS = [
     products: ['ERP'],
   },
   {
-    icon: '🛡️',
+    icon: 'shield' as IconName,
     title: '六層付款防呆',
     desc: 'DB 約束、照片 hash、軟警告、Boss 審核、API 冪等性、逐筆確認。',
     pain: '怕重複付款、怕匯錯帳號、怕被發票騙',
@@ -118,7 +119,7 @@ const FINANCE_SOLUTIONS = [
     products: ['ERP'],
   },
   {
-    icon: '👔',
+    icon: 'briefcase' as IconName,
     title: '老闆行動審核',
     desc: 'iOS 風格手機介面，收款進度、待審核、薪資排行一頁掌握。',
     pain: '老闆不在公司就沒人能簽單',
@@ -129,7 +130,7 @@ const FINANCE_SOLUTIONS = [
 
 const WAREHOUSE_SOLUTIONS = [
   {
-    icon: '📦',
+    icon: 'scan-barcode' as IconName,
     title: '入庫掃碼自動化',
     desc: '到貨用條碼/QR 掃進系統，自動分配儲位與棧板，紙本驗收一次取代。',
     pain: '紙本驗收 + 手寫儲位，找貨找半天',
@@ -137,7 +138,7 @@ const WAREHOUSE_SOLUTIONS = [
     products: ['WMS'],
   },
   {
-    icon: '🚚',
+    icon: 'package' as IconName,
     title: '出庫揀貨防錯',
     desc: '揀貨清單按儲位排序，掃碼複核防錯出。出貨完成自動通知 TMS 派車。',
     pain: '揀錯貨被客訴、揀貨員一直繞來繞去',
@@ -145,7 +146,7 @@ const WAREHOUSE_SOLUTIONS = [
     products: ['WMS'],
   },
   {
-    icon: '📊',
+    icon: 'bar-chart' as IconName,
     title: '庫存即時透明',
     desc: '每一次異動立刻反映可用量、安全庫存、在途數，不用等夜批。',
     pain: '庫存表都是昨天的，業務不敢承諾交期',
@@ -153,7 +154,7 @@ const WAREHOUSE_SOLUTIONS = [
     products: ['WMS'],
   },
   {
-    icon: '🔍',
+    icon: 'search' as IconName,
     title: '盤點任務數位化',
     desc: '日盤、週盤、年盤任務派發，手機掃碼盤點，差異報表自動產出。',
     pain: '年度盤點停業 3 天、Excel 對到瘋掉',
@@ -169,12 +170,14 @@ function productBadgeClass(p: string) {
   return 'text-accent bg-accent/10'
 }
 
-function SolutionCard({ solution, i }: { solution: { icon: string; title: string; desc: string; pain: string; result: string; products: string[] }; i: number }) {
+function SolutionCard({ solution, i }: { solution: { icon: IconName; title: string; desc: string; pain: string; result: string; products: string[] }; i: number }) {
   return (
     <FadeIn key={i} delay={i * 80}>
       <div className="bg-surface rounded-2xl p-8 hover-lift">
         <div className="flex flex-col md:flex-row gap-6">
-          <div className="text-4xl">{solution.icon}</div>
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-purple/10 flex items-center justify-center flex-shrink-0">
+            <Icon name={solution.icon} className="w-7 h-7 text-accent" strokeWidth={1.75} />
+          </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <h3 className="text-xl font-black">{solution.title}</h3>

@@ -15,6 +15,7 @@ import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: '廟通 — 智慧宮廟管理系統｜LINE Pay 線上點燈、家人代辦、發財金',
@@ -124,7 +125,9 @@ export default function MiaotongPage() {
             {MIAOTONG_PAIN_POINTS.map((p, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div className="bg-white rounded-2xl p-6 border border-black/5 hover-lift h-full">
-                  <div className="text-3xl mb-4">{p.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-[#FEF2F2] flex items-center justify-center mb-4">
+                    <Icon name={p.icon as IconName} className="w-6 h-6 text-[#B91C1C]" strokeWidth={1.75} />
+                  </div>
                   <div className="mb-4">
                     <div className="flex items-start gap-2 mb-2">
                       <span className="text-[#B91C1C] text-xs font-bold mt-0.5">痛點</span>
@@ -164,7 +167,9 @@ export default function MiaotongPage() {
             {MIAOTONG_TARGET_AUDIENCE.map((t, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div className="bg-white rounded-2xl p-6 border border-black/5 hover-lift h-full">
-                  <div className="text-3xl mb-3">{t.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#B91C1C]/10 to-[#D97706]/10 flex items-center justify-center mb-3">
+                    <Icon name={t.icon as IconName} className="w-6 h-6 text-[#B91C1C]" strokeWidth={1.75} />
+                  </div>
                   <h3 className="text-base font-bold mb-2">{t.role}</h3>
                   <p className="text-sm text-muted leading-relaxed">{t.desc}</p>
                 </div>
@@ -203,7 +208,9 @@ export default function MiaotongPage() {
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <FadeIn>
-            <div className="text-5xl mb-6">📱</div>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#B91C1C]/10 to-[#D97706]/10 flex items-center justify-center mx-auto mb-6">
+              <Icon name="smartphone" className="w-8 h-8 text-[#B91C1C]" strokeWidth={1.75} />
+            </div>
             <h2 className="text-3xl md:text-4xl font-black mb-4">LINE 就能用，信眾免下載 App</h2>
             <p className="text-muted text-lg max-w-2xl mx-auto mb-12">
               信眾透過 LINE 就能線上點燈、法會報名、捐款紀錄查詢。不用下載 App、不用註冊帳號，打開 LINE 就能用。

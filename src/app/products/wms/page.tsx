@@ -10,6 +10,7 @@ import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Icon, type IconName } from '@/components/ui/icon'
 
 export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow WMS — 智慧倉儲管理系統｜盤點 3 天變 3 小時、條碼即時庫存',
@@ -58,34 +59,34 @@ const SCREENSHOTS = [
   },
 ] as const
 
-const WMS_WORKFLOW = [
-  { icon: '📥', title: '到貨入庫', desc: '掃碼自動分儲位' },
-  { icon: '📊', title: '庫存即時', desc: '異動立刻反映' },
-  { icon: '📋', title: '揀貨任務', desc: '按儲位排序' },
-  { icon: '📤', title: '出庫複核', desc: '掃碼防錯出' },
-  { icon: '🚛', title: '通知 TMS', desc: '自動推派車' },
-] as const
+const WMS_WORKFLOW: { icon: IconName; title: string; desc: string }[] = [
+  { icon: 'arrow-down', title: '到貨入庫', desc: '掃碼自動分儲位' },
+  { icon: 'bar-chart', title: '庫存即時', desc: '異動立刻反映' },
+  { icon: 'clipboard-list', title: '揀貨任務', desc: '按儲位排序' },
+  { icon: 'arrow-up', title: '出庫複核', desc: '掃碼防錯出' },
+  { icon: 'truck', title: '通知 TMS', desc: '自動推派車' },
+]
 
-const ROLE_SCENARIOS = [
+const ROLE_SCENARIOS: { role: string; device: string; icon: IconName; steps: string }[] = [
   {
     role: '倉管主管',
     device: '電腦',
-    icon: '👨‍💼',
+    icon: 'user-circle',
     steps: '看儀表板 → 在庫量 12,840、今日出貨 418 → 點低庫存清單 → 一鍵生成補貨單 → 通知採購',
   },
   {
     role: '現場作業員',
     device: '手機',
-    icon: '👷',
+    icon: 'hard-hat',
     steps: '打開手機 → 接到揀貨任務 → 按儲位順序揀貨 → 掃碼複核 → 系統自動扣帳、通知 TMS',
   },
   {
     role: '盤點人員',
     device: '手機',
-    icon: '🔍',
+    icon: 'search',
     steps: '收到盤點任務 → 掃碼或手動 → 數量輸入 → 系統自動比對差異 → 報表自動產出',
   },
-] as const
+]
 
 export default function WMSPage() {
   return (
@@ -185,7 +186,9 @@ export default function WMSPage() {
             {ROLE_SCENARIOS.map((scenario, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="bg-white rounded-2xl p-8 hover-lift h-full">
-                  <div className="text-4xl mb-3">{scenario.icon}</div>
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/10 to-cyan-600/10 flex items-center justify-center mb-4">
+                    <Icon name={scenario.icon} className="w-6 h-6 text-cyan-700" strokeWidth={1.75} />
+                  </div>
                   <div className="flex items-center gap-2 mb-4">
                     <h3 className="text-lg font-bold">{scenario.role}</h3>
                     <span className="text-xs text-muted bg-surface px-2 py-0.5 rounded-full">{scenario.device}</span>
@@ -240,8 +243,8 @@ export default function WMSPage() {
             {WMS_WORKFLOW.map((step, i) => (
               <FadeIn key={i} delay={i * 100} className="flex items-center gap-2">
                 <div className="text-center">
-                  <div className="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center text-2xl mx-auto mb-2">
-                    {step.icon}
+                  <div className="w-14 h-14 rounded-full bg-cyan-600 text-white flex items-center justify-center mx-auto mb-2">
+                    <Icon name={step.icon} className="w-6 h-6" strokeWidth={1.75} />
                   </div>
                   <p className="text-sm font-bold">{step.title}</p>
                   <p className="text-xs text-muted">{step.desc}</p>
