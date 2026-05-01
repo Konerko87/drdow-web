@@ -4,6 +4,39 @@
 
 ---
 
+## v1.10.4 — 2026-05-01
+### 變更內容（部落格 editorial 第五批：prev/next + CTA 卡片升級）
+
+把文章底部的「上一篇／下一篇」和 CTA 從一般 `bg-surface` 卡片升級為 editorial 風格，跟整篇雜誌調性收齊。
+
+**Prev / Next**
+- `bg-surface` → 白底 + `var(--color-blog-rule)` hairline border
+- 標籤改 12px uppercase + tracking-wider 米黃色，箭頭染深紅
+- 標題改 Noto Serif TC 17px serif（雜誌 card 標題感）
+- Hover：上浮 0.5px + 暖色陰影（`shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)]`）
+
+**CTA 卡片**
+- 背景改白底 + 雙 radial gradient 暈染（右上金、左下深紅，opacity 8-10%）模擬廟宇香煙感
+- 加 12px uppercase 紅色 eyebrow 「下一步 · Next Step」
+- H3 改 Noto Serif TC `clamp(22px, 2.4vw, 28px)` serif
+- 主按鈕從「圓角 + accent 紫」改成「廟通深紅 + box-shadow 紅暈染 + 10px 圓角」
+- 副按鈕從「surface hover」改成「米白 hover」配色
+
+**為什麼**
+- 文章內文已全部 editorial 化，但底部還是站內通用 surface 樣式，視覺斷層
+- 統一後讀者從 hero 進入到文末 CTA，整段體驗都是廟通深紅+金的雜誌調性
+- CTA 文案順帶從通用「想了解更多？」換成廟通專屬的「想看看廟通怎麼解掉你的管理痛點？」，更精準對應 blog 流量意圖
+
+**影響檔案**
+- `src/app/blog/[slug]/page.tsx`（prev/next nav block + CTA 區）
+
+**回滾**
+```bash
+git revert <v1.10.4-commit>
+```
+
+---
+
 ## v1.10.3 — 2026-05-01
 ### 變更內容（部落格 editorial 第四批：code/table/inline-code 三件套）
 

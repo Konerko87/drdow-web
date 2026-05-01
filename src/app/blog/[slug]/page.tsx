@@ -204,34 +204,67 @@ export default async function BlogPostPage(
               const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
               const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
               return (prevPost || nextPost) ? (
-                <nav className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <nav className="mt-20 mb-14 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {prevPost ? (
-                    <Link href={`/blog/${prevPost.slug}`} className="group p-4 bg-surface rounded-xl hover:bg-accent/5 transition-colors">
-                      <span className="text-xs text-muted">← 上一篇</span>
-                      <p className="text-sm font-semibold mt-1 group-hover:text-accent transition-colors line-clamp-2">{prevPost.title}</p>
+                    <Link
+                      href={`/blog/${prevPost.slug}`}
+                      className="group block p-6 bg-white border border-[var(--color-blog-rule)] rounded-2xl hover:-translate-y-0.5 hover:border-[var(--color-blog-rule)]/60 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all"
+                    >
+                      <div className="text-[11px] tracking-[0.14em] uppercase text-[var(--color-blog-muted)] mb-2.5 font-medium">
+                        <span className="text-[var(--color-blog-accent)]">←</span>&nbsp; 上一篇
+                      </div>
+                      <p className="font-[family-name:var(--font-noto-serif-tc)] text-[17px] font-semibold leading-snug text-[var(--color-blog-ink)] line-clamp-2">{prevPost.title}</p>
                     </Link>
                   ) : <div />}
                   {nextPost && (
-                    <Link href={`/blog/${nextPost.slug}`} className="group p-4 bg-surface rounded-xl hover:bg-accent/5 transition-colors text-right">
-                      <span className="text-xs text-muted">下一篇 →</span>
-                      <p className="text-sm font-semibold mt-1 group-hover:text-accent transition-colors line-clamp-2">{nextPost.title}</p>
+                    <Link
+                      href={`/blog/${nextPost.slug}`}
+                      className="group block p-6 bg-white border border-[var(--color-blog-rule)] rounded-2xl hover:-translate-y-0.5 hover:border-[var(--color-blog-rule)]/60 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all text-right"
+                    >
+                      <div className="text-[11px] tracking-[0.14em] uppercase text-[var(--color-blog-muted)] mb-2.5 font-medium">
+                        下一篇 &nbsp;<span className="text-[var(--color-blog-accent)]">→</span>
+                      </div>
+                      <p className="font-[family-name:var(--font-noto-serif-tc)] text-[17px] font-semibold leading-snug text-[var(--color-blog-ink)] line-clamp-2">{nextPost.title}</p>
                     </Link>
                   )}
                 </nav>
               ) : null
             })()}
 
-            {/* CTA */}
-            <div className="mt-16 p-8 bg-surface rounded-2xl text-center">
-              <h3 className="text-xl font-black mb-2">想了解更多？</h3>
-              <p className="text-sm text-muted mb-4">預約 30 分鐘 Demo，看看 Dr.Dow AI 如何解決你的管理痛點。</p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link href="/contact" className="inline-block px-6 py-2.5 bg-accent text-white rounded-full text-sm font-semibold hover:bg-accent-light transition-colors">
-                  免費諮詢 →
-                </Link>
-                <Link href="/products/miaotong" className="inline-block px-6 py-2.5 border border-slate-200 rounded-full text-sm font-semibold hover:bg-surface transition-colors">
-                  了解廟通
-                </Link>
+            {/* CTA — editorial 風雙漸層暈染卡 */}
+            <div className="relative mt-16 p-12 bg-white border border-[var(--color-blog-rule)] rounded-[18px] text-center overflow-hidden">
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(ellipse 60% 40% at 80% 0%, rgba(217, 119, 6, 0.10), transparent 60%), radial-gradient(ellipse 50% 50% at 0% 100%, rgba(185, 28, 28, 0.08), transparent 60%)',
+                }}
+              />
+              <div className="relative">
+                <div className="text-[11px] tracking-[0.18em] uppercase text-[var(--color-blog-accent)] mb-2.5 font-semibold">
+                  下一步 · Next Step
+                </div>
+                <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-[clamp(22px,2.4vw,28px)] font-bold leading-[1.35] mb-3 text-[var(--color-blog-ink)]">
+                  想看看廟通怎麼解掉你的管理痛點？
+                </h3>
+                <p className="text-[15px] text-[var(--color-blog-muted)] leading-[1.7] max-w-[480px] mx-auto mb-7">
+                  預約 30 分鐘 Demo，由團隊直接帶你跑完香油錢、會員、財報三個關鍵流程。
+                </p>
+                <div className="inline-flex flex-wrap gap-3 justify-center">
+                  <Link
+                    href="/contact"
+                    className="inline-block px-[22px] py-3.5 bg-[var(--color-blog-accent)] text-white rounded-[10px] text-[14.5px] font-medium tracking-[0.02em] shadow-[0_10px_22px_-14px_rgba(185,28,28,0.6)] hover:bg-[#a01818] hover:-translate-y-0.5 transition-all"
+                  >
+                    預約 Demo →
+                  </Link>
+                  <Link
+                    href="/products/miaotong"
+                    className="inline-block px-[22px] py-3.5 bg-transparent text-[var(--color-blog-ink)] border border-[var(--color-blog-rule)] rounded-[10px] text-[14.5px] font-medium tracking-[0.02em] hover:bg-[var(--color-blog-cream)]/60 transition-colors"
+                  >
+                    了解廟通
+                  </Link>
+                </div>
               </div>
             </div>
 
