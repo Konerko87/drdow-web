@@ -21,7 +21,7 @@ export function FamilyProxy() {
           {/* Right: text */}
           <FadeIn delay={100}>
             <div>
-              <span className="text-xs font-bold tracking-wider uppercase text-[#6b21a8] mb-4 block">LINE 行動端</span>
+              <span className="text-xs font-bold tracking-wider uppercase text-[#B91C1C] mb-4 block">LINE 行動端</span>
               <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 家庭代辦與信徒自助查詢
               </h2>

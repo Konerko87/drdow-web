@@ -21,7 +21,7 @@ export function LightManagement() {
           {/* Right: text */}
           <FadeIn delay={100}>
             <div>
-              <span className="text-xs font-bold tracking-wider uppercase text-[#6b21a8] mb-4 block">核心模組</span>
+              <span className="text-xs font-bold tracking-wider uppercase text-[#B91C1C] mb-4 block">核心模組</span>
               <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 點燈管理從受理到列印一條龍
               </h2>

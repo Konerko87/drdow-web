@@ -34,7 +34,7 @@ const CTA_COPY: Record<CTAVariant, {
 export function CTASection({ variant = 'generic' }: { variant?: CTAVariant } = {}) {
   const copy = CTA_COPY[variant]
   return (
-    <section className="relative py-28 overflow-hidden" style={{ background: 'linear-gradient(135deg, #6b21a8, #dc2626)' }} aria-label="行動呼籲">
+    <section className="relative py-28 overflow-hidden" style={{ background: 'linear-gradient(135deg, #B91C1C, #d97706)' }} aria-label="行動呼籲">
       {/* Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/5 rounded-full blur-[120px]" />

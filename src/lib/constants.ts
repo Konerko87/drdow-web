@@ -122,12 +122,12 @@ export const PAIN_POINTS = [
 ] as const
 
 export const STATS = [
-  { value: '14', label: '功能模組' },
-  { value: '3', label: '端整合' },
-  { value: '100%', label: '台灣在地開發' },
-  { value: 'LINE', label: '免安裝直接用' },
-  { value: '0', label: '需要下載 App' },
-  { value: '24/7', label: '系統不間斷' },
+  { value: '14', label: '功能模組', icon: 'boxes' },
+  { value: '3', label: '端整合', icon: 'link' },
+  { value: '100%', label: '台灣在地開發', icon: 'map-pin' },
+  { value: 'LINE', label: '免安裝直接用', icon: 'smartphone' },
+  { value: '0', label: '需要下載 App', icon: 'check-circle' },
+  { value: '24/7', label: '系統不間斷', icon: 'clock' },
 ] as const
 
 export const LINE_PAY_STEPS = [

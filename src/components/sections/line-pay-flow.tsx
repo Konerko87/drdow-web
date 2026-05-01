@@ -5,7 +5,7 @@ import { LINE_PAY_STEPS } from '@/lib/constants'
 
 export function LinePayFlow() {
   return (
-    <section id="features" className="py-28 md:py-36 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #faf5ff 0%, #f3e8ff 50%, #faf5ff 100%)' }} aria-label="LINE Pay 線上點燈流程">
+    <section id="features" className="py-28 md:py-36 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #fef7f2 0%, #fdf3e7 50%, #fef7f2 100%)' }} aria-label="LINE Pay 線上點燈流程">
       {/* Gold accent glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#d97706]/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -35,11 +35,11 @@ export function LinePayFlow() {
               <div key={i} className="flex-shrink-0 w-[220px] md:w-auto text-center relative">
                 {/* Step indicator */}
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: i === 3 ? '#d97706' : '#6b21a8' }}>
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: i === 3 ? '#d97706' : '#B91C1C' }}>
                     {item.step}
                   </div>
                   {i < LINE_PAY_STEPS.length - 1 && (
-                    <div className="hidden md:block absolute top-4 left-[calc(50%+20px)] w-[calc(100%-40px)] h-px bg-gradient-to-r from-[#6b21a8]/30 to-[#6b21a8]/10" />
+                    <div className="hidden md:block absolute top-4 left-[calc(50%+20px)] w-[calc(100%-40px)] h-px bg-gradient-to-r from-[#B91C1C]/30 to-[#B91C1C]/10" />
                   )}
                 </div>
 
@@ -68,7 +68,7 @@ export function LinePayFlow() {
 
         {/* Comparison callout */}
         <FadeIn className="mt-16">
-          <div className="bg-white rounded-2xl p-8 md:p-10 border border-[#6b21a8]/10 max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl p-8 md:p-10 border border-[#B91C1C]/10 max-w-3xl mx-auto">
             <p className="text-muted text-sm md:text-base leading-relaxed mb-4">
               很多所謂線上點燈，最後還是落回人工查匯款、人工核對、人工補通知。
             </p>
@@ -83,7 +83,7 @@ export function LinePayFlow() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-white transition-all hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #d97706, #dc2626)', boxShadow: '0 4px 20px rgba(217,119,6,0.3)' }}
+            style={{ background: 'linear-gradient(135deg, #fbbf24, #d97706)', boxShadow: '0 4px 20px rgba(217,119,6,0.4)' }}
           >
             預約展示，看實際操作
             <span>→</span>

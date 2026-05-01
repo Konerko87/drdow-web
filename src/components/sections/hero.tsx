@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { TempleCloudPattern } from '@/components/ui/temple-cloud-pattern'
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(135deg, #6b21a8, #dc2626)' }} aria-label="首頁主視覺">
-      {/* Subtle overlay pattern */}
+    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(135deg, #B91C1C, #d97706)' }} aria-label="首頁主視覺">
+      {/* 廟宇雲紋紋理層（open-design 產出） */}
+      <TempleCloudPattern opacity={0.1} />
+
+      {/* 兩團柔光增加深度 */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px]" />
@@ -62,7 +66,7 @@ export function Hero() {
               <Link
                 href="/contact"
                 className="group px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 shadow-lg text-center"
-                style={{ background: 'linear-gradient(135deg, #d97706, #dc2626)', color: '#fff', boxShadow: '0 4px 20px rgba(220,38,38,0.35)' }}
+                style={{ background: 'linear-gradient(135deg, #fbbf24, #d97706)', color: '#fff', boxShadow: '0 4px 20px rgba(217,119,6,0.45)' }}
               >
                 預約免費展示
                 <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>

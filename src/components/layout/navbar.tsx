@@ -94,7 +94,7 @@ export function Navbar() {
           <Link
             href="/contact"
             className="px-5 py-2 rounded-full text-xs font-semibold transition-all text-white"
-            style={{ background: '#6b21a8' }}
+            style={{ background: '#B91C1C' }}
           >
             預約展示
           </Link>
@@ -152,7 +152,7 @@ export function Navbar() {
           <Link
             href="/contact"
             className="block text-center px-5 py-2.5 text-white rounded-full text-sm font-semibold mt-4"
-            style={{ background: '#6b21a8' }}
+            style={{ background: '#B91C1C' }}
             onClick={() => setMobileOpen(false)}
           >
             預約展示

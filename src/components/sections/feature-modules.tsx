@@ -4,7 +4,7 @@ import { Icon, type IconName } from '@/components/ui/icon'
 
 export function FeatureModules() {
   return (
-    <section className="py-28 bg-[#faf5ff]/50" aria-label="功能模組">
+    <section className="py-28 bg-[#fef7f2]/60" aria-label="功能模組">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-16">
           <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-bold tracking-tight mb-4">
@@ -19,9 +19,9 @@ export function FeatureModules() {
         <FadeIn>
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             {FEATURE_MODULES.map((mod, i) => (
-              <div key={i} className="bg-white rounded-xl p-5 text-center border border-black/5 hover:border-[#6b21a8]/20 hover:shadow-md transition-all">
+              <div key={i} className="bg-white rounded-xl p-5 text-center border border-black/5 hover:border-[#B91C1C]/20 hover:shadow-md transition-all">
                 <div className="flex justify-center mb-2">
-                  <Icon name={mod.icon as IconName} className="w-7 h-7 text-[#6b21a8]" strokeWidth={1.75} />
+                  <Icon name={mod.icon as IconName} className="w-7 h-7 text-[#B91C1C]" strokeWidth={1.75} />
                 </div>
                 <div className="text-xs font-semibold text-dark">{mod.name}</div>
               </div>
@@ -38,7 +38,7 @@ export function FeatureModules() {
                 className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
                   tag.highlight
                     ? 'bg-[#d97706]/10 text-[#92400e] border-[#d97706]/30 font-bold'
-                    : 'bg-white text-muted border-black/5 hover:border-[#6b21a8]/20'
+                    : 'bg-white text-muted border-black/5 hover:border-[#B91C1C]/20'
                 }`}
               >
                 {tag.name}

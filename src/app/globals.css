@@ -3,9 +3,9 @@
 
 @theme inline {
   --color-brand: #0A0A0A;
-  --color-accent: #6b21a8;
-  --color-accent-light: #7c3aed;
-  --color-purple: #dc2626;
+  --color-accent: #B91C1C;        /* 廟通紅，主品牌色 */
+  --color-accent-light: #d97706;  /* 廟通金，次強調色 */
+  --color-purple: #6b21a8;        /* 深紫，僅供漸層配色用，不是主色 */
   --color-gold: #d97706;
   --color-success: #22C55E;
   --color-surface: #F8FAFC;
@@ -40,7 +40,7 @@ html {
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid #6b21a8;
+  outline: 2px solid #B91C1C;
   outline-offset: 2px;
 }
 
@@ -58,7 +58,7 @@ html {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #6b21a8, #dc2626);
+  background: linear-gradient(135deg, #B91C1C, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -66,7 +66,7 @@ html {
 
 /* Temple gradient text (same as main now) */
 .gradient-text-temple {
-  background: linear-gradient(135deg, #6b21a8, #dc2626);
+  background: linear-gradient(135deg, #B91C1C, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,7 +97,7 @@ html {
 
 /* Selection */
 ::selection {
-  background: rgba(107, 33, 168, 0.15);
+  background: rgba(185, 28, 28, 0.15);
 }
 
 /* Gradient border */
@@ -111,7 +111,7 @@ html {
   position: absolute;
   inset: -1px;
   border-radius: 25px;
-  background: linear-gradient(135deg, rgba(107,33,168,0.2), rgba(220,38,38,0.2));
+  background: linear-gradient(135deg, rgba(185,28,28,0.2), rgba(217,119,6,0.2));
   z-index: -1;
 }
 
@@ -126,7 +126,7 @@ html {
   position: absolute;
   inset: -1px;
   border-radius: 25px;
-  background: linear-gradient(135deg, rgba(107,33,168,0.2), rgba(220,38,38,0.2));
+  background: linear-gradient(135deg, rgba(185,28,28,0.2), rgba(217,119,6,0.2));
   z-index: -1;
 }
 

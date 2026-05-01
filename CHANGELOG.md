@@ -4,6 +4,32 @@
 
 ---
 
+## v1.15.0 — 2026-05-02
+### 變更內容（廟通 brand color 全站校正 + open-design 三件設計交付）
+
+**核心問題**：v1.14.0 後 `globals.css` design tokens 是亂的（`--color-accent: #6b21a8` 紫色被當主色，`--color-purple: #dc2626` 紅色被當副色），整站視覺跟廟通紅金品牌不合。先校正 token，再用 [nexu-io/open-design](https://github.com/nexu-io/open-design) 補上 v1.14.0 手刻不到位的三段視覺。
+
+**Part 1 — Mass color token 校正**
+- `globals.css`：`--color-accent` 改 `#B91C1C`（廟通紅），`--color-accent-light` 改 `#d97706`（廟通金），`--color-purple` 降級為 deprecated alias；`.gradient-text` / `.gradient-text-temple` / `:focus-visible` / `::selection` / `.gradient-border*` 全改紅金漸層
+- 8 個 components 的 hard-coded `#6b21a8` → `#B91C1C`：`pain-points`、`navbar`、`receipts-docs`、`light-management`、`family-proxy`、`counter-ops`、`cta-section`、`hero`、`line-pay-flow`、`numbers`、`feature-modules`
+- Pain-points / Numbers / Feature-modules 卡片 `bg-[#faf5ff]` 紫米色 → `bg-[#fef7f2]` 暖米色
+- AnimatedBeam / AI workflow beam 從藍紫 `#3B82F6→#8B5CF6` 改廟通紅金 `#B91C1C→#d97706`
+
+**Part 2 — Open-design 視覺交付**
+透過 daemon `/api/runs` 驅動 web-prototype skill + warm-editorial design system 產出三段 artifact，整合進 React。
+
+- **Hero 廟宇雲紋背景** → 新元件 `temple-cloud-pattern.tsx`：220×220 tile 內 3 個祥雲 motif（如意雲頭 + S 頸 + 內捲尾）+ 雲帶連結，opacity 0.10，疊在紅金漸層上
+- **404 紅燈籠插畫** → 重寫 `illustration-404.tsx`：天燈 + 暖金光暈 (radialGradient) + 廟簷剪影 + 12 顆散落金粉 + 虛線軌跡 + ghost 404 文字
+- **Numbers 暖色卡片版型** → 重寫 `numbers.tsx`：暖米色漸層背景 + 廟通紅點陣紋理 + 6 張白卡（紅軟邊 + 圓角 + hover lift），每卡 40×40 紅金 icon container + 巨大 Noto Serif TC 漸層數字 + 細小 label。Inline duotone SVG icons（boxes / link / map-pin / smartphone / check-circle / clock）
+
+**影響檔案**
+- 新增：`src/components/ui/temple-cloud-pattern.tsx`
+- 修改：`src/app/globals.css`、`src/components/ui/animated-beam.tsx`、`src/components/ui/illustration-404.tsx`、`src/components/sections/{hero,pain-points,numbers,feature-modules,line-pay-flow,cta-section,counter-ops,family-proxy,light-management,receipts-docs,ai-workflow}.tsx`、`src/components/layout/navbar.tsx`
+
+**回滾指令**：`git revert <v1.15.0-hash>`
+
+---
+
 ## v1.14.0 — 2026-05-01
 ### 變更內容（A+B+C 視覺升級：Phosphor duotone + DotPattern + AnimatedBeam + 404 插畫）
 
