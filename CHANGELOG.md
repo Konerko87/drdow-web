@@ -4,6 +4,30 @@
 
 ---
 
+## v1.10.2 — 2026-05-01
+### 變更內容（部落格 editorial 第三批：hero 區升級）
+
+繼 v1.10.0 / v1.10.1 之後，把文章 hero 區（tags、H1、meta row）也 editorial 化，與正文 H2/H3 的 Noto Serif TC + 廟通紅金調性一致。
+
+**變更**
+- **Tag chips**：第一個 tag 改深紅底高亮（`var(--color-blog-accent)` 10% 透明 + 紅字），其餘用暖米白底（`var(--color-blog-cream)` + muted 文字），符合設計稿「主分類醒目、副標籤低調」的階層
+- **H1**：字型改 Noto Serif TC（`var(--font-noto-serif-tc)`），字級 `text-4xl md:text-5xl`，`leading-[1.2]` 緊湊行距，色用 `var(--color-blog-ink)` 純黑
+- **Meta row**：用 `·` 分隔（`var(--color-blog-rule)` 灰）三個資訊：發表日期、閱讀時間、作者；新增「作者 · Dr.Dow 編輯部」資訊增加雜誌感
+
+**為什麼**
+- v1.10.0/.1 已升級正文，但 hero 仍是預設 sans-serif + 紫色 chip，與正文 editorial 風格不一致
+- 統一後整個文章頁從進入到讀完都是雜誌調性，廟通主題 (深紅+金) 一以貫之
+
+**影響檔案**
+- `src/app/blog/[slug]/page.tsx`（tags / H1 / meta row 三段 JSX）
+
+**回滾**
+```bash
+git revert <v1.10.2-commit>
+```
+
+---
+
 ## v1.10.1 — 2026-05-01
 ### 變更內容（部落格 editorial 第二批：drop cap + pull-quote）
 

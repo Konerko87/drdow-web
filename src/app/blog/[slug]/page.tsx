@@ -117,26 +117,38 @@ export default async function BlogPostPage(
               ← 返回部落格
             </Link>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {post.tags.map((tag) => (
-                <span key={tag} className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-0.5 rounded-full">
+            {/* Tags — first chip uses brand red, rest use warm cream */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              {post.tags.map((tag, idx) => (
+                <span
+                  key={tag}
+                  className={
+                    idx === 0
+                      ? 'text-xs font-semibold text-[var(--color-blog-accent)] bg-[var(--color-blog-accent)]/10 px-3 py-1 rounded-full'
+                      : 'text-xs font-semibold text-[var(--color-blog-muted)] bg-[var(--color-blog-cream)] px-3 py-1 rounded-full'
+                  }
+                >
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-black mb-4 leading-tight">{post.title}</h1>
+            {/* Title — Noto Serif TC for editorial feel */}
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 leading-[1.2] tracking-tight text-[var(--color-blog-ink)]">
+              {post.title}
+            </h1>
 
-            {/* Meta */}
-            <div className="flex items-center gap-4 text-sm text-muted mb-8">
+            {/* Meta row with · separators and author */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--color-blog-muted)] mb-10">
               <time dateTime={post.date}>
                 {new Date(post.date).toLocaleDateString('zh-TW', {
                   year: 'numeric', month: 'long', day: 'numeric',
                 })}
               </time>
+              <span className="text-[var(--color-blog-rule)]">·</span>
               <span>閱讀約 {post.readingTime} 分鐘</span>
+              <span className="text-[var(--color-blog-rule)]">·</span>
+              <span>作者 · <span className="text-[var(--color-blog-ink)]">Dr.Dow 編輯部</span></span>
             </div>
 
             {/* Cover Image */}
