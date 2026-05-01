@@ -18,6 +18,15 @@ export function FadeIn({
     const el = ref.current
     if (!el) return
 
+    // If element is already in viewport on mount (above-the-fold or tall content
+    // where 10% threshold can't be met), reveal immediately.
+    const rect = el.getBoundingClientRect()
+    const vh = window.innerHeight || document.documentElement.clientHeight
+    if (rect.top < vh && rect.bottom > 0) {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -25,7 +34,7 @@ export function FadeIn({
           observer.unobserve(el)
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' }
     )
 
     observer.observe(el)

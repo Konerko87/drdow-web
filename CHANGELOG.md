@@ -4,6 +4,35 @@
 
 ---
 
+## v1.9.1 — 2026-05-01
+### 變更內容（部落格文章排版徹底修復）
+
+**根本原因（3 個疊加 bug）**
+1. `@tailwindcss/typography` 從未安裝 → 文章用的 `prose prose-lg ...` class 全部沒效果，瀏覽器拿到裸 HTML
+2. `markdownToHtml()` 是手寫 regex 解析器，不支援表格、程式碼區塊（```）、inline code（`），導致 WMS 報價文等含表格的文章呈現為 `| --- |` 純文字
+3. `<figure>` 被 paragraph 規則包進 `<p>`、`<ol>` 從不會被包起來等多項細節錯誤
+4. 額外發現：`FadeIn` 用 `threshold: 0.1`，超長文章 10% 達不到視窗高度時整篇 opacity:0 不顯示
+
+**修復**
+- 安裝 `marked@18` + `@tailwindcss/typography@0.5`
+- `globals.css` 加 `@plugin "@tailwindcss/typography"` 啟用 prose 樣式
+- `src/app/blog/[slug]/page.tsx` 換成 marked GFM 解析器，外部連結自動 `target="_blank" rel="noopener"`，圖片包成 `<figure>` + `<figcaption>`
+- 大幅擴充 prose className：表格樣式（rounded、邊框、hover 高亮）、程式碼區塊（深色背景）、inline code（紫色 chip）、引言區塊（accent 邊框 + 淡紫底）、圖片圓角邊框、標題 H2 底線
+- `FadeIn`：mount 時若元素已在 viewport 立刻顯示（不靠 IntersectionObserver），threshold 改 0
+
+**影響檔案**
+- `src/app/blog/[slug]/page.tsx`
+- `src/app/globals.css`
+- `src/components/ui/fade-in.tsx`
+- `package.json` / `package-lock.json`（新增 marked、@tailwindcss/typography）
+
+**回滾指令**
+```
+git revert <commit-hash>
+```
+
+---
+
 ## v1.9.0 — 2026-05-01
 ### 變更內容（全站 icon 系統升級：emoji → Lucide React）
 

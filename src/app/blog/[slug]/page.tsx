@@ -2,12 +2,39 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { Marked } from 'marked'
 import { createMetadata } from '@/lib/metadata'
 import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/blog'
 import { RelatedPosts } from '@/components/sections/related-posts'
 import { FadeIn } from '@/components/ui/fade-in'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
+
+// GFM-aware markdown renderer with custom tweaks for:
+// - Open external links in new tab
+// - Wrap images in <figure> with caption from alt text
+const md = new Marked({
+  gfm: true,
+  breaks: false,
+  async: false,
+})
+md.use({
+  renderer: {
+    link({ href, title, tokens }) {
+      const text = this.parser.parseInline(tokens)
+      const isExternal = /^https?:\/\//.test(href)
+      const attrs = isExternal ? ' target="_blank" rel="noopener noreferrer"' : ''
+      const titleAttr = title ? ` title="${title}"` : ''
+      return `<a href="${href}"${titleAttr}${attrs}>${text}</a>`
+    },
+    image({ href, title, text }) {
+      const titleAttr = title ? ` title="${title}"` : ''
+      const altAttr = text ? ` alt="${text}"` : ''
+      const caption = text || title || ''
+      return `<figure><img src="${href}"${altAttr}${titleAttr} loading="lazy" decoding="async" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`
+    },
+  },
+})
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }))
@@ -134,18 +161,28 @@ export default async function BlogPostPage(
             {/* Content */}
             <div
               className="prose prose-lg max-w-none
-                prose-headings:font-black prose-headings:text-dark
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                prose-p:text-muted prose-p:leading-relaxed
-                prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-dark
-                prose-ul:text-muted prose-ol:text-muted
-                prose-li:my-1
-                prose-blockquote:border-accent prose-blockquote:text-muted prose-blockquote:not-italic
-                prose-img:rounded-xl prose-img:mx-auto
+                prose-headings:font-black prose-headings:text-dark prose-headings:tracking-tight
+                prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:pb-2 prose-h2:border-b prose-h2:border-black/5
+                prose-h3:text-lg md:prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:text-dark
+                prose-p:text-[15px] md:prose-p:text-base prose-p:text-slate-700 prose-p:leading-[1.85] prose-p:my-5
+                prose-a:text-accent prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-dark prose-strong:font-bold
+                prose-ul:my-5 prose-ul:text-slate-700 prose-ol:my-5 prose-ol:text-slate-700
+                prose-li:my-2 prose-li:leading-relaxed marker:text-accent/60
+                prose-blockquote:border-l-4 prose-blockquote:border-accent prose-blockquote:bg-accent/5 prose-blockquote:py-1 prose-blockquote:px-5 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-slate-700
+                prose-img:rounded-2xl prose-img:mx-auto prose-img:my-2 prose-img:border prose-img:border-black/5
+                prose-figure:my-10 prose-figcaption:text-center prose-figcaption:text-xs prose-figcaption:text-muted prose-figcaption:mt-2
+                prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none
+                prose-pre:bg-[#0f172a] prose-pre:text-slate-100 prose-pre:rounded-xl prose-pre:p-5 prose-pre:my-8 prose-pre:overflow-x-auto prose-pre:text-sm prose-pre:leading-relaxed
+                prose-hr:my-12 prose-hr:border-black/10
+                [&_table]:my-8 [&_table]:w-full [&_table]:text-sm [&_table]:border-collapse [&_table]:overflow-hidden [&_table]:rounded-xl [&_table]:border [&_table]:border-black/5
+                [&_thead]:bg-surface
+                [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:font-bold [&_th]:text-dark [&_th]:border-b [&_th]:border-black/10
+                [&_td]:px-4 [&_td]:py-3 [&_td]:border-b [&_td]:border-black/5 [&_td]:text-slate-700 [&_td]:align-top
+                [&_tbody_tr:last-child_td]:border-b-0
+                [&_tbody_tr:hover]:bg-accent/[0.03]
               "
-              dangerouslySetInnerHTML={{ __html: markdownToHtml(post.content) }}
+              dangerouslySetInnerHTML={{ __html: md.parse(post.content) as string }}
             />
 
             {/* Prev / Next Navigation */}
@@ -195,30 +232,3 @@ export default async function BlogPostPage(
   )
 }
 
-function markdownToHtml(md: string): string {
-  return md
-    // Images (before paragraphs)
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<figure><img src="$2" alt="$1" loading="lazy" decoding="async" /><figcaption>$1</figcaption></figure>')
-    // Headers
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // Bold & italic
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Links (external get noopener + new tab)
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-    // Unordered lists
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-    // Ordered lists
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // Blockquotes
-    .replace(/^> (.+)$/gm, '<blockquote><p>$1</p></blockquote>')
-    // Horizontal rule
-    .replace(/^---$/gm, '<hr />')
-    // Paragraphs
-    .replace(/^(?!<[hluobip])(.+)$/gm, '<p>$1</p>')
-    .replace(/<p><\/p>/g, '')
-}
