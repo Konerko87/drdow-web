@@ -4,6 +4,31 @@
 
 ---
 
+## v1.15.4 — 2026-05-02
+### 變更內容（/products/miaotong target audience + advantages 編輯級重做）
+
+用 [open-design v0.1.0](https://github.com/nexu-io/open-design) `web-prototype` skill + `warm-editorial` design system 跑 `drdow-miaotong-editorial-1777677669` 專案，產出 614 行 HTML artifact，整合進廟通產品頁。
+
+**Section A — 誰適合使用廟通？（Target Audience）**
+- 灰白頁面 → 暖米色漸層底（`#fef7f2 → #fdf3e7`）+ 24px 廟通紅點陣紋理 + 上下漸隱 mask（避免太滿）
+- Section header 從 plain h2 → mono caps eyebrow（`為宮廟團隊而生`，雙側細線裝飾）+ Noto Serif TC 800 標題 + lede 引述
+- 6 張角色卡升級：12 → 12 圓角 → 24 圓角；icon container 改 48×48 紅金軟漸層；新增 mono caps role badge（`Role · 01`...）；hover lift 改 -2px + 紅軟陰影 + 紅描邊變深；Noto Serif TC 19px 角色名取代 Inter
+
+**Section B — 為什麼選廟通？（Advantages）**
+- 從 max-w-4xl 單欄 → max-w-7xl 50/50 split（左 5 條優勢 + 右 sticky 紅燈籠插畫）
+- Section header 從置中 plain → 左對齊 eyebrow + 雙行 Noto Serif TC h2（紅字強調 `為台灣廟方`）
+- 5 條優勢數字膠囊：10×10 純紅 → 12×12 紅金漸層 + inner shadow + 外圈虛線環（dashed border 1px rgba(185,28,28,0.25)）
+- 內文字級從 14 → 14.5 line-height 1.7、寬度 max-w-[46ch] 編輯級可讀寬度
+- 新增 sticky 燈籠插畫元件 `LanternIllustration`：460×460 SVG 含 4 朵金雲、紅燈籠（漸層 body + 5 條 ribs + 上下 cap + 福字 + 流蘇）+ 散落金粉 + 虛線軌跡 + 火花圖騰
+
+**影響檔案**
+- 新增：`src/components/ui/lantern-illustration.tsx`
+- 修改：`src/app/products/miaotong/page.tsx`
+
+**回滾指令**：`git revert <v1.15.4-hash>`
+
+---
+
 ## v1.15.3 — 2026-05-02
 ### 變更內容（/contact 表單卡片 + 側欄資訊區 warm-editorial 化）
 

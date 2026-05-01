@@ -16,6 +16,7 @@ import { FeatureGrid } from '@/components/sections/feature-grid'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
 import { Icon, type IconName } from '@/components/ui/icon'
+import { LanternIllustration } from '@/components/ui/lantern-illustration'
 
 export const metadata: Metadata = createMetadata({
   title: '廟通 — 智慧宮廟管理系統｜LINE Pay 線上點燈、家人代辦、發財金',
@@ -156,50 +157,120 @@ export default function MiaotongPage() {
         </div>
       </section>
 
-      {/* Target Audience */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeIn className="text-center mb-16">
-            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">誰適合使用廟通？</h2>
-            <p className="text-muted text-lg">從管委會到櫃台，每個角色都有專屬功能</p>
+      {/* Target Audience — warm-editorial (open-design v0.1.0 web-prototype skill) */}
+      <section className="relative py-24 md:py-28 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(180deg, #fef7f2 0%, #fdf3e7 100%)' }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(185,28,28,0.10) 1.2px, transparent 1.2px)',
+            backgroundSize: '24px 24px',
+            opacity: 0.55,
+            WebkitMaskImage: 'linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%)',
+            maskImage: 'linear-gradient(180deg, transparent 0, #000 18%, #000 82%, transparent 100%)',
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <FadeIn className="text-center mb-14">
+            <span className="inline-flex items-center gap-2.5 text-xs font-mono font-medium uppercase tracking-[0.16em] text-[#B91C1C]">
+              <span className="w-7 h-px bg-[#B91C1C]/60" />
+              為宮廟團隊而生
+              <span className="w-7 h-px bg-[#B91C1C]/60" />
+            </span>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] font-extrabold text-3xl md:text-5xl tracking-tight text-[#1c1714] mt-4 leading-tight">
+              誰適合使用<span className="text-[#B91C1C]">廟通</span>？
+            </h2>
+            <p className="text-base md:text-[17px] text-[#6b5b4a] max-w-2xl mx-auto mt-4 leading-relaxed">
+              從管委會到櫃台、從會計到信徒——不論你在宮廟生態裡扮演哪個角色，廟通都能讓你的工作更輕鬆。
+            </p>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {MIAOTONG_TARGET_AUDIENCE.map((t, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-6 border border-black/5 hover-lift h-full">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#B91C1C]/10 to-[#D97706]/10 flex items-center justify-center mb-3">
-                    <Icon name={t.icon as IconName} className="w-6 h-6 text-[#B91C1C]" strokeWidth={1.75} />
+              <FadeIn key={i} delay={i * 60}>
+                <article className="group relative bg-white rounded-3xl p-7 border border-[#B91C1C]/[0.08] hover:border-[#B91C1C]/[0.18] hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(185,28,28,0.18),0_4px_10px_-4px_rgba(124,19,19,0.10)] transition-all duration-[350ms] h-full">
+                  <div
+                    className="w-12 h-12 rounded-2xl grid place-items-center mb-4"
+                    style={{ background: 'linear-gradient(135deg, rgba(185,28,28,0.12) 0%, rgba(217,119,6,0.12) 100%)' }}
+                  >
+                    <Icon name={t.icon as IconName} className="w-[22px] h-[22px] text-[#B91C1C]" strokeWidth={1.8} />
                   </div>
-                  <h3 className="text-base font-bold mb-2">{t.role}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{t.desc}</p>
-                </div>
+                  <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#d97706] mb-2.5">
+                    Role · {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3 className="font-[family-name:var(--font-noto-serif-tc)] font-bold text-[19px] tracking-tight text-[#1c1714] mb-2 leading-snug">
+                    {t.role}
+                  </h3>
+                  <p className="text-[14.5px] text-[#6b5b4a] leading-relaxed">
+                    {t.desc}
+                  </p>
+                </article>
               </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Advantages */}
-      <section className="py-24 bg-surface">
-        <div className="max-w-4xl mx-auto px-6">
-          <FadeIn className="text-center mb-16">
-            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">為什麼選廟通？</h2>
-            <p className="text-muted text-lg">比陽春系統更完整，比客製專案更容易開始</p>
-          </FadeIn>
-          <div className="space-y-6">
-            {MIAOTONG_ADVANTAGES.map((a, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ background: 'linear-gradient(135deg, #B91C1C, #D97706)' }}>
-                    {i + 1}
-                  </div>
-                  <div>
-                    <h3 className="font-bold mb-1">{a.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed">{a.desc}</p>
-                  </div>
-                </div>
+      {/* Advantages — editorial split with sticky lantern (open-design v0.1.0) */}
+      <section className="relative py-28 md:py-32 bg-white overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(rgba(185,28,28,0.6) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+            opacity: 0.03,
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-16 lg:gap-20 items-start">
+            <div>
+              <FadeIn className="mb-10">
+                <span className="inline-flex items-center gap-2.5 text-xs font-mono font-medium uppercase tracking-[0.16em] text-[#B91C1C]">
+                  <span className="w-7 h-px bg-[#B91C1C]/60" />
+                  為什麼選廟通？
+                </span>
+                <h2 className="font-[family-name:var(--font-noto-serif-tc)] font-extrabold text-3xl md:text-5xl tracking-tight text-[#1c1714] mt-4 leading-tight">
+                  不是套通用 SaaS，<br />是<span className="text-[#B91C1C]">為台灣廟方</span>長出來的。
+                </h2>
               </FadeIn>
-            ))}
+
+              <ol className="flex flex-col gap-9">
+                {MIAOTONG_ADVANTAGES.map((a, i) => (
+                  <FadeIn key={i} delay={i * 80}>
+                    <li className="grid grid-cols-[64px_1fr] gap-5 items-start">
+                      <div className="relative w-12 h-12 rounded-full grid place-items-center text-white font-[family-name:var(--font-noto-serif-tc)] font-extrabold text-xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #B91C1C 0%, #d97706 100%)',
+                          boxShadow: '0 6px 16px -6px rgba(185,28,28,0.5), inset 0 1px 0 rgba(255,255,255,0.25)',
+                        }}
+                      >
+                        {i + 1}
+                        <span aria-hidden="true" className="absolute -inset-1 rounded-full border border-dashed border-[#B91C1C]/25" />
+                      </div>
+                      <div>
+                        <h3 className="font-[family-name:var(--font-noto-serif-tc)] font-bold text-[19px] tracking-tight text-[#1c1714] mb-2 leading-snug">
+                          {a.title}
+                        </h3>
+                        <p className="text-[14.5px] text-[#6b5b4a] leading-[1.7] max-w-[46ch]">
+                          {a.desc}
+                        </p>
+                      </div>
+                    </li>
+                  </FadeIn>
+                ))}
+              </ol>
+            </div>
+
+            {/* Sticky lantern illustration */}
+            <aside className="lg:sticky lg:top-24 grid place-items-center w-full max-w-[460px] mx-auto aspect-square">
+              <LanternIllustration />
+            </aside>
           </div>
         </div>
       </section>
