@@ -4,6 +4,37 @@
 
 ---
 
+## v1.10.3 — 2026-05-01
+### 變更內容（部落格 editorial 第四批：code/table/inline-code 三件套）
+
+繼 hero 升級後，把 open-design 設計稿剩下的「結構性」editorial 元素全部 port 進 `.blog-prose`，全部純 CSS、不需動任何文章 markdown。
+
+**新增（globals.css 內 `.blog-prose` scope）**
+
+- **Inline code 改暖系**：原本 `<code>` 是紫底紫字（prose 預設），改成米白底（`var(--color-blog-cream)`）+ hairline border + 棕字 `#5a3a18`，與廟通色票一致
+- **Code block 終端機 chrome**：`<pre>` 改深 slate（`#1a1f2b`）+ 左上 3 個灰圓點（紅黃綠燈意象，但統一用低調灰），純 `::before` + `box-shadow` 達成；`padding-top` 加大到 36px 給 chrome 留位置
+- **Comparison table 雜誌化**：thead 改暖米白底 + sans-serif 字距加寬；tbody `<th>` 改 Noto Serif TC + 微暖底色（雜誌式 row label）；外框加 hairline + 14px 圓角
+- **`.pill` / `.pill.win` 工具類**：作者可在 markdown table cell 直接寫 `<span class="pill win">即時</span>` 做出設計稿的「廟通優勢」紅色狀態徽章
+
+**為什麼這樣做**
+- 先前三批主要動「上下文」（hero/正文 H2/H3/lists/blockquote），這批處理「結構元素」（code、table），把整套 editorial 系統收齊
+- 三件套都是 zero-config CSS：作者連 markdown 都不用改，code block 自動有 chrome、table 自動有雜誌風
+- `.pill` 是「自願性」工具類：要做產品比較時手動加 `<span class="pill win">`，平時不會出現，不影響舊文章
+
+**特殊性處理**
+- Tailwind typography 的 `prose-pre:*` 用 `:where()` 包裹（0 specificity），所以 `.blog-prose pre` (0,1,1) 會贏，不需 `!important`
+- Inline code 用 `:not(pre) > code` 精確選取，避免覆蓋到 code block 內的 `<code>`
+
+**影響檔案**
+- `src/app/globals.css`（+85 行 CSS rules）
+
+**回滾**
+```bash
+git revert <v1.10.3-commit>
+```
+
+---
+
 ## v1.10.2 — 2026-05-01
 ### 變更內容（部落格 editorial 第三批：hero 區升級）
 

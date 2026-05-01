@@ -245,3 +245,92 @@ html {
 .blog-prose blockquote p::after {
   content: '';
 }
+
+/* Inline code: 暖米白底 + hairline + 棕字（取代 prose 預設的紫色 chip） */
+.blog-prose :not(pre) > code {
+  background: var(--color-blog-cream);
+  border: 1px solid var(--color-blog-rule);
+  color: #5a3a18;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.86em;
+  font-weight: 500;
+}
+.blog-prose :not(pre) > code::before,
+.blog-prose :not(pre) > code::after {
+  content: '';
+}
+
+/* Code block: 加 3-dot terminal chrome（左上紅黃綠燈），灰底改深 slate */
+.blog-prose pre {
+  background: #1a1f2b;
+  color: #e8e3d8;
+  border: 1px solid #2a2f3b;
+  border-radius: 12px;
+  padding: 36px 20px 18px;
+  position: relative;
+  box-shadow: 0 12px 32px -22px rgba(0, 0, 0, 0.4);
+}
+.blog-prose pre::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4d5562;
+  box-shadow: 16px 0 0 #4d5562, 32px 0 0 #4d5562;
+}
+.blog-prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+/* Comparison table editorial polish: 暖米白 thead + serif row label */
+.blog-prose table {
+  border: 1px solid var(--color-blog-rule);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+}
+.blog-prose thead {
+  background: var(--color-blog-cream);
+}
+.blog-prose thead th {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-blog-ink);
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.blog-prose tbody th {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', Georgia, serif;
+  font-weight: 600;
+  color: var(--color-blog-ink);
+  background: rgba(244, 237, 224, 0.4);
+}
+/* 廟通主推欄位高亮（th 第一欄為產品名時，可手動加 class="product"） */
+.blog-prose thead th.product {
+  color: var(--color-blog-accent);
+}
+/* 表格內 status pill: 作者可在 markdown table 裡寫 <span class="pill win">即時</span> */
+.blog-prose .pill {
+  display: inline-block;
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-right: 6px;
+  background: var(--color-blog-cream);
+  color: var(--color-blog-muted);
+  letter-spacing: 0.04em;
+}
+.blog-prose .pill.win {
+  background: rgba(185, 28, 28, 0.08);
+  color: var(--color-blog-accent);
+}
