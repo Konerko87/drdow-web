@@ -159,12 +159,12 @@ export default async function BlogPostPage(
                   alt={post.title}
                   width={1200}
                   height={630}
-                  className="w-full rounded-2xl object-cover aspect-[2/1]"
+                  className="w-full rounded-2xl object-cover aspect-[2/1] border border-[var(--color-blog-rule)] shadow-[0_24px_56px_-32px_rgba(0,0,0,0.25)]"
                   priority
                 />
                 {post.coverCredit && (
-                  <figcaption className="text-xs text-muted mt-2 text-center">
-                    Photo: {post.coverCredit}
+                  <figcaption className="font-[family-name:var(--font-noto-serif-tc)] italic text-[12.5px] text-[var(--color-blog-muted)] mt-2.5 text-right tracking-[0.02em]">
+                    <span className="text-[var(--color-blog-gold)] not-italic mr-0.5">—</span> {post.coverCredit}
                   </figcaption>
                 )}
               </figure>

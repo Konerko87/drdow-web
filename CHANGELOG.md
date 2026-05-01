@@ -4,6 +4,34 @@
 
 ---
 
+## v1.10.8 — 2026-05-01
+### 變更內容（部落格 editorial 第九批：圖片 figure 收尾）
+
+把 cover image 與內文 markdown 圖片的 figure / figcaption 也統一到 editorial 系統。
+
+**Cover image**
+- 加 hairline border + 暖陰影（`0 24px 56px -32px rgba(0,0,0,0.25)`）
+- Figcaption 從「Photo: <credit>」（左對齊小灰字）改成「— <credit>」（金色 em-dash + Noto Serif TC italic + 右對齊），雜誌攝影署名感
+
+**Inline figures（marked renderer 自動把 `![alt](url)` wrap 成 figure）**
+- `.blog-prose figure`: 14px 圓角 + 暖陰影 + hairline
+- `.blog-prose figure figcaption`: Noto Serif TC italic + 金色 em-dash 前綴 + 右對齊
+
+**為什麼**
+- 圖片是 blog 文章主要視覺資產，之前用通用 prose 樣式 + 站內紫框，現在收齊到雜誌攝影風
+- 配合 v1.9.1 已有的 marked image renderer（自動 wrap figure），作者寫 `![圖說](url)` 就會自動成為帶 caption 的雜誌風 figure，零學習成本
+
+**影響檔案**
+- `src/app/globals.css`（+25 行 figure CSS）
+- `src/app/blog/[slug]/page.tsx`（cover figure JSX 微調）
+
+**回滾**
+```bash
+git revert <v1.10.8-commit>
+```
+
+---
+
 ## v1.10.7 — 2026-05-01
 ### 變更內容（部落格 editorial 第八批：tag 主題頁同步）
 

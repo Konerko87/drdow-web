@@ -334,3 +334,29 @@ html {
   background: rgba(185, 28, 28, 0.08);
   color: var(--color-blog-accent);
 }
+
+/* Inline figure (markdown 圖片自動 wrap 成 figure)：暖陰影 + italic serif caption with em-dash */
+.blog-prose figure {
+  margin: 36px 0;
+}
+.blog-prose figure img {
+  border-radius: 14px;
+  box-shadow: 0 24px 56px -32px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-blog-rule);
+  margin: 0 auto;
+}
+.blog-prose figure figcaption {
+  font-family: var(--font-serif-tc), 'Noto Serif TC', Georgia, serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--color-blog-muted);
+  text-align: right;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+}
+.blog-prose figure figcaption::before {
+  content: '— ';
+  color: var(--color-blog-gold);
+  font-style: normal;
+  margin-right: 2px;
+}
