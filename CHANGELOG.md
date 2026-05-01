@@ -4,6 +4,32 @@
 
 ---
 
+## v1.14.0 — 2026-05-01
+### 變更內容（A+B+C 視覺升級：Phosphor duotone + DotPattern + AnimatedBeam + 404 插畫）
+
+裝兩個新依賴 `@phosphor-icons/react` + `motion`，沒動 `lucide-react`，兩套並存。
+
+**A — Phosphor duotone icons**
+- 新元件 `src/components/ui/duotone-icon.tsx`：用 `IconName` 對應 phosphor 名稱，所有現有 lucide icon 都有 duotone 對應
+- `pain-points.tsx` 6 個痛點 icon 改用 duotone（紫紅漸層底 + 28px 雙色 icon），icon box 加 `group-hover:scale-105`
+
+**B — 圖**
+- 新元件 `src/components/ui/dot-pattern.tsx`：Magic UI 風格點陣 SVG 背景，`pain-points` 加上紫色點陣 + radial mask
+- 新元件 `src/components/ui/illustration-404.tsx`：手刻紙飛機 SVG 插畫（配 brand 漸層），放在 404 頁取代純文字
+
+**C — AnimatedBeam**
+- 新元件 `src/components/ui/animated-beam.tsx`：Magic UI 開源實作，用 motion 動畫掃過 SVG 曲線
+- `ai-workflow.tsx` 從靜態橫線改成 5 條動畫光束，每條 delay 0.4s 接力，pathColor 用 accent 透明色，gradient 用 accent → purple
+- 元件改 `'use client'`，用 ref array 串接每個 step 的位置
+
+**影響檔案**
+- 新增：`src/components/ui/duotone-icon.tsx`、`dot-pattern.tsx`、`animated-beam.tsx`、`illustration-404.tsx`
+- 修改：`src/components/sections/pain-points.tsx`、`ai-workflow.tsx`、`src/app/not-found.tsx`、`package.json`
+
+**回滾指令**：`git revert <v1.14.0-hash>`
+
+---
+
 ## v1.13.0 — 2026-05-01
 ### 變更內容（editorial 字體覆蓋剩下的 UI 元件）
 
