@@ -40,7 +40,7 @@ export default async function TagPage(
   }
 
   return (
-    <>
+    <div className="blog-paper">
       <BreadcrumbJsonLd
         items={[
           { name: '首頁', url: '/' },
@@ -69,7 +69,7 @@ export default async function TagPage(
         }}
       />
 
-      <section className="pt-32 pb-12 bg-gradient-to-b from-surface to-white">
+      <section className="pt-32 pb-12">
         <div className="max-w-4xl mx-auto px-6">
           <Breadcrumb
             items={[
@@ -79,11 +79,11 @@ export default async function TagPage(
             ]}
           />
         </div>
-        <div className="max-w-4xl mx-auto px-6 mt-6">
+        <div className="max-w-4xl mx-auto px-6 mt-8 text-center">
           <FadeIn>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-3">Tag</p>
-            <h1 className="text-4xl md:text-5xl font-black mb-3 tracking-tight">{tag}</h1>
-            <p className="text-muted text-lg">
+            <p className="text-[12px] font-semibold tracking-[0.2em] uppercase text-[var(--color-blog-accent)] mb-3">Tag · 主題</p>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-3 tracking-tight text-[var(--color-blog-ink)]">{tag}</h1>
+            <p className="text-[var(--color-blog-muted)] text-[15px] leading-[1.7]">
               共 {posts.length} 篇關於「{tag}」的文章
             </p>
           </FadeIn>
@@ -91,12 +91,12 @@ export default async function TagPage(
       </section>
 
       <section className="pb-24">
-        <div className="max-w-4xl mx-auto px-6 space-y-8">
+        <div className="max-w-4xl mx-auto px-6 space-y-10">
           {posts.map((post, i) => (
             <FadeIn key={post.slug} delay={i * 50}>
               <article>
                 <Link href={`/blog/${post.slug}`} className="block group">
-                  <div className="bg-surface rounded-2xl overflow-hidden hover-lift transition-all">
+                  <div className="bg-white rounded-2xl overflow-hidden border border-[var(--color-blog-rule)] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all">
                     {post.coverImage && (
                       <Image
                         src={post.coverImage}
@@ -108,23 +108,27 @@ export default async function TagPage(
                       />
                     )}
                     <div className="p-8">
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {post.tags.map((t) => (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {post.tags.map((t, idx) => (
                           <span
                             key={t}
-                            className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-0.5 rounded-full"
+                            className={
+                              idx === 0
+                                ? 'text-xs font-semibold text-[var(--color-blog-accent)] bg-[var(--color-blog-accent)]/10 px-3 py-1 rounded-full'
+                                : 'text-xs font-semibold text-[var(--color-blog-muted)] bg-[var(--color-blog-cream)] px-3 py-1 rounded-full'
+                            }
                           >
                             {t}
                           </span>
                         ))}
                       </div>
-                      <h2 className="text-xl font-black mb-2 group-hover:text-accent transition-colors">
+                      <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl md:text-[26px] font-semibold leading-[1.35] mb-3 text-[var(--color-blog-ink)] group-hover:text-[var(--color-blog-accent)] transition-colors">
                         {post.title}
                       </h2>
-                      <p className="text-muted text-sm leading-relaxed mb-4">
+                      <p className="text-[var(--color-blog-muted)] text-[14.5px] leading-[1.7] mb-5">
                         {post.description}
                       </p>
-                      <div className="flex items-center gap-4 text-xs text-muted">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--color-blog-muted)]">
                         <time dateTime={post.date}>
                           {new Date(post.date).toLocaleDateString('zh-TW', {
                             year: 'numeric',
@@ -132,6 +136,7 @@ export default async function TagPage(
                             day: 'numeric',
                           })}
                         </time>
+                        <span className="text-[var(--color-blog-rule)]">·</span>
                         <span>閱讀約 {post.readingTime} 分鐘</span>
                       </div>
                     </div>
@@ -142,6 +147,6 @@ export default async function TagPage(
           ))}
         </div>
       </section>
-    </>
+    </div>
   )
 }

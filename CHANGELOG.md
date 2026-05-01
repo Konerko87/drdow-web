@@ -4,6 +4,34 @@
 
 ---
 
+## v1.10.7 — 2026-05-01
+### 變更內容（部落格 editorial 第八批：tag 主題頁同步）
+
+`/blog/tags/[tag]` 主題頁是列表頁的子型，跟列表頁同步成 editorial 風，避免從列表點 tag 後又掉回舊紫色版面。
+
+**變更**
+- 整頁外層加 `blog-paper` 背景（暖紙白）
+- Hero 改置中：紅色 eyebrow「Tag · 主題」 + Noto Serif TC H1（大標就是 tag 名稱）+ 暖灰副標
+- 移除 `bg-gradient-to-b from-surface to-white` 漸層
+- 文章 card 改白底 + hairline + 暖陰影 hover
+- 標籤改第一個紅底 + 後續米白 chip
+- 標題 Noto Serif TC 26px + meta row 用 `·` 分隔（與列表頁一致）
+
+**為什麼**
+- 從 `/blog` 點 tag 進來，預期應該是同一套設計系統的 filtered view
+- 之前 tag 頁仍是站內紫色 + accent → 跟列表頁雜誌風斷裂
+- 統一後 list / tag / detail 三層 blog 路由完全一致
+
+**影響檔案**
+- `src/app/blog/tags/[tag]/page.tsx`
+
+**回滾**
+```bash
+git revert <v1.10.7-commit>
+```
+
+---
+
 ## v1.10.6 — 2026-05-01
 ### 變更內容（部落格 editorial 第七批：列表頁全面 editorial 化）
 
