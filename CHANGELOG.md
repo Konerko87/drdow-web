@@ -4,6 +4,28 @@
 
 ---
 
+## v1.13.0 — 2026-05-01
+### 變更內容（editorial 字體覆蓋剩下的 UI 元件）
+
+把 v1.12.0 沒掃到的 user-facing display headings 補上 `font-[family-name:var(--font-noto-serif-tc)]` + `tracking-tight`，整站雜誌風終於 100% 一致。
+
+- `not-found.tsx`：404 大字
+- `error.tsx`：Oops 大字
+- `ai-workflow.tsx`：「不只是軟體，是 AI 工作流」h2
+- `tech-stack.tsx`：「全棧 AI 原生架構」h2
+
+`feature-grid.tsx` h3 與 `contact-form.tsx` form labels 是小元素，維持 sans-serif，不套 editorial（避免破壞節奏）。
+
+**影響檔案**
+- `src/app/not-found.tsx`
+- `src/app/error.tsx`
+- `src/components/sections/ai-workflow.tsx`
+- `src/components/sections/tech-stack.tsx`
+
+**回滾指令**：`git revert <v1.13.0-hash>`
+
+---
+
 ## v1.12.1 — 2026-05-01
 ### 變更內容（修部落格 cover 圖 404）
 

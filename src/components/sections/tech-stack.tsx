@@ -7,7 +7,7 @@ export function TechStack() {
       <div className="max-w-7xl mx-auto px-6 text-center">
         <FadeIn>
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Tech Stack</p>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">全棧 AI 原生架構</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-black mb-4 tracking-tight">全棧 AI 原生架構</h2>
           <p className="text-muted text-base mb-16 max-w-lg mx-auto">
             不是套版 SaaS，每一行都是為傳統產業量身打造。
           </p>

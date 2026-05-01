@@ -13,7 +13,7 @@ export function AIWorkflow() {
       <div className="relative max-w-7xl mx-auto px-6">
         <FadeIn className="text-center mb-20">
           <p className="text-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">AI Workflow</p>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">不只是軟體，是 AI 工作流</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-5xl font-black mb-4 tracking-tight">不只是軟體，是 AI 工作流</h2>
           <p className="text-white/30 text-base max-w-lg mx-auto">
             從訂單匯入到銀行對帳，每一步都有 AI 參與。人只需要最後確認。
           </p>
