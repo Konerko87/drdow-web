@@ -47,15 +47,15 @@ export default function TMSPage() {
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white" aria-label="TMS 派車系統介紹">
+      <section className="pt-32 pb-16" aria-label="TMS 派車系統介紹">
         <div className="max-w-7xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'TMS 派車系統', href: '/products/tms' }]} />
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn className="text-center lg:text-left">
-              <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Transport Management System</p>
-              <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+              <p className="text-accent text-[12px] font-semibold tracking-[0.18em] uppercase mb-4">Transport Management System</p>
+              <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.15]">
                 {PRODUCTS.tms.tagline.split('，')[0]}，
                 <br />
                 <span className="gradient-text">{PRODUCTS.tms.tagline.split('，')[1]}</span>
@@ -109,7 +109,7 @@ export default function TMSPage() {
       <section id="features" className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">9 大核心功能</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">9 大核心功能</h2>
             <p className="text-muted text-lg">一套系統，從派車到結算全部搞定。</p>
           </FadeIn>
           <FeatureGrid features={PRODUCTS.tms.features} columns={3} />
@@ -120,7 +120,7 @@ export default function TMSPage() {
       <section className="py-24 bg-dark text-white">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">系統畫面</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">系統畫面</h2>
             <p className="text-white/50 text-lg">專為物流調度員設計的直覺操作介面</p>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -151,7 +151,7 @@ export default function TMSPage() {
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">從訂單到結算，全自動</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">從訂單到結算，全自動</h2>
           </FadeIn>
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-2">
             {WORKFLOW_STEPS.slice(0, 5).map((step, i) => (
@@ -176,7 +176,7 @@ export default function TMSPage() {
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-black mb-4">無縫整合</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">無縫整合</h2>
             <p className="text-muted text-lg mb-12">與您現有的系統串接，不需要替換</p>
           </FadeIn>
           <FadeIn delay={200}>
@@ -195,7 +195,7 @@ export default function TMSPage() {
       <section className="py-16 bg-surface">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl font-black mb-2">物流產業線其他產品</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-2 tracking-tight">物流產業線其他產品</h2>
             <p className="text-muted text-sm">搭配使用，從訂單、倉儲、派車到對帳全程串接。</p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

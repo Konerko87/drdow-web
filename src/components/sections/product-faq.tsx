@@ -17,7 +17,7 @@ export function ProductFAQ({ productKey, title = '常見問題', subtitle }: Pro
       <section className="py-24 bg-surface" aria-label={`${productKey} 常見問題`}>
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">{title}</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">{title}</h2>
             {subtitle && <p className="text-muted text-lg">{subtitle}</p>}
           </FadeIn>
           <div className="space-y-4">

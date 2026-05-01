@@ -22,7 +22,7 @@ export function RelatedProductPosts({
     <section className="py-20 bg-white" aria-label={`${productKey} 相關文章`}>
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-black mb-2 tracking-tight">{title}</h2>
+          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl md:text-3xl font-bold mb-2 tracking-tight">{title}</h2>
           <p className="text-muted text-sm">{subtitle}</p>
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -35,7 +35,7 @@ export function RelatedProductPosts({
                 <p className="text-[10px] font-semibold tracking-wider uppercase text-accent mb-2">
                   {post.tags[0] || '產業洞察'}
                 </p>
-                <h3 className="text-base font-black mb-2 leading-snug tracking-tight line-clamp-3 group-hover:text-accent transition-colors">
+                <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-base font-bold mb-2 leading-snug tracking-tight line-clamp-3 group-hover:text-accent transition-colors">
                   {post.title}
                 </h3>
                 <p className="text-xs text-muted line-clamp-2 mb-3">{post.description}</p>

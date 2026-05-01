@@ -4,6 +4,38 @@
 
 ---
 
+## v1.11.0 — 2026-05-01
+### 變更內容（產品頁 editorial 升級：TMS / WMS / ERP）
+
+把部落格 editorial 字體系統（Noto Serif TC 襯線標題 + `font-bold` + `tracking-tight`）套用到三個物流產品頁與其共用 sections，跟首頁 / 部落格的雜誌風視覺一致。物流線保留原本紫色 accent 做品牌區隔（廟通走紅金，物流線走紫）。
+
+**頁面變更**
+- `/products/tms`、`/products/wms`、`/products/erp` 三頁的 hero H1、所有 H2（功能 / 截圖 / 工作流程 / 整合 / 跨產品）改成 Noto Serif TC + `font-bold`，eyebrow 改成 `tracking-[0.18em] uppercase`
+- Hero 區塊移除 `bg-gradient-to-b from-surface to-white` 漸層底（與部落格 editorial 風統一）
+
+**共用元件**
+- `ProductFAQ`：標題 H2 改 Noto Serif TC + `font-bold` + `tracking-tight`
+- `RelatedProductPosts`：區塊 H2 + 卡片 H3 改 Noto Serif TC + `font-bold`
+
+**為什麼**
+- v1.10.x 系列把部落格全面升級到雜誌風後,產品頁仍用舊 `font-black` 無襯線標題,跨頁瀏覽會明顯感到斷層
+- 三產品頁共用 ProductFAQ / RelatedProductPosts,改一次同時收三頁
+- `CTASection` 因為首頁也在用,刻意不動避免 editorial 風溢出到 marketing landing
+
+**影響檔案**
+- `src/app/products/tms/page.tsx`
+- `src/app/products/wms/page.tsx`
+- `src/app/products/erp/page.tsx`
+- `src/components/sections/product-faq.tsx`
+- `src/components/sections/related-product-posts.tsx`
+
+**回滾**
+```bash
+git revert <v1.11.0-commit>
+```
+
+---
+
 ## v1.10.9 — 2026-05-01
 ### 變更內容（DevOps：加 .railwayignore）
 

@@ -68,15 +68,15 @@ export default function ERPPage() {
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white" aria-label="ERP 財務系統介紹">
+      <section className="pt-32 pb-16" aria-label="ERP 財務系統介紹">
         <div className="max-w-7xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '產品', href: '/#products' }, { name: 'ERP 財務系統', href: '/products/erp' }]} />
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn className="text-center lg:text-left">
-              <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">Financial Management System</p>
-              <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+              <p className="text-accent text-[12px] font-semibold tracking-[0.18em] uppercase mb-4">Financial Management System</p>
+              <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.15]">
                 物流財務，
                 <br />
                 <span className="gradient-text">AI 自動管</span>
@@ -130,7 +130,7 @@ export default function ERPPage() {
       <section id="features" className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">8 大核心功能</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">8 大核心功能</h2>
             <p className="text-muted text-lg">從請款到撥款，每一步都有 AI 把關。</p>
           </FadeIn>
           <FeatureGrid features={PRODUCTS.erp.features} columns={2} />
@@ -141,7 +141,7 @@ export default function ERPPage() {
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">三種角色，三種體驗</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">三種角色，三種體驗</h2>
             <p className="text-muted text-lg">每個人都有最適合的操作方式。</p>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -167,7 +167,7 @@ export default function ERPPage() {
       <section className="py-24 bg-dark text-white">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">系統畫面</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">系統畫面</h2>
             <p className="text-white/50 text-lg">為不同角色設計的直覺操作介面</p>
           </FadeIn>
 
@@ -234,7 +234,7 @@ export default function ERPPage() {
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">六層付款防呆</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">六層付款防呆</h2>
             <p className="text-muted text-lg">從輸入到匯款，每一層都有保護。</p>
           </FadeIn>
           <div className="space-y-4">
@@ -266,7 +266,7 @@ export default function ERPPage() {
       <section className="py-16 bg-surface">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl font-black mb-2">物流產業線其他產品</h2>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl font-bold mb-2 tracking-tight">物流產業線其他產品</h2>
             <p className="text-muted text-sm">搭配使用，從訂單、倉儲、派車到對帳全程串接。</p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
