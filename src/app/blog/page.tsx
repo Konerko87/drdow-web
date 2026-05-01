@@ -35,7 +35,7 @@ export default async function BlogPage(
   const allTags = Array.from(new Set(allPosts.flatMap((p) => p.tags))).sort()
 
   return (
-    <>
+    <div className="blog-paper">
       <BreadcrumbJsonLd items={[{ name: '首頁', url: '/' }, { name: '部落格', url: '/blog' }]} />
       <JsonLd data={{
         '@context': 'https://schema.org',
@@ -55,15 +55,20 @@ export default async function BlogPage(
         },
       }} />
 
-      <section className="pt-32 pb-16 bg-gradient-to-b from-surface to-white">
+      <section className="pt-32 pb-12">
         <div className="max-w-4xl mx-auto px-6">
           <Breadcrumb items={[{ name: '首頁', href: '/' }, { name: '部落格', href: '/blog' }]} />
         </div>
-        <div className="max-w-4xl mx-auto px-6 text-center mt-6">
+        <div className="max-w-4xl mx-auto px-6 text-center mt-8">
           <FadeIn>
-            <h1 className="text-4xl md:text-5xl font-black mb-4">部落格</h1>
-            <p className="text-lg text-muted">
-              物流業 AI 數位轉型趨勢、宮廟智慧管理、產業動態
+            <div className="text-[12px] tracking-[0.18em] uppercase text-[var(--color-blog-accent)] mb-3 font-semibold">
+              Dr.Dow 編輯部 · Editorial
+            </div>
+            <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-5xl font-bold mb-4 leading-[1.2] tracking-tight text-[var(--color-blog-ink)]">
+              部落格
+            </h1>
+            <p className="text-[15px] text-[var(--color-blog-muted)] leading-[1.7] max-w-xl mx-auto">
+              宮廟數位轉型、物流 AI、TMS / ERP 產業觀察。每週更新產業動態與一線實務筆記。
             </p>
           </FadeIn>
         </div>
@@ -72,11 +77,13 @@ export default async function BlogPage(
       {/* Tag Filter */}
       <section className="pb-8">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-center">
             <Link
               href="/blog"
               className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                !tag ? 'bg-accent text-white' : 'bg-surface text-muted hover:bg-accent/10'
+                !tag
+                  ? 'bg-[var(--color-blog-accent)] text-white'
+                  : 'bg-[var(--color-blog-cream)] text-[var(--color-blog-muted)] hover:bg-[var(--color-blog-accent)]/10 hover:text-[var(--color-blog-accent)]'
               }`}
             >
               全部
@@ -86,7 +93,9 @@ export default async function BlogPage(
                 key={t}
                 href={`/blog/tags/${encodeURIComponent(t)}`}
                 className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                  tag === t ? 'bg-accent text-white' : 'bg-surface text-muted hover:bg-accent/10'
+                  tag === t
+                    ? 'bg-[var(--color-blog-accent)] text-white'
+                    : 'bg-[var(--color-blog-cream)] text-[var(--color-blog-muted)] hover:bg-[var(--color-blog-accent)]/10 hover:text-[var(--color-blog-accent)]'
                 }`}
               >
                 {t}
@@ -104,8 +113,8 @@ export default async function BlogPage(
           <section className="pb-12">
             <div className="max-w-4xl mx-auto px-6">
               <FadeIn>
-                <h2 className="text-lg font-black mb-6 flex items-center gap-2">
-                  <span className="text-[#d97706]">★</span> 置頂文章
+                <h2 className="text-[12px] tracking-[0.18em] uppercase text-[var(--color-blog-muted)] font-semibold mb-6 flex items-center gap-2">
+                  <span className="text-[var(--color-blog-gold)]">★</span> 置頂 · Featured
                 </h2>
               </FadeIn>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -113,7 +122,7 @@ export default async function BlogPage(
                   <FadeIn key={post.slug} delay={i * 60}>
                     <article>
                       <Link href={`/blog/${post.slug}`} className="block group">
-                        <div className="bg-[#faf5ff] rounded-2xl overflow-hidden hover-lift transition-all border border-[#6b21a8]/10">
+                        <div className="bg-white rounded-2xl overflow-hidden border border-[var(--color-blog-rule)] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all">
                           {post.coverImage && (
                             <Image
                               src={post.coverImage}
@@ -124,18 +133,25 @@ export default async function BlogPage(
                               sizes="(max-width: 768px) 100vw, 400px"
                             />
                           )}
-                          <div className="p-5">
-                            <div className="flex flex-wrap gap-1.5 mb-2">
-                              {post.tags.map((t) => (
-                                <span key={t} className="text-[10px] font-semibold text-[#6b21a8] bg-[#6b21a8]/10 px-2 py-0.5 rounded-full">
+                          <div className="p-6">
+                            <div className="flex flex-wrap gap-1.5 mb-3">
+                              {post.tags.map((t, idx) => (
+                                <span
+                                  key={t}
+                                  className={
+                                    idx === 0
+                                      ? 'text-[10px] font-semibold text-[var(--color-blog-accent)] bg-[var(--color-blog-accent)]/10 px-2 py-0.5 rounded-full'
+                                      : 'text-[10px] font-semibold text-[var(--color-blog-muted)] bg-[var(--color-blog-cream)] px-2 py-0.5 rounded-full'
+                                  }
+                                >
                                   {t}
                                 </span>
                               ))}
                             </div>
-                            <h3 className="text-sm font-black mb-1 group-hover:text-[#6b21a8] transition-colors line-clamp-2">
+                            <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-[17px] font-semibold leading-[1.4] mb-1.5 text-[var(--color-blog-ink)] group-hover:text-[var(--color-blog-accent)] transition-colors line-clamp-2">
                               {post.title}
                             </h3>
-                            <p className="text-xs text-muted line-clamp-2">{post.description}</p>
+                            <p className="text-[13px] text-[var(--color-blog-muted)] leading-relaxed line-clamp-2">{post.description}</p>
                           </div>
                         </div>
                       </Link>
@@ -152,18 +168,18 @@ export default async function BlogPage(
         <div className="max-w-4xl mx-auto px-6">
           {posts.length === 0 ? (
             <FadeIn>
-              <div className="text-center py-16 text-muted">
+              <div className="text-center py-16 text-[var(--color-blog-muted)]">
                 <p className="text-lg mb-2">沒有符合的文章</p>
-                <p className="text-sm">試試其他標籤，或<Link href="/blog" className="text-accent hover:underline">查看全部文章</Link>。</p>
+                <p className="text-sm">試試其他標籤，或<Link href="/blog" className="text-[var(--color-blog-accent)] hover:underline">查看全部文章</Link>。</p>
               </div>
             </FadeIn>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-10">
               {posts.map((post, i) => (
                 <FadeIn key={post.slug} delay={i * 60}>
                   <article>
                     <Link href={`/blog/${post.slug}`} className="block group">
-                      <div className="bg-surface rounded-2xl overflow-hidden hover-lift transition-all">
+                      <div className="bg-white rounded-2xl overflow-hidden border border-[var(--color-blog-rule)] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all">
                         {/* Cover Image */}
                         {post.coverImage && (
                           <Image
@@ -178,30 +194,34 @@ export default async function BlogPage(
                         )}
 
                         <div className="p-8">
-                          {/* Tags */}
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {post.tags.map((t) => (
+                          {/* Tags — first chip uses brand red */}
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {post.tags.map((t, idx) => (
                               <span
                                 key={t}
-                                className="text-xs font-semibold text-accent bg-accent/10 px-2.5 py-0.5 rounded-full"
+                                className={
+                                  idx === 0
+                                    ? 'text-xs font-semibold text-[var(--color-blog-accent)] bg-[var(--color-blog-accent)]/10 px-3 py-1 rounded-full'
+                                    : 'text-xs font-semibold text-[var(--color-blog-muted)] bg-[var(--color-blog-cream)] px-3 py-1 rounded-full'
+                                }
                               >
                                 {t}
                               </span>
                             ))}
                           </div>
 
-                          {/* Title */}
-                          <h2 className="text-xl font-black mb-2 group-hover:text-accent transition-colors">
+                          {/* Title — Noto Serif TC */}
+                          <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-2xl md:text-[26px] font-semibold leading-[1.35] mb-3 text-[var(--color-blog-ink)] group-hover:text-[var(--color-blog-accent)] transition-colors">
                             {post.title}
                           </h2>
 
                           {/* Description */}
-                          <p className="text-muted text-sm leading-relaxed mb-4">
+                          <p className="text-[var(--color-blog-muted)] text-[14.5px] leading-[1.7] mb-5">
                             {post.description}
                           </p>
 
                           {/* Meta */}
-                          <div className="flex items-center gap-4 text-xs text-muted">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--color-blog-muted)]">
                             <time dateTime={post.date}>
                               {new Date(post.date).toLocaleDateString('zh-TW', {
                                 year: 'numeric',
@@ -209,6 +229,7 @@ export default async function BlogPage(
                                 day: 'numeric',
                               })}
                             </time>
+                            <span className="text-[var(--color-blog-rule)]">·</span>
                             <span>閱讀約 {post.readingTime} 分鐘</span>
                           </div>
                         </div>
@@ -221,6 +242,6 @@ export default async function BlogPage(
           )}
         </div>
       </section>
-    </>
+    </div>
   )
 }

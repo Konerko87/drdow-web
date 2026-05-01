@@ -4,6 +4,51 @@
 
 ---
 
+## v1.10.6 — 2026-05-01
+### 變更內容（部落格 editorial 第七批：列表頁全面 editorial 化）
+
+`/blog` 列表頁從原本的「surface 灰底 + 紫色 accent」風格全面重做成跟詳情頁一致的廟通雜誌調性。從列表進到詳情頁不再有視覺斷層。
+
+**Hero 區**
+- 背景從 `from-surface to-white` 漸層改成 `blog-paper` 暖紙白
+- 加 12px uppercase 紅色 eyebrow 「Dr.Dow 編輯部 · Editorial」
+- H1「部落格」改 Noto Serif TC + `tracking-tight`
+- 副標文案重寫，更精準描述三個內容主軸
+
+**Tag filter**
+- 改置中
+- accent 紫色 → 廟通深紅（`var(--color-blog-accent)`）
+- inactive chip 從 `bg-surface` 改 `bg-blog-cream`，hover 改深紅 ghost 風
+
+**Pinned articles 卡片**
+- 標題從 `text-lg font-black` 「★ 置頂文章」改 12px uppercase「★ 置頂 · Featured」（雜誌專欄索引感），★ 染金色
+- 卡片從 `bg-[#faf5ff]` 紫底 → 白底 + hairline border
+- 標籤改第一個紅底 + 後續米白 chip
+- 標題改 Noto Serif TC 17px serif
+
+**Article list 卡片**
+- 卡片從 `bg-surface` → 白底 + hairline border + 暖陰影 hover
+- 列表項間距從 `space-y-8` 加大到 `space-y-10`
+- 標籤改第一個紅底 + 後續米白
+- 標題改 Noto Serif TC 26px serif font-semibold（雜誌封面感）
+- 描述文字色改 `var(--color-blog-muted)` 暖系
+- Meta row 加 `·` 分隔符，配色改 blog-rule 暖灰
+
+**為什麼**
+- 列表頁是 blog 的入口，第一印象決定讀者要不要點進去
+- 之前列表頁仍是站內通用紫色，點進文章卻是廟通深紅+金，視覺人格分裂
+- 統一後從列表 → 詳情整段體驗都是同一套雜誌系統
+
+**影響檔案**
+- `src/app/blog/page.tsx`（整頁重寫）
+
+**回滾**
+```bash
+git revert <v1.10.6-commit>
+```
+
+---
+
 ## v1.10.5 — 2026-05-01
 ### 變更內容（部落格 editorial 第六批：RelatedPosts 收尾）
 
