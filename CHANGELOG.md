@@ -4,6 +4,18 @@
 
 ---
 
+## v1.10.9 — 2026-05-01
+### 變更內容（DevOps：加 .railwayignore）
+
+新增 `.railwayignore` 排除 node_modules / .next / 大型行銷素材（fb-ads, ig-posts, screenshots/.next）等，避免 `railway up` 因上傳量太大 timeout（先前實測整包 1.5GB+）。
+
+順便 retrigger Railway 部署（前一次 deploy 02fe9414 status=FAILED 但本地 build 完全正常，疑似 Railway 端瞬時錯誤）。
+
+**影響檔案**
+- `.railwayignore`（新增）
+
+---
+
 ## v1.10.8 — 2026-05-01
 ### 變更內容（部落格 editorial 第九批：圖片 figure 收尾）
 
