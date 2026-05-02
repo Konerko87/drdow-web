@@ -12,6 +12,7 @@ import { RelatedProductPosts } from '@/components/sections/related-product-posts
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Icon, type IconName } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow TMS — 物流派車 AI 系統｜拖拉指派 + LINE 司機 App',
@@ -65,12 +66,24 @@ export default function TMSPage() {
                 {PRODUCTS.tms.description}
               </p>
               <div className="flex gap-4 justify-center lg:justify-start">
-                <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+                <TrackedCTA
+                  href="/contact"
+                  location="hero"
+                  product="tms"
+                  label="primary"
+                  className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
+                >
                   預約 Demo
-                </Link>
-                <Link href="#features" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                </TrackedCTA>
+                <TrackedCTA
+                  href="#features"
+                  location="hero"
+                  product="tms"
+                  label="view-features"
+                  className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors"
+                >
                   看功能 →
-                </Link>
+                </TrackedCTA>
               </div>
             </FadeIn>
             <FadeIn delay={120} className="flex justify-center lg:justify-end">

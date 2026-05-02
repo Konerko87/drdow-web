@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 import { SITE } from '@/lib/constants'
 import { Icon } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 type CTAVariant = 'generic' | 'temple' | 'logistics'
 
@@ -54,14 +54,17 @@ export function CTASection({ variant = 'generic' }: { variant?: CTAVariant } = {
             {copy.note}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
+            <TrackedCTA
               href="/contact"
+              location="footer-cta"
+              product={variant}
+              label="primary"
               className="group px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 text-center"
               style={{ background: 'linear-gradient(135deg, #d97706, #dc2626)', color: '#fff', boxShadow: '0 4px 20px rgba(217,119,6,0.35)' }}
             >
               預約免費展示
               <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
+            </TrackedCTA>
             <a
               href={`tel:${SITE.phone}`}
               className="px-8 py-4 rounded-full text-base font-medium text-white/70 border border-white/30 hover:bg-white/10 hover:text-white transition-all text-center inline-flex items-center justify-center gap-2"

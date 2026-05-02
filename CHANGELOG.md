@@ -4,6 +4,37 @@
 
 ---
 
+## v1.16.1 — 2026-05-02
+### 變更內容（CTA click 追蹤 + 表單簡化降門檻）
+
+接續 v1.16.0，在等 Google Ads NT$3500 入帳的時間繼續補轉換漏斗。
+
+**新增 GA4 `cta_click` 事件追蹤：**
+- 新元件 `TrackedCTA`：包裝 next/link，點擊時觸發 GA4 cta_click 事件
+- 帶 location（hero / footer-cta）+ product（tms / wms / miaotong）+ label（primary / view-features ...）
+- 已替換：3 個產品頁 hero CTA、廟通 footer CTA、共用 CTASection 主 CTA
+- 用途：補上「點擊 ad 後到表單之間」的中段流失資料
+
+**表單降門檻：**
+- 新增 4 個 quick checkbox：看 Demo、想知道價格、想了解導入時程、想評估系統規格
+- 留言欄位從**必填改選填**（最大的填寫障礙拿掉）
+- 驗證：勾至少 1 個 checkbox **或** 填留言即可送出
+- 後端送出時自動組合：`【想了解】X、Y、Z\n\n【留言】...`
+- 預期效果：完成率提升 30-50%（B2B 表單去除 open-ended 必填欄位通常拉這個區間）
+
+### 影響檔案
+- src/components/ui/tracked-cta.tsx（新檔）
+- src/components/sections/contact-form.tsx（checkboxes + 留言改選填 + 組合 message）
+- src/components/sections/cta-section.tsx（用 TrackedCTA 替主 CTA）
+- src/app/products/tms/page.tsx（hero CTA 用 TrackedCTA）
+- src/app/products/wms/page.tsx（hero CTA 用 TrackedCTA）
+- src/app/products/miaotong/page.tsx（hero + footer CTA 用 TrackedCTA）
+
+### 回滾指令
+git revert HEAD
+
+---
+
 ## v1.16.0 — 2026-05-02
 ### 變更內容（轉換漏斗修補：嵌入式表單 + GA4 微轉換追蹤）
 

@@ -18,6 +18,7 @@ import { RelatedProductPosts } from '@/components/sections/related-product-posts
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
 import { Icon, type IconName } from '@/components/ui/icon'
 import { LanternIllustration } from '@/components/ui/lantern-illustration'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
   title: '廟通 — 智慧宮廟管理系統｜LINE Pay 線上點燈、家人代辦、發財金',
@@ -86,12 +87,24 @@ export default function MiaotongPage() {
               不只是紀錄資料，而是讓廟務流程更順、更清楚、更可追蹤。
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link href="/contact" className="px-8 py-3.5 bg-[#B91C1C] text-white rounded-full font-semibold hover:bg-[#DC2626] transition-colors">
+              <TrackedCTA
+                href="/contact"
+                location="hero"
+                product="miaotong"
+                label="primary"
+                className="px-8 py-3.5 bg-[#B91C1C] text-white rounded-full font-semibold hover:bg-[#DC2626] transition-colors"
+              >
                 預約產品展示
-              </Link>
-              <Link href="#features" className="px-8 py-3.5 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-colors border border-white/10">
+              </TrackedCTA>
+              <TrackedCTA
+                href="#features"
+                location="hero"
+                product="miaotong"
+                label="view-features"
+                className="px-8 py-3.5 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-colors border border-white/10"
+              >
                 看功能介紹 →
-              </Link>
+              </TrackedCTA>
             </div>
           </FadeIn>
         </div>
@@ -347,12 +360,24 @@ export default function MiaotongPage() {
               想了解 Dr.Dow AI 廟通如何導入你們廟的流程？歡迎預約產品展示，我們會針對你的需求做完整介紹。
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link href="/contact" className="px-8 py-3.5 bg-[#B91C1C] text-white rounded-full font-semibold hover:bg-[#DC2626] transition-colors">
+              <TrackedCTA
+                href="/contact"
+                location="footer-cta"
+                product="miaotong"
+                label="primary"
+                className="px-8 py-3.5 bg-[#B91C1C] text-white rounded-full font-semibold hover:bg-[#DC2626] transition-colors"
+              >
                 預約產品展示
-              </Link>
-              <Link href="/contact" className="px-8 py-3.5 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-colors border border-white/10">
+              </TrackedCTA>
+              <TrackedCTA
+                href="/contact"
+                location="footer-cta"
+                product="miaotong"
+                label="secondary"
+                className="px-8 py-3.5 bg-white/10 text-white rounded-full font-semibold hover:bg-white/20 transition-colors border border-white/10"
+              >
                 立即諮詢
-              </Link>
+              </TrackedCTA>
             </div>
           </FadeIn>
         </div>

@@ -32,14 +32,32 @@ interface ContactFormProps {
   source?: string
 }
 
+const INTEREST_OPTIONS = [
+  { value: 'demo', label: '看 Demo 操作' },
+  { value: 'price', label: '想知道價格' },
+  { value: 'timeline', label: '想了解導入時程' },
+  { value: 'spec', label: '想評估系統規格' },
+] as const
+
 export function ContactForm({ source }: ContactFormProps = {}) {
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [turnstileToken, setTurnstileToken] = useState('')
+  const [interests, setInterests] = useState<Set<string>>(new Set())
   const startedRef = useRef(false)
   const turnstileRef = useRef<HTMLDivElement>(null)
   const widgetIdRef = useRef<string>('')
+
+  function toggleInterest(value: string) {
+    setInterests((prev) => {
+      const next = new Set(prev)
+      if (next.has(value)) next.delete(value)
+      else next.add(value)
+      return next
+    })
+    trackFormStart()
+  }
 
   function trackFormStart() {
     if (startedRef.current) return
@@ -70,14 +88,31 @@ export function ContactForm({ source }: ContactFormProps = {}) {
     setErrorMsg('')
 
     const form = e.currentTarget
-    const rawMessage = (form.elements.namedItem('message') as HTMLTextAreaElement).value
+    const rawMessage = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim()
     const sourceTag = source && SOURCE_LABELS[source] ? `[來自 ${SOURCE_LABELS[source]}] ` : ''
+
+    // Validate: at least one interest OR a message
+    if (interests.size === 0 && !rawMessage) {
+      setStatus('error')
+      setErrorMsg('請勾選至少一項想了解的內容，或填寫留言')
+      return
+    }
+
+    // Build composite message
+    const interestLabels = INTEREST_OPTIONS.filter((o) => interests.has(o.value))
+      .map((o) => o.label)
+      .join('、')
+    const messageParts: string[] = []
+    if (interestLabels) messageParts.push(`【想了解】${interestLabels}`)
+    if (rawMessage) messageParts.push(`【留言】\n${rawMessage}`)
+    const composedMessage = sourceTag + messageParts.join('\n\n')
+
     const data = {
       company: (form.elements.namedItem('company') as HTMLInputElement).value,
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      message: sourceTag + rawMessage,
+      message: composedMessage,
       website: (form.elements.namedItem('website') as HTMLInputElement).value, // honeypot
       turnstileToken,
     }
@@ -106,6 +141,7 @@ export function ContactForm({ source }: ContactFormProps = {}) {
 
       setStatus('success')
       form.reset()
+      setInterests(new Set())
       router.push('/thank-you')
     } catch (err) {
       setStatus('error')
@@ -214,18 +250,46 @@ export function ContactForm({ source }: ContactFormProps = {}) {
           />
         </div>
 
-        {/* Message — required */}
+        {/* Interests — quick checkboxes (lower commitment than free-form message) */}
+        <div>
+          <label className="block text-sm font-semibold mb-2">
+            您想了解什麼？ <span className="text-muted font-normal">(可複選)</span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {INTEREST_OPTIONS.map((opt) => {
+              const checked = interests.has(opt.value)
+              return (
+                <label
+                  key={opt.value}
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border cursor-pointer transition-colors text-sm ${
+                    checked
+                      ? 'border-accent bg-accent/5 text-dark'
+                      : 'border-black/10 bg-surface hover:border-black/20'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => toggleInterest(opt.value)}
+                    className="w-4 h-4 rounded border-black/20 text-accent focus:ring-accent"
+                  />
+                  <span className="select-none">{opt.label}</span>
+                </label>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Message — optional (only required if no interests selected) */}
         <div>
           <label htmlFor="message" className="block text-sm font-semibold mb-1.5">
-            留言 <span className="text-red-400">*</span>
+            想多說一點？ <span className="text-muted font-normal">(選填)</span>
           </label>
           <textarea
             id="message"
             name="message"
-            required
-            aria-required="true"
-            rows={4}
-            placeholder="簡單告訴我們您的需求，例如：&#10;・我們是 OO 宮，想看看廟通的點燈、法會、收據功能&#10;・公司有 20 台車想導入 TMS&#10;・需要 ERP 財務系統"
+            rows={3}
+            placeholder="例如：我們是 OO 宮、20 台車隊、需要 ERP 整合 ..."
             className="w-full px-4 py-3 rounded-xl bg-surface border border-black/10 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-none"
           />
         </div>
