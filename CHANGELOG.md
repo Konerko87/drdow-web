@@ -4,6 +4,25 @@
 
 ---
 
+## v1.15.6 — 2026-05-02
+### 變更內容（contact form 宮廟友善文案）
+
+48 個 Google Ads 點擊（廟通 keywords）/ 0 個轉換的根因之一：contact form 文案完全是物流話術，宮廟主任進來看到「ABC 物流股份有限公司」會立刻跳離。
+
+- 公司欄 label `公司名稱` → `公司／宮廟名稱`
+- placeholder 從「例：ABC 物流股份有限公司」→「例：○○宮、○○殿、ABC 物流公司」
+- 聯絡人 placeholder「怎麼稱呼您」→「您的姓名或職稱（例：王主委、林董）」
+- 留言 placeholder 改為三種多行範例（OO 宮 / 20 台車 / ERP），不再以物流為主
+
+### 影響檔案
+- src/components/sections/contact-form.tsx
+- CHANGELOG.md
+
+### 回滾指令
+git revert HEAD
+
+---
+
 ## v1.15.5 — 2026-05-02
 ### 變更內容（/pricing 編輯級重做：preamble + tier shell + 比較表 + FAQ）
 
