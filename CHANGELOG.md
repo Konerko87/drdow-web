@@ -4,6 +4,44 @@
 
 ---
 
+## v1.16.0 — 2026-05-02
+### 變更內容（轉換漏斗修補：嵌入式表單 + GA4 微轉換追蹤）
+
+接續 v1.15.6 contact form 文案修改，繼續解 26 天 0 轉換問題。核心假設：點擊 ad → 落到 product page → 必須再點「預約 Demo」跳到 /contact 才能填表單，這層跳轉就是漏斗最大流失點。
+
+**新功能：**
+- 新元件 `InlineLeadForm`：把 ContactForm 直接嵌進產品頁，免再跳 /contact
+- 新元件 `ScrollTracker`：全站 scroll depth 25/50/75/100% GA4 事件追蹤
+- ContactForm 新增 `source` prop，標記表單來源（miaotong / tms / wms / erp / contact）
+
+**新 GA4 微轉換事件：**
+- `form_start` — 任何表單欄位首次 focus 時觸發
+- `generate_lead` — 表單成功送出時觸發（從 /thank-you 移到 form 本身，避免 redirect 失敗時遺失轉換）
+- `scroll_depth` — 25%、50%、75%、100% 各觸發一次
+
+**留言加上來源標記：**
+- 若表單從 product page 送出，message 會自動 prepend `[來自 ○○ 產品頁]`，讓 Kevin 看 email 就知道哪個產品線進來的詢問
+
+**嵌入位置：**
+- /products/tms — RelatedProductPosts 之後、CTASection 之前
+- /products/wms — 同上
+- /products/miaotong — RelatedProductPosts 之後、深色 CTA 之前
+
+### 影響檔案
+- src/components/sections/contact-form.tsx（新 source prop、GA4 事件、source 標記）
+- src/components/sections/inline-lead-form.tsx（新檔）
+- src/components/layout/scroll-tracker.tsx（新檔）
+- src/app/layout.tsx（注入 ScrollTracker）
+- src/app/products/tms/page.tsx（嵌入 InlineLeadForm）
+- src/app/products/wms/page.tsx（嵌入 InlineLeadForm）
+- src/app/products/miaotong/page.tsx（嵌入 InlineLeadForm）
+- src/app/contact/page.tsx（傳 source="contact"）
+
+### 回滾指令
+git revert HEAD
+
+---
+
 ## v1.15.6 — 2026-05-02
 ### 變更內容（contact form 宮廟友善文案）
 

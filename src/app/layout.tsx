@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_TC, Noto_Serif_TC } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Analytics } from '@/components/layout/analytics'
+import { ScrollTracker } from '@/components/layout/scroll-tracker'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import './globals.css'
@@ -110,6 +111,7 @@ export default function RootLayout({
           }) }}
         />
         <Analytics />
+        <ScrollTracker />
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />

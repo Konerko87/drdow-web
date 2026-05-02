@@ -13,6 +13,7 @@ import {
 } from '@/lib/miaotong-constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
+import { InlineLeadForm } from '@/components/sections/inline-lead-form'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd, FAQPageJsonLd } from '@/components/seo/json-ld'
 import { Icon, type IconName } from '@/components/ui/icon'
@@ -330,6 +331,8 @@ export default function MiaotongPage() {
         title="廟通 宮廟管理相關閱讀"
         subtitle="點燈流程、家人代辦、發財金、收據與 LINE Pay 實務"
       />
+
+      <InlineLeadForm source="miaotong" />
 
       {/* CTA */}
       <section className="relative py-32 overflow-hidden" style={{ background: '#1E293B' }}>

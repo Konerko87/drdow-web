@@ -6,6 +6,7 @@ import { SITE, PRODUCTS, WORKFLOW_STEPS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { InlineLeadForm } from '@/components/sections/inline-lead-form'
 import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
@@ -222,6 +223,8 @@ export default function TMSPage() {
         title="TMS 派車系統相關閱讀"
         subtitle="從 Excel 換 TMS 訊號、薪酬計算到貨運對帳實務"
       />
+
+      <InlineLeadForm source="tms" />
 
       <CTASection variant="logistics" />
     </>

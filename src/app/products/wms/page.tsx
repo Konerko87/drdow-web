@@ -6,6 +6,7 @@ import { SITE, PRODUCTS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { InlineLeadForm } from '@/components/sections/inline-lead-form'
 import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
@@ -308,6 +309,8 @@ export default function WMSPage() {
         title="WMS 倉儲管理相關閱讀"
         subtitle="WMS 是什麼、Excel 換 WMS 訊號、WMS / TMS / ERP 串接實務"
       />
+
+      <InlineLeadForm source="wms" />
 
       <CTASection variant="logistics" />
     </>

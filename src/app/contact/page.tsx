@@ -54,7 +54,7 @@ export default function ContactPage() {
             <FadeIn>
               <div className="bg-white rounded-2xl p-8 border border-[#B91C1C]/[0.08] shadow-[0_8px_24px_rgba(185,28,28,0.04)]">
                 <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-6 tracking-tight text-dark">留言給我們</h2>
-                <ContactForm />
+                <ContactForm source="contact" />
               </div>
             </FadeIn>
 

@@ -16,16 +16,42 @@ declare global {
       ) => string
       reset: (widgetId: string) => void
     }
+    gtag?: (...args: unknown[]) => void
   }
 }
 
-export function ContactForm() {
+const SOURCE_LABELS: Record<string, string> = {
+  miaotong: '廟通產品頁',
+  tms: 'TMS 產品頁',
+  wms: 'WMS 產品頁',
+  erp: 'ERP 產品頁',
+  contact: '聯絡頁',
+}
+
+interface ContactFormProps {
+  source?: string
+}
+
+export function ContactForm({ source }: ContactFormProps = {}) {
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [turnstileToken, setTurnstileToken] = useState('')
+  const startedRef = useRef(false)
   const turnstileRef = useRef<HTMLDivElement>(null)
   const widgetIdRef = useRef<string>('')
+
+  function trackFormStart() {
+    if (startedRef.current) return
+    startedRef.current = true
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'form_start', {
+        event_category: 'lead',
+        event_label: source || 'contact',
+        form_source: source || 'contact',
+      })
+    }
+  }
 
   useEffect(() => {
     if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileRef.current) return
@@ -44,12 +70,14 @@ export function ContactForm() {
     setErrorMsg('')
 
     const form = e.currentTarget
+    const rawMessage = (form.elements.namedItem('message') as HTMLTextAreaElement).value
+    const sourceTag = source && SOURCE_LABELS[source] ? `[來自 ${SOURCE_LABELS[source]}] ` : ''
     const data = {
       company: (form.elements.namedItem('company') as HTMLInputElement).value,
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      message: sourceTag + rawMessage,
       website: (form.elements.namedItem('website') as HTMLInputElement).value, // honeypot
       turnstileToken,
     }
@@ -64,6 +92,16 @@ export function ContactForm() {
       if (!res.ok) {
         const body = await res.json()
         throw new Error(body.error || '寄送失敗')
+      }
+
+      // Fire conversion event BEFORE redirect — /thank-you may not load if user navigates away
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'lead',
+          event_label: source || 'contact',
+          form_source: source || 'contact',
+          value: 1,
+        })
       }
 
       setStatus('success')
@@ -109,7 +147,7 @@ export function ContactForm() {
           defer
         />
       )}
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} onFocus={trackFormStart} className="space-y-5">
         {/* Company / Temple name — required */}
         <div>
           <label htmlFor="company" className="block text-sm font-semibold mb-1.5">
