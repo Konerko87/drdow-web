@@ -4,6 +4,7 @@ import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { Analytics } from '@/components/layout/analytics'
 import { ScrollTracker } from '@/components/layout/scroll-tracker'
+import { MobileStickyCTA } from '@/components/layout/mobile-sticky-cta'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import './globals.css'
@@ -115,6 +116,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <MobileStickyCTA />
       </body>
     </html>
   )

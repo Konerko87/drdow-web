@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FadeIn } from '@/components/ui/fade-in'
 import { PRODUCTS } from '@/lib/constants'
 import { Icon, type IconName } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 const SECONDARY_PRODUCTS = [
   {
@@ -79,9 +80,15 @@ export function ProductCards() {
                     <Link href="/products/miaotong" className="px-6 py-3 text-white rounded-full font-semibold text-sm hover:opacity-90 transition-opacity" style={{ background: '#B91C1C' }}>
                       了解廟通 →
                     </Link>
-                    <Link href="/contact" className="px-6 py-3 bg-black/5 rounded-full font-semibold text-sm hover:bg-black/10 transition-colors">
+                    <TrackedCTA
+                      href="/contact"
+                      location="home-product-card"
+                      product="miaotong"
+                      label="secondary"
+                      className="px-6 py-3 bg-black/5 rounded-full font-semibold text-sm hover:bg-black/10 transition-colors"
+                    >
                       預約展示
-                    </Link>
+                    </TrackedCTA>
                   </div>
                 </div>
                 {/* Right: logo large */}

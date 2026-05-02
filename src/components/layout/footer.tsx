@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 import { Icon } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export function Footer() {
   return (
@@ -53,9 +54,15 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
+                <TrackedCTA
+                  href="/contact"
+                  location="footer"
+                  product="generic"
+                  label="primary"
+                  className="hover:text-white transition-colors"
+                >
                   預約產品展示
-                </Link>
+                </TrackedCTA>
               </li>
             </ul>
           </div>

@@ -4,6 +4,39 @@
 
 ---
 
+## v1.16.3 — 2026-05-02
+### 變更內容（行動 sticky CTA + 全站裸 Link CTA 補追蹤）
+
+接續 v1.16.2，繼續補轉換漏斗最後幾個缺口。
+
+**新增行動裝置常駐 sticky CTA（高影響項）：**
+- 新元件 `MobileStickyCTA`：手機螢幕底部固定一條紅金漸層「預約免費展示 →」按鈕
+- 滾動 200px 後才出現（避免遮 hero 黃金畫面）
+- 自動隱藏於 /contact 與 /thank-you（避免重複導引）
+- 桌機 navbar 已有持續可見 CTA 不需重複，所以 `md:hidden`
+- 接 GA4 `cta_click` 事件，location=mobile-sticky → 可量化這個 bar 的轉換貢獻
+- 預期效果：手機流量在 hero → 下一個 CTA 之間的「想 → 點」距離縮到最短，B2B 行動端通常拉 8-15% 留資率
+
+**全站裸 Link CTA 全部換 TrackedCTA：**
+- `Navbar`（桌機 + 手機選單共 2 個 CTA）：location=navbar / navbar-mobile
+- `Footer` 站底「預約產品展示」：location=footer
+- `ProductCards`（首頁廟通卡片次 CTA）：location=home-product-card
+- 47 篇 `blog/[slug]` 文末「預約 Demo」：location=blog-post-cta、product=miaotong
+- 補完後：所有導 /contact 的入口都有 cta_click 事件，可在 GA4 看完整路徑歸因
+
+### 影響檔案
+- src/components/layout/mobile-sticky-cta.tsx（新檔）
+- src/app/layout.tsx（注入 MobileStickyCTA）
+- src/components/layout/navbar.tsx（兩個 CTA 換 TrackedCTA）
+- src/components/layout/footer.tsx（CTA 換 TrackedCTA）
+- src/components/sections/product-cards.tsx（廟通卡次 CTA 換 TrackedCTA）
+- src/app/blog/[slug]/page.tsx（文末 CTA 換 TrackedCTA）
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.2 — 2026-05-02
 ### 變更內容（補齊 ERP + 首頁 hero 的轉換漏斗缺口）
 

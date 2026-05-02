@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SITE, NAV_LINKS } from '@/lib/constants'
 import { Icon } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -91,13 +92,16 @@ export function Navbar() {
           >
             <Icon name="phone" className="w-3.5 h-3.5" strokeWidth={2} /> {SITE.phone}
           </a>
-          <Link
+          <TrackedCTA
             href="/contact"
+            location="navbar"
+            product="generic"
+            label="primary"
             className="px-5 py-2 rounded-full text-xs font-semibold transition-all text-white"
             style={{ background: '#B91C1C' }}
           >
             預約展示
-          </Link>
+          </TrackedCTA>
         </div>
 
         {/* Mobile toggle */}
@@ -149,14 +153,17 @@ export function Navbar() {
           <a href={`tel:${SITE.phone}`} className="flex items-center gap-2 text-sm text-muted py-2.5">
             <Icon name="phone" className="w-4 h-4" strokeWidth={2} /> {SITE.phone}
           </a>
-          <Link
+          <TrackedCTA
             href="/contact"
+            location="navbar-mobile"
+            product="generic"
+            label="primary"
             className="block text-center px-5 py-2.5 text-white rounded-full text-sm font-semibold mt-4"
             style={{ background: '#B91C1C' }}
             onClick={() => setMobileOpen(false)}
           >
             預約展示
-          </Link>
+          </TrackedCTA>
         </div>
       )}
     </nav>

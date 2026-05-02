@@ -9,6 +9,7 @@ import { RelatedPosts } from '@/components/sections/related-posts'
 import { FadeIn } from '@/components/ui/fade-in'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 // GFM-aware markdown renderer with custom tweaks for:
 // - Open external links in new tab
@@ -252,12 +253,15 @@ export default async function BlogPostPage(
                   預約 30 分鐘 Demo，由團隊直接帶你跑完香油錢、會員、財報三個關鍵流程。
                 </p>
                 <div className="inline-flex flex-wrap gap-3 justify-center">
-                  <Link
+                  <TrackedCTA
                     href="/contact"
+                    location="blog-post-cta"
+                    product="miaotong"
+                    label="primary"
                     className="inline-block px-[22px] py-3.5 bg-[var(--color-blog-accent)] text-white rounded-[10px] text-[14.5px] font-medium tracking-[0.02em] shadow-[0_10px_22px_-14px_rgba(185,28,28,0.6)] hover:bg-[#a01818] hover:-translate-y-0.5 transition-all"
                   >
                     預約 Demo →
-                  </Link>
+                  </TrackedCTA>
                   <Link
                     href="/products/miaotong"
                     className="inline-block px-[22px] py-3.5 bg-transparent text-[var(--color-blog-ink)] border border-[var(--color-blog-rule)] rounded-[10px] text-[14.5px] font-medium tracking-[0.02em] hover:bg-[var(--color-blog-cream)]/60 transition-colors"
