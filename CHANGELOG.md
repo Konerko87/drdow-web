@@ -4,6 +4,36 @@
 
 ---
 
+## v1.16.2 — 2026-05-02
+### 變更內容（補齊 ERP + 首頁 hero 的轉換漏斗缺口）
+
+審查發現 ERP 是唯一沒有完整轉換漏斗的產品頁，且首頁 hero（流量最高的入口）的「預約免費展示」CTA 沒有接 cta_click 事件追蹤。
+
+**ERP 產品頁補強：**
+- 新增 `InlineLeadForm source="erp"` 在 RelatedProductPosts 之後、CTASection 之前（與 TMS/WMS/廟通 結構對齊）
+- Hero「預約 Demo」+「功能導覽」改用 `TrackedCTA`，補上 `cta_click` GA4 事件
+- 補完後：ERP 與其他三產品頁有完全一致的轉換點：hero CTA → InlineLeadForm → CTASection 三段保護網
+
+**首頁 Hero CTA 追蹤補上：**
+- 首頁主 CTA「預約免費展示」改用 `TrackedCTA`（location=hero、product=home、label=primary）
+- 之前用裸 Link，cta_click 事件沒發過，廣告流量到主 CTA 的中段流失看不到
+- 補完後可看到完整漏斗：ad → 首頁 → cta_click → form_start → generate_lead
+
+**/pricing 卡片 CTA 追蹤補上：**
+- 兩個 PlanCard render 點（4 個方案 × 2 = 8 個 CTA）全部換成 TrackedCTA
+- location=pricing-card / pricing-card-secondary、label=plan.name → 可在 GA4 看到哪個方案被點最多
+- 之前裸 Link，方案吸引力差異無法量化
+
+### 影響檔案
+- src/app/products/erp/page.tsx（import InlineLeadForm + TrackedCTA、hero 兩個 CTA 換掉、加入 InlineLeadForm section）
+- src/components/sections/hero.tsx（首頁主 CTA 換成 TrackedCTA）
+- src/app/pricing/page.tsx（兩個 PlanCard 內的 CTA 換成 TrackedCTA，labelled by plan.name）
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.1 — 2026-05-02
 ### 變更內容（CTA click 追蹤 + 表單簡化降門檻）
 

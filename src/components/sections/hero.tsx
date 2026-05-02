@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { TempleCloudPattern } from '@/components/ui/temple-cloud-pattern'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export function Hero() {
   return (
@@ -63,14 +64,17 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link
+              <TrackedCTA
                 href="/contact"
+                location="hero"
+                product="home"
+                label="primary"
                 className="group px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 shadow-lg text-center"
                 style={{ background: 'linear-gradient(135deg, #fbbf24, #d97706)', color: '#fff', boxShadow: '0 4px 20px rgba(217,119,6,0.45)' }}
               >
                 預約免費展示
                 <span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
-              </Link>
+              </TrackedCTA>
               <Link
                 href="#features"
                 className="px-8 py-4 rounded-full text-base font-medium text-white/70 border border-white/30 hover:bg-white/10 hover:text-white transition-all text-center backdrop-blur-sm"

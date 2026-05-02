@@ -6,11 +6,13 @@ import { SITE, PRODUCTS } from '@/lib/constants'
 import { FadeIn } from '@/components/ui/fade-in'
 import { FeatureGrid } from '@/components/sections/feature-grid'
 import { CTASection } from '@/components/sections/cta-section'
+import { InlineLeadForm } from '@/components/sections/inline-lead-form'
 import { ProductFAQ } from '@/components/sections/product-faq'
 import { RelatedProductPosts } from '@/components/sections/related-product-posts'
 import { SoftwareApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/json-ld'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Icon, type IconName } from '@/components/ui/icon'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
   title: 'Dr.Dow ERP — 物流財務 AI 系統｜AI OCR 請款 + 銀行自動對帳',
@@ -85,12 +87,24 @@ export default function ERPPage() {
                 {PRODUCTS.erp.description}
               </p>
               <div className="flex gap-4 justify-center lg:justify-start">
-                <Link href="/contact" className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors">
+                <TrackedCTA
+                  href="/contact"
+                  location="hero"
+                  product="erp"
+                  label="primary"
+                  className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
+                >
                   預約 Demo
-                </Link>
-                <Link href="/products/erp/demo" className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors">
+                </TrackedCTA>
+                <TrackedCTA
+                  href="/products/erp/demo"
+                  location="hero"
+                  product="erp"
+                  label="view-demo"
+                  className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors"
+                >
                   功能導覽 →
-                </Link>
+                </TrackedCTA>
               </div>
             </FadeIn>
             <FadeIn delay={120} className="flex justify-center lg:justify-end">
@@ -293,6 +307,8 @@ export default function ERPPage() {
         title="ERP 物流財務相關閱讀"
         subtitle="AI 對帳、付款防呆、人事成本與導入效益分析"
       />
+
+      <InlineLeadForm source="erp" />
 
       <CTASection variant="logistics" />
     </>

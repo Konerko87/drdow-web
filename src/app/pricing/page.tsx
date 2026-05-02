@@ -7,6 +7,7 @@ import { CTASection } from '@/components/sections/cta-section'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import { WarmCreamBg } from '@/components/ui/warm-cream-bg'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
   title: '價格方案 — 廟通 / TMS / WMS / ERP 系統',
@@ -242,8 +243,11 @@ function MiaotongTierCard({ plan, i }: { plan: typeof MIAOTONG_PLANS[number]; i:
           ))}
         </ul>
 
-        <Link
+        <TrackedCTA
           href="/contact"
+          location="pricing-card"
+          product="generic"
+          label={plan.name}
           className={`group inline-flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all ${
             plan.featured
               ? 'text-white shadow-[0_6px_16px_rgba(185,28,28,0.18)] hover:shadow-[0_10px_22px_rgba(185,28,28,0.24)] hover:-translate-y-0.5'
@@ -257,7 +261,7 @@ function MiaotongTierCard({ plan, i }: { plan: typeof MIAOTONG_PLANS[number]; i:
         >
           Demo 預約
           <span className="transition-transform group-hover:translate-x-1">→</span>
-        </Link>
+        </TrackedCTA>
       </article>
     </FadeIn>
   )
@@ -355,14 +359,17 @@ function LogisticsCard({ plan, i }: { plan: typeof LOGISTICS_PLANS[number]; i: n
             </li>
           ))}
         </ul>
-        <Link
+        <TrackedCTA
           href="/contact"
+          location="pricing-card-secondary"
+          product="generic"
+          label={plan.name}
           className={`text-center py-3 rounded-full font-semibold text-sm transition-colors ${
             plan.featured ? 'bg-accent text-white hover:bg-accent-light' : 'bg-dark text-white hover:bg-dark/80'
           }`}
         >
           聯繫我們
-        </Link>
+        </TrackedCTA>
       </div>
     </FadeIn>
   )
