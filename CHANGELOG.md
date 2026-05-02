@@ -4,6 +4,25 @@
 
 ---
 
+## v1.16.4 — 2026-05-02
+### 變更內容（最後幾個 CTA 補追蹤 — 完整漏斗收尾）
+
+把剩下 3 個沒接 cta_click 的 CTA 補完，全站轉換漏斗追蹤完成。
+
+- `/products/erp/demo` hero CTA：location=hero、product=erp-demo
+- `/products/erp/demo` 文末 CTA：location=footer-cta、product=erp-demo
+- `/not-found` 404 頁「聯繫我們」CTA：location=404、product=generic、label=recovery
+  （量化 404 流量被救回的轉換率）
+
+### 影響檔案
+- src/app/products/erp/demo/page.tsx
+- src/app/not-found.tsx
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.3 — 2026-05-02
 ### 變更內容（行動 sticky CTA + 全站裸 Link CTA 補追蹤）
 

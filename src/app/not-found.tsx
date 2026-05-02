@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Illustration404 } from '@/components/ui/illustration-404'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = {
   title: '404 — 找不到頁面',
@@ -30,12 +31,15 @@ export default function NotFound() {
           >
             了解廟通
           </Link>
-          <Link
+          <TrackedCTA
             href="/contact"
+            location="404"
+            product="generic"
+            label="recovery"
             className="px-6 py-3 border border-slate-200 text-dark font-medium rounded-xl hover:bg-surface transition-colors"
           >
             聯繫我們
-          </Link>
+          </TrackedCTA>
         </div>
       </div>
     </section>

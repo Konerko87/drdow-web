@@ -5,6 +5,7 @@ import { createMetadata } from '@/lib/metadata'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
   title: 'ERP 系統功能導覽 — Dr.Dow ERP 完整畫面展示',
@@ -170,12 +171,15 @@ export default function ERPDemoPage() {
               從登入到報表，13 大模組、37 張實際操作畫面，帶你看完整套系統。
             </p>
             <div className="flex gap-4 justify-center">
-              <Link
+              <TrackedCTA
                 href="/contact"
+                location="hero"
+                product="erp-demo"
+                label="primary"
                 className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
               >
                 預約 Demo
-              </Link>
+              </TrackedCTA>
               <Link
                 href="/products/erp"
                 className="px-8 py-3.5 bg-black/5 rounded-full font-semibold hover:bg-black/10 transition-colors"
@@ -273,12 +277,15 @@ export default function ERPDemoPage() {
               預約 30 分鐘線上 Demo，讓我們為你展示完整系統。
             </p>
             <div className="flex gap-4 justify-center">
-              <Link
+              <TrackedCTA
                 href="/contact"
+                location="footer-cta"
+                product="erp-demo"
+                label="primary"
                 className="px-8 py-3.5 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
               >
                 預約 Demo
-              </Link>
+              </TrackedCTA>
               <Link
                 href="/products/erp"
                 className="px-8 py-3.5 bg-white/10 rounded-full font-semibold hover:bg-white/20 transition-colors"
