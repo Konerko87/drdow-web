@@ -7,7 +7,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function OGImage() {
-  const logoData = await readFile(join(process.cwd(), 'public', 'logo-miaotong.png'))
+  const logoData = await readFile(join(process.cwd(), 'public', 'logo-icon.png'))
   const logoBase64 = `data:image/png;base64,${logoData.toString('base64')}`
 
   return new ImageResponse(
@@ -29,7 +29,7 @@ export default async function OGImage() {
           src={logoBase64}
           alt=""
           width={200}
-          height={216}
+          height={200}
           style={{ objectFit: 'contain' }}
         />
 

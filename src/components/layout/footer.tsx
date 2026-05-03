@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo-miaotong.png" alt="Dr.Dow AI logo" width={28} height={28} className="rounded-md" />
+              <Image src="/logo-icon.png" alt="Dr.Dow AI logo" width={28} height={28} className="rounded-md" />
               <span className="text-lg font-black text-white">{SITE.name}</span>
             </div>
             <p className="text-xs leading-relaxed mb-4">

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Dr.Dow AI · Horizontal lockup
+  - viewBox 800×200
+  - Emblem on left (centred at 100,100, half-diagonal 70)
+  - Vertical gold rule separator at x=220
+  - Wordmark "Dr.Dow AI" + tagline on right
+  - Colours: gold #C4B584, period accent brick red #B8432A
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"
+     role="img" aria-label="Dr.Dow AI">
+
+  <!-- ─── EMBLEM ─── (centre at 100,100; half-diagonal 70) -->
+  <g fill="none" stroke="#C4B584"
+     stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="100,30 170,100 100,170 30,100" stroke-width="1.8"/>
+    <line x1="100" y1="30"  x2="100" y2="170" stroke-width="1.6"/>
+    <line x1="30"  y1="100" x2="170" y2="100" stroke-width="1.6"/>
+    <circle cx="100" cy="100" r="13" stroke-width="1.3"/>
+    <circle cx="100" cy="100" r="4.2" fill="#C4B584" stroke="none"/>
+    <circle cx="100" cy="30"  r="4" fill="#C4B584" stroke="none"/>
+    <circle cx="170" cy="100" r="4" fill="#C4B584" stroke="none"/>
+    <circle cx="100" cy="170" r="4" fill="#C4B584" stroke="none"/>
+    <circle cx="30"  cy="100" r="4" fill="#C4B584" stroke="none"/>
+    <line x1="100" y1="20"  x2="100" y2="14"  stroke-width="1.3"/>
+    <line x1="180" y1="100" x2="186" y2="100" stroke-width="1.3"/>
+    <line x1="100" y1="180" x2="100" y2="186" stroke-width="1.3"/>
+    <line x1="20"  y1="100" x2="14"  y2="100" stroke-width="1.3"/>
+  </g>
+
+  <!-- ─── VERTICAL RULE separator ─── -->
+  <line x1="220" y1="50" x2="220" y2="150" stroke="#C4B584" stroke-width="0.8"/>
+
+  <!-- ─── WORDMARK ─── -->
+  <g font-family="'Cormorant Garamond','Noto Serif TC',serif" fill="#C4B584">
+    <text x="245" y="115" font-size="78" font-weight="600" letter-spacing="-0.5">
+      <tspan>Dr</tspan><tspan fill="#B8432A">.</tspan><tspan>Dow AI</tspan>
+    </text>
+    <text x="247" y="148" font-size="13" font-style="italic" font-weight="500"
+          letter-spacing="3.5" fill="#A8986A">ARTIFICIAL INTELLIGENCE · APPLIED</text>
+  </g>
+</svg>

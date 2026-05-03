@@ -4,6 +4,28 @@
 
 ---
 
+## v1.17.0 — 2026-05-03
+### 變更內容（Dr.Dow AI 母品牌 logo 全面更新）
+
+母品牌啟用全新菱形 emblem 視覺識別（金色幾何 lozenge + 中心同心圓 + 4 角徑向延伸線），與「廟通」產品線品牌視覺脫鉤。
+
+- **新增向量原檔**：`public/brand/dr-dow-emblem.svg`（純 emblem）+ `public/brand/dr-dow-horizontal.svg`（emblem + Dr.Dow AI wordmark + ARTIFICIAL INTELLIGENCE · APPLIED tagline 橫式 lockup）
+- **替換 PNG 三件套**：`logo-icon.png`（深藍金圓角 emblem 512×512）、`logo-horizontal.png`（橫式 lockup 1600×400 透明）、`apple-touch-icon.png`（180×180）、`favicon.ico`（16/32/48 多尺寸）
+- **navbar / footer / OG 卡片** 全站頂部 / 頁尾 / 社群分享卡片改用母品牌 logo
+- 廟通產品脈絡保留：hero、scene-selector、product-cards、`/products/miaotong` 仍用廟通 logo
+
+### 影響檔案
+- public/logo-icon.png、public/logo-horizontal.png、public/apple-touch-icon.png、public/favicon.ico
+- public/brand/dr-dow-emblem.svg、public/brand/dr-dow-horizontal.svg（新檔）
+- src/components/layout/navbar.tsx
+- src/components/layout/footer.tsx
+- src/app/opengraph-image.tsx
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.6 — 2026-05-03
 ### 變更內容（admin 後台補完：sitemap 動態 SEO 健檢 + 索引狀態 tab）
 

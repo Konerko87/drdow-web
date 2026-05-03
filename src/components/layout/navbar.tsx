@@ -25,8 +25,8 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo-miaotong.png"
-            alt="Dr.Dow AI 廟通 logo"
+            src="/logo-icon.png"
+            alt="Dr.Dow AI logo"
             width={32}
             height={32}
             className="rounded-md"
