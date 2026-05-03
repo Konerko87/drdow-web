@@ -4,6 +4,26 @@
 
 ---
 
+## v1.16.6 — 2026-05-03
+### 變更內容（admin 後台補完：sitemap 動態 SEO 健檢 + 索引狀態 tab）
+
+把 admin 後台補成「搜尋成效 / 流量分析 / 廣告成效 / SEO 健檢 / 索引狀態」五分頁，覆蓋從技術 SEO 到搜尋表現的完整觀測。
+
+- **SEO 健檢動態化**：`/api/admin/seo-check` 改為從 `/sitemap.xml` 動態抓頁面清單（5 分鐘 cache），不再寫死路徑。新增頁面（如 `/products/wms`、`/products/miaotong`）會自動納入,sitemap 抓不到時 fallback 到最小可用集合。
+- **新增 `/api/admin/index-status` API**：包 Google Search Console URL Inspection API,逐一檢查每頁 verdict / coverageState / lastCrawlTime / canonical 狀態,250ms 限速保護,預設不查 blog 文章避免 timeout（`?all=1` 才查全部）。
+- **admin/page.tsx 新增「索引狀態」tab**：圓形分數顯示、coverage state 分組長條圖、頁面失敗排序在前、verdict 中文化標籤、未索引頁面一目了然。
+- 用途：搜尋成效只看「有 impressions 的頁面」,完全沒被索引的頁會被靜默漏掉,這個 tab 補上這個盲點。
+
+### 影響檔案
+- src/app/admin/page.tsx（新增 IndexStatusData / IndexStatusView / fetch 分支 / tab 切換）
+- src/app/api/admin/seo-check/route.ts（getPagesFromSitemap 動態取得）
+- src/app/api/admin/index-status/route.ts（新檔）
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.5 — 2026-05-03
 ### 變更內容（官網對外信箱改用自家網域 sales@drdowai.com）
 

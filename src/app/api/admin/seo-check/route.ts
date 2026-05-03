@@ -20,18 +20,27 @@ interface SeoResult {
   issues: string[]
 }
 
-const PAGES = [
-  '/',
-  '/products/tms',
-  '/products/erp',
-  '/products/miaotong',
-  '/blog',
-  '/pricing',
-  '/faq',
-  '/solutions',
-  '/contact',
-  '/about',
-]
+// 從 sitemap.xml 動態取得要檢查的靜態頁面，避免日後新增路由時這份清單忘了更新。
+// 排除 blog 文章與 tag 頁，避免幾十支文章把健檢時間拖長。
+async function getPagesFromSitemap(): Promise<string[]> {
+  try {
+    const res = await fetch(`${SITE.url}/sitemap.xml`, {
+      headers: { 'User-Agent': 'DrDow-SEO-Checker/1.0' },
+      next: { revalidate: 300 },
+    })
+    if (!res.ok) throw new Error(`sitemap HTTP ${res.status}`)
+    const xml = await res.text()
+    const urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g), (m) => m[1])
+    const paths = urls
+      .map((u) => u.replace(SITE.url, '') || '/')
+      .filter((p) => !p.startsWith('/blog/'))
+    // 確保首頁排第一個，順序穩定
+    return Array.from(new Set(paths)).sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)))
+  } catch {
+    // sitemap 抓不到時退回最小可用集合，確保健檢不整個 500
+    return ['/', '/products/tms', '/products/wms', '/products/erp', '/products/miaotong', '/pricing', '/faq', '/contact']
+  }
+}
 
 async function checkPage(path: string): Promise<SeoResult> {
   const url = `${SITE.url}${path}`
@@ -132,7 +141,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: '未授權' }, { status: 401 })
   }
 
-  const results = await Promise.all(PAGES.map(checkPage))
+  const pages = await getPagesFromSitemap()
+  const results = await Promise.all(pages.map(checkPage))
 
   const totalIssues = results.reduce((sum, r) => sum + r.issues.length, 0)
   const pagesWithIssues = results.filter((r) => r.issues.length > 0).length

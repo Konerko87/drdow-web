@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 
-const TABS = ['搜尋成效', '流量分析', '廣告成效', 'SEO 健檢'] as const
+const TABS = ['搜尋成效', '流量分析', '廣告成效', 'SEO 健檢', '索引狀態'] as const
 type Tab = typeof TABS[number]
 
 const PERIOD_OPTIONS = [
@@ -44,6 +44,16 @@ interface SeoCheckData {
   }[]
 }
 
+interface IndexStatusData {
+  summary: { total: number; indexed: number; notIndexed: number; errors: number; score: number }
+  byCoverage: Record<string, number>
+  pages: {
+    url: string; path: string; verdict: string; coverageState: string; indexingState: string
+    lastCrawlTime: string | null; robotsTxtState: string; pageFetchState: string
+    googleCanonical: string; userCanonical: string; errorMessage?: string
+  }[]
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -56,6 +66,7 @@ export default function AdminPage() {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
   const [adsData, setAdsData] = useState<GoogleAdsData | null>(null)
   const [seoData, setSeoData] = useState<SeoCheckData | null>(null)
+  const [indexData, setIndexData] = useState<IndexStatusData | null>(null)
 
   const headers = { 'x-admin-password': password }
 
@@ -78,11 +89,16 @@ export default function AdminPage() {
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setAdsData(data)
-      } else {
+      } else if (tab === 'SEO 健檢') {
         const res = await fetch('/api/admin/seo-check', { headers })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setSeoData(data)
+      } else {
+        const res = await fetch('/api/admin/index-status', { headers })
+        const data = await res.json()
+        if (data.error) throw new Error(data.error)
+        setIndexData(data)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : '載入失敗')
@@ -100,7 +116,12 @@ export default function AdminPage() {
 
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab)
-    const cached = tab === '搜尋成效' ? searchData : tab === '流量分析' ? analyticsData : tab === '廣告成效' ? adsData : seoData
+    const cached =
+      tab === '搜尋成效' ? searchData
+      : tab === '流量分析' ? analyticsData
+      : tab === '廣告成效' ? adsData
+      : tab === 'SEO 健檢' ? seoData
+      : indexData
     if (!cached) fetchData(tab, days)
   }
 
@@ -169,8 +190,8 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* Period selector (not for SEO check) */}
-      {activeTab !== 'SEO 健檢' && (
+      {/* Period selector (not for SEO check / 索引狀態) */}
+      {activeTab !== 'SEO 健檢' && activeTab !== '索引狀態' && (
         <div className="flex gap-2 px-4 py-3">
           {PERIOD_OPTIONS.map((opt) => (
             <button
@@ -232,6 +253,24 @@ export default function AdminPage() {
               className="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl active:bg-blue-700"
             >
               開始健檢
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && activeTab === '索引狀態' && indexData && (
+          <IndexStatusView data={indexData} />
+        )}
+
+        {!loading && !error && activeTab === '索引狀態' && !indexData && (
+          <div className="text-center py-20 px-4">
+            <p className="text-sm text-slate-400 mb-4">
+              查詢 sitemap 中每一頁在 Google 的索引狀態，每筆約需 0.3 秒（限速保護），可能需要 10-30 秒。
+            </p>
+            <button
+              onClick={() => fetchData('索引狀態', days)}
+              className="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl active:bg-blue-700"
+            >
+              開始檢查
             </button>
           </div>
         )}
@@ -614,6 +653,114 @@ function GoogleAdsView({ data }: { data: GoogleAdsData }) {
           <div className="text-slate-500 text-xs mt-1">請確認 Google Ads 已連結 GA4</div>
         </div>
       )}
+    </div>
+  )
+}
+
+// ─── Index Status View ───────────────────────────────────
+function IndexStatusView({ data }: { data: IndexStatusData }) {
+  const { summary, byCoverage, pages } = data
+  const scoreColor = summary.score >= 80 ? 'text-green-400' : summary.score >= 50 ? 'text-yellow-400' : 'text-red-400'
+  const scoreBg = summary.score >= 80 ? 'bg-green-500' : summary.score >= 50 ? 'bg-yellow-500' : 'bg-red-500'
+
+  // 把未索引 / 錯誤的頁面排在前面，方便聚焦處理
+  const sorted = [...pages].sort((a, b) => {
+    const rank = (v: string) => (v === 'PASS' ? 2 : v === 'ERROR' ? 0 : 1)
+    return rank(a.verdict) - rank(b.verdict)
+  })
+
+  const verdictLabel = (v: string) => {
+    if (v === 'PASS') return { text: '已索引', cls: 'bg-green-900/40 text-green-300' }
+    if (v === 'FAIL') return { text: '未索引', cls: 'bg-red-900/40 text-red-300' }
+    if (v === 'NEUTRAL') return { text: '部分問題', cls: 'bg-yellow-900/40 text-yellow-300' }
+    if (v === 'PARTIAL') return { text: '部分索引', cls: 'bg-yellow-900/40 text-yellow-300' }
+    if (v === 'ERROR') return { text: 'API 錯誤', cls: 'bg-slate-700 text-slate-300' }
+    return { text: v, cls: 'bg-slate-700 text-slate-300' }
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Score */}
+      <div className="text-center py-6">
+        <div className="relative inline-flex items-center justify-center">
+          <svg className="w-28 h-28 -rotate-90">
+            <circle cx="56" cy="56" r="48" stroke="currentColor" strokeWidth="8" fill="none" className="text-slate-800" />
+            <circle
+              cx="56" cy="56" r="48"
+              stroke="currentColor" strokeWidth="8" fill="none"
+              className={scoreColor}
+              strokeDasharray={`${(summary.score / 100) * 301.6} 301.6`}
+              strokeLinecap="round"
+            />
+          </svg>
+          <span className={`absolute text-3xl font-bold ${scoreColor}`}>{summary.score}</span>
+        </div>
+        <div className="text-sm text-slate-400 mt-2">
+          {summary.indexed} / {summary.total} 頁已被 Google 索引
+        </div>
+      </div>
+
+      {/* Summary */}
+      <div className="grid grid-cols-3 gap-3">
+        <MetricCard label="已索引" value={summary.indexed} />
+        <MetricCard label="未索引" value={summary.notIndexed} />
+        <MetricCard label="錯誤" value={summary.errors} />
+      </div>
+
+      {/* Coverage breakdown */}
+      {Object.keys(byCoverage).length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-slate-300 mb-3">涵蓋狀態分佈</h3>
+          <div className="space-y-2">
+            {Object.entries(byCoverage)
+              .sort((a, b) => b[1] - a[1])
+              .map(([state, count]) => {
+                const pct = summary.total > 0 ? (count / summary.total) * 100 : 0
+                return (
+                  <div key={state} className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm font-medium">{state}</span>
+                      <span className="text-xs text-slate-400">{count} 頁</span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-1.5">
+                      <div className={`${scoreBg} h-1.5 rounded-full`} style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                )
+              })}
+          </div>
+        </div>
+      )}
+
+      {/* Page list */}
+      <div>
+        <h3 className="text-sm font-semibold text-slate-300 mb-3">逐頁狀態（未索引優先）</h3>
+        <div className="space-y-2">
+          {sorted.map((p) => {
+            const v = verdictLabel(p.verdict)
+            return (
+              <div key={p.url} className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <span className="text-sm font-medium truncate min-w-0">{p.path || '/'}</span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full shrink-0 ${v.cls}`}>{v.text}</span>
+                </div>
+                <div className="text-xs text-slate-400 space-y-0.5">
+                  <div>狀態：<span className="text-slate-300">{p.coverageState}</span></div>
+                  {p.lastCrawlTime && (
+                    <div>最後抓取：<span className="text-slate-300">{new Date(p.lastCrawlTime).toLocaleDateString('zh-TW')}</span></div>
+                  )}
+                  {p.googleCanonical && p.userCanonical && p.googleCanonical !== p.userCanonical && (
+                    <div className="text-yellow-400">⚠ Canonical 不一致</div>
+                  )}
+                  {p.errorMessage && (
+                    <div className="text-red-400 break-all">{p.errorMessage}</div>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }
