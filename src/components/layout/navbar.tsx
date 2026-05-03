@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { SITE, NAV_LINKS } from '@/lib/constants'
 import { Icon } from '@/components/ui/icon'
@@ -23,14 +22,7 @@ export function Navbar() {
     }`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/logo-icon.png"
-            alt="Dr.Dow AI logo"
-            width={32}
-            height={32}
-            className="rounded-md"
-          />
+        <Link href="/" className="flex items-center" aria-label="Dr.Dow AI 首頁">
           <span className={`text-lg font-black tracking-tight transition-colors ${
             scrolled ? 'text-dark' : 'text-white'
           }`}>

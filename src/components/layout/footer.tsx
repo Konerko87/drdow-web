@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
 import { Icon } from '@/components/ui/icon'
@@ -11,8 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo-icon.png" alt="Dr.Dow AI logo" width={28} height={28} className="rounded-md" />
+            <div className="flex items-center mb-3">
               <span className="text-lg font-black text-white">{SITE.name}</span>
             </div>
             <p className="text-xs leading-relaxed mb-4">
