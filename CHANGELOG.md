@@ -4,6 +4,23 @@
 
 ---
 
+## v1.16.5 — 2026-05-03
+### 變更內容（官網對外信箱改用自家網域 sales@drdowai.com）
+
+搭配剛設定好的 Cloudflare Email Routing（catch-all `*@drdowai.com` 轉寄至 `kevin@st-logistics.com.tw`），把官網對外露出的聯絡信箱從 `kevin@st-logistics.com.tw` 改成 `sales@drdowai.com`。
+
+- `SITE.email` 改為 `sales@drdowai.com`，自動傳遞到 footer、contact、about、privacy、JSON-LD、`/api/contact` 寄信目的地
+- 對外品牌一致性：聯絡資訊、Schema.org、寄信通知都用品牌網域
+- 收信仍走 Cloudflare Email Routing 轉到 ST Workspace,使用體驗不變
+
+### 影響檔案
+- src/lib/constants.ts
+
+### 回滾指令
+git revert <commit-hash>
+
+---
+
 ## v1.16.4 — 2026-05-02
 ### 變更內容（最後幾個 CTA 補追蹤 — 完整漏斗收尾）
 

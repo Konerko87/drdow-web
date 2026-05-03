@@ -3,7 +3,7 @@ export const SITE = {
   tagline: '宮廟、物流與倉儲 AI 管理系統',
   description: 'Dr.Dow AI 為宮廟、物流、倉儲與財務團隊打造 AI 管理系統，協助現場流程從紙本、Excel 與 LINE 群組，升級成可追蹤、可交接、可自動化的營運平台。',
   url: 'https://drdowai.com',
-  email: 'kevin@st-logistics.com.tw',
+  email: 'sales@drdowai.com',
   phone: '0922617117',
   company: 'Dr.Dow AI Ltd.',
 } as const
