@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dr.Dow AI / Kevin Chang 作品集</title>
+<meta name="description" content="Dr.Dow AI 作品集：宮廟、物流、倉儲、ERP、LINE 工作流、AI 自動化與電商系統導入案例。" />
+<meta property="og:title" content="Dr.Dow AI / Kevin Chang 作品集" />
+<meta property="og:description" content="把現場營運做成可以交付、可以擴充、可以接班的系統。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06080C;
+    --bg-1: #0A0E14;
+    --bg-2: #0C1117;
+    --bg-3: #121821;
+    --line: #1B2430;
+    --line-2: #243040;
+    --fg: #E6EAF0;
+    --fg-1: #B8C2D0;
+    --fg-2: #8A95A5;
+    --fg-3: #525E70;
+    --fg-4: #2F3947;
+    --acc: oklch(0.82 0.16 165);    /* mint/teal — primary */
+    --acc-soft: oklch(0.82 0.16 165 / 0.12);
+    --acc-line: oklch(0.82 0.16 165 / 0.4);
+    --blue: oklch(0.74 0.14 230);
+    --amber: oklch(0.82 0.14 75);
+    --pink: oklch(0.74 0.17 350);
+    --violet: oklch(0.74 0.15 290);
+    --danger: oklch(0.7 0.2 25);
+
+    --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+    --r-sm: 4px;
+    --r: 8px;
+    --r-lg: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* Subtle grid backdrop on entire page */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, oklch(0.82 0.16 165 / 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  #root { position: relative; z-index: 1; }
+
+  ::selection { background: var(--acc-soft); color: var(--acc); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--fg-3); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script defer src="./portfolio.bundle.js"></script>
+</body>
+</html>
