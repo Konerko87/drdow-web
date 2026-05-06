@@ -29,10 +29,12 @@ export function Footer() {
               <li><Link href="/products/tms" className="hover:text-white transition-colors">TMS 物流派車系統</Link></li>
               <li><Link href="/products/wms" className="hover:text-white transition-colors">WMS 倉儲管理系統</Link></li>
               <li><Link href="/products/erp" className="hover:text-white transition-colors">ERP 物流財務系統</Link></li>
+              <li><Link href="/products/erp/demo" className="hover:text-white transition-colors">ERP 功能導覽</Link></li>
               <li><Link href="/solutions" className="hover:text-white transition-colors">產業解決方案</Link></li>
               <li><Link href="/pricing" className="hover:text-white transition-colors">價格方案</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">產業 Blog 與導入指南</Link></li>
               <li><Link href="/faq" className="hover:text-white transition-colors">常見問題 FAQ</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">關於 Dr.Dow AI</Link></li>
               <li><Link href="/privacy" className="hover:text-white transition-colors">隱私政策</Link></li>
             </ul>
           </div>

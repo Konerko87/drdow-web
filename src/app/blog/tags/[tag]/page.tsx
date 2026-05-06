@@ -20,12 +20,20 @@ export async function generateMetadata(
   const tag = decodeURIComponent(rawTag)
   const posts = getPostsByTag(tag)
 
-  return createMetadata({
+  const meta = createMetadata({
     title: `${tag} 主題文章｜Dr.Dow AI 部落格`,
     description: `關於「${tag}」的 ${posts.length} 篇深度文章 — 涵蓋產業趨勢、導入策略、實務案例。Dr.Dow AI 為宮廟、物流、倉儲與財務團隊整理的產業知識庫。`,
     path: `/blog/tags/${rawTag}`,
     keywords: [tag, `${tag} 文章`, `${tag} 介紹`, `${tag} 教學`, 'Dr.Dow AI', '產業趨勢'],
   })
+
+  return {
+    ...meta,
+    robots: {
+      index: false,
+      follow: true,
+    },
+  }
 }
 
 export default async function TagPage(
