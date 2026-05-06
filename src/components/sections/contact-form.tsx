@@ -6,6 +6,12 @@ import Script from 'next/script'
 import { Icon } from '@/components/ui/icon'
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+const ADS_CONVERSION_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+const ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
+const ADS_LEAD_EVENT_NAME =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_EVENT_NAME || 'ads_conversion_SUBMIT_LEAD_FORM_1'
+const LEAD_CONVERSION_PENDING_KEY = 'drdow:lead-conversion-pending'
+const LEAD_CONVERSION_STORAGE_KEY = 'drdow:lead-conversion-tracked'
 
 declare global {
   interface Window {
@@ -38,6 +44,23 @@ const INTEREST_OPTIONS = [
   { value: 'timeline', label: '想了解導入時程' },
   { value: 'spec', label: '想評估系統規格' },
 ] as const
+
+function markLeadConversionPending() {
+  try {
+    window.sessionStorage.setItem(LEAD_CONVERSION_PENDING_KEY, '1')
+  } catch {
+    // Ignore storage failures; conversion tracking should never block the form.
+  }
+}
+
+function markLeadConversionTracked() {
+  try {
+    window.sessionStorage.setItem(LEAD_CONVERSION_STORAGE_KEY, '1')
+    window.sessionStorage.removeItem(LEAD_CONVERSION_PENDING_KEY)
+  } catch {
+    // Ignore storage failures; conversion tracking should never block the form.
+  }
+}
 
 export function ContactForm({ source }: ContactFormProps = {}) {
   const router = useRouter()
@@ -129,14 +152,38 @@ export function ContactForm({ source }: ContactFormProps = {}) {
         throw new Error(body.error || '寄送失敗')
       }
 
-      // Fire conversion event BEFORE redirect — /thank-you may not load if user navigates away
+      markLeadConversionPending()
+
+      // Fire conversion event BEFORE redirect; /thank-you only acts as a fallback.
       if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        const formSource = source || 'contact'
+
         window.gtag('event', 'generate_lead', {
           event_category: 'lead',
-          event_label: source || 'contact',
-          form_source: source || 'contact',
+          event_label: formSource,
+          form_source: formSource,
           value: 1,
         })
+
+        if (ADS_LEAD_EVENT_NAME) {
+          window.gtag('event', ADS_LEAD_EVENT_NAME, {
+            event_category: 'lead',
+            event_label: formSource,
+            form_source: formSource,
+            value: 1,
+            currency: 'TWD',
+          })
+        }
+
+        if (ADS_CONVERSION_ID && ADS_CONVERSION_LABEL) {
+          window.gtag('event', 'conversion', {
+            send_to: `${ADS_CONVERSION_ID}/${ADS_CONVERSION_LABEL}`,
+            value: 1,
+            currency: 'TWD',
+          })
+        }
+
+        markLeadConversionTracked()
       }
 
       setStatus('success')

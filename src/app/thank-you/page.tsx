@@ -5,6 +5,10 @@ import Image from 'next/image'
 
 const AW_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
 const AW_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
+const ADS_LEAD_EVENT_NAME =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_EVENT_NAME || 'ads_conversion_SUBMIT_LEAD_FORM_1'
+const LEAD_CONVERSION_PENDING_KEY = 'drdow:lead-conversion-pending'
+const LEAD_CONVERSION_STORAGE_KEY = 'drdow:lead-conversion-tracked'
 
 export const metadata: Metadata = {
   title: '感謝您的詢問 | Dr.Dow AI',
@@ -18,9 +22,26 @@ export default function ThankYouPage() {
       {/* GA4 generate_lead event + Google Ads conversion (if configured) */}
       <Script id="thankyou-conversion" strategy="afterInteractive">
         {`
-          if(typeof gtag==='function'){
-            gtag('event','generate_lead',{event_category:'contact',event_label:'form_submit',value:1});
-            ${AW_ID && AW_LABEL ? `gtag('event','conversion',{'send_to':'${AW_ID}/${AW_LABEL}'});` : ''}
+          var shouldTrackLead = false;
+          try {
+            shouldTrackLead =
+              window.sessionStorage.getItem('${LEAD_CONVERSION_PENDING_KEY}') === '1' &&
+              window.sessionStorage.getItem('${LEAD_CONVERSION_STORAGE_KEY}') !== '1';
+          } catch (error) {}
+
+          if(shouldTrackLead && typeof gtag==='function'){
+            gtag('event','generate_lead',{
+              event_category:'lead',
+              event_label:'contact',
+              form_source:'contact',
+              value:1
+            });
+            ${ADS_LEAD_EVENT_NAME ? `gtag('event','${ADS_LEAD_EVENT_NAME}',{event_category:'lead',event_label:'contact',form_source:'contact',value:1,currency:'TWD'});` : ''}
+            ${AW_ID && AW_LABEL ? `gtag('event','conversion',{'send_to':'${AW_ID}/${AW_LABEL}',value:1,currency:'TWD'});` : ''}
+            try {
+              window.sessionStorage.setItem('${LEAD_CONVERSION_STORAGE_KEY}', '1');
+              window.sessionStorage.removeItem('${LEAD_CONVERSION_PENDING_KEY}');
+            } catch (error) {}
           }
         `}
       </Script>
