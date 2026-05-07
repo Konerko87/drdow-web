@@ -9,6 +9,7 @@ export type BlogPost = {
   title: string
   description: string
   date: string
+  updated: string | null
   tags: string[]
   keywords: string[]
   coverImage: string | null
@@ -47,6 +48,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     title: data.title || slug,
     description: data.description || '',
     date: data.date || new Date().toISOString().split('T')[0],
+    updated: data.updated || data.modified || data.lastModified || null,
     tags: data.tags || [],
     keywords: data.keywords ? (typeof data.keywords === 'string' ? data.keywords.split(',').map((k: string) => k.trim()) : data.keywords) : [],
     coverImage: data.coverImage || null,

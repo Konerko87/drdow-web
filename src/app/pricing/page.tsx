@@ -171,6 +171,38 @@ const LOGISTICS_PLANS = [
   },
 ]
 
+type QuotePlan = {
+  name: string
+  target: string
+  features: string[]
+}
+
+function createQuoteOffer(plan: QuotePlan, serviceType: string, position: number) {
+  return {
+    '@type': 'Offer',
+    position,
+    name: plan.name,
+    url: `${SITE.url}/pricing`,
+    availability: 'https://schema.org/OnlineOnly',
+    businessFunction: 'https://schema.org/Sell',
+    description: `${plan.target} — ${plan.features.join('、')}。免費諮詢，依需求報價`,
+    areaServed: {
+      '@type': 'Country',
+      name: '台灣',
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: plan.name,
+      serviceType,
+      provider: {
+        '@type': 'Organization',
+        name: SITE.name,
+        url: SITE.url,
+      },
+    },
+  }
+}
+
 function CheckIcon() {
   return (
     <svg className="w-4 h-4 mt-0.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" stroke="#B91C1C" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
@@ -385,44 +417,29 @@ export default function PricingPage() {
         name: '價格方案',
         description: 'Dr.Dow AI 產品價格方案',
         url: `${SITE.url}/pricing`,
-        mainEntity: [
-          {
-            '@type': 'Product',
-            name: '廟通 宮廟管理系統',
-            description: '專為台灣宮廟打造的智慧管理平台',
-            brand: { '@type': 'Brand', name: SITE.name },
-            offers: {
-              '@type': 'AggregateOffer',
-              priceCurrency: 'TWD',
-              offerCount: 3,
-              offers: MIAOTONG_PLANS.map((plan) => ({
-                '@type': 'Offer',
-                name: plan.name,
-                description: `${plan.target} — ${plan.features.join('、')}。免費諮詢，依需求報價`,
-                priceCurrency: 'TWD',
-                availability: 'https://schema.org/OnlineOnly',
-              })),
+        mainEntity: {
+          '@type': 'OfferCatalog',
+          name: 'Dr.Dow AI 方案目錄',
+          description: 'Dr.Dow AI 廟通、TMS、WMS、ERP 系統導入與維運方案。所有方案採免費諮詢，依需求報價。',
+          itemListElement: [
+            {
+              '@type': 'OfferCatalog',
+              name: '廟通 宮廟管理系統',
+              description: '專為台灣宮廟打造的智慧管理平台',
+              itemListElement: MIAOTONG_PLANS.map((plan, index) =>
+                createQuoteOffer(plan, '宮廟管理系統導入服務', index + 1)
+              ),
             },
-          },
-          {
-            '@type': 'Product',
-            name: 'TMS / WMS / ERP 物流營運系統',
-            description: '物流派車、倉儲管理與財務管理 AI 系統',
-            brand: { '@type': 'Brand', name: SITE.name },
-            offers: {
-              '@type': 'AggregateOffer',
-              priceCurrency: 'TWD',
-              offerCount: 3,
-              offers: LOGISTICS_PLANS.map((plan) => ({
-                '@type': 'Offer',
-                name: plan.name,
-                description: `${plan.target} — ${plan.features.join('、')}。免費諮詢，依需求報價`,
-                priceCurrency: 'TWD',
-                availability: 'https://schema.org/OnlineOnly',
-              })),
+            {
+              '@type': 'OfferCatalog',
+              name: 'TMS / WMS / ERP 物流營運系統',
+              description: '物流派車、倉儲管理與財務管理 AI 系統',
+              itemListElement: LOGISTICS_PLANS.map((plan, index) =>
+                createQuoteOffer(plan, '物流營運系統導入服務', index + 1)
+              ),
             },
-          },
-        ],
+          ],
+        },
       }} />
       <JsonLd data={{
         '@context': 'https://schema.org',

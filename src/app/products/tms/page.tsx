@@ -15,11 +15,11 @@ import { Icon, type IconName } from '@/components/ui/icon'
 import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr.Dow TMS — 物流派車 AI 系統｜拖拉指派 + LINE 司機 App',
-  description: '一個調度員管 40+ 台車：拖拉指派派車板、LINE 司機 App（不用裝 App）、GPS 即時追蹤、薪酬自動結算。取代 Excel + LINE 群組土法調度，專為台灣中小物流公司設計。免費預約 Demo。',
+  title: 'Dr.Dow TMS — 全台物流 TMS 運輸管理系統｜派車系統 + LINE 司機 App',
+  description: '全台物流車隊適用的 TMS 運輸管理系統：拖拉指派派車板、LINE 司機 App（不用裝 App）、GPS 即時追蹤、薪酬自動結算。取代 Excel + LINE 群組土法調度，專為台灣中小物流公司設計。免費預約 Demo。',
   path: '/products/tms',
   image: 'https://drdowai.com/og/tms-og.png',
-  keywords: ['TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
+  keywords: ['TMS', 'TMS 物流', 'TMS 系統', '全台物流 TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
 })
 
 const SCREENSHOTS = [

@@ -11,6 +11,9 @@ import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { SITE } from '@/lib/constants'
 import { TrackedCTA } from '@/components/ui/tracked-cta'
 
+const absoluteUrl = (pathOrUrl: string) =>
+  pathOrUrl.startsWith('http') ? pathOrUrl : `${SITE.url}${pathOrUrl}`
+
 // GFM-aware markdown renderer with custom tweaks for:
 // - Open external links in new tab
 // - Wrap images in <figure> with caption from alt text
@@ -52,10 +55,10 @@ export async function generateMetadata(
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
-    image: post.coverImage || undefined,
+    image: post.coverImage ? absoluteUrl(post.coverImage) : undefined,
     type: 'article',
     publishedTime: post.date,
-    modifiedTime: post.date,
+    modifiedTime: post.updated || post.date,
     authors: [SITE.name],
   })
   return {
@@ -79,9 +82,17 @@ export default async function BlogPostPage(
           '@type': 'BlogPosting',
           headline: post.title,
           description: post.description,
+          url: `${SITE.url}/blog/${slug}`,
           datePublished: post.date,
-          dateModified: post.date,
-          ...(post.coverImage && post.coverImage.startsWith('http') && { image: post.coverImage }),
+          dateModified: post.updated || post.date,
+          ...(post.coverImage && {
+            image: {
+              '@type': 'ImageObject',
+              url: absoluteUrl(post.coverImage),
+              width: 1200,
+              height: 630,
+            },
+          }),
           author: {
             '@type': 'Organization',
             name: SITE.name,
@@ -92,9 +103,15 @@ export default async function BlogPostPage(
             '@type': 'Organization',
             name: SITE.name,
             url: SITE.url,
-            logo: `${SITE.url}/logo-icon.png`,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${SITE.url}/logo-icon.png`,
+            },
           },
-          mainEntityOfPage: `${SITE.url}/blog/${slug}`,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${SITE.url}/blog/${slug}`,
+          },
           keywords: post.keywords.length > 0 ? post.keywords.join(', ') : post.tags.join(', '),
           wordCount: post.wordCount,
           articleSection: post.tags[0] || '產業趨勢',
@@ -280,4 +297,3 @@ export default async function BlogPostPage(
     </>
   )
 }
-

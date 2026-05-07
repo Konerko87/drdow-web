@@ -21,11 +21,11 @@ import { LanternIllustration } from '@/components/ui/lantern-illustration'
 import { TrackedCTA } from '@/components/ui/tracked-cta'
 
 export const metadata: Metadata = createMetadata({
-  title: '廟通 — 智慧宮廟管理系統｜LINE Pay 線上點燈、家人代辦、發財金',
-  description: '點燈一週對帳變即時、信徒在 LINE 直接用 LINE Pay 付款、家人可代爸媽點燈報名法會、發財金借還黑名單自動管理。專為台灣宮廟打造的廟務 SaaS，最快 1 週上線。免費預約展示。',
+  title: '廟通 — 廟務系統與宮廟管理系統｜LINE Pay 線上點燈、家人代辦',
+  description: '廟通是專為台灣宮廟打造的廟務系統與宮廟管理系統：點燈一週對帳變即時、信徒在 LINE 直接用 LINE Pay 付款、家人代辦、發財金借還黑名單自動管理。最快 1 週上線，免費預約展示。',
   path: '/products/miaotong',
   image: 'https://drdowai.com/og/miaotong-og.png',
-  keywords: ['廟通', '宮廟管理系統', '廟務系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型'],
+  keywords: ['廟通', '廟務系統', '智慧廟務系統', '宮廟管理系統', '廟宇管理系統', '點燈系統', '捐款管理', '法會報名', '宮廟數位轉型'],
 })
 
 export default function MiaotongPage() {
@@ -73,7 +73,7 @@ export default function MiaotongPage() {
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/10 rounded-full text-sm text-white/80 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
-              智慧宮廟管理系統
+              智慧宮廟管理系統 / 廟務系統
             </div>
             <h1 className="font-[family-name:var(--font-noto-serif-tc)] text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
               真正懂台灣宮廟流程的
@@ -81,7 +81,7 @@ export default function MiaotongPage() {
               <span className="gradient-text-temple">智慧管理平台</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto mb-4">
-              Dr.Dow AI 廟通，專為台灣宮廟打造。整合信徒管理、點燈牌位、捐款收據、法會活動、發財金借還、會計報表與 LINE 行動服務。
+              Dr.Dow AI 廟通，專為台灣宮廟打造的廟務系統。整合信徒管理、點燈牌位、捐款收據、法會活動、發財金借還、會計報表與 LINE 行動服務。
             </p>
             <p className="text-sm text-white/40 mb-8">
               不只是紀錄資料，而是讓廟務流程更順、更清楚、更可追蹤。
