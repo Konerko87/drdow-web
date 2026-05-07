@@ -4,13 +4,15 @@ import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
-import { BreadcrumbJsonLd } from '@/components/seo/json-ld'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
 import { TrackedCTA } from '@/components/ui/tracked-cta'
+import { SITE } from '@/lib/constants'
 
 export const metadata: Metadata = createMetadata({
   title: 'ERP 系統功能導覽 — Dr.Dow ERP 完整畫面展示',
   description: '完整展示 Dr.Dow ERP 財務系統的所有功能畫面：廠商管理、請款單、付款審核、銀行對帳、應收帳款、老闆 App、廠商入口等模組。',
   path: '/products/erp/demo',
+  image: `${SITE.url}/og/erp-og.png`,
   keywords: ['ERP 功能導覽', 'ERP 系統展示', '財務系統畫面', 'Dr.Dow ERP Demo'],
 })
 
@@ -134,6 +136,10 @@ const SECTIONS = [
   },
 ] as const
 
+const demoImages = SECTIONS.flatMap((section) =>
+  section.images.map((image) => ({ section: section.title, ...image })),
+)
+
 export default function ERPDemoPage() {
   return (
     <>
@@ -144,6 +150,32 @@ export default function ERPDemoPage() {
           { name: 'ERP 財務系統', url: '/products/erp' },
           { name: '功能導覽', url: '/products/erp/demo' },
         ]}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ImageGallery',
+          name: 'Dr.Dow ERP 系統功能導覽',
+          description: 'Dr.Dow ERP 財務系統實際操作畫面，包含請款、付款、銀行對帳、報表、老闆 App 與廠商入口。',
+          url: `${SITE.url}/products/erp/demo`,
+          inLanguage: 'zh-TW',
+          about: {
+            '@type': 'SoftwareApplication',
+            name: 'Dr.Dow ERP',
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'Web',
+            url: `${SITE.url}/products/erp`,
+          },
+          associatedMedia: demoImages.map((image, index) => ({
+            '@type': 'ImageObject',
+            position: index + 1,
+            name: image.title,
+            caption: `${image.section} — ${image.desc}`,
+            contentUrl: `${SITE.url}${image.src}`,
+            thumbnailUrl: `${SITE.url}${image.src}`,
+            inLanguage: 'zh-TW',
+          })),
+        }}
       />
 
       {/* Hero */}
