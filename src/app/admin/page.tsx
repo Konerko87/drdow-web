@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 
-const TABS = ['搜尋成效', '流量分析', '廣告成效', 'SEO 健檢', '索引狀態'] as const
+const TABS = ['總覽', '搜尋成效', '流量分析', '廣告成效', 'SEO 健檢', '索引狀態'] as const
 type Tab = typeof TABS[number]
 
 const PERIOD_OPTIONS = [
@@ -54,48 +54,102 @@ interface IndexStatusData {
   }[]
 }
 
+interface OverviewData {
+  days: number
+  generatedAt: string
+  search: SearchConsoleData | null
+  analytics: AnalyticsData | null
+  ads: GoogleAdsData | null
+  seo: SeoCheckData | null
+  errors: { source: string; message: string }[]
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [activeTab, setActiveTab] = useState<Tab>('搜尋成效')
+  const [activeTab, setActiveTab] = useState<Tab>('總覽')
   const [days, setDays] = useState(28)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  const [overviewData, setOverviewData] = useState<OverviewData | null>(null)
   const [searchData, setSearchData] = useState<SearchConsoleData | null>(null)
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
   const [adsData, setAdsData] = useState<GoogleAdsData | null>(null)
   const [seoData, setSeoData] = useState<SeoCheckData | null>(null)
   const [indexData, setIndexData] = useState<IndexStatusData | null>(null)
 
-  const headers = { 'x-admin-password': password }
-
   const fetchData = useCallback(async (tab: Tab, period: number) => {
+    const authHeaders = { 'x-admin-password': password }
     setLoading(true)
     setError('')
     try {
-      if (tab === '搜尋成效') {
-        const res = await fetch(`/api/admin/search-console?days=${period}`, { headers })
+      if (tab === '總覽') {
+        const loadJson = async (source: string, path: string) => {
+          try {
+            const res = await fetch(path, { headers: authHeaders })
+            const data = await res.json()
+            if (data.error) throw new Error(data.error)
+            return { source, data, error: null }
+          } catch (err) {
+            return {
+              source,
+              data: null,
+              error: err instanceof Error ? err.message : '載入失敗',
+            }
+          }
+        }
+
+        const [searchResult, analyticsResult, adsResult, seoResult] = await Promise.all([
+          loadJson('搜尋成效', `/api/admin/search-console?days=${period}`),
+          loadJson('流量分析', `/api/admin/analytics?days=${period}`),
+          loadJson('廣告成效', `/api/admin/google-ads?days=${period}`),
+          loadJson('SEO 健檢', '/api/admin/seo-check'),
+        ])
+
+        const search = searchResult.data as SearchConsoleData | null
+        const analytics = analyticsResult.data as AnalyticsData | null
+        const ads = adsResult.data as GoogleAdsData | null
+        const seo = seoResult.data as SeoCheckData | null
+
+        if (search) setSearchData(search)
+        if (analytics) setAnalyticsData(analytics)
+        if (ads) setAdsData(ads)
+        if (seo) setSeoData(seo)
+
+        setOverviewData({
+          days: period,
+          generatedAt: new Date().toISOString(),
+          search,
+          analytics,
+          ads,
+          seo,
+          errors: [searchResult, analyticsResult, adsResult, seoResult]
+            .filter((r) => r.error)
+            .map((r) => ({ source: r.source, message: r.error || '載入失敗' })),
+        })
+      } else if (tab === '搜尋成效') {
+        const res = await fetch(`/api/admin/search-console?days=${period}`, { headers: authHeaders })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setSearchData(data)
       } else if (tab === '流量分析') {
-        const res = await fetch(`/api/admin/analytics?days=${period}`, { headers })
+        const res = await fetch(`/api/admin/analytics?days=${period}`, { headers: authHeaders })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setAnalyticsData(data)
       } else if (tab === '廣告成效') {
-        const res = await fetch(`/api/admin/google-ads?days=${period}`, { headers })
+        const res = await fetch(`/api/admin/google-ads?days=${period}`, { headers: authHeaders })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setAdsData(data)
       } else if (tab === 'SEO 健檢') {
-        const res = await fetch('/api/admin/seo-check', { headers })
+        const res = await fetch('/api/admin/seo-check', { headers: authHeaders })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setSeoData(data)
       } else {
-        const res = await fetch('/api/admin/index-status', { headers })
+        const res = await fetch('/api/admin/index-status', { headers: authHeaders })
         const data = await res.json()
         if (data.error) throw new Error(data.error)
         setIndexData(data)
@@ -117,7 +171,8 @@ export default function AdminPage() {
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab)
     const cached =
-      tab === '搜尋成效' ? searchData
+      tab === '總覽' ? overviewData
+      : tab === '搜尋成效' ? searchData
       : tab === '流量分析' ? analyticsData
       : tab === '廣告成效' ? adsData
       : tab === 'SEO 健檢' ? seoData
@@ -127,6 +182,7 @@ export default function AdminPage() {
 
   const handlePeriodChange = (period: number) => {
     setDays(period)
+    setOverviewData(null)
     setSearchData(null)
     setAnalyticsData(null)
     setAdsData(null)
@@ -234,6 +290,10 @@ export default function AdminPage() {
           <SearchConsoleView data={searchData} />
         )}
 
+        {!loading && !error && activeTab === '總覽' && overviewData && (
+          <OverviewView data={overviewData} />
+        )}
+
         {!loading && !error && activeTab === '流量分析' && analyticsData && (
           <AnalyticsView data={analyticsData} />
         )}
@@ -279,6 +339,24 @@ export default function AdminPage() {
   )
 }
 
+function fmtNumber(n: number) {
+  return n < 1000 ? n.toString() : `${(n / 1000).toFixed(1)}k`
+}
+
+function fmtMoney(n: number) {
+  return `NT$${Math.round(n).toLocaleString()}`
+}
+
+function fmtPercent(n: number, digits = 1) {
+  return `${(n * 100).toFixed(digits)}%`
+}
+
+function fmtDuration(seconds: number) {
+  const m = Math.floor(seconds / 60)
+  const s = Math.round(seconds % 60)
+  return m > 0 ? `${m}m ${s}s` : `${s}s`
+}
+
 // ─── Metric Card ────────────────────────────────────────
 function MetricCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
@@ -286,6 +364,212 @@ function MetricCard({ label, value, sub }: { label: string; value: string | numb
       <div className="text-xs text-slate-400 mb-1">{label}</div>
       <div className="text-2xl font-bold">{value}</div>
       {sub && <div className="text-xs text-slate-500 mt-1">{sub}</div>}
+    </div>
+  )
+}
+
+// ─── Overview View ───────────────────────────────────────
+function OverviewView({ data }: { data: OverviewData }) {
+  const alerts = buildOverviewAlerts(data)
+  const queryOpportunities = (data.search?.queries || [])
+    .filter((q) => q.impressions >= 10 && q.ctr < 0.05)
+    .sort((a, b) => b.impressions - a.impressions)
+    .slice(0, 5)
+  const seoIssues = (data.seo?.pages || []).filter((p) => p.issues.length > 0).slice(0, 5)
+  const paidNoConversion = (data.ads?.campaigns || [])
+    .filter((c) => c.cost > 0 && c.conversions === 0)
+    .sort((a, b) => b.cost - a.cost)
+    .slice(0, 5)
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="text-base font-bold">營運總覽</h2>
+            <p className="text-xs text-slate-400 mt-1">
+              過去 {data.days} 天，更新於 {new Date(data.generatedAt).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+            </p>
+          </div>
+          <span className="text-[10px] px-2 py-1 rounded-full bg-blue-600/20 text-blue-300 border border-blue-500/30">
+            Dashboard
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <MetricCard
+          label="Google 自然點擊"
+          value={data.search ? fmtNumber(data.search.summary.clicks) : '—'}
+          sub={data.search ? `${fmtNumber(data.search.summary.impressions)} 曝光 · CTR ${fmtPercent(data.search.summary.ctr)}` : 'Search Console 未載入'}
+        />
+        <MetricCard
+          label="網站工作階段"
+          value={data.analytics ? fmtNumber(data.analytics.summary.sessions) : '—'}
+          sub={data.analytics ? `${fmtNumber(data.analytics.summary.users)} 使用者 · ${fmtDuration(data.analytics.summary.avgDuration)}` : 'GA4 未載入'}
+        />
+        <MetricCard
+          label="廣告花費"
+          value={data.ads ? fmtMoney(data.ads.summary.cost) : '—'}
+          sub={data.ads ? `${fmtNumber(data.ads.summary.clicks)} 點擊 · ${data.ads.summary.conversions.toFixed(0)} 轉換` : 'Ads 未載入'}
+        />
+        <MetricCard
+          label="SEO 健康度"
+          value={data.seo ? data.seo.summary.score : '—'}
+          sub={data.seo ? `${data.seo.summary.pagesWithIssues}/${data.seo.summary.totalPages} 頁有問題` : 'SEO 健檢未載入'}
+        />
+      </div>
+
+      <div>
+        <h3 className="text-sm font-semibold text-slate-300 mb-3">可行動提醒</h3>
+        <div className="space-y-2">
+          {alerts.map((alert, i) => (
+            <InsightCard key={i} tone={alert.tone} title={alert.title} body={alert.body} />
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+        <h3 className="text-sm font-semibold text-slate-300 mb-3">漏斗速讀</h3>
+        <div className="grid grid-cols-2 gap-3 text-xs">
+          <FunnelStep label="自然曝光" value={data.search ? fmtNumber(data.search.summary.impressions) : '—'} />
+          <FunnelStep label="自然點擊" value={data.search ? fmtNumber(data.search.summary.clicks) : '—'} />
+          <FunnelStep label="廣告點擊" value={data.ads ? fmtNumber(data.ads.summary.clicks) : '—'} />
+          <FunnelStep label="Paid Search 工作階段" value={data.ads ? fmtNumber(data.ads.summary.sessions) : '—'} />
+          <FunnelStep label="全站工作階段" value={data.analytics ? fmtNumber(data.analytics.summary.sessions) : '—'} />
+          <FunnelStep label="轉換" value={data.ads ? data.ads.summary.conversions.toFixed(0) : '—'} />
+        </div>
+      </div>
+
+      {queryOpportunities.length > 0 && (
+        <OverviewList
+          title="高曝光但 CTR 偏低的搜尋字"
+          items={queryOpportunities.map((q) => ({
+            title: q.query,
+            meta: `${q.impressions} 曝光 · ${q.clicks} 點擊 · CTR ${fmtPercent(q.ctr)} · 排名 ${q.position.toFixed(1)}`,
+          }))}
+        />
+      )}
+
+      {paidNoConversion.length > 0 && (
+        <OverviewList
+          title="有花費但尚無轉換的廣告活動"
+          items={paidNoConversion.map((c) => ({
+            title: c.name,
+            meta: `${fmtMoney(c.cost)} · ${c.clicks} 點擊 · ${c.impressions} 曝光`,
+          }))}
+        />
+      )}
+
+      {seoIssues.length > 0 && (
+        <OverviewList
+          title="SEO 健檢優先處理頁"
+          items={seoIssues.map((p) => ({
+            title: p.path,
+            meta: p.issues.slice(0, 2).join('、'),
+          }))}
+        />
+      )}
+
+      {data.analytics?.pages && data.analytics.pages.length > 0 && (
+        <OverviewList
+          title="熱門頁面"
+          items={data.analytics.pages.slice(0, 5).map((p) => ({
+            title: p.path,
+            meta: `${p.views} 瀏覽 · ${p.users} 使用者 · 停留 ${fmtDuration(p.avgDuration)}`,
+          }))}
+        />
+      )}
+    </div>
+  )
+}
+
+function buildOverviewAlerts(data: OverviewData): { tone: 'good' | 'warn' | 'bad'; title: string; body: string }[] {
+  const alerts: { tone: 'good' | 'warn' | 'bad'; title: string; body: string }[] = []
+
+  for (const err of data.errors) {
+    alerts.push({ tone: 'bad', title: `${err.source} 載入失敗`, body: err.message })
+  }
+
+  if (data.ads && data.ads.summary.cost > 0 && data.ads.summary.conversions === 0) {
+    alerts.push({
+      tone: 'bad',
+      title: '廣告有花費但目前 0 轉換',
+      body: `${fmtMoney(data.ads.summary.cost)} / ${data.ads.summary.clicks} 次點擊，建議先看關鍵字與落地頁是否精準。`,
+    })
+  }
+
+  if (data.search && data.search.summary.impressions >= 100 && data.search.summary.ctr < 0.03) {
+    alerts.push({
+      tone: 'warn',
+      title: '搜尋曝光有量，但 CTR 偏低',
+      body: `${data.search.summary.impressions} 曝光、CTR ${fmtPercent(data.search.summary.ctr)}，優先調 title / description。`,
+    })
+  }
+
+  if (data.analytics && data.analytics.summary.bounceRate > 0.7 && data.analytics.summary.sessions >= 10) {
+    alerts.push({
+      tone: 'warn',
+      title: '跳出率偏高',
+      body: `目前跳出率 ${fmtPercent(data.analytics.summary.bounceRate)}，可檢查首頁首屏、CTA 與落地頁速度。`,
+    })
+  }
+
+  if (data.seo && data.seo.summary.pagesWithIssues > 0) {
+    alerts.push({
+      tone: 'warn',
+      title: '仍有 SEO 健檢問題',
+      body: `${data.seo.summary.pagesWithIssues} 頁有問題，共 ${data.seo.summary.totalIssues} 項，建議從 sitemap 核心頁先修。`,
+    })
+  }
+
+  if (alerts.length === 0) {
+    alerts.push({
+      tone: 'good',
+      title: '目前沒有明顯警報',
+      body: '主要資料源已載入，沒有偵測到高優先級異常。',
+    })
+  }
+
+  return alerts
+}
+
+function InsightCard({ tone, title, body }: { tone: 'good' | 'warn' | 'bad'; title: string; body: string }) {
+  const cls = tone === 'bad'
+    ? 'bg-red-950/30 border-red-800/70 text-red-200'
+    : tone === 'warn'
+      ? 'bg-amber-950/30 border-amber-800/70 text-amber-200'
+      : 'bg-green-950/30 border-green-800/70 text-green-200'
+
+  return (
+    <div className={`rounded-xl p-3 border ${cls}`}>
+      <div className="text-sm font-semibold">{title}</div>
+      <div className="text-xs opacity-80 mt-1 leading-relaxed">{body}</div>
+    </div>
+  )
+}
+
+function FunnelStep({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-slate-900/60 border border-slate-700/50 p-3">
+      <div className="text-slate-500 mb-1">{label}</div>
+      <div className="text-lg font-bold text-white">{value}</div>
+    </div>
+  )
+}
+
+function OverviewList({ title, items }: { title: string; items: { title: string; meta: string }[] }) {
+  return (
+    <div>
+      <h3 className="text-sm font-semibold text-slate-300 mb-3">{title}</h3>
+      <div className="space-y-2">
+        {items.map((item, i) => (
+          <div key={i} className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/50">
+            <div className="text-sm font-medium truncate">{item.title}</div>
+            <div className="text-xs text-slate-400 mt-1">{item.meta}</div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
