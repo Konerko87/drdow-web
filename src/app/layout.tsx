@@ -90,6 +90,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+        <link rel="alternate" href="/feed.xml" type="application/rss+xml" title="Dr.Dow AI Blog RSS" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0F172A" />
       </head>

@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/metadata'
-import { getAllPosts } from '@/lib/blog'
+import { getAllPosts, getPostsByProduct } from '@/lib/blog'
+import { BLOG_TOPICS } from '@/lib/blog-topics'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/seo/json-ld'
@@ -30,6 +31,10 @@ export default async function BlogPage(
   const { tag } = await props.searchParams
   const allPosts = getAllPosts()
   const posts = tag ? allPosts.filter((p) => p.tags.includes(tag)) : allPosts
+  const topicCards = BLOG_TOPICS.map((topic) => ({
+    ...topic,
+    count: getPostsByProduct(topic.productKey).length,
+  }))
 
   // Collect all unique tags
   const allTags = Array.from(new Set(allPosts.flatMap((p) => p.tags))).sort()
@@ -73,6 +78,40 @@ export default async function BlogPage(
           </FadeIn>
         </div>
       </section>
+
+      {!tag && (
+        <section className="pb-10">
+          <div className="max-w-4xl mx-auto px-6">
+            <FadeIn>
+              <h2 className="text-[12px] tracking-[0.18em] uppercase text-[var(--color-blog-muted)] font-semibold mb-5">
+                主題指南 · Topic Hubs
+              </h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {topicCards.map((topic, i) => (
+                <FadeIn key={topic.slug} delay={i * 50}>
+                  <Link
+                    href={topic.href}
+                    className="group block h-full bg-white rounded-2xl border border-[var(--color-blog-rule)] p-5 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-20px_rgba(60,30,0,0.25)] transition-all"
+                  >
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-lg font-semibold text-[var(--color-blog-ink)] group-hover:text-[var(--color-blog-accent)] transition-colors">
+                        {topic.navTitle}
+                      </h3>
+                      <span className="shrink-0 text-[11px] font-semibold text-[var(--color-blog-accent)] bg-[var(--color-blog-accent)]/10 px-2.5 py-1 rounded-full">
+                        {topic.count} 篇
+                      </span>
+                    </div>
+                    <p className="text-[13.5px] text-[var(--color-blog-muted)] leading-[1.7] line-clamp-3">
+                      {topic.description}
+                    </p>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Tag Filter */}
       <section className="pb-8">

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/constants'
 import { getAllPosts } from '@/lib/blog'
+import { BLOG_TOPICS } from '@/lib/blog-topics'
 
 const absoluteUrl = (pathOrUrl: string) =>
   pathOrUrl.startsWith('http') ? pathOrUrl : `${SITE.url}${pathOrUrl}`
@@ -75,6 +76,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic blog posts
   const posts = getAllPosts()
+  const topicPages: MetadataRoute.Sitemap = BLOG_TOPICS.map((topic) =>
+    page(topic.href, now, 'weekly', 0.7)
+  )
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE.url}/blog/${post.slug}`,
     lastModified: new Date(post.updated || post.date),
@@ -83,5 +87,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(post.coverImage?.startsWith('/') && { images: [absoluteUrl(post.coverImage)] }),
   }))
 
-  return [...staticPages, ...blogPages]
+  return [...staticPages, ...topicPages, ...blogPages]
 }
