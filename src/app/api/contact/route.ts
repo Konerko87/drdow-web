@@ -238,15 +238,16 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     const { company, name, email, message } = data
-    if (!company || !name || !email || !message) {
+    const phone = data.phone || ''
+    if (!company || !name || !message || (!email && !phone)) {
       return NextResponse.json(
-        { error: '請填寫所有必填欄位' },
+        { error: '請填寫所有必填欄位，並至少留下 Email 或電話' },
         { status: 400 }
       )
     }
 
     // Basic email validation
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
         { error: 'Email 格式不正確' },
         { status: 400 }
@@ -259,7 +260,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Suspicious content check — ban + drop, no email sent
-    const matched = detectSuspicious({ company, name, email, phone: data.phone || '', message })
+    const matched = detectSuspicious({ company, name, email: email || '', phone, message })
     if (matched) {
       banIp(ip)
       console.warn(`[Contact] Blocked sqli/xss from ${ip} ua="${ua.slice(0, 80)}" pattern=${matched}`)
@@ -279,8 +280,8 @@ export async function POST(request: NextRequest) {
     await sendEmail({
       company,
       name,
-      email,
-      phone: data.phone || '',
+      email: email || '未填寫',
+      phone,
       message,
     })
 

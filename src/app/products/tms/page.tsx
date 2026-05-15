@@ -19,7 +19,7 @@ export const metadata: Metadata = createMetadata({
   description: '全台物流車隊適用的 TMS 運輸管理系統：拖拉指派派車板、LINE 司機 App（不用裝 App）、GPS 即時追蹤、薪酬自動結算。取代 Excel + LINE 群組土法調度，專為台灣中小物流公司設計。免費預約 Demo。',
   path: '/products/tms',
   image: 'https://drdowai.com/og/tms-og.png',
-  keywords: ['TMS', 'TMS 物流', 'TMS 系統', '全台物流 TMS', '運輸管理系統', '派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
+  keywords: ['TMS', 'TMS 物流', 'TMS 系統', 'TMS系統', '全台物流 TMS', '運輸管理系統', '派車系統', '物流派車系統', '貨運派車系統', '物流系統', 'AI派車', '司機APP', 'GPS追蹤'],
 })
 
 const SCREENSHOTS = [
@@ -116,6 +116,59 @@ export default function TMSPage() {
               <div className="text-sm text-muted mt-1">{s.label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Search Intent */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeIn className="text-center mb-12">
+            <p className="text-accent text-[12px] font-semibold tracking-[0.18em] uppercase mb-3">TMS / 派車系統 / 運輸管理系統</p>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              你搜尋的是 TMS，真正要解的是每天派車混亂
+            </h2>
+            <p className="text-muted text-lg max-w-3xl mx-auto">
+              Dr.Dow TMS 不是單純把 Excel 搬上雲端，而是把訂單、車輛、司機回報、GPS、薪資與對帳串成同一條流程。
+            </p>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                keyword: '派車系統',
+                title: '調度員可以拖拉指派',
+                desc: '訂單、車輛、司機狀態同畫面，不用在 Excel、LINE 群組、電話之間來回確認。',
+              },
+              {
+                keyword: 'TMS 系統',
+                title: '司機用 LINE 接單回報',
+                desc: '任務、簽到、照片、異常回報直接在 LINE 完成，不要求司機再下載新 App。',
+              },
+              {
+                keyword: '運輸管理系統',
+                title: '派車後能一路算到結算',
+                desc: '從出車、回報、趟次、薪資到客戶對帳，留下可查、可追、可交接的營運資料。',
+              },
+            ].map((item) => (
+              <FadeIn key={item.keyword}>
+                <article className="bg-white rounded-2xl p-6 border border-black/5 h-full hover-lift">
+                  <p className="text-xs font-semibold text-accent mb-3">{item.keyword}</p>
+                  <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-3 tracking-tight">{item.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn className="text-center mt-10">
+            <TrackedCTA
+              href="#lead-form"
+              location="search-intent"
+              product="tms"
+              label="demo-anchor"
+              className="inline-flex px-6 py-3 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
+            >
+              用你的派車流程看一次 Demo
+            </TrackedCTA>
+          </FadeIn>
         </div>
       </section>
 

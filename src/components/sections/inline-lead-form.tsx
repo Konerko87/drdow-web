@@ -43,6 +43,7 @@ export function InlineLeadForm({ source, variant, title, subtitle }: InlineLeadF
 
   return (
     <section
+      id="lead-form"
       className="relative py-20 md:py-24 overflow-hidden"
       aria-label={`${source} 預約展示表單`}
       style={{

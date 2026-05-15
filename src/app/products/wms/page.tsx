@@ -19,7 +19,7 @@ export const metadata: Metadata = createMetadata({
   description: '盤點從 3 天縮到 3 小時、出貨揀錯率降 90%。手機掃碼、儲位視覺化、即時庫存、與 TMS / ERP 全打通。倉儲現場不再靠紙本和 LINE 喊話追資料，台灣中小倉儲與電商倉專用。免費預約 Demo。',
   path: '/products/wms',
   image: 'https://drdowai.com/og/wms-og.png',
-  keywords: ['WMS', '倉儲管理系統', '庫存管理系統', '條碼盤點', '出入庫管理', '儲位管理', '物流倉儲'],
+  keywords: ['WMS', 'WMS 系統', 'WMS系統', '倉儲管理系統', '倉庫管理系統', '庫存管理系統', '條碼盤點', '條碼盤點系統', '出入庫管理', '出入庫管理系統', '儲位管理', '物流倉儲'],
 })
 
 const SCREENSHOTS = [
@@ -175,6 +175,59 @@ export default function WMSPage() {
               <div className="text-sm text-muted mt-1">{s.label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Search Intent */}
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-6">
+          <FadeIn className="text-center mb-12">
+            <p className="text-accent text-[12px] font-semibold tracking-[0.18em] uppercase mb-3">WMS / 倉儲管理系統 / 庫存管理系統</p>
+            <h2 className="font-[family-name:var(--font-noto-serif-tc)] text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              你搜尋的是 WMS，真正要解的是庫存不準和出貨錯誤
+            </h2>
+            <p className="text-muted text-lg max-w-3xl mx-auto">
+              Dr.Dow WMS 把入庫、儲位、盤點、出庫複核與派車通知接起來，讓現場不再靠紙本、LINE 喊話和月底人工盤點補洞。
+            </p>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                keyword: '倉儲管理系統',
+                title: '入庫出庫都有掃碼紀錄',
+                desc: '品項、批號、儲位、數量異動即時更新，主管不用等人回報才知道庫存狀態。',
+              },
+              {
+                keyword: '庫存管理系統',
+                title: '庫存差異可以追到來源',
+                desc: '每一次入庫、移倉、揀貨、盤點都留下紀錄，差異不是月底才爆出來。',
+              },
+              {
+                keyword: '條碼盤點系統',
+                title: '盤點任務直接派到手機',
+                desc: '現場掃碼回報，系統自動比對帳面與實盤差異，減少人工彙整時間。',
+              },
+            ].map((item) => (
+              <FadeIn key={item.keyword}>
+                <article className="bg-white rounded-2xl p-6 border border-black/5 h-full hover-lift">
+                  <p className="text-xs font-semibold text-accent mb-3">{item.keyword}</p>
+                  <h3 className="font-[family-name:var(--font-noto-serif-tc)] text-xl font-bold mb-3 tracking-tight">{item.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+                </article>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn className="text-center mt-10">
+            <TrackedCTA
+              href="#lead-form"
+              location="search-intent"
+              product="wms"
+              label="demo-anchor"
+              className="inline-flex px-6 py-3 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-colors"
+            >
+              用你的倉庫流程看一次 Demo
+            </TrackedCTA>
+          </FadeIn>
         </div>
       </section>
 

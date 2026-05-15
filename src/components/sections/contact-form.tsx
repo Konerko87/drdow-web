@@ -12,6 +12,7 @@ const ADS_LEAD_EVENT_NAME =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_EVENT_NAME || 'ads_conversion_SUBMIT_LEAD_FORM_1'
 const LEAD_CONVERSION_PENDING_KEY = 'drdow:lead-conversion-pending'
 const LEAD_CONVERSION_STORAGE_KEY = 'drdow:lead-conversion-tracked'
+const LEAD_CONVERSION_SOURCE_KEY = 'drdow:lead-conversion-source'
 
 declare global {
   interface Window {
@@ -45,9 +46,10 @@ const INTEREST_OPTIONS = [
   { value: 'spec', label: '想評估系統規格' },
 ] as const
 
-function markLeadConversionPending() {
+function markLeadConversionPending(source: string) {
   try {
     window.sessionStorage.setItem(LEAD_CONVERSION_PENDING_KEY, '1')
+    window.sessionStorage.setItem(LEAD_CONVERSION_SOURCE_KEY, source)
   } catch {
     // Ignore storage failures; conversion tracking should never block the form.
   }
@@ -57,6 +59,7 @@ function markLeadConversionTracked() {
   try {
     window.sessionStorage.setItem(LEAD_CONVERSION_STORAGE_KEY, '1')
     window.sessionStorage.removeItem(LEAD_CONVERSION_PENDING_KEY)
+    window.sessionStorage.removeItem(LEAD_CONVERSION_SOURCE_KEY)
   } catch {
     // Ignore storage failures; conversion tracking should never block the form.
   }
@@ -112,12 +115,26 @@ export function ContactForm({ source }: ContactFormProps = {}) {
 
     const form = e.currentTarget
     const rawMessage = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim()
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim()
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim()
     const sourceTag = source && SOURCE_LABELS[source] ? `[來自 ${SOURCE_LABELS[source]}] ` : ''
 
     // Validate: at least one interest OR a message
     if (interests.size === 0 && !rawMessage) {
       setStatus('error')
       setErrorMsg('請勾選至少一項想了解的內容，或填寫留言')
+      return
+    }
+
+    if (!email && !phone) {
+      setStatus('error')
+      setErrorMsg('請至少留下 Email 或電話其中一種聯絡方式')
+      return
+    }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('error')
+      setErrorMsg('Email 格式不正確')
       return
     }
 
@@ -133,8 +150,8 @@ export function ContactForm({ source }: ContactFormProps = {}) {
     const data = {
       company: (form.elements.namedItem('company') as HTMLInputElement).value,
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      email,
+      phone,
       message: composedMessage,
       website: (form.elements.namedItem('website') as HTMLInputElement).value, // honeypot
       turnstileToken,
@@ -152,12 +169,11 @@ export function ContactForm({ source }: ContactFormProps = {}) {
         throw new Error(body.error || '寄送失敗')
       }
 
-      markLeadConversionPending()
+      const formSource = source || 'contact'
+      markLeadConversionPending(formSource)
 
       // Fire conversion event BEFORE redirect; /thank-you only acts as a fallback.
       if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        const formSource = source || 'contact'
-
         window.gtag('event', 'generate_lead', {
           event_category: 'lead',
           event_label: formSource,
@@ -268,14 +284,12 @@ export function ContactForm({ source }: ContactFormProps = {}) {
         {/* Email — required */}
         <div>
           <label htmlFor="email" className="block text-sm font-semibold mb-1.5">
-            Email <span className="text-red-400">*</span>
+            Email <span className="text-muted font-normal">(Email 或電話擇一)</span>
           </label>
           <input
             id="email"
             name="email"
             type="email"
-            required
-            aria-required="true"
             autoComplete="email"
             placeholder="your@company.com"
             className="w-full px-4 py-3 rounded-xl bg-surface border border-black/10 text-sm focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
@@ -285,7 +299,7 @@ export function ContactForm({ source }: ContactFormProps = {}) {
         {/* Phone — optional */}
         <div>
           <label htmlFor="phone" className="block text-sm font-semibold mb-1.5">
-            電話 <span className="text-muted font-normal">(選填)</span>
+            電話 <span className="text-muted font-normal">(Email 或電話擇一)</span>
           </label>
           <input
             id="phone"

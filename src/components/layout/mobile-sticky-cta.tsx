@@ -20,6 +20,12 @@ import { TrackedCTA } from '@/components/ui/tracked-cta'
 export function MobileStickyCTA() {
   const pathname = usePathname()
   const [visible, setVisible] = useState(false)
+  const product =
+    pathname.includes('/products/miaotong') ? 'miaotong' :
+    pathname.includes('/products/tms') ? 'tms' :
+    pathname.includes('/products/wms') ? 'wms' :
+    pathname.includes('/products/erp') ? 'erp' :
+    'generic'
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 200)
@@ -47,7 +53,7 @@ export function MobileStickyCTA() {
         <TrackedCTA
           href="/contact"
           location="mobile-sticky"
-          product="generic"
+          product={product}
           label="primary"
           tabIndex={visible ? 0 : -1}
           className="block w-full text-center py-3.5 text-white font-bold text-[15px] tracking-wide"

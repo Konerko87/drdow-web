@@ -9,6 +9,7 @@ const ADS_LEAD_EVENT_NAME =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_EVENT_NAME || 'ads_conversion_SUBMIT_LEAD_FORM_1'
 const LEAD_CONVERSION_PENDING_KEY = 'drdow:lead-conversion-pending'
 const LEAD_CONVERSION_STORAGE_KEY = 'drdow:lead-conversion-tracked'
+const LEAD_CONVERSION_SOURCE_KEY = 'drdow:lead-conversion-source'
 
 export const metadata: Metadata = {
   title: '感謝您的詢問 | Dr.Dow AI',
@@ -23,24 +24,27 @@ export default function ThankYouPage() {
       <Script id="thankyou-conversion" strategy="afterInteractive">
         {`
           var shouldTrackLead = false;
+          var leadSource = 'contact';
           try {
             shouldTrackLead =
               window.sessionStorage.getItem('${LEAD_CONVERSION_PENDING_KEY}') === '1' &&
               window.sessionStorage.getItem('${LEAD_CONVERSION_STORAGE_KEY}') !== '1';
+            leadSource = window.sessionStorage.getItem('${LEAD_CONVERSION_SOURCE_KEY}') || 'contact';
           } catch (error) {}
 
           if(shouldTrackLead && typeof gtag==='function'){
             gtag('event','generate_lead',{
               event_category:'lead',
-              event_label:'contact',
-              form_source:'contact',
+              event_label:leadSource,
+              form_source:leadSource,
               value:1
             });
-            ${ADS_LEAD_EVENT_NAME ? `gtag('event','${ADS_LEAD_EVENT_NAME}',{event_category:'lead',event_label:'contact',form_source:'contact',value:1,currency:'TWD'});` : ''}
+            ${ADS_LEAD_EVENT_NAME ? `gtag('event','${ADS_LEAD_EVENT_NAME}',{event_category:'lead',event_label:leadSource,form_source:leadSource,value:1,currency:'TWD'});` : ''}
             ${AW_ID && AW_LABEL ? `gtag('event','conversion',{'send_to':'${AW_ID}/${AW_LABEL}',value:1,currency:'TWD'});` : ''}
             try {
               window.sessionStorage.setItem('${LEAD_CONVERSION_STORAGE_KEY}', '1');
               window.sessionStorage.removeItem('${LEAD_CONVERSION_PENDING_KEY}');
+              window.sessionStorage.removeItem('${LEAD_CONVERSION_SOURCE_KEY}');
             } catch (error) {}
           }
         `}
@@ -56,7 +60,7 @@ export default function ThankYouPage() {
         </h1>
 
         <p className="text-white/40 text-base mb-8 leading-relaxed">
-          我們已收到您的訊息，將在 <strong className="text-white/70">24 小時內</strong> 回覆您的 Email。
+          我們已收到您的訊息，將在 <strong className="text-white/70">24 小時內</strong> 依您留下的聯絡方式回覆。
         </p>
 
         <div className="bg-white/5 rounded-2xl p-6 border border-white/10 mb-8 text-left">
